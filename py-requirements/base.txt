@@ -1,0 +1,5 @@
+Django==1.10.1
+djangorestframework==3.4.7
+djangorestframework-jwt==1.8.0
+docker-py==1.10.3
+django-webpack-loader==0.3.2
