@@ -1,0 +1,66 @@
+{
+  "name": "l2p",
+  "version": "0.0.1",
+  "description": "",
+  "main": "./assets/js/src/index.js",
+  "scripts": {
+    "build": "webpack --config .webpack/webpack.local.config.js",
+    "build:prod": "webpack --config .webpack/webpack.prod.config.js",
+    "dev-server": "node ./server.js",
+    "start": "npm run dev"
+  },
+  "repository": {
+    "url": "git+https://github.com/hakloev/l2p.git",
+    "type": "git"
+  },
+  "author": "Håkon Ødegård Løvdal, Fredrik Christoffer Berg",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hakloev/l2p/issues"
+  },
+  "homepage": "https://github.com/hakloev/l2p#readme",
+  "dependencies": {
+    "babel-polyfill": "^6.13.0",
+    "brace": "^0.8.0",
+    "classnames": "^2.2.5",
+    "es6-promise": "^3.3.1",
+    "font-awesome": "^4.6.3",
+    "isomorphic-fetch": "^2.2.1",
+    "materialize-css": "^0.97.7",
+    "react": "^15.3.1",
+    "react-ace": "^3.5.0",
+    "react-dom": "^15.3.1",
+    "react-hot-loader": "^3.0.0-beta.3",
+    "react-redux": "^4.4.5",
+    "react-router": "^2.8.1",
+    "react-router-redux": "^4.0.5",
+    "redux": "^3.6.0",
+    "redux-form": "^6.0.5",
+    "redux-saga": "^0.11.1",
+    "webpack": "^1.13.2",
+    "webpack-bundle-tracker": "0.0.93",
+    "webpack-dev-server": "^1.15.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.14.0",
+    "babel-eslint": "^6.1.2",
+    "babel-loader": "^6.2.5",
+    "babel-plugin-transform-object-rest-spread": "^6.8.0",
+    "babel-plugin-transform-react-require": "^1.0.1",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-react": "^6.11.1",
+    "css-loader": "^0.25.0",
+    "eslint": "^3.5.0",
+    "eslint-config-airbnb": "^11.1.0",
+    "eslint-loader": "^1.5.0",
+    "eslint-plugin-import": "^1.16.0",
+    "eslint-plugin-jsx-a11y": "^2.2.2",
+    "eslint-plugin-prefer-object-spread": "^1.1.0",
+    "eslint-plugin-react": "^6.3.0",
+    "file-loader": "^0.9.0",
+    "node-sass": "^3.9.3",
+    "sass-loader": "^4.0.2",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7"
+  }
+}
