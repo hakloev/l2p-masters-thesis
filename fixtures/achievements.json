@@ -1,0 +1,52 @@
+[
+{
+  "model": "api.achievement",
+  "pk": 1,
+  "fields": {
+    "title": "5 functions!",
+    "identifier_string": "func_5",
+    "description": "Congratulations! You have completed 5 correct function assignments in a row!",
+    "image_url": "https://digitallibraryreview.files.wordpress.com/2014/12/top-5-trophy.jpg?w=750"
+  }
+},
+{
+  "model": "api.achievement",
+  "pk": 2,
+  "fields": {
+    "title": "5 Ifs!",
+    "identifier_string": "if_5",
+    "description": "Congratulations! You have completed 5 correct control structure assignments in a row! Keep up the good work!",
+    "image_url": "https://digitallibraryreview.files.wordpress.com/2014/12/top-5-trophy.jpg?w=750"
+  }
+},
+{
+  "model": "api.achievement",
+  "pk": 3,
+  "fields": {
+    "title": "5 loops!",
+    "identifier_string": "loop_5",
+    "description": "Congratulations! You have completed 5 correct loop assignments in a row! Keep up the good work!",
+    "image_url": "https://digitallibraryreview.files.wordpress.com/2014/12/top-5-trophy.jpg?w=750"
+  }
+},
+{
+  "model": "api.achievement",
+  "pk": 4,
+  "fields": {
+    "title": "Streak of 5!",
+    "identifier_string": "any_5",
+    "description": "Congratulations! You have made 5 correct answers in a row! Way to go!",
+    "image_url": "https://digitallibraryreview.files.wordpress.com/2014/12/top-5-trophy.jpg?w=750"
+  }
+},
+{
+  "model": "api.achievement",
+  "pk": 5,
+  "fields": {
+    "title": "First assignment solved!",
+    "identifier_string": "no1",
+    "description": "You earned your first achievement for solving your first assignment!",
+    "image_url": "http://web.osrm.ch/sites/osrm_corm/files/images/Pokal.gif"
+  }
+}
+]
