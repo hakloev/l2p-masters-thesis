@@ -8,6 +8,7 @@ const Navbar = ({ isAuthenticated, onLogoutClick }) => {
         <Link to="/" className="brand-logo">LearnPython2</Link>
         <ul className="right hide-on-med-and-down">
           <li><Link to="/" className="mdl-navigation__link">Home</Link></li>
+          <li><Link to="/report" className="mdl-navigation__link">Report an Issue</Link></li>
           {isAuthenticated
             ? <li><Link className="mdl-navigation__link" onClick={e => onLogoutClick(e)}>Logout</Link></li>
             : <li><Link to="/login" className="mdl-navigation__link">Login</Link></li>
