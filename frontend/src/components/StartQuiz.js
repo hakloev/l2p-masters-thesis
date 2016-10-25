@@ -19,6 +19,7 @@ class StartQuiz extends Component {
       <div className="row">
         <div className="col s6">
           <StartQuizForm basicAssignments={basicAssignments} onSubmit={onStartQuiz} />
+          <hr></hr>
           <StartExamQuizForm examAssignments={examAssignments} onSubmit={onStartQuiz} />
         </div>
         <div className="col s6">
