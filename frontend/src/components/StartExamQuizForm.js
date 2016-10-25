@@ -18,7 +18,7 @@ const StartExamQuizForm = ({ onSubmit }) => {
       <div className="col s12">
         <h3>Exam Questions</h3>
         <p>These tasks are of varying difficulty and are meant as practice prior to the exam.</p>
-        <button type="submit" onClick={onSubmitClick} className="btn waves-effect waves-light blue darken-4">Start!</button>
+        <button type="submit" onClick={onSubmitClick} className="btn waves-effect waves-light blue darken-4">Start exam practice</button>
       </div>
     </div>
   );
