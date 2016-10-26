@@ -13,8 +13,16 @@ class StartQuiz extends Component {
 
   render() {
     const { skillLevels, streakTrackers, assignmentTypes, achievements, onStartQuiz } = this.props;
-    const examAssignments = assignmentTypes.slice(assignmentTypes.length - 1)[0];
-    const basicAssignments = assignmentTypes.slice(0, assignmentTypes.length - 1);
+    const basicAssignments = [];
+    const examAssignments = [];
+    for (let x = 0; x < assignmentTypes.length; x ++) {
+      if (assignmentTypes[x].type_name === 'Exam practice') {
+        examAssignments.push(assignmentTypes[x]);
+      }
+      else {
+        basicAssignments.push(assignmentTypes[x]);
+      }
+    }
     return (
       <div className="row">
         <div className="col s6">
