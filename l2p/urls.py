@@ -24,6 +24,7 @@ from api.views.achievement import AchievementViewSet, UserAchievementListView
 from api.views.user import UserViewSet
 from api.views.score import UserSkillsListView, UserScoreListView
 from api.views.assignment import AssignmentTypeViewSet, AssignmentViewSet, CompileCode, SubmitCode, GetAssignment, check_for_new_achievements
+from api.views.issue import IssueViewSet
 
 #  admin.autodiscover()
 
@@ -31,6 +32,7 @@ router = routers.DefaultRouter()
 router.register('achievements', AchievementViewSet)
 router.register('assignment-types', AssignmentTypeViewSet)
 router.register(r'userr', UserViewSet)
+router.register('report', IssueViewSet)
 
 api_urls = [
 	url(r'^', include(router.urls)),
@@ -45,6 +47,7 @@ api_urls = [
 
     url(r'^assignments/$', AssignmentViewSet.as_view(), name='assignments'),
     url(r'^assignment/new/$', GetAssignment.as_view(), name='get-assignment'),
+    url(r'^report/$', IssueViewSet.as_view(), name='report-issue'),
 ]
 
 urlpatterns = [

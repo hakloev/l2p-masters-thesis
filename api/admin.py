@@ -6,6 +6,7 @@ from api.models.achievement import Achievement
 from api.models.assignment import AssignmentType, Assignment
 from api.models.score import StreakTracker, SkillTypeLevel, ScoreTypeTracker
 from api.models.user import Student
+from api.models.issue import Issue
 
 class AchievementAdmin(admin.ModelAdmin):
 	pass
@@ -54,3 +55,4 @@ admin.site.register(SkillTypeLevel, SkillTypeLevelAdmin)
 admin.site.register(StreakTracker, StreakTrackerAdmin)
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
+admin.site.register(Issue)

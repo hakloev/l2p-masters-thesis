@@ -10,6 +10,9 @@ pull-docker-images:
 migrate:
 	$(MANAGE) migrate
 
+make-migrations:
+	$(MANAGE) makemigrations	
+
 load-fixtures:
 	$(MANAGE) loaddata ./fixtures/achievements.json
 	$(MANAGE) loaddata ./fixtures/assignments.json

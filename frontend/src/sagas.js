@@ -3,6 +3,7 @@ import { fork } from 'redux-saga/effects';
 import { watchLogin } from './sagas/auth';
 import { watchAllQuizStats } from './sagas/stats';
 import { watchAchievements, watchNewAchievements } from './sagas/achievements';
+import { watchReportIssue } from './sagas/reportIssue';
 import {
   watchStartQuiz,
   watchCompileCode,
@@ -21,5 +22,6 @@ export default function* root() {
     watchAchievements(),
     watchNewAchievements(),
     watchLogin(),
+    watchReportIssue(),
   ];
 }

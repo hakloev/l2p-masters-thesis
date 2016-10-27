@@ -45,4 +45,5 @@ export default {
   getNewAssignment: formData => prepareRequest('/api/assignment/new/', formData, 'POST'),
   postAssignmentAnswer: formData => prepareRequest('/api/submit/', formData, 'POST'),
   postCompileCode: code => prepareRequest('/api/compile/', code, 'POST'),
+  postReportIssue: formData => prepareRequest('/api/report/', formData, 'POST'),
 };

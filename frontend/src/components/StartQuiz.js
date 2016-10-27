@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import * as actions from '../actions/quiz';
 import StartQuizForm from './StartQuizForm';
 
-
 // eslint-disable-next-line
 class StartQuiz extends Component {
   componentDidMount() {
