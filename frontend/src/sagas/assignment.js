@@ -1,5 +1,6 @@
 import { takeEvery } from 'redux-saga';
 import { call, put } from 'redux-saga/effects';
+import { browserHistory } from 'react-router';
 
 import * as actions from '../actions/quiz';
 import * as achievementsActions from '../actions/achievements';
@@ -11,6 +12,7 @@ function* startQuiz(action) {
     console.log('[startQuiz] requested');
     const data = yield call(api.getNewAssignment, action.payload);
     yield put(actions.startQuizSuccess(data));
+    browserHistory.push('/quiz');
   } catch (err) {
     // TODO: FAILURE
     console.error('*startQuiz:', err);

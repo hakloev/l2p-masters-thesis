@@ -11,13 +11,14 @@ const renderField = field =>
 const LoginForm = props => {
   // eslint-disable-next-line
   const { handleSubmit } = props;
+
   return (
     <form onSubmit={handleSubmit(props.onSubmit)}>
       <div className="row">
-        <div className="input-field col s6">
+        <div className="input-field col s12">
           <Field name="username" type="text" label="Username" component={renderField} />
         </div>
-        <div className="input-field col s6">
+        <div className="input-field col s12">
           <Field name="password" type="password" label="Password" component={renderField} />
         </div>
       </div>

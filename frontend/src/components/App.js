@@ -19,12 +19,13 @@ const App = props => {
 App.propTypes = {
   onLogoutClick: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
+  userName: PropTypes.string,
   children: PropTypes.node,
 };
 
 const mapStateToProps = state => {
-  const { auth: { isLoggedIn: isAuthenticated } } = state;
-  return { isAuthenticated };
+  const { auth: { isAuthenticated, userName } } = state;
+  return { isAuthenticated, userName };
 };
 
 const mapDispatchToProps = dispatch => {

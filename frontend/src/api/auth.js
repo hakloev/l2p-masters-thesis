@@ -16,35 +16,52 @@ export function errorHandle(error) {
     console.log('[errorHandle] undefined response, returning the error itself');
     return Promise.reject(error); // Return statusText
   }
-  if (response.status === 400) {
-    return Promise.reject({ message: 'Invalid credentials', status: response.status, statusText: response.statusText });
-  }
-  return Promise.reject({
-    message: response.statusText,
-    status: response.status,
-  });
+  return Promise.reject(error);
 }
 
-class SessionApi {
-  static login(credentials) {
-    const options = {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        username: credentials.username,
-        password: credentials.password,
-      }),
-    };
+const defaultOptions = {
+  method: 'POST',
+  headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  },
+};
 
-    return fetch('/auth/token/', options)
-      .then(checkStatus)
-      .then(response => response.json())
-      .then(response => response)
-      .catch(errorHandle);
+const refreshToken = token => {
+  const options = {
+    ...defaultOptions,
+    body: JSON.stringify({
+      token,
+    }),
+  };
+
+  return fetch('/auth/token/refresh/', options)
+    .then(checkStatus)
+    .then(response => response.json())
+    .then(response => response)
+    .catch(errorHandle);
+};
+
+const authenticate = ({ token, username, password }) => {
+  if (token) {
+    return refreshToken(token);
   }
-}
 
-export default SessionApi;
+  const options = {
+    ...defaultOptions,
+    body: JSON.stringify({
+      username,
+      password,
+    }),
+  };
+
+  return fetch('/auth/token/', options)
+    .then(checkStatus)
+    .then(response => response.json())
+    .then(response => response)
+    .catch(errorHandle);
+};
+
+export default {
+  authenticate: credentials => authenticate(credentials),
+};
