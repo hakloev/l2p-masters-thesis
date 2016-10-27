@@ -19,52 +19,45 @@ const Question = ({ assignment, assignmentTypes, compilation, answer, editorValu
   };
 
   return (
-    <div className="row">
-      <div className="col s12" id="assignment-header-container">
-        <h1>{assignment.title}</h1>
-        <div className="chip">Difficulty level: {assignment.difficulty_level}</div>
-        <h5>Task:</h5>
-        <p dangerouslySetInnerHTML={{ __html: assignment.assignment_text }} />
-      </div>
-      <div className="col s12" id="assignment-editor-container">
-        <div className="row">
-          <div className="col s6">
+    <div id="assignment-container">
+      <div id="assignment-editor-container" className="">
+        <div className="" id="editor-row">
+          <div id="assignment-editor">
             <InputEditor code={editorValue} onChange={onEditorChange} />
           </div>
-          <div className="col s6">
-            <OutputEditor code={compilation.output} />
+          <div id="assignment-output">
+            <OutputEditor code={compilation.output} isFetching={compilation.isFetching} />
           </div>
+        </div>
+        <div id="assignment-action-bar">
+          <button onClick={handleCompileCode} className="btn btn-compile btn-large waves-effect waves-light">
+            <i className="material-icons right">play_arrow</i>
+            {!compilation.isFetching ? 'Run Code' : 'Executing'}
+          </button>
+          <button onClick={handleSubmitClick} className={'btn btn-submit btn-large waves-effect waves-light'}>
+            <i className="material-icons right">send</i>
+            Submit
+          </button>
         </div>
       </div>
-      <div className="col s12" id="assignment-help-container">
-        <div className="row">
-          <div className="col s6">
-            {assignment.hint_text &&
-              <div>
-                <h5>Hint:</h5>
-                <p dangerouslySetInnerHTML={{ __html: assignment.hint_text }} />
-              </div>
-            }
-            <div>
-              <h5 className="lp-question__header">Additional resources:</h5>
-              <p>You can read more about {assignment.assignment_type} here:</p>
-              <a href={assignment.resource_url}>{assignment.resource_url}</a>
-            </div>
-          </div>
-          <div className="col s6" id="assignment-controls-container">
-            <button onClick={handleCompileCode} className="btn waves-effect waves-light blue darken-4">
-              {!compilation.isFetching ? 'Run Code' : 'Executing'}
-            </button>
-            <button onClick={handleSubmitClick} className={`btn waves-effect waves-light ${answer ? 'green lighten-1' : 'red darken-4'}`}>
-              Submit
-            </button>
-            {compilation.isFetching &&
-              <div className="progress">
-                <div className="indeterminate" />
-              </div>
-            }
+      <div id="assignment-sidebar" className="">
+        <div className="card task-card">
+          <div className="card-content">
+            <span className="card-title">Assigment:</span>
+            <p className="description-text" dangerouslySetInnerHTML={{ __html: assignment.assignment_text }} />
           </div>
         </div>
+        {assignment.hint_text &&
+          <div className="card hint-card">
+            <div className="card-content">
+              <span className="card-title">Hint</span>
+              <p className="description-text" dangerouslySetInnerHTML={{ __html: assignment.hint_text }} />
+            </div>
+            <div className="card-action">
+              <a href={assignment.resource_url} target="_blank" rel="noopener noreferrer">Additional Resource</a>
+            </div>
+          </div>
+        }
       </div>
     </div>
   );

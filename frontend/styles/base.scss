@@ -1,44 +1,114 @@
-/* RESETS */
-p {
-  margin: 0;
-  line-height: 1.5;
+@import 'reset';
+@import 'variables';
+
+#main-container {
+  margin-top: -64px; /* Negative of navbar height. Added as padding-top on inner-container */
 }
 
-.container {
-  margin-top: 20px;
+#inner-container {
+  padding-top: 64px;
 }
 
 .code-block {
   border: 1px solid lightgray;
   border-radius: 5px;
   font-family: monospace;
-  background-color: #EEEEFF;
+  background-color: #f5f2f0;
+  color: #000;
   padding: 2px;
 }
 
-#assignment-header-container {
-  margin-bottom: 20px;
+.description-text {
+  background-color: #efefef;
+  padding: 10px 15px;
+  font-size: 14px;
+  font-family: monospace;
+}
 
-  > h1 {
-    margin-top: 0;
-    margin-bottom: 5px;
+.task-card {
+  line-height: 1.8;
+}
+
+#assignment-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  height: 100%;
+}
+
+#assignment-editor-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 2;
+  background-color: $editor-color;
+}
+
+#assignment-sidebar {
+  flex: 1;
+  padding: 0 20px;
+  background-color: #fff;
+  overflow-y: auto;
+}
+
+#editor-row {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+}
+
+#assignment-editor {
+  width: 56%;
+  border-right: 15px solid $ouput-border-color;
+  padding: 20px 0;
+}
+
+#assignment-output {
+  flex: 1;
+  background-color: #000;
+  color: #fff;
+}
+
+#output-console {
+  height: 100%;
+  padding: 15px 15px;
+  font-family: monospace;
+  font-size: 16px;
+  border: 1px solid #000;
+}
+
+#output-wrapper {
+  height: 100%;
+  position: relative;
+}
+
+.loading-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+
+  > .big {
+    width: 128px;
+    height: 128px;
   }
 }
 
-#assignment-help-container {
-  > h5 {
-    margin-top: 0;
-  }
-}
+#assignment-action-bar {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  padding: 20px 10px;
+  background-color: #757575;
 
-#assignment-help-container {
-  .btn {
-    margin-right: 10px;
+  > .btn {
+    margin-left: 10px;
   }
-}
 
-#assignment-controls-container {
-  > .progress {
-    margin-top: 20px;
+  > .btn-compile {
+    background-color: #4CAF50;
+  }
+
+  > .btn-submit {
+    background-color: #f44336;
   }
 }

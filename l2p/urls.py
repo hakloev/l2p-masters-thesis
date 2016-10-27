@@ -23,7 +23,8 @@ from rest_framework_jwt.views import obtain_jwt_token
 from api.views.achievement import AchievementViewSet, UserAchievementListView
 from api.views.user import UserViewSet
 from api.views.score import UserSkillsListView, UserScoreListView
-from api.views.assignment import AssignmentTypeViewSet, AssignmentViewSet, CompileCode, SubmitCode, GetAssignment, check_for_new_achievements
+from api.views.assignment import AssignmentTypeViewSet, AssignmentViewSet, CompileCode, SubmitCode, GetAssignment, \
+    check_for_new_achievements
 
 #  admin.autodiscover()
 
@@ -33,7 +34,7 @@ router.register('assignment-types', AssignmentTypeViewSet)
 router.register(r'userr', UserViewSet)
 
 api_urls = [
-	url(r'^', include(router.urls)),
+    url(r'^', include(router.urls)),
 
     url(r'^compile/$', CompileCode.as_view(), name='compile-code'),
     url(r'^submit/$', SubmitCode.as_view(), name='submit-code'),
@@ -50,11 +51,11 @@ api_urls = [
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
-	#  API specific routes
+    #  API specific routes
     url(r'^auth/token/$', obtain_jwt_token),
-	url(r'^api/', include(api_urls, namespace='api')),
+    url(r'^api/', include(api_urls, namespace='api')),
 
-	# Ensure that this view is last and accept all routes in order to work
+    # Ensure that this view is last and accept all routes in order to work
     # with react-router
     url(r'', TemplateView.as_view(template_name='index.html'), name='index'),
 ]
