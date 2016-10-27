@@ -18,7 +18,7 @@ const InputEditor = ({ code, onChange }) => {
       mode="python"
       theme="kuroir"
       name="input-editor"
-      fontSize="14px"
+      fontSize={14}
       value={code}
       width="auto"
       height="100%"

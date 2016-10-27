@@ -57,10 +57,16 @@ export default function* loginFlow() {
       }
 
       // Race condition between logout and refreshing token
-      yield race([
-        take(actions.LOGOUT_REQUEST),
-        call(authenticateAndRefreshOnExpiry, credentials),
-      ]);
+      const { logout } = yield race({
+        logout: take(actions.LOGOUT_REQUEST),
+        authLoop: call(authenticateAndRefreshOnExpiry, credentials),
+      });
+
+      if (logout) {
+        credentials.token = null;
+        yield call(removeAuthToken);
+        Materialize.toast('You have been successfully logged out', 5000);
+      }
 
     } catch (error) {
       console.error('[loginFlow]: ', error.response || error);

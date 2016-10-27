@@ -27,7 +27,7 @@ export function requireAuth(InnerComponent) {
 
     render() {
       return (
-        <div>
+        <div id="auth-wrapper">
           {this.props.isAuthenticated === true
             ? <InnerComponent {...this.props} />
             : null

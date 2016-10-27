@@ -6,6 +6,12 @@ html, body, #app, div[data-reactroot], #main-container, #inner-container {
   overflow: hidden;
 }
 
+#inner-container {
+  > div#auth-wrapper {
+    height: 100%;
+  }
+}
+
 p {
   margin: 0;
   line-height: 1.5;
