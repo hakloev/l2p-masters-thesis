@@ -8,8 +8,10 @@ const App = props => {
   return (
     <div>
       <Navbar isAuthenticated={props.isAuthenticated} onLogoutClick={props.onLogoutClick} />
-      <div className="container">
-        {props.children}
+      <div id="main-container">
+        <div id="inner-container">
+          {props.children}
+        </div>
       </div>
       <AchievementsModal />
     </div>
