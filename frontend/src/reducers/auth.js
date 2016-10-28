@@ -1,14 +1,13 @@
+import jwtDecode from 'jwt-decode';
 import * as types from '../actions/auth';
-import { TOKEN_IDENTIFIER } from '../common/constants';
+// import { TOKEN_IDENTIFIER } from '../common/constants';
 
 const initalState = {
-  token: localStorage.getItem(TOKEN_IDENTIFIER),
-  isLoggedIn: localStorage.getItem(TOKEN_IDENTIFIER) !== null,
-  isLoginInProcess: false,
-  credentials: {
-    username: '',
-    password: '',
-  },
+  token: null,
+  userName: null,
+  isAuthenticated: false,
+  isAuthenticating: false,
+  statusText: null,
 };
 
 const AuthReducer = (state = initalState, action) => {
@@ -16,41 +15,33 @@ const AuthReducer = (state = initalState, action) => {
   case types.LOGIN_REQUEST:
     return {
       ...state,
-      isLoginInProcess: true,
-      credentials: action.credentials,
+      isAuthenticating: true,
+      statusText: null,
     };
   case types.LOGIN_SUCCESS:
     return {
       ...state,
-      token: action.token,
-      isLoggedIn: true,
-      isLoginInProcess: false,
-      credentials: {
-        username: '',
-        password: '',
-      },
+      isAuthenticating: false,
+      isAuthenticated: true,
+      token: action.payload.token,
+      userName: jwtDecode(action.payload.token).username,
     };
   case types.LOGIN_FAILURE:
     return {
       ...state,
-      token: '',
-      isLoggedIn: false,
-      isLoginInProcess: false,
-      credentials: {
-        username: '',
-        password: '',
-      },
+      isAuthenticating: false,
+      isAuthenticated: false,
+      token: null,
+      userName: null,
+      statusText: `Authentication Error: ${action.payload.status} ${action.payload.statusText}`,
     };
   case types.LOGOUT_REQUEST:
     return {
       ...state,
+      isAuthenticated: false,
       token: null,
-      isLoggedIn: false,
-      isLoginInProcess: false,
-      credentials: {
-        username: '',
-        password: '',
-      },
+      userName: null,
+      statusText: 'You have been successfully logged out',
     };
   default:
     return state;

@@ -8,8 +8,10 @@ const App = props => {
   return (
     <div>
       <Navbar isAuthenticated={props.isAuthenticated} onLogoutClick={props.onLogoutClick} />
-      <div className="container">
-        {props.children}
+      <div id="main-container">
+        <div id="inner-container">
+          {props.children}
+        </div>
       </div>
       <AchievementsModal />
     </div>
@@ -19,12 +21,13 @@ const App = props => {
 App.propTypes = {
   onLogoutClick: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
+  userName: PropTypes.string,
   children: PropTypes.node,
 };
 
 const mapStateToProps = state => {
-  const { auth: { isLoggedIn: isAuthenticated } } = state;
-  return { isAuthenticated };
+  const { auth: { isAuthenticated, userName } } = state;
+  return { isAuthenticated, userName };
 };
 
 const mapDispatchToProps = dispatch => {

@@ -4,7 +4,7 @@ import AceEditor from 'react-ace';
 import brace from 'brace';
 
 import 'brace/mode/python';
-import 'brace/theme/monokai';
+import 'brace/theme/kuroir';
 
 const InputEditor = ({ code, onChange }) => {
   const onEditorChange = () => {
@@ -16,12 +16,14 @@ const InputEditor = ({ code, onChange }) => {
   return (
     <AceEditor
       mode="python"
-      theme="monokai"
+      theme="kuroir"
       name="input-editor"
+      fontSize={14}
       value={code}
       width="auto"
-      height="320px"
+      height="100%"
       onChange={onEditorChange()}
+      showPrintMargin={false}
       editorProps={{ $blockScrolling: Infinity }}
     />
   );

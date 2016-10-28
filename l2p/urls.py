@@ -18,13 +18,16 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 
 from rest_framework import routers
-from rest_framework_jwt.views import obtain_jwt_token
+from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
 
 from api.views.achievement import AchievementViewSet, UserAchievementListView
 from api.views.user import UserViewSet
 from api.views.score import UserSkillsListView, UserScoreListView
-from api.views.assignment import AssignmentTypeViewSet, AssignmentViewSet, CompileCode, SubmitCode, GetAssignment, check_for_new_achievements
+
 from api.views.issue import IssueViewSet
+from api.views.assignment import AssignmentTypeViewSet, AssignmentViewSet, CompileCode, SubmitCode, GetAssignment, \
+    check_for_new_achievements
+
 
 #  admin.autodiscover()
 
@@ -35,7 +38,7 @@ router.register(r'userr', UserViewSet)
 router.register('report', IssueViewSet)
 
 api_urls = [
-	url(r'^', include(router.urls)),
+    url(r'^', include(router.urls)),
 
     url(r'^compile/$', CompileCode.as_view(), name='compile-code'),
     url(r'^submit/$', SubmitCode.as_view(), name='submit-code'),
@@ -53,11 +56,13 @@ api_urls = [
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
-	#  API specific routes
+    #  API specific routes
     url(r'^auth/token/$', obtain_jwt_token),
-	url(r'^api/', include(api_urls, namespace='api')),
+    url(r'^auth/token/refresh/$', refresh_jwt_token),
 
-	# Ensure that this view is last and accept all routes in order to work
+    url(r'^api/', include(api_urls, namespace='api')),
+
+    # Ensure that this view is last and accept all routes in order to work
     # with react-router
     url(r'', TemplateView.as_view(template_name='index.html'), name='index'),
 ]

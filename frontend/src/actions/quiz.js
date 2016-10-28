@@ -1,5 +1,3 @@
-import { browserHistory } from 'react-router';
-
 export const GET_ALL_QUIZ_STATS = 'GET_ALL_QUIZ_STATS';
 export const getAllQuizStats = () => {
   return {
@@ -70,7 +68,6 @@ export const startQuizRequest = payload => ({
 
 export const START_QUIZ_SUCCESS = ' START_QUIZ_SUCCESS';
 export const startQuizSuccess = data => {
-  browserHistory.push('/quiz');
   return {
     type: START_QUIZ_SUCCESS,
     data,

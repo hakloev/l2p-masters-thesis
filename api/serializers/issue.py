@@ -12,5 +12,4 @@ class IssueSerializer(serializers.ModelSerializer):
     issue = serializers.CharField()
 
     def create(self, data):
-        print(data)
         return Issue.objects.create(**data)
