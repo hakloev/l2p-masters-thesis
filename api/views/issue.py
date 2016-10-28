@@ -1,3 +1,4 @@
+from django.conf import settings
 from rest_framework import views
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -27,8 +28,8 @@ class IssueViewSet(views.APIView):
         send_mail(
             request.data['name'] + ' (' + str(request.user) + ')' + ' posted a general issue',
             request.data['issue'],
-            'post@post.no',
-            ['fredrik.c.berg1@gmail.com']
+            'issue@learnpython.no',
+            list(email for name, email in settings.ADMINS)
         )
 
 

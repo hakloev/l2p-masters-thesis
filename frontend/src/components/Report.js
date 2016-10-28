@@ -6,7 +6,6 @@ import * as actions from '../actions/reportIssue';
 const textArea = field => <textarea id={field.name} className="materialize-textarea" {...field.input}></textarea>;
 
 const onSubmitReport = (formData, dispatch) => {
-  console.log(formData)
   dispatch(actions.reportIssue(formData));
 };
 

@@ -7,7 +7,6 @@ import api from '../api/service';
 function* reportIssue(action) {
   try {
     console.log('[report issue] requested');
-    console.log(action)
     const data = yield call(api.postReportIssue, action.payload);
     yield put(actions.reportIssueSuccess(data));
   } catch (err) {
