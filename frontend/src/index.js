@@ -8,11 +8,15 @@ import 'materialize-css';
 import 'materialize-css/bin/materialize.css';
 import 'font-awesome/css/font-awesome.min.css';
 
+import initializeGoogleAnalytics from './common/analytics';
+
 import configureStore from './configureStore';
 import routes from './routes';
 import * as actions from './actions/quiz';
 
 require('../styles/base.scss');
+
+initializeGoogleAnalytics();
 
 const appMount = document.getElementById('app');
 const store = configureStore();
