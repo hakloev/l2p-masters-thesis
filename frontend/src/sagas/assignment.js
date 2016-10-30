@@ -4,13 +4,13 @@ import { browserHistory } from 'react-router';
 
 import * as actions from '../actions/quiz';
 import * as achievementsActions from '../actions/achievements';
-import api from '../api/service';
+import apiService from '../api/client';
 
 // START QUIZ START
 function* startQuiz(action) {
   try {
     console.log('[startQuiz] requested');
-    const data = yield call(api.getNewAssignment, action.payload);
+    const data = yield call(apiService.post, '/api/assignment/new/', { body: action.payload });
     yield put(actions.startQuizSuccess(data));
     browserHistory.push('/quiz');
   } catch (err) {
@@ -29,7 +29,7 @@ export function* watchStartQuiz() {
 function* compileCode(action) {
   try {
     console.log('[compileCode] requested');
-    const result = yield call(api.postCompileCode, action.code);
+    const result = yield call(apiService.post, '/api/compile/', { body: action.code });
     yield put(actions.compileCodeSuccess(result));
   } catch (err) {
     console.error('*compileCode:', err);
@@ -46,7 +46,7 @@ export function* watchCompileCode() {
 function* getAssignmentTypes() {
   try {
     console.log('[getAssignmentTypes] requested');
-    const types = yield call(api.getAssignmentTypes);
+    const types = yield call(apiService.get, '/api/assignment-types/');
     yield put(actions.getAssignmentTypesSuccess(types));
   } catch (err) {
     yield put(actions.getAssignmentTypesFailure(err.message));
@@ -63,7 +63,7 @@ export function* watchAssignmentTypes() {
 function* submitAnswer(action) {
   try {
     console.log('[submitAnswer] requested');
-    const data = yield call(api.postAssignmentAnswer, action.payload);
+    const data = yield call(apiService.post, '/api/submit/', { body: action.payload });
     yield put(actions.submitAnswerSuccess(data));
     yield put(achievementsActions.getNewAchievementsRequest());
   } catch (err) {
