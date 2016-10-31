@@ -33,7 +33,7 @@ function* submitAnswer(action) {
     yield put(getNewAchievementsRequest());
   } catch (err) {
     yield put(actions.submitAnswerFailure(err));
-    Materialize.toast('Unable to submit answer, try again later!');
+    Materialize.toast('Unable to submit answer, try again later!', 5000);
   }
 }
 

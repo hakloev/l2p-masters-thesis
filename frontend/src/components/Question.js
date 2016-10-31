@@ -1,68 +1,82 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { InputEditor, OutputEditor } from './editor';
 import { isCorrectSolution } from '../selectors/compilation';
 import * as actions from '../actions/compilation';
 
-const Question = ({ assignment, assignmentTypes, compilationResult, hasCorrectSolution, editorValue, onCompileClick, onSubmitClick, onEditorChange }) => {
+class Question extends Component {
 
-  const handleCompileCode = () => {
-    onCompileClick({ code: editorValue });
-  };
+  constructor(props) {
+    super(props);
+    this.handleCompileCode = this.handleCompileCode.bind(this);
+    this.handleSubmitClick = this.handleSubmitClick.bind(this);
+  }
 
-  const handleSubmitClick = () => {
+  componentDidMount() {
+    $('.tooltipped').tooltip();
+  }
+
+  handleCompileCode() {
+    this.props.onCompileClick({ code: this.props.editorValue });
+  }
+
+  handleSubmitClick() {
+    const { assignment, hasCorrectSolution, assignmentTypes } = this.props;
     const payload = {
       assignment_pk: assignment.id,
       correct_answer: hasCorrectSolution,
       assignment_types: assignmentTypes,
     };
-    onSubmitClick(payload);
-  };
+    this.props.onSubmitClick(payload);
+  }
 
-  return (
-    <div id="assignment-container">
-      <div id="assignment-editor-container" className="">
-        <div className="" id="editor-row">
-          <div id="assignment-editor">
-            <InputEditor code={editorValue} onChange={onEditorChange} />
+  render() {
+    const { editorValue, compilationResult, assignment } = this.props;
+    return (
+      <div id="assignment-container">
+        <div id="assignment-editor-container" className="">
+          <div className="" id="editor-row">
+            <div id="assignment-editor">
+              <InputEditor code={editorValue} onChange={this.props.onEditorChange} />
+            </div>
+            <div id="assignment-output">
+              <OutputEditor code={compilationResult.result.output} isFetching={compilationResult.isFetching} />
+            </div>
           </div>
-          <div id="assignment-output">
-            <OutputEditor code={compilationResult.result.output} isFetching={compilationResult.isFetching} />
-          </div>
-        </div>
-        <div id="assignment-action-bar">
-          <button onClick={handleCompileCode} className="btn btn-compile btn-large waves-effect waves-light">
-            <i className="material-icons right">play_arrow</i>
-            {!compilationResult.isFetching ? 'Run Code' : 'Executing'}
-          </button>
-          <button onClick={handleSubmitClick} className={'btn btn-submit btn-large waves-effect waves-light'}>
-            <i className="material-icons right">send</i>
-            Submit
-          </button>
-        </div>
-      </div>
-      <div id="assignment-sidebar" className="">
-        <div className="card task-card">
-          <div className="card-content">
-            <span className="card-title">Assigment:</span>
-            <p className="description-text" dangerouslySetInnerHTML={{ __html: assignment.assignment_text }} />
+          <div id="assignment-action-bar">
+            <button onClick={this.handleCompileCode} className="btn btn-compile btn-large waves-effect waves-light">
+              <i className="material-icons right">play_arrow</i>
+              {!compilationResult.isFetching ? 'Run Code' : 'Executing'}
+            </button>
+            <button onClick={this.handleSubmitClick} className={'btn tooltipped btn-submit btn-large waves-effect waves-light'} data-position="top" data-delay="50" data-tooltip="Skipping will be registered as a failed attempt">
+              <i className="material-icons right">send</i>
+              Skip
+            </button>
           </div>
         </div>
-        {assignment.hint_text &&
-          <div className="card hint-card">
+        <div id="assignment-sidebar" className="">
+          <div className="card task-card">
             <div className="card-content">
-              <span className="card-title">Hint</span>
-              <p className="description-text" dangerouslySetInnerHTML={{ __html: assignment.hint_text }} />
-            </div>
-            <div className="card-action">
-              <a href={assignment.resource_url} target="_blank" rel="noopener noreferrer">Additional Resource</a>
+              <span className="card-title">Assigment:</span>
+              <p className="description-text" dangerouslySetInnerHTML={{ __html: assignment.assignment_text }} />
             </div>
           </div>
-        }
+          {assignment.hint_text &&
+            <div className="card hint-card">
+              <div className="card-content">
+                <span className="card-title">Hint</span>
+                <p className="description-text" dangerouslySetInnerHTML={{ __html: assignment.hint_text }} />
+              </div>
+              <div className="card-action">
+                <a href={assignment.resource_url} target="_blank" rel="noopener noreferrer">Additional Resource</a>
+              </div>
+            </div>
+          }
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 Question.propTypes = {
   assignment: PropTypes.object.isRequired,

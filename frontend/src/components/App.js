@@ -21,7 +21,6 @@ const App = props => {
 App.propTypes = {
   onLogoutClick: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
-  userName: PropTypes.string,
   children: PropTypes.node,
 };
 
