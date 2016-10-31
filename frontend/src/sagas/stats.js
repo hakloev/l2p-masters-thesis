@@ -1,7 +1,7 @@
 import { call, put, take } from 'redux-saga/effects';
 
 import { getAchievements } from './achievements';
-import * as actions from '../actions/quiz';
+import * as actions from '../actions/stats';
 import apiService from '../api/client';
 
 function* getSkills() {

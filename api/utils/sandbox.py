@@ -75,9 +75,13 @@ class DockerSandbox(object):
             else:
                 output = self.cli.logs(container=container_id, stdout=True).decode('UTF-8')
                 if self.cli.inspect_container(container=container_id)['State']['ExitCode'] != 0:
+                    output_list = output.split('\n')
+                    line_number = output_list[0][output_list[0].find('line'):]
+                    error = output.split('\n')[-2]
                     return {
                         'output': output,
-                        'error': 'Compilation failed',
+                        'error': error,
+                        'line_number': line_number,
                         'timeout': False
                     }
                 return {

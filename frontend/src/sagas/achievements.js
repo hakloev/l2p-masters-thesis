@@ -1,9 +1,9 @@
 import { takeEvery } from 'redux-saga';
 import { call, put } from 'redux-saga/effects';
 
+import apiService from '../api/client';
 import * as actions from '../actions/achievements';
 import { open as openModal } from '../components/AchievementsModal';
-import apiService from '../api/client';
 
 function* getNewAchievements() {
   try {

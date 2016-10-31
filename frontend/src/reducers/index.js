@@ -4,7 +4,7 @@ import { reducer as formReducer } from 'redux-form';
 import auth from './auth';
 import assignment from './assignment';
 import achievements from './achievements';
-import editor from './editor';
+import compilation from './compilation';
 import stats from '././stats';
 
 const rootReducer = combineReducers({
@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
   auth,
   assignment,
   achievements,
-  editor,
+  compilation,
   stats,
 });
 

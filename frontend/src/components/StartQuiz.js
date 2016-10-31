@@ -1,7 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../actions/quiz';
 import StartQuizForm from './StartQuizForm';
+import { getAllQuizStats } from '../actions/stats';
+import {
+  startQuizRequest,
+  setChosenAssignmentTypes,
+} from '../actions/assignment';
 
 
 // eslint-disable-next-line
@@ -55,11 +59,11 @@ StartQuiz.propTypes = {
 const mapDispatchToProps = dispatch => {
   return {
     getAllQuizStats: () => {
-      dispatch(actions.getAllQuizStats());
+      dispatch(getAllQuizStats());
     },
     onStartQuiz: formData => {
-      dispatch(actions.startQuizRequest(formData));
-      dispatch(actions.setChosenAssignmentTypes(formData.assignment_types));
+      dispatch(startQuizRequest(formData));
+      dispatch(setChosenAssignmentTypes(formData.assignment_types));
     },
   };
 };
@@ -67,10 +71,8 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
   const { skills, streaks } = state.stats;
   const { types } = state.assignment;
-  const { token } = state.auth;
   const { meta: achievements } = state.achievements.achievements;
   return {
-    token,
     achievements,
     skillLevels: skills.data,
     streakTrackers: streaks.data,

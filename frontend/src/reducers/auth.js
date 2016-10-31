@@ -1,6 +1,5 @@
 import jwtDecode from 'jwt-decode';
 import * as types from '../actions/auth';
-// import { TOKEN_IDENTIFIER } from '../common/constants';
 
 const initalState = {
   token: null,

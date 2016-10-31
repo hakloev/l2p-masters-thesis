@@ -4,10 +4,12 @@ import loginFlow from './sagas/auth';
 import { watchAllQuizStats } from './sagas/stats';
 import { watchAchievements, watchNewAchievements } from './sagas/achievements';
 import {
-  watchStartQuiz,
   watchCompileCode,
-  watchAssignmentTypes,
   watchSubmitAnswer,
+} from './sagas/compilation';
+import {
+  watchStartQuiz,
+  watchAssignmentTypes,
 } from './sagas/assignment';
 
 export default function* root() {

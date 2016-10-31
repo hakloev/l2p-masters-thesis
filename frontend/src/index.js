@@ -10,7 +10,7 @@ import 'font-awesome/css/font-awesome.min.css';
 
 import configureStore from './configureStore';
 import routes from './routes';
-import * as actions from './actions/quiz';
+import { getAssignmentTypesRequest } from './actions/assignment';
 
 require('../styles/base.scss');
 
@@ -18,7 +18,7 @@ const appMount = document.getElementById('app');
 const store = configureStore();
 
 // Load inital data
-store.dispatch(actions.getAssignmentTypesRequest());
+store.dispatch(getAssignmentTypesRequest());
 
 ReactDOM.render(
   <Provider store={store}>

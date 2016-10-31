@@ -7,6 +7,7 @@ import 'brace/mode/python';
 import 'brace/theme/kuroir';
 
 const InputEditor = ({ code, onChange }) => {
+
   const onEditorChange = () => {
     return newValue => {
       onChange(newValue);

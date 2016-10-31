@@ -1,9 +1,10 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { InputEditor, OutputEditor } from './editor';
-import * as actions from '../actions/quiz';
+import { isCorrectSolution } from '../selectors/compilation';
+import * as actions from '../actions/compilation';
 
-const Question = ({ assignment, assignmentTypes, compilation, answer, editorValue, onCompileClick, onSubmitClick, onEditorChange }) => {
+const Question = ({ assignment, assignmentTypes, compilationResult, hasCorrectSolution, editorValue, onCompileClick, onSubmitClick, onEditorChange }) => {
 
   const handleCompileCode = () => {
     onCompileClick({ code: editorValue });
@@ -12,7 +13,7 @@ const Question = ({ assignment, assignmentTypes, compilation, answer, editorValu
   const handleSubmitClick = () => {
     const payload = {
       assignment_pk: assignment.id,
-      correct_answer: answer,
+      correct_answer: hasCorrectSolution,
       assignment_types: assignmentTypes,
     };
     onSubmitClick(payload);
@@ -26,13 +27,13 @@ const Question = ({ assignment, assignmentTypes, compilation, answer, editorValu
             <InputEditor code={editorValue} onChange={onEditorChange} />
           </div>
           <div id="assignment-output">
-            <OutputEditor code={compilation.output} isFetching={compilation.isFetching} />
+            <OutputEditor code={compilationResult.result.output} isFetching={compilationResult.isFetching} />
           </div>
         </div>
         <div id="assignment-action-bar">
           <button onClick={handleCompileCode} className="btn btn-compile btn-large waves-effect waves-light">
             <i className="material-icons right">play_arrow</i>
-            {!compilation.isFetching ? 'Run Code' : 'Executing'}
+            {!compilationResult.isFetching ? 'Run Code' : 'Executing'}
           </button>
           <button onClick={handleSubmitClick} className={'btn btn-submit btn-large waves-effect waves-light'}>
             <i className="material-icons right">send</i>
@@ -66,9 +67,9 @@ const Question = ({ assignment, assignmentTypes, compilation, answer, editorValu
 Question.propTypes = {
   assignment: PropTypes.object.isRequired,
   assignmentTypes: PropTypes.array,
-  compilation: PropTypes.object.isRequired,
+  compilationResult: PropTypes.object.isRequired,
+  hasCorrectSolution: PropTypes.bool,
   editorValue: PropTypes.string.isRequired,
-  answer: PropTypes.bool.isRequired,
   onCompileClick: PropTypes.func.isRequired,
   onSubmitClick: PropTypes.func.isRequired,
   onEditorChange: PropTypes.func.isRequired,
@@ -89,13 +90,13 @@ const mapDispatchToProps = dispatch => {
 };
 
 const mapStateToProps = state => {
-  const { types: { chosenTypes: assignmentTypes }, task: { answer, compilation, meta } } = state.assignment;
-  const { editorValue } = state.editor;
+  const { types: { chosenTypes: assignmentTypes }, task: { meta } } = state.assignment;
+  const { editor: { value: editorValue }, result: compilationResult } = state.compilation;
   return {
     assignment: meta,
+    hasCorrectSolution: isCorrectSolution(state),
     assignmentTypes,
-    compilation,
-    answer,
+    compilationResult,
     editorValue,
   };
 };
