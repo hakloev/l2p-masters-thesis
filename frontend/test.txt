@@ -1,4 +1,0 @@
-
-> l2p@0.0.1 dev-server /Users/hakloev/git/internal/l2p/frontend
-> node ./server.js
-
