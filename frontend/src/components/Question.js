@@ -16,6 +16,10 @@ class Question extends Component {
     $('.tooltipped').tooltip();
   }
 
+  componentWillUnmount() {
+    $('.tooltipped').tooltip('remove');
+  }
+
   handleCompileCode() {
     this.props.onCompileClick({ code: this.props.editorValue });
   }
@@ -31,27 +35,29 @@ class Question extends Component {
   }
 
   render() {
-    const { editorValue, compilationResult, assignment } = this.props;
+    const { editorValue, compilationResult, assignment, hasCorrectSolution } = this.props;
     return (
       <div id="assignment-container">
         <div id="assignment-editor-container" className="">
           <div className="" id="editor-row">
             <div id="assignment-editor">
-              <InputEditor code={editorValue} onChange={this.props.onEditorChange} />
+              <InputEditor code={editorValue} onChange={this.props.onEditorChange} compileCode={this.handleCompileCode} />
             </div>
             <div id="assignment-output">
               <OutputEditor code={compilationResult.result.output} isFetching={compilationResult.isFetching} />
             </div>
           </div>
           <div id="assignment-action-bar">
-            <button onClick={this.handleCompileCode} className="btn btn-compile btn-large waves-effect waves-light">
-              <i className="material-icons right">play_arrow</i>
-              {!compilationResult.isFetching ? 'Run Code' : 'Executing'}
-            </button>
-            <button onClick={this.handleSubmitClick} className={'btn tooltipped btn-submit btn-large waves-effect waves-light'} data-position="top" data-delay="50" data-tooltip="Skipping will be registered as a failed attempt">
-              <i className="material-icons right">send</i>
-              Skip
-            </button>
+            <div className="assignment-action-bar-controls">
+              <button onClick={this.handleCompileCode} className="btn tooltipped btn-compile btn-large waves-effect waves-light" data-position="top" data-delay="50" data-tooltip={navigator.platform === 'MacIntel' ? 'cmd + enter' : 'ctrl + enter'}>
+                <i className="material-icons right">play_arrow</i>
+                {!compilationResult.isFetching ? 'Run Code' : 'Executing'}
+              </button>
+              <button onClick={this.handleSubmitClick} className={'btn tooltipped btn-submit btn-large waves-effect waves-light'} data-position="top" data-delay="50" data-tooltip="This will be registered as a failed attempt">
+                <i className="material-icons right">send</i>
+                Skip
+              </button>
+            </div>
           </div>
         </div>
         <div id="assignment-sidebar" className="">
