@@ -41,19 +41,42 @@ class Question extends Component {
         <div id="assignment-editor-container" className="">
           <div className="" id="editor-row">
             <div id="assignment-editor">
-              <InputEditor code={editorValue} onChange={this.props.onEditorChange} compileCode={this.handleCompileCode} />
+              <InputEditor
+                code={editorValue}
+                onChange={this.props.onEditorChange}
+                compileCode={this.handleCompileCode}
+              />
             </div>
             <div id="assignment-output">
-              <OutputEditor code={compilationResult.result.output} isFetching={compilationResult.isFetching} />
+              <OutputEditor
+                code={compilationResult.result.output}
+                isFetching={compilationResult.isFetching}
+                hasCorrectSolution={hasCorrectSolution}
+                onNextQuestionClick={this.handleSubmitClick}
+              />
             </div>
           </div>
           <div id="assignment-action-bar">
             <div className="assignment-action-bar-controls">
-              <button onClick={this.handleCompileCode} className="btn tooltipped btn-compile btn-large waves-effect waves-light" data-position="top" data-delay="50" data-tooltip={navigator.platform === 'MacIntel' ? 'cmd + enter' : 'ctrl + enter'}>
+              <button
+                onClick={this.handleCompileCode}
+                className="btn tooltipped btn-large waves-effect waves-light"
+                data-position="top"
+                data-delay="50"
+                data-tooltip={navigator.platform === 'MacIntel' ? 'cmd + enter' : 'ctrl + enter'}
+              >
                 <i className="material-icons right">play_arrow</i>
                 {!compilationResult.isFetching ? 'Run Code' : 'Executing'}
               </button>
-              <button onClick={this.handleSubmitClick} className={'btn tooltipped btn-submit btn-large waves-effect waves-light'} data-position="top" data-delay="50" data-tooltip="This will be registered as a failed attempt">
+              <button
+                onClick={this.handleSubmitClick}
+                id="skip-button"
+                className={'btn tooltipped btn-large waves-effect waves-light red lighten-1'}
+                data-position="top"
+                data-delay="50"
+                data-tooltip="This will be registered as a failed attempt"
+                disabled={hasCorrectSolution}
+              >
                 <i className="material-icons right">send</i>
                 Skip
               </button>

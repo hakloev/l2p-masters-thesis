@@ -1,8 +1,9 @@
 import React, { PropTypes } from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-const PreLoader = () => {
+const CompilationIndicator = () => {
   return (
-    <div className="loading-indicator">
+    <div className="output-overlay">
       <div className="preloader-wrapper big active">
         <div className="spinner-layer spinner-yellow-only">
           <div className="circle-clipper left">
@@ -18,12 +19,26 @@ const PreLoader = () => {
   );
 };
 
-const OutputEditor = ({ code, isFetching }) => {
+const NextTaskIndicator = ({ shouldDisplay, onNextClick }) => {
+  return (
+    <div className="output-overlay task">
+      <div id="submit-button" className={`${shouldDisplay ? 'is-visible' : 'is-hidden'}`}>
+        <button onClick={onNextClick} className="btn btn-large waves-effect waves-light green lighten-1">
+          <i className="material-icons left">check_circle</i>
+          Next Task
+        </button>
+      </div>
+    </div>
+  );
+};
+
+const OutputEditor = ({ code, isFetching, hasCorrectSolution, onNextQuestionClick }) => {
   return (
     <div id="output-wrapper">
       {isFetching &&
-        <PreLoader />
+        <CompilationIndicator />
       }
+      <NextTaskIndicator shouldDisplay={hasCorrectSolution} onNextClick={onNextQuestionClick} />
       <textarea id="output-console" disabled value={!isFetching ? code : ''} />
     </div>
   );
@@ -32,6 +47,8 @@ const OutputEditor = ({ code, isFetching }) => {
 OutputEditor.propTypes = {
   code: PropTypes.string,
   isFetching: PropTypes.bool,
+  hasCorrectSolution: PropTypes.bool,
+  onNextQuestionClick: PropTypes.func.isRequired,
 };
 
 export default OutputEditor;

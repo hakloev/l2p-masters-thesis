@@ -40,6 +40,13 @@ const ResultReducer = (state = initalState.compilation, action) => {
       },
       isFetching: false,
     };
+  case types.SUBMIT_ANSWER_SUCCESS:
+    return {
+      ...state,
+      result: {
+        ...initalState.compilation.result,
+      },
+    };
   default:
     return state;
   }
