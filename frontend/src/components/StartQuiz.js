@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/quiz';
 import StartQuizForm from './StartQuizForm';
+import StartExamQuizForm from './StartExamQuizForm';
 
 // eslint-disable-next-line
 class StartQuiz extends Component {
@@ -11,10 +12,22 @@ class StartQuiz extends Component {
 
   render() {
     const { skillLevels, streakTrackers, assignmentTypes, achievements, onStartQuiz } = this.props;
+    const basicAssignments = [];
+    const examAssignments = [];
+    for (let x = 0; x < assignmentTypes.length; x ++) {
+      if (assignmentTypes[x].type_name === 'Exam practice') {
+        examAssignments.push(assignmentTypes[x]);
+      }
+      else {
+        basicAssignments.push(assignmentTypes[x]);
+      }
+    }
     return (
       <div className="row">
         <div className="col s6">
-          <StartQuizForm assignmentTypes={assignmentTypes} onSubmit={onStartQuiz} />
+          <StartQuizForm basicAssignments={basicAssignments} onSubmit={onStartQuiz} />
+          <hr></hr>
+          {examAssignments.length > 0 && <StartExamQuizForm examAssignments={examAssignments} onSubmit={onStartQuiz} />}
         </div>
         <div className="col s6">
           <h3>Statistics</h3>
