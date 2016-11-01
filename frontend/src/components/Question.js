@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { InputEditor, OutputEditor } from './editor';
 import * as actions from '../actions/quiz';
-import ReportModal, { open as openModal } from './ReportModal';
+import { open as openModal } from './ReportModal';
 
 const Question = ({ assignment, assignmentTypes, compilation, answer, editorValue, onCompileClick, onSubmitClick, onEditorChange }) => {
 
@@ -61,7 +61,6 @@ const Question = ({ assignment, assignmentTypes, compilation, answer, editorValu
           </div>
         }
       </div>
-      <ReportModal assignmentId={assignment.id} />
     </div>
   );
 };

@@ -44,12 +44,6 @@ const open = () => {
   $('#report-modal').openModal();
 };
 
-/*
-ReportModal.propTypes = {
-  assignmentId: PropTypes.number.isRequired,
-};
-*/
-
 ReportModal = reduxForm({
   form: 'reportModal',
 })(ReportModal);
@@ -58,4 +52,10 @@ export {
   open,
 };
 
-export default connect()(ReportModal);
+const mapStateToProps = state => {
+  return {
+    assignmentId: state.assignment.task.meta.id,
+  };
+};
+
+export default connect(mapStateToProps)(ReportModal);

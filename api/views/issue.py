@@ -14,7 +14,6 @@ class IssueViewSet(views.APIView):
     serializer_class = IssueSerializer
 
     def post(self, request):
-        print(request.data)
         serializer = IssueSerializer(data=request.data)
         if 'name' not in request.data:
             request.data['name'] = 'Anonymous'
