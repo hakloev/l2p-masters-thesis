@@ -25,11 +25,19 @@ class IssueViewSet(views.APIView):
         return Response({'Issue': request.data['name']})
 
     def send_issue_email(self, request):
-        send_mail(
-            request.data['name'] + ' (' + str(request.user) + ')' + ' posted a general issue',
-            request.data['issue'],
-            'issue@learnpython.no',
-            list(email for name, email in settings.ADMINS)
-        )
+        if 'assignmentId' in request.data:
+            send_mail(
+                request.data['name'] + ' (' + str(request.user) + ')' + ' posted an issue for id ' + str(request.data['assignmentId']),
+                request.data['issue'],
+                'issue@learnpython.no',
+                list(email for name, email in settings.ADMINS)
+            )
+        else:
+            send_mail(
+                request.data['name'] + ' (' + str(request.user) + ')' + ' posted a general issue',
+                request.data['issue'],
+                'issue@learnpython.no',
+                list(email for name, email in settings.ADMINS)
+            )
 
 

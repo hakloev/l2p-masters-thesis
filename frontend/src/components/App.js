@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Navbar from './Navbar';
 import AchievementsModal from './AchievementsModal';
 import * as actions from '../actions/auth';
+import ReportModal from './ReportModal';
 
 const App = props => {
   return (
@@ -14,6 +15,7 @@ const App = props => {
         </div>
       </div>
       <AchievementsModal />
+      <ReportModal />
     </div>
   );
 };
