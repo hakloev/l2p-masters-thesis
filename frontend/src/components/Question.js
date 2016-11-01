@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { InputEditor, OutputEditor } from './editor';
 import * as actions from '../actions/quiz';
+import ReportModal, { open as openModal } from './ReportModal';
 
 const Question = ({ assignment, assignmentTypes, compilation, answer, editorValue, onCompileClick, onSubmitClick, onEditorChange }) => {
 
@@ -30,6 +31,7 @@ const Question = ({ assignment, assignmentTypes, compilation, answer, editorValu
           </div>
         </div>
         <div id="assignment-action-bar">
+          <button onClick={openModal} className="waves-effect waves-light btn btn-report">Report an issue with this task</button>
           <button onClick={handleCompileCode} className="btn btn-compile btn-large waves-effect waves-light">
             <i className="material-icons right">play_arrow</i>
             {!compilation.isFetching ? 'Run Code' : 'Executing'}
@@ -59,6 +61,7 @@ const Question = ({ assignment, assignmentTypes, compilation, answer, editorValu
           </div>
         }
       </div>
+      <ReportModal assignmentId={assignment.id} />
     </div>
   );
 };

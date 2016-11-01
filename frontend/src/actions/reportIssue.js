@@ -1,8 +1,9 @@
 export const REPORT_ISSUE = 'REPORT_ISSUE';
-export const reportIssue = payload => {
+export const reportIssue = (payload, isAssignmentForm = false) => {
   return {
     type: REPORT_ISSUE,
     payload,
+    isAssignmentForm,
   };
 };
 
