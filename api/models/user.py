@@ -1,3 +1,4 @@
+import uuid
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.signals import post_save
@@ -19,7 +20,7 @@ class Student(models.Model):
     assignments_solved = models.ManyToManyField(Assignment, blank=True)
 
 
-@receiver(post_save, sender=User, dispatch_uid="update_student_user")
+@receiver(post_save, sender=User, dispatch_uid=uuid.uuid1())
 def update_student_user(sender, instance, created, **kwargs):
     if created:
         student = Student(user=instance)
