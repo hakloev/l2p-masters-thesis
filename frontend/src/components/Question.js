@@ -1,76 +1,120 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { InputEditor, OutputEditor } from './editor';
-import * as actions from '../actions/quiz';
 import { open as openModal } from './ReportModal';
+import { isCorrectSolution } from '../selectors/compilation';
+import * as actions from '../actions/compilation';
 
-const Question = ({ assignment, assignmentTypes, compilation, answer, editorValue, onCompileClick, onSubmitClick, onEditorChange }) => {
+class Question extends Component {
 
-  const handleCompileCode = () => {
-    onCompileClick({ code: editorValue });
-  };
+  constructor(props) {
+    super(props);
+    this.handleCompileCode = this.handleCompileCode.bind(this);
+    this.handleSubmitClick = this.handleSubmitClick.bind(this);
+  }
 
-  const handleSubmitClick = () => {
+  componentDidMount() {
+    $('.tooltipped').tooltip();
+  }
+
+  componentWillUnmount() {
+    $('.tooltipped').tooltip('remove');
+  }
+
+  handleCompileCode() {
+    this.props.onCompileClick({ code: this.props.editorValue });
+  }
+
+  handleSubmitClick() {
+    const { assignment, hasCorrectSolution, assignmentTypes } = this.props;
     const payload = {
       assignment_pk: assignment.id,
-      correct_answer: answer,
+      correct_answer: hasCorrectSolution,
       assignment_types: assignmentTypes,
     };
-    onSubmitClick(payload);
-  };
+    this.props.onSubmitClick(payload);
+  }
 
-  return (
-    <div id="assignment-container">
-      <div id="assignment-editor-container" className="">
-        <div className="" id="editor-row">
-          <div id="assignment-editor">
-            <InputEditor code={editorValue} onChange={onEditorChange} />
+  render() {
+    const { editorValue, compilationResult, assignment, hasCorrectSolution } = this.props;
+    return (
+      <div id="assignment-container">
+        <div id="assignment-editor-container" className="">
+          <div className="" id="editor-row">
+            <div id="assignment-editor">
+              <InputEditor
+                code={editorValue}
+                onChange={this.props.onEditorChange}
+                compileCode={this.handleCompileCode}
+              />
+            </div>
+            <div id="assignment-output">
+              <OutputEditor
+                code={compilationResult.result.output}
+                isFetching={compilationResult.isFetching}
+                hasCorrectSolution={hasCorrectSolution}
+                onNextQuestionClick={this.handleSubmitClick}
+              />
+            </div>
           </div>
-          <div id="assignment-output">
-            <OutputEditor code={compilation.output} isFetching={compilation.isFetching} />
+          <div id="assignment-action-bar">
+            <div className="assignment-action-bar-controls">
+              <button onClick={openModal} className="waves-effect waves-light btn btn-report">Report an issue with this task</button>
+              <button
+                onClick={this.handleCompileCode}
+                className="btn tooltipped btn-large waves-effect waves-light"
+                data-position="top"
+                data-delay="50"
+                data-tooltip={navigator.platform === 'MacIntel' ? 'cmd + enter' : 'ctrl + enter'}
+              >
+                <i className="material-icons right">play_arrow</i>
+                {!compilationResult.isFetching ? 'Run Code' : 'Executing'}
+              </button>
+              <button
+                onClick={this.handleSubmitClick}
+                id="skip-button"
+                className={'btn tooltipped btn-large waves-effect waves-light red lighten-1'}
+                data-position="top"
+                data-delay="50"
+                data-tooltip="This will be registered as a failed attempt"
+                disabled={hasCorrectSolution}
+              >
+                <i className="material-icons right">send</i>
+                Skip
+              </button>
+            </div>
           </div>
         </div>
-        <div id="assignment-action-bar">
-          <button onClick={openModal} className="waves-effect waves-light btn btn-report">Report an issue with this task</button>
-          <button onClick={handleCompileCode} className="btn btn-compile btn-large waves-effect waves-light">
-            <i className="material-icons right">play_arrow</i>
-            {!compilation.isFetching ? 'Run Code' : 'Executing'}
-          </button>
-          <button onClick={handleSubmitClick} className={'btn btn-submit btn-large waves-effect waves-light'}>
-            <i className="material-icons right">send</i>
-            Submit
-          </button>
-        </div>
-      </div>
-      <div id="assignment-sidebar" className="">
-        <div className="card task-card">
-          <div className="card-content">
-            <span className="card-title">Assigment:</span>
-            <p className="description-text" dangerouslySetInnerHTML={{ __html: assignment.assignment_text }} />
-          </div>
-        </div>
-        {assignment.hint_text &&
-          <div className="card hint-card">
+        <div id="assignment-sidebar" className="">
+          <div className="card task-card">
             <div className="card-content">
-              <span className="card-title">Hint</span>
-              <p className="description-text" dangerouslySetInnerHTML={{ __html: assignment.hint_text }} />
-            </div>
-            <div className="card-action">
-              <a href={assignment.resource_url} target="_blank" rel="noopener noreferrer">Additional Resource</a>
+              <span className="card-title">Assigment:</span>
+              <p className="description-text" dangerouslySetInnerHTML={{ __html: assignment.assignment_text }} />
             </div>
           </div>
-        }
+          {assignment.hint_text &&
+            <div className="card hint-card">
+              <div className="card-content">
+                <span className="card-title">Hint</span>
+                <p className="description-text" dangerouslySetInnerHTML={{ __html: assignment.hint_text }} />
+              </div>
+              <div className="card-action">
+                <a href={assignment.resource_url} target="_blank" rel="noopener noreferrer">Additional Resource</a>
+              </div>
+            </div>
+          }
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 Question.propTypes = {
   assignment: PropTypes.object.isRequired,
   assignmentTypes: PropTypes.array,
-  compilation: PropTypes.object.isRequired,
+  compilationResult: PropTypes.object.isRequired,
+  hasCorrectSolution: PropTypes.bool,
   editorValue: PropTypes.string.isRequired,
-  answer: PropTypes.bool.isRequired,
   onCompileClick: PropTypes.func.isRequired,
   onSubmitClick: PropTypes.func.isRequired,
   onEditorChange: PropTypes.func.isRequired,
@@ -91,13 +135,13 @@ const mapDispatchToProps = dispatch => {
 };
 
 const mapStateToProps = state => {
-  const { types: { chosenTypes: assignmentTypes }, task: { answer, compilation, meta } } = state.assignment;
-  const { editorValue } = state.editor;
+  const { types: { chosenTypes: assignmentTypes }, task: { meta } } = state.assignment;
+  const { editor: { value: editorValue }, result: compilationResult } = state.compilation;
   return {
     assignment: meta,
+    hasCorrectSolution: isCorrectSolution(state),
     assignmentTypes,
-    compilation,
-    answer,
+    compilationResult,
     editorValue,
   };
 };

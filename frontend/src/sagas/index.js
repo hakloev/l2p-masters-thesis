@@ -1,15 +1,19 @@
 import { fork } from 'redux-saga/effects';
 
-import loginFlow from './sagas/auth';
-import { watchAllQuizStats } from './sagas/stats';
-import { watchAchievements, watchNewAchievements } from './sagas/achievements';
-import { watchReportIssue } from './sagas/reportIssue';
+import loginFlow from './auth';
+import { watchAllQuizStats } from './stats';
+import { watchReportIssue } from './reportIssue';
+import { watchAchievements, watchNewAchievements } from './achievements';
+
+import {
+  watchCompileCode,
+  watchSubmitAnswer,
+} from './compilation';
+
 import {
   watchStartQuiz,
-  watchCompileCode,
   watchAssignmentTypes,
-  watchSubmitAnswer,
-} from './sagas/assignment';
+} from './assignment';
 
 export default function* root() {
   yield [

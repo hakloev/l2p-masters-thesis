@@ -1,13 +1,13 @@
 import { call, put, take } from 'redux-saga/effects';
 
 import { getAchievements } from './achievements';
-import * as actions from '../actions/quiz';
-import api from '../api/service';
+import * as actions from '../actions/stats';
+import apiService from '../api/client';
 
 function* getSkills() {
   try {
     console.log('[getSkills] requested');
-    const skills = yield call(api.getSkills);
+    const skills = yield call(apiService.get, '/api/user/skills/');
     yield put(actions.getSkillsSuccess(skills));
   } catch (err) {
     yield put(actions.getSkillsFailure(err.message));
@@ -17,7 +17,7 @@ function* getSkills() {
 function* getStreaks() {
   try {
     console.log('[getStreaks] requested');
-    const streaks = yield call(api.getStreaks);
+    const streaks = yield call(apiService.get, '/api/user/scores/');
     yield put(actions.getStreaksSuccess(streaks));
   } catch (err) {
     yield put(actions.getSkillsFailure(err.message));

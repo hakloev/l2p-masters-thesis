@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import * as types from '../actions/quiz';
+import * as types from '../actions/stats';
 
 const initalState = {
   skills: {

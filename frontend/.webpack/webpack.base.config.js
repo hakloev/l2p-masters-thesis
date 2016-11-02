@@ -1,7 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-const BundleTracker = require('webpack-bundle-tracker');
-// var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   context: __dirname,
@@ -19,7 +17,6 @@ module.exports = {
   },
 
   plugins: [
-    // new ExtractTextPlugin('styles.css'),
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',

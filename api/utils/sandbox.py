@@ -2,9 +2,12 @@ import logging
 import uuid
 import tempfile
 import os
+import re
 from docker import Client
 from docker.errors import NotFound
 from requests.exceptions import ReadTimeout, ConnectionError
+
+LINE_NUMBER_REGEXP = r'line \d*'
 
 
 class DockerSandbox(object):
@@ -75,9 +78,12 @@ class DockerSandbox(object):
             else:
                 output = self.cli.logs(container=container_id, stdout=True).decode('UTF-8')
                 if self.cli.inspect_container(container=container_id)['State']['ExitCode'] != 0:
+                    line_number = re.findall(LINE_NUMBER_REGEXP, output, re.MULTILINE)[0]
+                    error = output.split('\n')[-2]
                     return {
                         'output': output,
-                        'error': 'Compilation failed',
+                        'error': error,
+                        'line_number': line_number if line_number else 'unknown line number',
                         'timeout': False
                     }
                 return {

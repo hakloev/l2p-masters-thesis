@@ -1,14 +1,14 @@
 import { takeEvery } from 'redux-saga';
 import { call, put } from 'redux-saga/effects';
 
+import apiService from '../api/client';
 import * as actions from '../actions/achievements';
 import { open as openModal } from '../components/AchievementsModal';
-import api from '../api/service';
 
 function* getNewAchievements() {
   try {
     console.log('[getNewAchievements] requested');
-    const data = yield call(api.getNewAchievements);
+    const data = yield call(apiService.get, '/api/user/achievements/new/');
     yield put(actions.getNewAchievementsSuccess(data.achievements));
     if (data.achievements.length > 0) {
       openModal();
@@ -27,7 +27,7 @@ export function* watchNewAchievements() {
 export function* getAchievements() {
   try {
     console.log('[getAchievements] requested');
-    const data = yield call(api.getAchievements);
+    const data = yield call(apiService.get, '/api/user/achievements/');
     yield put(actions.getAchievementsSuccess(data));
   } catch (err) {
     // TODO: FAILURE

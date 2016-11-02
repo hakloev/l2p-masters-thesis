@@ -4,6 +4,7 @@ import { browserHistory } from 'react-router';
 
 import * as actions from '../actions/auth';
 import api from '../api/auth';
+
 import {
   isTokenExpired,
   getTokenExpiration,

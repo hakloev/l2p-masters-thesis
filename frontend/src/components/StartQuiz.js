@@ -1,8 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../actions/quiz';
 import StartQuizForm from './StartQuizForm';
 import StartExamQuizForm from './StartExamQuizForm';
+
+import { getAllQuizStats } from '../actions/stats';
+import {
+  startQuizRequest,
+  setChosenAssignmentTypes,
+} from '../actions/assignment';
 
 // eslint-disable-next-line
 class StartQuiz extends Component {
@@ -14,11 +19,10 @@ class StartQuiz extends Component {
     const { skillLevels, streakTrackers, assignmentTypes, achievements, onStartQuiz } = this.props;
     const basicAssignments = [];
     const examAssignments = [];
-    for (let x = 0; x < assignmentTypes.length; x ++) {
+    for (let x = 0; x < assignmentTypes.length; x++) {
       if (assignmentTypes[x].type_name === 'Exam practice') {
         examAssignments.push(assignmentTypes[x]);
-      }
-      else {
+      } else {
         basicAssignments.push(assignmentTypes[x]);
       }
     }
@@ -26,7 +30,7 @@ class StartQuiz extends Component {
       <div className="row">
         <div className="col s6">
           <StartQuizForm basicAssignments={basicAssignments} onSubmit={onStartQuiz} />
-          <hr></hr>
+          <hr />
           {examAssignments.length > 0 && <StartExamQuizForm examAssignments={examAssignments} onSubmit={onStartQuiz} />}
         </div>
         <div className="col s6">
@@ -67,11 +71,11 @@ StartQuiz.propTypes = {
 const mapDispatchToProps = dispatch => {
   return {
     getAllQuizStats: () => {
-      dispatch(actions.getAllQuizStats());
+      dispatch(getAllQuizStats());
     },
     onStartQuiz: formData => {
-      dispatch(actions.startQuizRequest(formData));
-      dispatch(actions.setChosenAssignmentTypes(formData.assignment_types));
+      dispatch(startQuizRequest(formData));
+      dispatch(setChosenAssignmentTypes(formData.assignment_types));
     },
   };
 };
@@ -79,10 +83,8 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
   const { skills, streaks } = state.stats;
   const { types } = state.assignment;
-  const { token } = state.auth;
   const { meta: achievements } = state.achievements.achievements;
   return {
-    token,
     achievements,
     skillLevels: skills.data,
     streakTrackers: streaks.data,

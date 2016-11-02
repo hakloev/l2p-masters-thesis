@@ -81,11 +81,19 @@
   position: relative;
 }
 
-.loading-indicator {
+.output-overlay {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
+
+  &.task {
+    top: auto;
+    left: auto;;
+    right: 20px;
+    bottom: 15px;
+    transform: none;
+  }
 
   > .big {
     width: 128px;
@@ -93,23 +101,32 @@
   }
 }
 
+#skip-button {
+  transition: background-color ease 1s;
+}
+
+#submit-button {
+  transition: all ease 0.5s;
+  opacity: 1;
+  &.is-visible {
+    transform: scale(1);
+  }
+  &.is-hidden {
+    transform: scale(0);
+  }
+}
+
 #assignment-action-bar {
   display: flex;
   justify-content: flex-end;
   width: 100%;
-  padding: 20px 10px;
+  padding: 20px 20px;
   background-color: #757575;
 
-  > .btn {
-    margin-left: 10px;
-  }
-
-  > .btn-compile {
-    background-color: #4CAF50;
-  }
-
-  > .btn-submit {
-    background-color: #f44336;
+  > .assignment-action-bar-controls {
+      button {
+        margin-left: 10px;
+      }
   }
 
   > .btn-report {
