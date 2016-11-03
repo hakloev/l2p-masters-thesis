@@ -18,10 +18,15 @@ class Student(models.Model):
     attempted_assignments = models.IntegerField(default=0)
     achievements = models.ManyToManyField(Achievement, blank=True)
     assignments_solved = models.ManyToManyField(Assignment, blank=True)
+    attend_survey = models.BooleanField(default=False)
 
 
 @receiver(post_save, sender=User, dispatch_uid=uuid.uuid1())
 def update_student_user(sender, instance, created, **kwargs):
     if created:
-        student = Student(user=instance)
-        student.save()
+        Student.objects.create(user=instance)
+
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.student.save()

@@ -17,12 +17,23 @@ class StudentSerializer(serializers.ModelSerializer):
 
 
 class RegistrationSerializer(serializers.ModelSerializer):
+    # Make email required as well
+    email = serializers.EmailField(
+        required=True,
+    )
+    # Add attendSurvey to the serializer
+    attendSurvey = serializers.BooleanField(
+        required=False,
+        default=False,
+    )
 
     def create(self, validated_data):
-        user = User(
-            username=validated_data['username']
+        user = User.objects.create(
+            username=validated_data['username'],
+            email=validated_data['email'],
         )
         user.set_password(validated_data['password'])
+        user.student.attend_survey = validated_data['attendSurvey']
         user.save()
         return user
 

@@ -27,32 +27,34 @@ class StartQuiz extends Component {
       }
     }
     return (
-      <div className="row">
-        <div className="col s6">
-          <StartQuizForm basicAssignments={basicAssignments} onSubmit={onStartQuiz} />
-          <hr />
-          {examAssignments.length > 0 && <StartExamQuizForm examAssignments={examAssignments} onSubmit={onStartQuiz} />}
-        </div>
-        <div className="col s6">
-          <h3>Statistics</h3>
-          <h4>Skill Level</h4>
-          <ul>
-            {skillLevels.map((skill, i) =>
-              <li key={`skill-${i}`}>{`${skill.assignment_type}:`} <b>{skill.skill_level}</b></li>
-            )}
-          </ul>
-          <h4>Streaks</h4>
-          <ul>
-            {streakTrackers.map((streak, i) =>
-              <li key={`streak-${i}`}>{`Current streak in ${streak.assignment_type}:`} <b>{streak.current_streak}</b></li>
-            )}
-          </ul>
-          <h4>Achievements</h4>
-          <ul>
-            {achievements.map(achievement =>
-              <li key={achievement.identifier_string}>{achievement.title}</li>
-            )}
-          </ul>
+      <div className="container">
+        <div className="row">
+          <div className="col s6">
+            <StartQuizForm basicAssignments={basicAssignments} onSubmit={onStartQuiz} />
+            <hr />
+            {examAssignments.length > 0 && <StartExamQuizForm examAssignments={examAssignments} onSubmit={onStartQuiz} />}
+          </div>
+          <div className="col s6">
+            <h3>Statistics</h3>
+            <h4>Skill Level</h4>
+            <ul>
+              {skillLevels.map((skill, i) =>
+                <li key={`skill-${i}`}>{`${skill.assignment_type}:`} <b>{skill.skill_level}</b></li>
+              )}
+            </ul>
+            <h4>Streaks</h4>
+            <ul>
+              {streakTrackers.map((streak, i) =>
+                <li key={`streak-${i}`}>{`Current streak in ${streak.assignment_type}:`} <b>{streak.current_streak}</b></li>
+              )}
+            </ul>
+            <h4>Achievements</h4>
+            <ul>
+              {achievements.map(achievement =>
+                <li key={achievement.identifier_string}>{achievement.title}</li>
+              )}
+            </ul>
+          </div>
         </div>
       </div>
     );

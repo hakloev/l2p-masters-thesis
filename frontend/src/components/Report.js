@@ -16,22 +16,27 @@ let Report = props => {
   };
 
   return (
-    <div>
-      <form onSubmit={props.handleSubmit(onSubmitClick)}>
-        <div>
-          <label htmlFor="name">Your Name (Optional): </label>
-          <Field name="name" component="input" type="text" />
+    <div className="container">
+      <div className="row">
+        <div className="col s12">
+          <h1>Report an issue</h1>
+          <form onSubmit={props.handleSubmit(onSubmitClick)}>
+            <div>
+              <label htmlFor="name">Your Name (Optional): </label>
+              <Field name="name" component="input" type="text" />
+            </div>
+            <div>
+              <label htmlFor="email"> Email address: </label>
+              <Field name="email" component="input" type="text" />
+            </div>
+            <div>
+              <label htmlFor="issue"> Describe the issue: </label>
+              <Field name="issue" component={textArea} type="textarea" />
+            </div>
+            <button type="submit" className="btn waves-effect waves-light blue darken-4">Submit</button>
+          </form>
         </div>
-        <div>
-          <label htmlFor="email"> Email address: </label>
-          <Field name="email" component="input" type="text" />
-        </div>
-        <div>
-          <label htmlFor="issue"> Describe the issue: </label>
-          <Field name="issue" component={textArea} type="textarea" />
-        </div>
-        <button type="submit" className="btn waves-effect waves-light blue darken-4">Submit</button>
-      </form>
+      </div>
     </div>
   );
 };

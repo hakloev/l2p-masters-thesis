@@ -43,9 +43,11 @@ class RegistrationView(generics.CreateAPIView):
 
         if not serializer.is_valid():
             self.log.debug('Unable to create user with the provided data')
+            self.log.debug(serializer.errors)
             return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
 
         user = serializer.save()
+
         self.log.info('User %s created succesfully' % user.username)
         token = create_token_for_user(user)
 

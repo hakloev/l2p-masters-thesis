@@ -8,8 +8,10 @@ from api.models.score import StreakTracker, SkillTypeLevel, ScoreTypeTracker
 from api.models.user import Student
 from api.models.issue import Issue
 
+
 class AchievementAdmin(admin.ModelAdmin):
 	pass
+
 
 class AssignmentAdmin(admin.ModelAdmin):
     list_display = ['title', 'difficulty_level', 'assignment_type', 'is_public']
@@ -46,6 +48,18 @@ class StudentInline(admin.StackedInline):
 class UserAdmin(BaseUserAdmin):
     inlines = (StudentInline, )
 
+    def __init__(self, *args, **kwargs):
+        super(BaseUserAdmin, self).__init__(*args, **kwargs)
+        BaseUserAdmin.list_display = ('username',  'email', 'attend_survey', 'is_staff')
+
+    def attend_survey(self, obj):
+        return obj.student.attend_survey
+    attend_survey.boolean = True
+
+
+class IssueAdmin(admin.ModelAdmin):
+    list_display = ['name', 'email', 'assignmentId']
+
 
 admin.site.register(Achievement)
 admin.site.register(Assignment, AssignmentAdmin)
@@ -55,4 +69,4 @@ admin.site.register(SkillTypeLevel, SkillTypeLevelAdmin)
 admin.site.register(StreakTracker, StreakTrackerAdmin)
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
-admin.site.register(Issue)
+admin.site.register(Issue, IssueAdmin)

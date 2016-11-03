@@ -27,7 +27,7 @@ App.propTypes = {
 };
 
 const mapStateToProps = state => {
-  const { auth: { isAuthenticated, userName } } = state;
+  const { auth: { login: { isAuthenticated, userName } } } = state;
   return {
     isAuthenticated,
     userName,

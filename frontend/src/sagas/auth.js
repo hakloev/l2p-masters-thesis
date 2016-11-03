@@ -1,4 +1,4 @@
-import { delay } from 'redux-saga';
+import { takeEvery, delay } from 'redux-saga';
 import { call, put, take, race } from 'redux-saga/effects';
 import { browserHistory } from 'react-router';
 
@@ -13,9 +13,29 @@ import {
   removeAuthToken,
 } from '../common/jwt';
 
+function* submitRegistration(action) {
+  yield console.log(action.payload);
+  try {
+    const { token } = yield call(api.register, action.payload);
+    console.log(token);
+    if (token) {
+      yield put(actions.loginRequest({ token }));
+    }
+  } catch (error) {
+    console.error(error);
+    yield put(actions.registrationFailure(error));
+  }
+}
+
+export function* watchRegistration() {
+  yield* takeEvery(actions.REGISTRATION_REQUEST, submitRegistration);
+}
+
 function* authorize(credentials) {
   // Authorize with token or credentials
+  console.log(`Authorize with: ${JSON.stringify(credentials)}`);
   const response = yield call(api.authenticate, credentials);
+  console.log(`Authorize response: ${JSON.stringify(response)}`);
   yield put(actions.loginSuccess(response.token));
   return response.token;
 }
@@ -23,7 +43,9 @@ function* authorize(credentials) {
 function* authenticateAndRefreshOnExpiry(tokenOrCredentials) {
   // Initial authentication, either with token or credentials
   let token = yield call(authorize, tokenOrCredentials);
+  console.log('Got token back', token);
   yield call(setAuthToken, token);
+  console.log('push history');
   browserHistory.push('/start');
 
   // Refresh token at each expiery
@@ -54,7 +76,8 @@ export default function* loginFlow() {
       if (!credentials.token) {
         console.info(`No token found in localStorage, awaiting ${actions.LOGIN_REQUEST}`);
         const { payload } = yield take(actions.LOGIN_REQUEST);
-        credentials = { ...credentials, ...payload.credentials };
+        console.info(`Got ${actions.LOGIN_REQUEST} with ${JSON.stringify(payload)}`);
+        credentials = { ...credentials, ...payload };
       }
 
       // Race condition between logout and refreshing token
