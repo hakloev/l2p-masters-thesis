@@ -7,13 +7,14 @@ import { getNewAchievementsRequest } from '../actions/achievements';
 // COMPILE CODE START
 function* compileCode(action) {
   try {
-    console.log('[compileCode] requested');
+    console.info(`${actions.COMPILE_CODE_REQUEST}`);
     const result = yield call(apiService.post, '/api/compile/', { body: action.code });
     if (result.error) {
       Materialize.toast(`You got an compilation error on ${result.line_number}:<br><br>${result.error}`, 5000);
     }
     yield put(actions.compileCodeSuccess(result));
   } catch (err) {
+    console.error(`${actions.COMPILE_CODE_FAILURE}`);
     Materialize.toast(`Unable to compile code, try again later!<br><br>${err}`, 5000);
     yield put(actions.compileCodeFailure(err));
   }
@@ -27,13 +28,14 @@ export function* watchCompileCode() {
 // SUBMIT ANSWER START
 function* submitAnswer(action) {
   try {
-    console.log('[submitAnswer] requested');
+    console.info(`${actions.SUBMIT_ANSWER_REQUEST}`);
     const data = yield call(apiService.post, '/api/submit/', { body: action.payload });
     yield put(actions.submitAnswerSuccess(data));
     yield put(getNewAchievementsRequest());
   } catch (err) {
-    yield put(actions.submitAnswerFailure(err));
+    console.error(`${actions.SUBMIT_ANSWER_FAILURE}`);
     Materialize.toast('Unable to submit answer, try again later!', 5000);
+    yield put(actions.submitAnswerFailure(err));
   }
 }
 

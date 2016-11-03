@@ -23,8 +23,6 @@ Login.propTypes = {
 const mapDispatchToProps = dispatch => {
   return {
     onLoginClick: formData => {
-      console.log('test');
-      console.log(formData);
       dispatch(actions.loginRequest(formData));
     },
   };

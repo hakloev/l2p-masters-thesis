@@ -8,13 +8,13 @@ import * as actions from '../actions/assignment';
 // START QUIZ START
 function* startQuiz(action) {
   try {
-    console.log('[startQuiz] requested');
+    console.info(`${actions.START_QUIZ_REQUEST}`);
     const data = yield call(apiService.post, '/api/assignment/new/', { body: action.payload });
     yield put(actions.startQuizSuccess(data));
     browserHistory.push('/quiz');
   } catch (err) {
     // TODO: FAILURE
-    console.error('*startQuiz:', err);
+    console.error('START_QUIZ_FAILURE');
   }
 }
 
@@ -26,10 +26,11 @@ export function* watchStartQuiz() {
 // GET ASSIGNMENT TYPES START
 function* getAssignmentTypes() {
   try {
-    console.log('[getAssignmentTypes] requested');
+    console.info(`${actions.GET_ASSIGNMENT_TYPES_REQUEST}`);
     const types = yield call(apiService.get, '/api/assignment-types/');
     yield put(actions.getAssignmentTypesSuccess(types));
   } catch (err) {
+    console.error(`${actions.GET_ASSIGNMENT_TYPES_FAILURE}`);
     yield put(actions.getAssignmentTypesFailure(err.message));
   }
 }

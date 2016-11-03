@@ -15,7 +15,6 @@ import {
   watchAssignmentTypes,
 } from './assignment';
 
-console.log(loginFlow);
 export default function* root() {
   yield [
     fork(watchAllQuizStats),

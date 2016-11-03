@@ -7,7 +7,7 @@ import { open as openModal } from '../components/AchievementsModal';
 
 function* getNewAchievements() {
   try {
-    console.log('[getNewAchievements] requested');
+    console.info(`${actions.GET_NEW_ACHIEVEMENTS_REQUEST}`);
     const data = yield call(apiService.get, '/api/user/achievements/new/');
     yield put(actions.getNewAchievementsSuccess(data.achievements));
     if (data.achievements.length > 0) {
@@ -15,7 +15,7 @@ function* getNewAchievements() {
     }
   } catch (err) {
     // TODO: FAILURE
-    console.error('*getNewAchievements: ', err);
+    console.error(`${actions.GET_NEW_ACHIEVEMENTS_FAILURE}`);
   }
 }
 
@@ -26,12 +26,12 @@ export function* watchNewAchievements() {
 // Exported for stats to use it in getAllQuizStats
 export function* getAchievements() {
   try {
-    console.log('[getAchievements] requested');
+    console.info(`${actions.GET_ACHIEVEMENTS_REQUEST}`);
     const data = yield call(apiService.get, '/api/user/achievements/');
     yield put(actions.getAchievementsSuccess(data));
   } catch (err) {
     // TODO: FAILURE
-    console.error('*getAchievements: ', err);
+    console.error(`${actions.GET_ACHIEVEMENTS_FAILURE}`);
   }
 }
 
