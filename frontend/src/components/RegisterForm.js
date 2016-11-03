@@ -57,6 +57,6 @@ RegisterForm.propTypes = {
 
 export default reduxForm({
   form: 'register',
-  initialValues: { attendSurvey: 'true' }, // Default survey to
+  initialValues: { attendSurvey: true }, // Default survey to
   validate,
 })(RegisterForm);

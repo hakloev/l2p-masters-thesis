@@ -33,7 +33,7 @@ let ReportModal = props => {
             <label htmlFor="issue"> Describe the issue: </label>
             <Field name="issue" component={textArea} type="textarea" />
           </div>
-          <button type="submit" className="btn waves-effect waves-light deep-orange modal-close">Submit</button>
+          <button type="submit" className="btn waves-effect waves-light deep-orange">Submit</button>
         </form>
       </div>
     </div>
@@ -44,12 +44,17 @@ const open = () => {
   $('#report-modal').openModal();
 };
 
+const close = () => {
+  $('#report-modal').closeModal();
+};
+
 ReportModal = reduxForm({
   form: 'reportModal',
 })(ReportModal);
 
 export {
   open,
+  close,
 };
 
 const mapStateToProps = state => {

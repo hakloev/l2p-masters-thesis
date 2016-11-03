@@ -3,6 +3,7 @@ import { call, put } from 'redux-saga/effects';
 import { browserHistory } from 'react-router';
 import * as actions from '../actions/reportIssue';
 import apiService from '../api/client';
+import { close as closeModal } from '../components/ReportModal';
 
 function* reportIssue(action) {
   try {
@@ -12,10 +13,15 @@ function* reportIssue(action) {
     Materialize.toast('Success! Thank you for your feedback!', 5000);
     if (!action.isAssignmentForm) {
       browserHistory.push('/start');
+    } else {
+      closeModal();
     }
   } catch (err) {
     // TODO: Failure
     console.error('REPORT_ISSUE_FAILURE');
+    if (action.isisAssignmentForm) {
+      closeModal();
+    }
     Materialize.toast('Unable to submit your form at this point, try again later', 5000);
   }
 }

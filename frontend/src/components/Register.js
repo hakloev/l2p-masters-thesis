@@ -23,6 +23,7 @@ Register.propTypes = {
 const mapDispatchToProps = dispatch => {
   return {
     onLoginClick: formData => {
+      console.log(formData);
       dispatch(actions.registrationRequest(formData));
     },
   };
