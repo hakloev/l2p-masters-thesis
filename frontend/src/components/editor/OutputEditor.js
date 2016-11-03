@@ -23,7 +23,7 @@ const NextTaskIndicator = ({ shouldDisplay, onNextClick }) => {
   return (
     <div className="output-overlay task">
       <div id="submit-button" className={`${shouldDisplay ? 'is-visible' : 'is-hidden'}`}>
-        <button onClick={onNextClick} className="btn btn-large waves-effect waves-light green lighten-1">
+        <button onClick={onNextClick} className="btn btn-large waves-effect waves-light">
           <i className="material-icons left">check_circle</i>
           Next Task
         </button>

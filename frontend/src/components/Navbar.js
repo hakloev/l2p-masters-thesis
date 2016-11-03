@@ -5,7 +5,7 @@ const Navbar = ({ isAuthenticated, onLogoutClick }) => {
   return (
     <div className="navbar-fixed">
       <nav>
-        <div className="nav-wrapper orange">
+        <div className="nav-wrapper blue">
           <Link to="/" className="brand-logo">LearnPython2</Link>
           <ul className="right hide-on-med-and-down">
             <li><Link to="/" className="mdl-navigation__link">Home</Link></li>

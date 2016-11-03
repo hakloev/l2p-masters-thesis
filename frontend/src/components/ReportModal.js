@@ -33,7 +33,7 @@ let ReportModal = props => {
             <label htmlFor="issue"> Describe the issue: </label>
             <Field name="issue" component={textArea} type="textarea" />
           </div>
-          <button type="submit" className="btn waves-effect waves-light blue darken-4 modal-close">Submit</button>
+          <button type="submit" className="btn waves-effect waves-light deep-orange modal-close">Submit</button>
         </form>
       </div>
     </div>

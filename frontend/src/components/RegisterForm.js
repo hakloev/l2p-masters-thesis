@@ -44,7 +44,7 @@ const RegisterForm = props => {
       </div>
       <div className="row">
         <div className="col s12">
-          <button type="submit" className="btn waves-effect waves-light blue darken-4">Register</button>
+          <button type="submit" className="btn waves-effect waves-light deep-orange">Register</button>
         </div>
       </div>
     </form>
