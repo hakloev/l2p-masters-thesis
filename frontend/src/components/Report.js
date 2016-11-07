@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 import * as actions from '../actions/reportIssue';
 
-const textArea = field => <textarea id={field.name} className="materialize-textarea" {...field.input}></textarea>;
+const textArea = field => <textarea id={field.name} className="materialize-textarea" {...field.input} />;
 
 const onSubmitReport = (formData, dispatch) => {
   dispatch(actions.reportIssue(formData));
