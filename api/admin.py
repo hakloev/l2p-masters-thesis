@@ -10,7 +10,7 @@ from api.models.issue import Issue
 
 
 class AchievementAdmin(admin.ModelAdmin):
-	pass
+    pass
 
 
 class AssignmentAdmin(admin.ModelAdmin):
@@ -46,14 +46,15 @@ class StudentInline(admin.StackedInline):
 
 
 class UserAdmin(BaseUserAdmin):
-    inlines = (StudentInline, )
+    inlines = (StudentInline,)
 
     def __init__(self, *args, **kwargs):
         super(BaseUserAdmin, self).__init__(*args, **kwargs)
-        BaseUserAdmin.list_display = ('username',  'email', 'attend_survey', 'is_staff')
+        BaseUserAdmin.list_display = ('username', 'email', 'attend_survey', 'is_staff')
 
     def attend_survey(self, obj):
         return obj.student.attend_survey
+
     attend_survey.boolean = True
 
 
