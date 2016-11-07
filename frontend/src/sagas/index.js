@@ -2,7 +2,7 @@ import { fork } from 'redux-saga/effects';
 
 import loginFlow, { watchRegistration } from './auth';
 import { watchAllQuizStats } from './stats';
-import { watchReportIssue } from './reportIssue';
+import { watchReportIssue } from './issue';
 import { watchAchievements, watchNewAchievements } from './achievements';
 
 import {

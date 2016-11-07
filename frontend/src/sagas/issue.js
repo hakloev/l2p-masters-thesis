@@ -1,7 +1,7 @@
 import { takeEvery } from 'redux-saga';
 import { call, put } from 'redux-saga/effects';
 import { browserHistory } from 'react-router';
-import * as actions from '../actions/reportIssue';
+import * as actions from '../actions/issue';
 import apiService from '../api/client';
 import { close as closeModal } from '../components/ReportModal';
 
@@ -18,8 +18,8 @@ function* reportIssue(action) {
     }
   } catch (err) {
     // TODO: Failure
-    console.error('REPORT_ISSUE_FAILURE');
-    if (action.isisAssignmentForm) {
+    console.error(`${actions.REPORT_ISSUE_FAILURE}`);
+    if (action.isAssignmentForm) {
       closeModal();
     }
     Materialize.toast('Unable to submit your form at this point, try again later', 5000);

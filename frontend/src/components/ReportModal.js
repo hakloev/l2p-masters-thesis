@@ -1,44 +1,8 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { reduxForm, Field } from 'redux-form';
-import * as actions from '../actions/reportIssue';
-
-
-const textArea = field => <textarea id={field.name} className="materialize-textarea" {...field.input}></textarea>;
-
-const onSubmitReport = (formData, dispatch) => {
-  dispatch(actions.reportIssue(formData, true));
-};
-
-let ReportModal = props => {
-
-  const onSubmitClick = fields => {
-    fields['assignmentId'] = props.assignmentId;
-    onSubmitReport(fields, props.dispatch);
-  };
-
-  return (
-    <div id="report-modal" className="modal">
-      <div className="modal-content">
-        <form onSubmit={props.handleSubmit(onSubmitClick)}>
-          <div>
-            <label htmlFor="name">Your Name (Optional): </label>
-            <Field name="name" component="input" type="text" />
-          </div>
-          <div>
-            <label htmlFor="email"> Email address: </label>
-            <Field name="email" component="input" type="text" />
-          </div>
-          <div>
-            <label htmlFor="issue"> Describe the issue: </label>
-            <Field name="issue" component={textArea} type="textarea" />
-          </div>
-          <button type="submit" className="btn waves-effect waves-light deep-orange">Submit</button>
-        </form>
-      </div>
-    </div>
-  );
-};
+import { reduxForm } from 'redux-form';
+import { ReportForm } from './Report';
+import * as actions from '../actions/issue';
 
 const open = () => {
   $('#report-modal').openModal();
@@ -46,6 +10,29 @@ const open = () => {
 
 const close = () => {
   $('#report-modal').closeModal();
+};
+
+let ReportModal = props => {
+
+  const onSubmitClick = fields => {
+    /* eslint-disable no-param-reassign */
+    fields.assignmentId = props.assignmentId;
+    props.onSubmitReport(fields);
+  };
+
+  return (
+    <div id="report-modal" className="modal">
+      <div className="modal-content">
+        <ReportForm handleSubmit={props.handleSubmit} onSubmitClick={onSubmitClick} />
+      </div>
+    </div>
+  );
+};
+
+ReportModal.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+  assignmentId: PropTypes.number,
+  onSubmitReport: PropTypes.func.isRequired,
 };
 
 ReportModal = reduxForm({
@@ -63,4 +50,12 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(ReportModal);
+const mapDispatchToProps = dispatch => {
+  return {
+    onSubmitReport: formData => {
+      dispatch(actions.reportIssue(formData, true));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ReportModal);

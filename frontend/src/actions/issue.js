@@ -12,3 +12,9 @@ export const reportIssueSuccess = payload => ({
   type: REPORT_ISSUE_SUCCESS,
   payload,
 });
+
+export const REPORT_ISSUE_FAILURE = 'REPORT_ISSUE_FAILURE';
+export const reportIssueFailure = message => ({
+  type: REPORT_ISSUE_FAILURE,
+  message,
+});
