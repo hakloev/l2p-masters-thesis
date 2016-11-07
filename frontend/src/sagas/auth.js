@@ -19,9 +19,9 @@ function* submitRegistration(action) {
     if (token) {
       yield put(actions.loginRequest({ token }));
     }
-  } catch (error) {
+  } catch (err) {
     console.error(`${actions.REGISTRATION_FAILURE}`);
-    yield put(actions.registrationFailure(error));
+    yield put(actions.registrationFailure(err.error.message));
     Materialize.toast('Something went wrong during the registration, try again later!');
   }
 }
@@ -88,7 +88,7 @@ export default function* loginFlow() {
 
     } catch (err) {
       console.error('[loginFlow]: ', err.error);
-      yield put(actions.loginFailure(err.error.message));
+      yield put(actions.loginFailure(err.error));
       // Reset current credentials token to ensure a wait for LOGIN_REQUEST
       credentials.token = null;
       err.error.response.json()
