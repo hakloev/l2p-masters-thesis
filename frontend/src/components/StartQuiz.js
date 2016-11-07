@@ -19,7 +19,7 @@ class StartQuiz extends Component {
     const { skillLevels, streakTrackers, assignmentTypes, achievements, onStartQuiz } = this.props;
     const basicAssignments = [];
     const examAssignments = [];
-    for (let x = 0; x < assignmentTypes.length; x++) {
+    for (let x = 0; x < assignmentTypes.length; x += 1) {
       if (assignmentTypes[x].type_name === 'Exam practice') {
         examAssignments.push(assignmentTypes[x]);
       } else {
@@ -36,6 +36,15 @@ class StartQuiz extends Component {
           </div>
           <div className="col s6">
             <h3>Statistics</h3>
+            <h4>Achievements</h4>
+            {achievements.length > 0
+            ? <ul>
+              {achievements.map(achievement =>
+                <li key={achievement.identifier_string}>{achievement.title}</li>
+              )}
+            </ul>
+            : <p>No achievements yet!</p>
+            }
             <h4>Skill Level</h4>
             <ul>
               {skillLevels.map((skill, i) =>
@@ -46,12 +55,6 @@ class StartQuiz extends Component {
             <ul>
               {streakTrackers.map((streak, i) =>
                 <li key={`streak-${i}`}>{`Current streak in ${streak.assignment_type}:`} <b>{streak.current_streak}</b></li>
-              )}
-            </ul>
-            <h4>Achievements</h4>
-            <ul>
-              {achievements.map(achievement =>
-                <li key={achievement.identifier_string}>{achievement.title}</li>
               )}
             </ul>
           </div>
