@@ -25,6 +25,11 @@ const AchievementsReducer = (state = initalState.achievements, action) => {
       meta: [...action.achievements],
       isFetching: false,
     };
+  case types.GET_ACHIEVEMENTS_FAILURE:
+    return {
+      ...state,
+      isFetching: false,
+    };
   default:
     return state;
   }
@@ -41,6 +46,11 @@ const NewAchievementsReducer = (state = initalState.newUserAchievements, action)
     return {
       ...state,
       meta: [...action.achievements],
+      isFetching: false,
+    };
+  case types.GET_NEW_ACHIEVEMENTS_FAILURE:
+    return {
+      ...state,
       isFetching: false,
     };
   default:

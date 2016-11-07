@@ -5,7 +5,7 @@ require('isomorphic-fetch');
 
 export function checkStatus(response) {
   if (!response.ok) {
-    const error = new Error(response.statusText);
+    const error = new Error(`${response.status}: ${response.statusText}`);
     error.response = response;
     return Promise.reject(error);
   }
@@ -15,16 +15,14 @@ export function checkStatus(response) {
 export function errorHandle(error) {
   const response = error.response;
   if (response === undefined) {
-    console.log('[errorHandle] undefined response, returning the error itself');
-    return Promise.reject(error); // Return statusText
+    console.info('[errorHandle] undefined response, returning the error itself');
+    return Promise.reject({ error }); // Return statusText
   }
-  if (response.status === 400) {
-    return Promise.reject(error);
-    // return Promise.reject({ message: 'Invalid credentials', status: response.status, statusText: response.statusText });
-  }
+
   return Promise.reject({
     message: response.statusText,
     status: response.status,
+    error,
   });
 }
 
