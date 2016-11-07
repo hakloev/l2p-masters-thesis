@@ -28,7 +28,7 @@ class Navbar extends Component {
   render() {
     return (
       <div className="navbar-fixed">
-        <nav className="blue">
+        <nav className="teal">
           <div className="nav-wrapper">
             <Link to="/" className="brand-logo">LearnPython2</Link>
             <a href="#" data-activates="mobile-nav" className="button-collapse"><i className="material-icons">menu</i></a>

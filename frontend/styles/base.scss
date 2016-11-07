@@ -13,16 +13,15 @@
   border: 1px solid lightgray;
   border-radius: 5px;
   font-family: monospace;
-  background-color: #f5f2f0;
-  color: #000;
+  background-color: rgb(247, 247, 249);
+  color: rgb(202, 38, 87);
   padding: 2px;
 }
 
 .description-text {
-  background-color: #efefef;
-  padding: 10px 15px;
+  // padding: 10px 15px;
+  // font-family: monospace;
   font-size: 14px;
-  font-family: monospace;
 }
 
 .task-card {
