@@ -32,7 +32,6 @@ function* getAssignmentTypes() {
     yield put(actions.getAssignmentTypesSuccess(types));
   } catch (err) {
     console.error(`${actions.GET_ASSIGNMENT_TYPES_FAILURE}`);
-    console.log(err);
     yield put(actions.getAssignmentTypesFailure(err.error.message));
   }
 }
