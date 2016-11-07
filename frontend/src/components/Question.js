@@ -58,11 +58,19 @@ class Question extends Component {
             </div>
           </div>
           <div id="assignment-action-bar">
+            <div className="assignment-action-bar-report">
+              <button
+                onClick={openModal}
+                id=""
+                className="waves-effect waves-light btn btn-large btn-report orange lighten-1"
+              >
+                Report an issue with this task
+              </button>
+            </div>
             <div className="assignment-action-bar-controls">
-              <button onClick={openModal} className="waves-effect waves-light btn btn-report">Report an issue with this task</button>
               <button
                 onClick={this.handleCompileCode}
-                className="btn tooltipped btn-large waves-effect waves-light"
+                className="btn tooltipped btn-large waves-effect waves-light green"
                 data-position="top"
                 data-delay="50"
                 data-tooltip={navigator.platform === 'MacIntel' ? 'cmd + enter' : 'ctrl + enter'}

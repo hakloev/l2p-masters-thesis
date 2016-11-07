@@ -37,7 +37,7 @@ const StartQuizForm = ({ basicAssignments, onSubmit, handleSubmit }) => {
               <Field key={`cb-${name}_${i}`} name={name} label={type.type_name} component={renderCheckbox} />
             );
           })}
-          <button type="submit" className="btn waves-effect waves-light blue darken-4">Start!</button>
+          <button type="submit" className="btn waves-effect waves-light deep-orange">Start!</button>
         </form>
       </div>
     </div>

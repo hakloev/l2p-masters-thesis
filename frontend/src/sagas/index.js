@@ -1,6 +1,6 @@
 import { fork } from 'redux-saga/effects';
 
-import loginFlow from './auth';
+import loginFlow, { watchRegistration } from './auth';
 import { watchAllQuizStats } from './stats';
 import { watchReportIssue } from './reportIssue';
 import { watchAchievements, watchNewAchievements } from './achievements';
@@ -25,6 +25,7 @@ export default function* root() {
     watchAchievements(),
     watchNewAchievements(),
     watchReportIssue(),
+    watchRegistration(),
     loginFlow(),
   ];
 }

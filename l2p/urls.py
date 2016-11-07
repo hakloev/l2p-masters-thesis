@@ -21,7 +21,7 @@ from rest_framework import routers
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
 
 from api.views.achievement import AchievementViewSet, UserAchievementListView
-from api.views.user import UserViewSet
+from api.views.user import StudentViewSet, RegistrationView
 from api.views.score import UserSkillsListView, UserScoreListView
 
 from api.views.issue import IssueViewSet
@@ -34,7 +34,7 @@ from api.views.assignment import AssignmentTypeViewSet, AssignmentViewSet, Compi
 router = routers.DefaultRouter()
 router.register('achievements', AchievementViewSet)
 router.register('assignment-types', AssignmentTypeViewSet)
-router.register(r'userr', UserViewSet)
+router.register(r'student', StudentViewSet)
 router.register('report', IssueViewSet)
 
 api_urls = [
@@ -57,6 +57,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
     #  API specific routes
+    url(r'^auth/register/$', RegistrationView.as_view()),
     url(r'^auth/token/$', obtain_jwt_token),
     url(r'^auth/token/refresh/$', refresh_jwt_token),
 

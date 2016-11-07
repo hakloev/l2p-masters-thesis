@@ -1,4 +1,4 @@
-import { delay } from 'redux-saga';
+import { takeEvery, delay } from 'redux-saga';
 import { call, put, take, race } from 'redux-saga/effects';
 import { browserHistory } from 'react-router';
 
@@ -12,6 +12,22 @@ import {
   getAuthToken,
   removeAuthToken,
 } from '../common/jwt';
+
+function* submitRegistration(action) {
+  try {
+    const { token } = yield call(api.register, action.payload);
+    if (token) {
+      yield put(actions.loginRequest({ token }));
+    }
+  } catch (error) {
+    console.error(`${actions.REGISTRATION_FAILURE}`);
+    yield put(actions.registrationFailure(error));
+  }
+}
+
+export function* watchRegistration() {
+  yield* takeEvery(actions.REGISTRATION_REQUEST, submitRegistration);
+}
 
 function* authorize(credentials) {
   // Authorize with token or credentials
@@ -54,7 +70,7 @@ export default function* loginFlow() {
       if (!credentials.token) {
         console.info(`No token found in localStorage, awaiting ${actions.LOGIN_REQUEST}`);
         const { payload } = yield take(actions.LOGIN_REQUEST);
-        credentials = { ...credentials, ...payload.credentials };
+        credentials = { ...credentials, ...payload };
       }
 
       // Race condition between logout and refreshing token

@@ -5,9 +5,12 @@ import * as actions from '../../actions/auth';
 
 const Login = props => {
   return (
-    <div className="row">
-      <div className="col s12">
-        <LoginForm onSubmit={props.onLoginClick} />
+    <div className="container">
+      <div className="row">
+        <div className="col s12">
+          <h1>Login</h1>
+          <LoginForm onSubmit={props.onLoginClick} />
+        </div>
       </div>
     </div>
   );
@@ -20,10 +23,7 @@ Login.propTypes = {
 const mapDispatchToProps = dispatch => {
   return {
     onLoginClick: formData => {
-      dispatch(actions.loginRequest({
-        username: formData.username,
-        password: formData.password,
-      }));
+      dispatch(actions.loginRequest(formData));
     },
   };
 };
