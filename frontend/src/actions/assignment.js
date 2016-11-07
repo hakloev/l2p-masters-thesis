@@ -29,10 +29,16 @@ export const startQuizRequest = payload => ({
   payload,
 });
 
-export const START_QUIZ_SUCCESS = ' START_QUIZ_SUCCESS';
-export const startQuizSuccess = data => {
+export const START_QUIZ_SUCCESS = 'START_QUIZ_SUCCESS';
+export const startQuizSuccess = data => ({
+  type: START_QUIZ_SUCCESS,
+  data,
+});
+
+export const START_QUIZ_FAILURE = 'START_QUIZ_FAILURE';
+export const startQuizFailure = message => {
   return {
-    type: START_QUIZ_SUCCESS,
-    data,
+    type: START_QUIZ_FAILURE,
+    message,
   };
 };

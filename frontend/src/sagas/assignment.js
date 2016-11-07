@@ -13,8 +13,9 @@ function* startQuiz(action) {
     yield put(actions.startQuizSuccess(data));
     browserHistory.push('/quiz');
   } catch (err) {
-    // TODO: FAILURE
-    console.error('START_QUIZ_FAILURE');
+    console.error(`${actions.START_QUIZ_FAILURE}`);
+    yield put(actions.startQuizFailure(err.error.message));
+    Materialize.toast('Unable to start quiz, try again later!', 5000);
   }
 }
 
@@ -31,7 +32,7 @@ function* getAssignmentTypes() {
     yield put(actions.getAssignmentTypesSuccess(types));
   } catch (err) {
     console.error(`${actions.GET_ASSIGNMENT_TYPES_FAILURE}`);
-    yield put(actions.getAssignmentTypesFailure(err.message));
+    yield put(actions.getAssignmentTypesFailure(err.error.message));
   }
 }
 

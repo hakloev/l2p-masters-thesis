@@ -27,7 +27,12 @@ const SkillReducer = (state = initalState.skills, action) => {
       isFetching: false,
       data: action.skills,
     };
-    // TODO: FAILURE
+  case types.GETGET_SKILLS_FAILURE:
+    return {
+      ...state,
+      isFetching: false,
+      data: [],
+    };
   default:
     return state;
   }
@@ -46,7 +51,12 @@ const StreakReducer = (state = initalState.streaks, action) => {
       isFetching: false,
       data: action.streaks,
     };
-    // TODO: FAILURE
+  case types.GETGET_SKILLS_FAILURE:
+    return {
+      ...state,
+      isFetching: false,
+      data: [],
+    };
   default:
     return state;
   }

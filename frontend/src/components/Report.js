@@ -1,18 +1,37 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
-import * as actions from '../actions/reportIssue';
+import * as actions from '../actions/issue';
 
-const textArea = field => <textarea id={field.name} className="materialize-textarea" {...field.input} />;
+const textArea = field =>
+  <textarea id={field.name} className="materialize-textarea" {...field.input} />;
 
-const onSubmitReport = (formData, dispatch) => {
-  dispatch(actions.reportIssue(formData));
+export const ReportForm = ({ handleSubmit, onSubmitClick }) =>
+  <form onSubmit={handleSubmit(onSubmitClick)}>
+    <div>
+      <label htmlFor="name">Your Name (Optional): </label>
+      <Field name="name" component="input" type="text" />
+    </div>
+    <div>
+      <label htmlFor="email"> Email address: </label>
+      <Field name="email" component="input" type="text" />
+    </div>
+    <div>
+      <label htmlFor="issue"> Describe the issue: </label>
+      <Field name="issue" component={textArea} type="textarea" />
+    </div>
+    <button type="submit" className="btn waves-effect waves-light deep-orange">Submit</button>
+  </form>;
+
+ReportForm.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+  onSubmitClick: PropTypes.func.isRequired,
 };
 
 let Report = props => {
 
   const onSubmitClick = fields => {
-    onSubmitReport(fields, props.dispatch);
+    props.onSubmitReport(fields);
   };
 
   return (
@@ -20,29 +39,28 @@ let Report = props => {
       <div className="row">
         <div className="col s12">
           <h1>Report an issue</h1>
-          <form onSubmit={props.handleSubmit(onSubmitClick)}>
-            <div>
-              <label htmlFor="name">Your Name (Optional): </label>
-              <Field name="name" component="input" type="text" />
-            </div>
-            <div>
-              <label htmlFor="email"> Email address: </label>
-              <Field name="email" component="input" type="text" />
-            </div>
-            <div>
-              <label htmlFor="issue"> Describe the issue: </label>
-              <Field name="issue" component={textArea} type="textarea" />
-            </div>
-            <button type="submit" className="btn waves-effect waves-light deep-orange">Submit</button>
-          </form>
+          <ReportForm handleSubmit={props.handleSubmit} onSubmitClick={onSubmitClick} />
         </div>
       </div>
     </div>
   );
 };
 
+Report.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+  onSubmitReport: PropTypes.func.isRequired,
+};
+
 Report = reduxForm({
   form: 'report',
 })(Report);
 
-export default connect()(Report);
+const mapDispatchToProps = dispatch => {
+  return {
+    onSubmitReport: formData => {
+      dispatch(actions.reportIssue(formData));
+    },
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Report);

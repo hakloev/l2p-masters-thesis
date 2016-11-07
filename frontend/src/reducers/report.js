@@ -1,4 +1,4 @@
-import * as types from '../actions/reportIssue';
+import * as types from '../actions/issue';
 
 const initalState = {
   report: {
@@ -23,11 +23,15 @@ const ReportReducer = (state = initalState.report, action) => {
       data: action.payload,
       success: true,
     };
-  // TODO: FAILURE
+  case types.REPORT_ISSUE_FAILURE:
+    return {
+      ...state,
+      isFetching: false,
+      success: false,
+    };
   default:
     return state;
   }
 };
 
 export default ReportReducer;
-

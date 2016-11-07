@@ -22,6 +22,7 @@ function* submitRegistration(action) {
   } catch (error) {
     console.error(`${actions.REGISTRATION_FAILURE}`);
     yield put(actions.registrationFailure(error));
+    Materialize.toast('Something went wrong during the registration, try again later!');
   }
 }
 
@@ -85,12 +86,12 @@ export default function* loginFlow() {
         Materialize.toast('You have been successfully logged out', 5000);
       }
 
-    } catch (error) {
-      console.error('[loginFlow]: ', error.response || error);
-      yield put(actions.loginFailure(error));
+    } catch (err) {
+      console.error('[loginFlow]: ', err.error);
+      yield put(actions.loginFailure(err.error.message));
       // Reset current credentials token to ensure a wait for LOGIN_REQUEST
       credentials.token = null;
-      error.response.json()
+      err.error.response.json()
         .then(response => {
           Materialize.toast(response.non_field_errors, 5000);
         })

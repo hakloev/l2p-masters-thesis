@@ -14,7 +14,7 @@ function* getNewAchievements() {
       openModal();
     }
   } catch (err) {
-    // TODO: FAILURE
+    yield put(actions.getNewAchievementsFailure(err.error.message));
     console.error(`${actions.GET_NEW_ACHIEVEMENTS_FAILURE}`);
   }
 }
@@ -30,8 +30,8 @@ export function* getAchievements() {
     const data = yield call(apiService.get, '/api/user/achievements/');
     yield put(actions.getAchievementsSuccess(data));
   } catch (err) {
-    // TODO: FAILURE
     console.error(`${actions.GET_ACHIEVEMENTS_FAILURE}`);
+    yield put(actions.getAchievementsFailure(err.error.message));
   }
 }
 
