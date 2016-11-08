@@ -26,9 +26,8 @@ const StartQuizForm = ({ basicAssignments, onSubmit, handleSubmit }) => {
   return (
     <div className="row">
       <div className="col s12">
-        <h1>Start new quiz</h1>
         <form onSubmit={handleSubmit(onSubmitClick)}>
-          <h3> Practice tasks </h3>
+          <h4>Practice tasks</h4>
           <p>These tasks are meant for practicing certain core aspects of programming</p>
           <p>Select the topics you want to practice:</p>
           {basicAssignments.map((type, i) => {
@@ -37,7 +36,13 @@ const StartQuizForm = ({ basicAssignments, onSubmit, handleSubmit }) => {
               <Field key={`cb-${name}_${i}`} name={name} label={type.type_name} component={renderCheckbox} />
             );
           })}
-          <button type="submit" className="btn waves-effect waves-light deep-orange">Start!</button>
+          <button
+            type="submit"
+            className="btn waves-effect waves-light deep-orange"
+          >
+            <i className="material-icons right">send</i>
+            Start
+          </button>
         </form>
       </div>
     </div>

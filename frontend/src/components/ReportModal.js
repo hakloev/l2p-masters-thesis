@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import { ReportForm } from './Report';
-import * as actions from '../actions/issue';
+import { actions } from '../data/issue';
 
 const open = () => {
   $('#report-modal').openModal();

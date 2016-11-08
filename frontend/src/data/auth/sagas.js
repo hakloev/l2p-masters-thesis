@@ -2,8 +2,8 @@ import { takeEvery, delay } from 'redux-saga';
 import { call, put, take, race } from 'redux-saga/effects';
 import { browserHistory } from 'react-router';
 
-import * as actions from '../actions/auth';
-import api from '../api/auth';
+import * as actions from './actions';
+import api from '../../api/auth';
 
 import {
   isTokenExpired,
@@ -11,7 +11,7 @@ import {
   setAuthToken,
   getAuthToken,
   removeAuthToken,
-} from '../common/jwt';
+} from '../../common/jwt';
 
 function* submitRegistration(action) {
   try {
@@ -19,9 +19,9 @@ function* submitRegistration(action) {
     if (token) {
       yield put(actions.loginRequest({ token }));
     }
-  } catch (err) {
-    console.error(`${actions.REGISTRATION_FAILURE}`);
-    yield put(actions.registrationFailure(err.error.message));
+  } catch (error) {
+    console.error(`${actions.REGISTRATION_FAILURE}: ${error.message}`);
+    yield put(actions.registrationFailure(error.message));
     Materialize.toast('Something went wrong during the registration, try again later!');
   }
 }
@@ -53,7 +53,7 @@ function* authenticateAndRefreshOnExpiry(tokenOrCredentials) {
   }
 }
 
-export default function* loginFlow() {
+export function* loginFlow() {
   let storedToken = yield call(getAuthToken);
 
   if (isTokenExpired(storedToken)) {
@@ -86,12 +86,12 @@ export default function* loginFlow() {
         Materialize.toast('You have been successfully logged out', 5000);
       }
 
-    } catch (err) {
-      console.error('[loginFlow]: ', err.error);
-      yield put(actions.loginFailure(err.error));
+    } catch (error) {
+      console.error('[loginFlow]: ', error.message);
+      yield put(actions.loginFailure(error.message));
       // Reset current credentials token to ensure a wait for LOGIN_REQUEST
       credentials.token = null;
-      err.error.response.json()
+      error.response.json()
         .then(response => {
           Materialize.toast(response.non_field_errors, 5000);
         })

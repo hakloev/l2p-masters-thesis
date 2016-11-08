@@ -9,7 +9,7 @@ import { browserHistory } from 'react-router';
 
 import configureStore from './configureStore';
 
-import { getAssignmentTypesRequest } from './actions/assignment';
+import { actions as assignmentActions } from './data/assignment';
 
 require('../styles/base.scss');
 
@@ -17,11 +17,11 @@ const appMount = document.getElementById('app');
 const store = configureStore();
 
 // Load inital data
-store.dispatch(getAssignmentTypesRequest());
+store.dispatch(assignmentActions.getAssignmentTypesRequest());
 
 const renderApp = () => {
   // eslint-disable-next-line global-require
-  const NextRoot = require('./root').default;
+  const NextRoot = require('./rootProvider').default;
 
   ReactDOM.render(
     <AppContainer>
@@ -34,14 +34,14 @@ const renderApp = () => {
 renderApp();
 
 if (module.hot) {
-  module.hot.accept('./reducers', () => {
+  module.hot.accept('./rootReducer', () => {
     // eslint-disable-next-line global-require
-    const nextRootReducer = require('./reducers').default;
+    const nextRootReducer = require('./rootReducer').default;
 
     store.replaceReducer(nextRootReducer);
   });
 
-  module.hot.accept('./root', () => {
+  module.hot.accept('./rootProvider', () => {
     renderApp();
   });
 }

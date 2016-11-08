@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import * as types from '../actions/achievements';
+import * as types from './actions';
 
 const initalState = {
   newUserAchievements: {

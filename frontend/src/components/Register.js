@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import RegisterForm from './RegisterForm';
-import * as actions from '../actions/auth';
+import { actions } from '../data/auth';
 
 const Register = props => {
   return (
@@ -23,7 +23,6 @@ Register.propTypes = {
 const mapDispatchToProps = dispatch => {
   return {
     onLoginClick: formData => {
-      console.log(formData);
       dispatch(actions.registrationRequest(formData));
     },
   };

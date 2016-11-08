@@ -2,8 +2,7 @@ import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { InputEditor, OutputEditor } from './editor';
 import { open as openModal } from './ReportModal';
-import { isCorrectSolution } from '../selectors/compilation';
-import * as actions from '../actions/compilation';
+import { selectors, actions } from '../data/assignment';
 
 class Question extends Component {
 
@@ -36,7 +35,7 @@ class Question extends Component {
   }
 
   render() {
-    const { editorValue, compilationResult, assignment, hasCorrectSolution } = this.props;
+    const { editorValue, compilation, assignment, hasCorrectSolution } = this.props;
     return (
       <div id="assignment-container">
         <div id="assignment-editor-container" className="">
@@ -50,8 +49,8 @@ class Question extends Component {
             </div>
             <div id="assignment-output">
               <OutputEditor
-                code={compilationResult.result.output}
-                isFetching={compilationResult.isFetching}
+                code={compilation.result.output}
+                isFetching={compilation.isFetching}
                 hasCorrectSolution={hasCorrectSolution}
                 onNextQuestionClick={this.handleSubmitClick}
               />
@@ -76,7 +75,7 @@ class Question extends Component {
                 data-tooltip={navigator.platform === 'MacIntel' ? 'cmd + enter' : 'ctrl + enter'}
               >
                 <i className="material-icons right">play_arrow</i>
-                {!compilationResult.isFetching ? 'Run Code' : 'Executing'}
+                {!compilation.isFetching ? 'Run Code' : 'Executing'}
               </button>
               <button
                 onClick={this.handleSubmitClick}
@@ -120,7 +119,7 @@ class Question extends Component {
 Question.propTypes = {
   assignment: PropTypes.object.isRequired,
   assignmentTypes: PropTypes.array,
-  compilationResult: PropTypes.object.isRequired,
+  compilation: PropTypes.object.isRequired,
   hasCorrectSolution: PropTypes.bool,
   editorValue: PropTypes.string.isRequired,
   onCompileClick: PropTypes.func.isRequired,
@@ -143,13 +142,18 @@ const mapDispatchToProps = dispatch => {
 };
 
 const mapStateToProps = state => {
-  const { types: { chosenTypes: assignmentTypes }, task: { meta } } = state.assignment;
-  const { editor: { value: editorValue }, result: compilationResult } = state.compilation;
+  const {
+    types: { chosenTypes: assignmentTypes },
+    task: { meta },
+    editor: { value: editorValue },
+    compilation,
+  } = state.assignment;
+
   return {
     assignment: meta,
-    hasCorrectSolution: isCorrectSolution(state),
+    hasCorrectSolution: selectors.isCorrectSolution(state),
     assignmentTypes,
-    compilationResult,
+    compilation,
     editorValue,
   };
 };

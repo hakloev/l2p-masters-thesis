@@ -15,15 +15,11 @@ export function checkStatus(response) {
 export function errorHandle(error) {
   const response = error.response;
   if (response === undefined) {
-    console.info('[errorHandle] undefined response, returning the error itself');
-    return Promise.reject({ error }); // Return statusText
+    console.error(`Error: ${error.message}`);
+  } else {
+    console.error(`Error: ${response.status} ${error.statusText}`);
   }
-
-  return Promise.reject({
-    message: response.statusText,
-    status: response.status,
-    error,
-  });
+  return Promise.reject(error);
 }
 
 const methods = ['post', 'get'];

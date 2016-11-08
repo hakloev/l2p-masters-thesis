@@ -1,10 +1,11 @@
 import { createSelector } from 'reselect';
-import { CODE_STRIP_REGEX } from '../common/constants';
+import { CODE_STRIP_REGEX } from '../../common/constants';
 
 const getAssignment = state => {
   return state.assignment.task.meta;
 };
-const getCompilationResult = state => state.compilation.result.result;
+
+const getCompilationResult = state => state.assignment.compilation.result;
 
 export const isCorrectSolution = createSelector(
   [getAssignment, getCompilationResult],
