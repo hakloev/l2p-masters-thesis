@@ -4,6 +4,7 @@ import { browserHistory } from 'react-router';
 import apiService from '../../api/client';
 
 import * as actions from './actions';
+import { actions as achievementActions } from '../achievements';
 
 // START QUIZ START
 function* startQuiz(action) {
@@ -68,7 +69,7 @@ function* submitAnswer(action) {
     console.info(`${actions.SUBMIT_ANSWER_REQUEST}`);
     const data = yield call(apiService.post, '/api/submit/', { body: action.payload });
     yield put(actions.submitAnswerSuccess(data));
-    // yield put(achievementActions.getNewAchievementsRequest());
+    yield put(achievementActions.getNewAchievementsRequest());
   } catch (error) {
     console.error(`${actions.SUBMIT_ANSWER_FAILURE}: ${error.message}`);
     Materialize.toast('Unable to submit answer, try again later!', 5000);

@@ -31,7 +31,7 @@ export function* watchAllQuizStats() {
   for (;;) {
     yield take(actions.GET_ALL_QUIZ_STATS);
     yield [
-      call(getSkills),
+      // call(getSkills),
       call(getStreaks),
       call(achievementSagas.getAchievements),
     ];
