@@ -2,56 +2,58 @@ import { combineReducers } from 'redux';
 import * as types from './actions';
 
 const initalState = {
-  skills: {
+  assignmentTypeStreak: {
     isFetching: false,
     error: false,
     data: [],
   },
-  streaks: {
+  userStreak: {
     isFetching: false,
     error: false,
-    data: [],
+    data: {},
   },
 };
 
-const SkillReducer = (state = initalState.skills, action) => {
+const UserStreakReducer = (state = initalState.userStreak, action) => {
   switch (action.type) {
-  case types.GET_SKILLS_REQUEST:
+  case types.GET_USER_STREAK_REQUEST:
     return {
       ...state,
       isFetching: true,
     };
-  case types.GET_SKILLS_SUCCESS:
+  case types.GET_USER_STREAK_SUCCESS:
     return {
       ...state,
       isFetching: false,
-      data: action.skills,
+      data: {
+        ...action.streaks,
+      },
     };
-  case types.GET_SKILLS_FAILURE:
+  case types.GET_USER_STREAK_FAILURE:
     return {
       ...state,
       isFetching: false,
-      data: [],
+      data: {},
     };
   default:
     return state;
   }
 };
 
-const StreakReducer = (state = initalState.streaks, action) => {
+const AssignmentTypeStreakReducer = (state = initalState.assignmentTypeStreak, action) => {
   switch (action.type) {
-  case types.GET_STREAKS_REQUEST:
+  case types.GET_ASSIGNMENT_TYPE_STREAKS_REQUEST:
     return {
       ...state,
       isFetching: true,
     };
-  case types.GET_STREAKS_SUCCESS:
+  case types.GET_ASSIGNMENT_TYPE_STREAKS_SUCCESS:
     return {
       ...state,
       isFetching: false,
       data: action.streaks,
     };
-  case types.GET_SKILLS_FAILURE:
+  case types.GET_ASSIGNMENT_TYPE_STREAKS_FAILURE:
     return {
       ...state,
       isFetching: false,
@@ -63,8 +65,8 @@ const StreakReducer = (state = initalState.streaks, action) => {
 };
 
 const reducer = combineReducers({
-  skills: SkillReducer,
-  streaks: StreakReducer,
+  userStreak: UserStreakReducer,
+  assignmentTypeStreak: AssignmentTypeStreakReducer,
 });
 
 export default reducer;

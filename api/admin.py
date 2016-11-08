@@ -14,10 +14,9 @@ class AchievementAdmin(admin.ModelAdmin):
 
 
 class AssignmentAdmin(admin.ModelAdmin):
-    list_display = ['title', 'difficulty_level', 'assignment_type', 'is_public']
+    list_display = ['title', 'assignment_type', 'is_public']
     fields = [
         'is_public',
-        'difficulty_level',
         'resource_url',
         'assignment_type',
         'title',

@@ -1,16 +1,12 @@
 from rest_framework import serializers
-from api.models.score import ScoreTypeTracker, SkillTypeLevel
+from api.models.score import ScoreTypeTracker, StreakTracker
 
 
-class SkillTypeSerializer(serializers.ModelSerializer):
-    assignment_type = serializers.SlugRelatedField(
-        read_only=True,
-        slug_field='type_name'
-    )
+class StreakTrackerSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = SkillTypeLevel
-        fields = ('assignment_type', 'skill_level', 'this_level_wrong', 'this_level_correct')
+        model = StreakTracker
+        fields = ('maximum_streak', 'streak')
 
 
 class ScoreTypeSerializer(serializers.ModelSerializer):

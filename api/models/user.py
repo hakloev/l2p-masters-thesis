@@ -27,6 +27,6 @@ def update_student_user(sender, instance, created, **kwargs):
         Student.objects.create(user=instance)
 
 
-@receiver(post_save, sender=User)
+@receiver(post_save, sender=User, dispatch_uid=uuid.uuid1())
 def save_user_profile(sender, instance, **kwargs):
     instance.student.save()

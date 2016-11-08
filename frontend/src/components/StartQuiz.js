@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import StartQuizForm from './StartQuizForm';
 import StartExamQuizForm from './StartExamQuizForm';
 import Banner from './Banner';
+import StatisticsBadge from './StatisticsBadge';
 
 import { actions as statsActions } from '../data/stats';
 import { actions as assignmentActions } from '../data/assignment';
-
 
 // eslint-disable-next-line
 class StartQuiz extends Component {
@@ -15,7 +15,7 @@ class StartQuiz extends Component {
   }
 
   render() {
-    const { streakTrackers, assignmentTypes, achievements, onStartQuiz } = this.props;
+    const { assignmentTypeStreak, userStreak, assignmentTypes, onStartQuiz } = this.props;
     const basicAssignments = [];
     const examAssignments = [];
     for (let x = 0; x < assignmentTypes.length; x += 1) {
@@ -37,33 +37,21 @@ class StartQuiz extends Component {
                 <StartExamQuizForm examAssignments={examAssignments} onSubmit={onStartQuiz} />
               }
             </div>
-            <div className="col s6">
-              <div className="card">
-                <div className="card-content">
-                  <span className="card-title">Achievements</span>
-                  <p>
-                    {achievements.length > 0
-                      ? <ul>
-                        {achievements.map(achievement =>
-                          <li key={achievement.identifier_string}>
-                            {achievement.title}
-                          </li>
-                        )}
-                      </ul>
-                      : <p>No achievements yet!</p>
-                    }
-                  </p>
+            <div className="col s6" id="stats-column">
+              <div className="row">
+                <div className="col s6">
+                  <StatisticsBadge title="Current Streak" subtitle="on all assignments" count={userStreak.streak} />
+                </div>
+                <div className="col s6">
+                  <StatisticsBadge title="Maximum Streak" subtitle="on all assignments" count={userStreak.maximum_streak} />
                 </div>
               </div>
-              <div className="card">
-                <div className="card-content">
-                  <span className="card-title">Streaks</span>
-                  <ul>
-                    {streakTrackers.map((streak, i) =>
-                      <li key={`streak-${i}`}>{`Current streak in ${streak.assignment_type}:`} <b>{streak.current_streak}</b></li>
-                    )}
-                  </ul>
-                </div>
+              <div className="row">
+                {assignmentTypeStreak.map((streak, i) =>
+                  <div className="col s6" key={`streak-${i}`}>
+                    <StatisticsBadge title="Current Streak" subtitle={`in ${streak.assignment_type.toLowerCase()}`} count={streak.current_streak} />
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -74,7 +62,8 @@ class StartQuiz extends Component {
 }
 
 StartQuiz.propTypes = {
-  streakTrackers: PropTypes.array.isRequired,
+  assignmentTypeStreak: PropTypes.array.isRequired,
+  userStreak: PropTypes.object.isRequired,
   assignmentTypes: PropTypes.array.isRequired,
   achievements: PropTypes.array,
   onStartQuiz: PropTypes.func.isRequired,
@@ -94,12 +83,13 @@ const mapDispatchToProps = dispatch => {
 };
 
 const mapStateToProps = state => {
-  const { streaks } = state.stats;
+  const { assignmentTypeStreak, userStreak } = state.stats;
   const { types } = state.assignment;
   const { meta: achievements } = state.achievements.achievements;
   return {
     achievements,
-    streakTrackers: streaks.data,
+    userStreak: userStreak.data,
+    assignmentTypeStreak: assignmentTypeStreak.data,
     assignmentTypes: types.data,
   };
 };

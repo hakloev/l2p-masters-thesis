@@ -1,8 +1,11 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { InputEditor, OutputEditor } from './editor';
+import StatisticsBadge from './StatisticsBadge';
 import { open as openModal } from './ReportModal';
-import { selectors, actions } from '../data/assignment';
+import { selectors as assignmentSelectors, actions } from '../data/assignment';
+import { selectors as statsSelectors } from '../data/stats';
+
 
 class Question extends Component {
 
@@ -35,7 +38,7 @@ class Question extends Component {
   }
 
   render() {
-    const { editorValue, compilation, assignment, hasCorrectSolution } = this.props;
+    const { editorValue, compilation, assignment, assignmentTypeStreaks, hasCorrectSolution } = this.props;
     return (
       <div id="assignment-container">
         <div id="assignment-editor-container" className="">
@@ -110,6 +113,14 @@ class Question extends Component {
               </div>
             </div>
           }
+          <div className="row">
+            <div className="col s6">
+              <StatisticsBadge title="Current Streak" subtitle={`in ${assignmentTypeStreaks.assignment_type.toLowerCase()}`} count={assignmentTypeStreaks.current_streak} />
+            </div>
+            <div className="col s6">
+              <StatisticsBadge title="Maximum Streak" subtitle={`in ${assignmentTypeStreaks.assignment_type.toLowerCase()}`} count={assignmentTypeStreaks.maximum_streak} />
+            </div>
+          </div>
         </div>
       </div>
     );
@@ -119,6 +130,7 @@ class Question extends Component {
 Question.propTypes = {
   assignment: PropTypes.object.isRequired,
   assignmentTypes: PropTypes.array,
+  assignmentTypeStreaks: PropTypes.object,
   compilation: PropTypes.object.isRequired,
   hasCorrectSolution: PropTypes.bool,
   editorValue: PropTypes.string.isRequired,
@@ -151,7 +163,8 @@ const mapStateToProps = state => {
 
   return {
     assignment: meta,
-    hasCorrectSolution: selectors.isCorrectSolution(state),
+    hasCorrectSolution: assignmentSelectors.isCorrectSolution(state),
+    assignmentTypeStreaks: statsSelectors.getAssignmentTypeStreaks(state),
     assignmentTypes,
     compilation,
     editorValue,

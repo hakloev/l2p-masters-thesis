@@ -25,7 +25,7 @@
     "pk": 1,
     "fields": {
         "is_public": true,
-        "difficulty_level": 2,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "assignment_type": 2,
         "title": "Say hello 2",
@@ -40,7 +40,7 @@
     "pk": 2,
     "fields": {
         "is_public": true,
-        "difficulty_level": 1,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "assignment_type": 2,
         "title": "Say hello",
@@ -55,7 +55,7 @@
     "pk": 3,
     "fields": {
         "is_public": true,
-        "difficulty_level": 1,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "assignment_type": 2,
         "title": "Greater than",
@@ -70,7 +70,7 @@
     "pk": 4,
     "fields": {
         "is_public": true,
-        "difficulty_level": 3,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "assignment_type": 2,
         "title": "Greater than 3",
@@ -85,7 +85,7 @@
     "pk": 5,
     "fields": {
         "is_public": true,
-        "difficulty_level": 1,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "assignment_type": 2,
         "title": "Apples and oranges",
@@ -100,7 +100,7 @@
     "pk": 6,
     "fields": {
         "is_public": true,
-        "difficulty_level": 1,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "assignment_type": 2,
         "title": "More or less",
@@ -115,7 +115,7 @@
     "pk": 7,
     "fields": {
         "is_public": true,
-        "difficulty_level": 1,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "assignment_type": 2,
         "title": "If else",
@@ -130,7 +130,7 @@
     "pk": 8,
     "fields": {
         "is_public": true,
-        "difficulty_level": 1,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "assignment_type": 2,
         "title": "If not?",
@@ -145,7 +145,7 @@
     "pk": 9,
     "fields": {
         "is_public": true,
-        "difficulty_level": 1,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "assignment_type": 2,
         "title": "Equals",
@@ -160,7 +160,7 @@
     "pk": 11,
     "fields": {
         "is_public": true,
-        "difficulty_level": 1,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "assignment_type": 2,
         "title": "Quiet",
@@ -175,7 +175,7 @@
     "pk": 12,
     "fields": {
         "is_public": true,
-        "difficulty_level": 1,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "assignment_type": 2,
         "title": "If else",
@@ -190,7 +190,7 @@
     "pk": 13,
     "fields": {
         "is_public": true,
-        "difficulty_level": 2,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "assignment_type": 2,
         "title": "Apples and oranges 2",
@@ -205,7 +205,7 @@
     "pk": 14,
     "fields": {
         "is_public": true,
-        "difficulty_level": 2,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "assignment_type": 2,
         "title": "Quiet 2",
@@ -220,7 +220,7 @@
     "pk": 15,
     "fields": {
         "is_public": true,
-        "difficulty_level": 2,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "assignment_type": 2,
         "title": "If else 2",
@@ -235,7 +235,7 @@
     "pk": 16,
     "fields": {
         "is_public": true,
-        "difficulty_level": 2,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "assignment_type": 2,
         "title": "Set the variable",
@@ -250,7 +250,7 @@
     "pk": 17,
     "fields": {
         "is_public": true,
-        "difficulty_level": 2,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "assignment_type": 2,
         "title": "If not 2?",
@@ -265,7 +265,7 @@
     "pk": 18,
     "fields": {
         "is_public": true,
-        "difficulty_level": 2,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "assignment_type": 2,
         "title": "More or less 2",
@@ -280,7 +280,7 @@
     "pk": 19,
     "fields": {
         "is_public": true,
-        "difficulty_level": 2,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "assignment_type": 2,
         "title": "In the list?",
@@ -295,7 +295,7 @@
     "pk": 20,
     "fields": {
         "is_public": true,
-        "difficulty_level": 3,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "assignment_type": 2,
         "title": "In the list 3?",
@@ -310,7 +310,7 @@
     "pk": 21,
     "fields": {
         "is_public": true,
-        "difficulty_level": 2,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "assignment_type": 2,
         "title": "Food list",
@@ -325,7 +325,7 @@
     "pk": 22,
     "fields": {
         "is_public": true,
-        "difficulty_level": 3,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "assignment_type": 2,
         "title": "Ternary operator",
@@ -340,7 +340,7 @@
     "pk": 23,
     "fields": {
         "is_public": true,
-        "difficulty_level": 3,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "assignment_type": 2,
         "title": "Food list 2",
@@ -355,7 +355,7 @@
     "pk": 24,
     "fields": {
         "is_public": true,
-        "difficulty_level": 1,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "assignment_type": 1,
         "title": "Functions",
@@ -370,7 +370,7 @@
     "pk": 25,
     "fields": {
         "is_public": true,
-        "difficulty_level": 1,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "assignment_type": 1,
         "title": "Functions",
@@ -385,7 +385,7 @@
     "pk": 26,
     "fields": {
         "is_public": true,
-        "difficulty_level": 1,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "assignment_type": 1,
         "title": "Functions",
@@ -400,7 +400,7 @@
     "pk": 27,
     "fields": {
         "is_public": true,
-        "difficulty_level": 1,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "assignment_type": 1,
         "title": "Functions",
@@ -415,7 +415,7 @@
     "pk": 28,
     "fields": {
         "is_public": true,
-        "difficulty_level": 1,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "assignment_type": 1,
         "title": "Functions",
@@ -430,7 +430,7 @@
     "pk": 29,
     "fields": {
         "is_public": true,
-        "difficulty_level": 1,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "assignment_type": 1,
         "title": "Functions",
@@ -445,7 +445,7 @@
     "pk": 30,
     "fields": {
         "is_public": true,
-        "difficulty_level": 1,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "assignment_type": 1,
         "title": "Functions",
@@ -460,7 +460,7 @@
     "pk": 31,
     "fields": {
         "is_public": true,
-        "difficulty_level": 1,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "assignment_type": 1,
         "title": "Functions",
@@ -475,7 +475,7 @@
     "pk": 32,
     "fields": {
         "is_public": true,
-        "difficulty_level": 1,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "assignment_type": 1,
         "title": "Functions",
@@ -490,7 +490,7 @@
     "pk": 33,
     "fields": {
         "is_public": true,
-        "difficulty_level": 1,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "assignment_type": 1,
         "title": "Functions",
@@ -505,7 +505,7 @@
     "pk": 34,
     "fields": {
         "is_public": true,
-        "difficulty_level": 2,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "assignment_type": 1,
         "title": "Functions 2",
@@ -520,7 +520,7 @@
     "pk": 35,
     "fields": {
         "is_public": true,
-        "difficulty_level": 2,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "assignment_type": 1,
         "title": "Functions 2",
@@ -535,7 +535,7 @@
     "pk": 36,
     "fields": {
         "is_public": true,
-        "difficulty_level": 2,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "assignment_type": 1,
         "title": "Functions 2",
@@ -550,7 +550,7 @@
     "pk": 37,
     "fields": {
         "is_public": true,
-        "difficulty_level": 2,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "assignment_type": 1,
         "title": "Functions 2",
@@ -565,7 +565,7 @@
     "pk": 38,
     "fields": {
         "is_public": true,
-        "difficulty_level": 2,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "assignment_type": 1,
         "title": "Functions 2",
@@ -580,7 +580,7 @@
     "pk": 39,
     "fields": {
         "is_public": true,
-        "difficulty_level": 3,
+
         "resource_url": "https://en.wikibooks.org/wiki/Non-Programmer%27s_Tutorial_for_Python_3/Recursion",
         "assignment_type": 1,
         "title": "Functions 3",
@@ -595,7 +595,7 @@
     "pk": 40,
     "fields": {
         "is_public": true,
-        "difficulty_level": 3,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "assignment_type": 1,
         "title": "Functions 3",
@@ -610,7 +610,7 @@
     "pk": 41,
     "fields": {
         "is_public": true,
-        "difficulty_level": 1,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#for-statements",
         "assignment_type": 3,
         "title": "Loops",
@@ -625,7 +625,7 @@
     "pk": 42,
     "fields": {
         "is_public": true,
-        "difficulty_level": 1,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#for-statements",
         "assignment_type": 3,
         "title": "Loops",
@@ -640,7 +640,7 @@
     "pk": 43,
     "fields": {
         "is_public": true,
-        "difficulty_level": 1,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#for-statements",
         "assignment_type": 3,
         "title": "Loops",
@@ -655,7 +655,7 @@
     "pk": 44,
     "fields": {
         "is_public": true,
-        "difficulty_level": 3,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#for-statements",
         "assignment_type": 3,
         "title": "Loops 3",
@@ -670,7 +670,7 @@
     "pk": 45,
     "fields": {
         "is_public": true,
-        "difficulty_level": 2,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#for-statements",
         "assignment_type": 3,
         "title": "Loops 2",
@@ -685,7 +685,7 @@
     "pk": 46,
     "fields": {
         "is_public": true,
-        "difficulty_level": 2,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#for-statements",
         "assignment_type": 3,
         "title": "Loops 2",
@@ -700,7 +700,7 @@
     "pk": 47,
     "fields": {
         "is_public": true,
-        "difficulty_level": 1,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#for-statements",
         "assignment_type": 3,
         "title": "Loops",
@@ -715,7 +715,7 @@
     "pk": 48,
     "fields": {
         "is_public": true,
-        "difficulty_level": 1,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#for-statements",
         "assignment_type": 3,
         "title": "Loops",
@@ -730,7 +730,7 @@
     "pk": 49,
     "fields": {
         "is_public": false,
-        "difficulty_level": 1,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#for-statements",
         "assignment_type": 3,
         "title": "Loops",
@@ -745,7 +745,7 @@
     "pk": 50,
     "fields": {
         "is_public": true,
-        "difficulty_level": 2,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#for-statements",
         "assignment_type": 3,
         "title": "Loops 2",
@@ -760,7 +760,7 @@
     "pk": 51,
     "fields": {
         "is_public": true,
-        "difficulty_level": 3,
+
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#for-statements",
         "assignment_type": 3,
         "title": "Loops 3",

@@ -5,6 +5,7 @@ import apiService from '../../api/client';
 
 import * as actions from './actions';
 import { actions as achievementActions } from '../achievements';
+import { actions as statsActions } from '../stats';
 
 // START QUIZ START
 function* startQuiz(action) {
@@ -69,6 +70,7 @@ function* submitAnswer(action) {
     console.info(`${actions.SUBMIT_ANSWER_REQUEST}`);
     const data = yield call(apiService.post, '/api/submit/', { body: action.payload });
     yield put(actions.submitAnswerSuccess(data));
+    yield put(statsActions.getAssignmentTypeStreaksRequest());
     yield put(achievementActions.getNewAchievementsRequest());
   } catch (error) {
     console.error(`${actions.SUBMIT_ANSWER_FAILURE}: ${error.message}`);
