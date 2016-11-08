@@ -1,9 +1,9 @@
 import { takeEvery } from 'redux-saga';
 import { call, put } from 'redux-saga/effects';
 import { browserHistory } from 'react-router';
-import * as actions from '../actions/issue';
-import apiService from '../api/client';
-import { close as closeModal } from '../components/ReportModal';
+import * as actions from './actions';
+import apiService from '../../api/client';
+import { close as closeModal } from '../../components/ReportModal';
 
 function* reportIssue(action) {
   try {
@@ -16,9 +16,9 @@ function* reportIssue(action) {
     } else {
       closeModal();
     }
-  } catch (err) {
+  } catch (error) {
     // TODO: Failure
-    console.error(`${actions.REPORT_ISSUE_FAILURE}`);
+    console.error(`${actions.REPORT_ISSUE_FAILURE} : ${error.message}`);
     if (action.isAssignmentForm) {
       closeModal();
     }

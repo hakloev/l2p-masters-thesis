@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 const CompilationIndicator = () => {
   return (

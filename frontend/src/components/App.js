@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Navbar from './Navbar';
 import AchievementsModal from './AchievementsModal';
-import * as actions from '../actions/auth';
+import { actions as authActions } from '../data/auth';
 import ReportModal from './ReportModal';
 
 const App = props => {
@@ -38,7 +38,7 @@ const mapDispatchToProps = dispatch => {
   return {
     onLogoutClick: e => {
       e.preventDefault();
-      dispatch(actions.logoutRequest());
+      dispatch(authActions.logoutRequest());
     },
   };
 };

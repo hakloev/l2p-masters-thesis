@@ -3,11 +3,8 @@ import { connect } from 'react-redux';
 import StartQuizForm from './StartQuizForm';
 import StartExamQuizForm from './StartExamQuizForm';
 
-import { getAllQuizStats } from '../actions/stats';
-import {
-  startQuizRequest,
-  setChosenAssignmentTypes,
-} from '../actions/assignment';
+import { actions as statsActions } from '../data/stats';
+import { actions as assignmentActions } from '../data/assignment';
 
 // eslint-disable-next-line
 class StartQuiz extends Component {
@@ -76,11 +73,11 @@ StartQuiz.propTypes = {
 const mapDispatchToProps = dispatch => {
   return {
     getAllQuizStats: () => {
-      dispatch(getAllQuizStats());
+      dispatch(statsActions.getAllQuizStats());
     },
     onStartQuiz: formData => {
-      dispatch(startQuizRequest(formData));
-      dispatch(setChosenAssignmentTypes(formData.assignment_types));
+      dispatch(assignmentActions.startQuizRequest(formData));
+      dispatch(assignmentActions.setChosenAssignmentTypes(formData.assignment_types));
     },
   };
 };

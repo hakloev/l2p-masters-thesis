@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import * as types from '../actions/stats';
+import * as types from './actions';
 
 const initalState = {
   skills: {
@@ -27,7 +27,7 @@ const SkillReducer = (state = initalState.skills, action) => {
       isFetching: false,
       data: action.skills,
     };
-  case types.GETGET_SKILLS_FAILURE:
+  case types.GET_SKILLS_FAILURE:
     return {
       ...state,
       isFetching: false,
@@ -51,7 +51,7 @@ const StreakReducer = (state = initalState.streaks, action) => {
       isFetching: false,
       data: action.streaks,
     };
-  case types.GETGET_SKILLS_FAILURE:
+  case types.GET_SKILLS_FAILURE:
     return {
       ...state,
       isFetching: false,

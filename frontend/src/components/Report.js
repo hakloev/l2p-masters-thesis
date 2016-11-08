@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
-import * as actions from '../actions/issue';
+import { actions } from '../data/issue';
 
 const textArea = field =>
   <textarea id={field.name} className="materialize-textarea" {...field.input} />;

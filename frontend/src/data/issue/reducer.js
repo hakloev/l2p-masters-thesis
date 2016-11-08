@@ -1,4 +1,4 @@
-import * as types from '../actions/issue';
+import * as types from './actions';
 
 const initalState = {
   report: {
