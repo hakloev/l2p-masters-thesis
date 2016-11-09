@@ -1,24 +1,20 @@
+const express = require('express');
+
+const app = express();
+
+const devMiddleware = require('webpack-dev-middleware');
+const hotMiddleware = require('webpack-hot-middleware');
+
 const webpack = require('webpack');
-const WebpackDevServer = require('webpack-dev-server');
 const config = require('./.webpack/webpack.local.config');
 
 const compiler = webpack(config);
 
-const server = new WebpackDevServer(compiler, {
+app.use(express.static(__dirname));
+app.use(hotMiddleware(compiler));
+app.use(devMiddleware(compiler, {
+  noInfo: true,
   publicPath: config.output.publicPath,
-  colors: true,
-  historyApiFallback: true,
-  inline: true,
-  // proxy: {
-  //   '/api/*': 'http://localhost:8000',
-  //   '/auth/*': 'http://localhost:8000',
-  //   '/compile': 'http://localhost:8000',
-  // },
-});
+}));
 
-server.listen(3000, err => {
-  if (err) {
-    console.log(err);
-  }
-  console.log('Listening at 3000');
-});
+app.listen(3000);

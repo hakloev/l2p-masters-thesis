@@ -1,21 +1,42 @@
-import { delay } from 'redux-saga';
+import { takeEvery, delay } from 'redux-saga';
 import { call, put, take, race } from 'redux-saga/effects';
 import { browserHistory } from 'react-router';
+import ReactGA from 'react-ga';
+import jwtDecode from 'jwt-decode';
 
-import * as actions from '../actions/auth';
-import api from '../api/auth';
+import * as actions from './actions';
+import api from '../../api/auth';
+
 import {
   isTokenExpired,
   getTokenExpiration,
   setAuthToken,
   getAuthToken,
   removeAuthToken,
-} from '../common/jwt';
+} from '../../common/jwt';
+
+function* submitRegistration(action) {
+  try {
+    const { token } = yield call(api.register, action.payload);
+    if (token) {
+      yield put(actions.loginRequest({ token }));
+    }
+  } catch (error) {
+    console.error(`${actions.REGISTRATION_FAILURE}: ${error.message}`);
+    yield put(actions.registrationFailure(error.message));
+    Materialize.toast('Something went wrong during the registration, try again later!');
+  }
+}
+
+export function* watchRegistration() {
+  yield* takeEvery(actions.REGISTRATION_REQUEST, submitRegistration);
+}
 
 function* authorize(credentials) {
   // Authorize with token or credentials
   const response = yield call(api.authenticate, credentials);
   yield put(actions.loginSuccess(response.token));
+  ReactGA.set({ userId: jwtDecode(response.token).user_id });
   return response.token;
 }
 
@@ -35,7 +56,7 @@ function* authenticateAndRefreshOnExpiry(tokenOrCredentials) {
   }
 }
 
-export default function* loginFlow() {
+export function* loginFlow() {
   let storedToken = yield call(getAuthToken);
 
   if (isTokenExpired(storedToken)) {
@@ -53,7 +74,7 @@ export default function* loginFlow() {
       if (!credentials.token) {
         console.info(`No token found in localStorage, awaiting ${actions.LOGIN_REQUEST}`);
         const { payload } = yield take(actions.LOGIN_REQUEST);
-        credentials = { ...credentials, ...payload.credentials };
+        credentials = { ...credentials, ...payload };
       }
 
       // Race condition between logout and refreshing token
@@ -69,8 +90,8 @@ export default function* loginFlow() {
       }
 
     } catch (error) {
-      console.error('[loginFlow]: ', error.response || error);
-      yield put(actions.loginFailure(error));
+      console.error('[loginFlow]: ', error.message);
+      yield put(actions.loginFailure(error.message));
       // Reset current credentials token to ensure a wait for LOGIN_REQUEST
       credentials.token = null;
       error.response.json()

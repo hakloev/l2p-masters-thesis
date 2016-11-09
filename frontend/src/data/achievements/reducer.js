@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import * as types from '../actions/achievements';
+import * as types from './actions';
 
 const initalState = {
-  newAchievements: {
+  newUserAchievements: {
     isFetching: false,
     meta: [],
   },
@@ -25,12 +25,18 @@ const AchievementsReducer = (state = initalState.achievements, action) => {
       meta: [...action.achievements],
       isFetching: false,
     };
+  case types.GET_ACHIEVEMENTS_FAILURE:
+    return {
+      ...state,
+      meta: [],
+      isFetching: false,
+    };
   default:
     return state;
   }
 };
 
-const NewAchievementsReducer = (state = initalState.newAchievements, action) => {
+const NewAchievementsReducer = (state = initalState.newUserAchievements, action) => {
   switch (action.type) {
   case types.GET_NEW_ACHIEVEMENTS_REQUEST:
     return {
@@ -43,6 +49,12 @@ const NewAchievementsReducer = (state = initalState.newAchievements, action) => 
       meta: [...action.achievements],
       isFetching: false,
     };
+  case types.GET_NEW_ACHIEVEMENTS_FAILURE:
+    return {
+      ...state,
+      meta: [],
+      isFetching: false,
+    };
   default:
     return state;
   }
@@ -50,7 +62,7 @@ const NewAchievementsReducer = (state = initalState.newAchievements, action) => 
 
 const reducer = combineReducers({
   achievements: AchievementsReducer,
-  newAchievements: NewAchievementsReducer,
+  newUserAchievements: NewAchievementsReducer,
 });
 
 export default reducer;

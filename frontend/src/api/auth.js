@@ -1,45 +1,11 @@
-require('es6-promise').polyfill();
-require('isomorphic-fetch');
+import apiService from './client';
 
-export function checkStatus(response) {
-  if (!response.ok) {
-    const error = new Error(response.statusText);
-    error.response = response;
-    return Promise.reject(error);
-  }
-  return response;
-}
-
-export function errorHandle(error) {
-  const response = error.response;
-  if (response === undefined) {
-    console.log('[errorHandle] undefined response, returning the error itself');
-    return Promise.reject(error); // Return statusText
-  }
-  return Promise.reject(error);
-}
-
-const defaultOptions = {
-  method: 'POST',
-  headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-  },
+const register = credentials => {
+  return apiService.post('/auth/register/', { body: credentials });
 };
 
 const refreshToken = token => {
-  const options = {
-    ...defaultOptions,
-    body: JSON.stringify({
-      token,
-    }),
-  };
-
-  return fetch('/auth/token/refresh/', options)
-    .then(checkStatus)
-    .then(response => response.json())
-    .then(response => response)
-    .catch(errorHandle);
+  return apiService.post('/auth/token/refresh/', { body: { token } });
 };
 
 const authenticate = ({ token, username, password }) => {
@@ -47,21 +13,10 @@ const authenticate = ({ token, username, password }) => {
     return refreshToken(token);
   }
 
-  const options = {
-    ...defaultOptions,
-    body: JSON.stringify({
-      username,
-      password,
-    }),
-  };
-
-  return fetch('/auth/token/', options)
-    .then(checkStatus)
-    .then(response => response.json())
-    .then(response => response)
-    .catch(errorHandle);
+  return apiService.post('/auth/token/', { body: { username, password } });
 };
 
 export default {
   authenticate: credentials => authenticate(credentials),
+  register: credentials => register(credentials),
 };

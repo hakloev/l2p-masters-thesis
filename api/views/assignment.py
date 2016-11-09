@@ -1,8 +1,7 @@
 import logging
 import random
 
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404
 
 from rest_framework import generics
 from rest_framework import permissions
@@ -43,15 +42,8 @@ class GetAssignment(views.APIView):
         assignment_type_pk = int(random.choice(assignment_types))  # Choose a random assignment type
         assignment_type = AssignmentType.objects.get(pk=assignment_type_pk)
 
-        # Get the users skill level
-        user_skill_level, created = SkillTypeLevel.objects.get_or_create(
-            user=request.user,
-            assignment_type=assignment_type
-        )
-
         # Get an assignment
         assignment = random.choice(Assignment.active_assignments.filter(
-            difficulty_level=user_skill_level.skill_level,
             assignment_type=assignment_type
         ))
 
@@ -108,20 +100,14 @@ class SubmitCode(views.APIView):
             user=request.user,
             assignment_type=previous_assignment.assignment_type
         )
-        user_skill_level, created = SkillTypeLevel.objects.get_or_create(
-            user=request.user,
-            assignment_type=previous_assignment.assignment_type
-        )
 
         if correct_answer:
-            user_skill_level.register_attempted_solution(correct_answer)
             user_streak_tracker.streak += 1
             score_type_tracker.current_streak += 1
             score_type_tracker.score += 1
             request.user.student.aggregated_score += 1
             request.user.student.assignments_solved.add(previous_assignment)
         else:
-            user_skill_level.register_attempted_solution(correct_answer)
             user_streak_tracker.streak = 0
             score_type_tracker.current_streak = 0
 
@@ -129,15 +115,8 @@ class SubmitCode(views.APIView):
         request.user.student.save()
         user_streak_tracker.save()
         score_type_tracker.save()
-        # user_skill_level saves itself through register_attempted_solution
 
-        # Get skill level for the new assignment
-        user_skill_level, created = SkillTypeLevel.objects.get_or_create(
-            user=request.user,
-            assignment_type=new_assignment_type,
-        )
         assignment = random.choice(Assignment.active_assignments.filter(
-            difficulty_level=user_skill_level.skill_level,
             assignment_type=new_assignment_type
         ))
 
@@ -168,69 +147,3 @@ class AssignmentViewSet(generics.ListAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
     serializer_class = AssignmentSerializer
     queryset = Assignment.objects.all()
-
-
-@login_required
-def quiz(request):
-    # Get the post params
-    assignment_type_options = request.POST.getlist('assignment_type')
-    question_number = int(request.POST.get('qnum', 0))
-
-    previous_assignment_pk = request.POST.get('assignment', None)
-    correct_answer_str = request.POST.get('correct_answer', None)
-    correct_answer = correct_answer_str == 'true'
-
-    # Get the next question type
-    if len(assignment_type_options) > 0:
-        assignment_type_pk = int(random.choice(assignment_type_options))
-        assignment_type = AssignmentType.objects.get(pk=assignment_type_pk)
-    else:
-        assignment_type = random.choice(AssignmentType.objects.all())
-
-    player_skill_level_obj, created = SkillTypeLevel.objects.get_or_create(
-        user=request.user,
-        assignment_type=assignment_type
-    )
-
-    new_achievements = []
-
-    # Registrer answer and check for new achievements
-    if previous_assignment_pk:
-        previous_assignment_obj = get_object_or_404(Assignment, pk=previous_assignment_pk)
-        user_streak_tracker = StreakTracker.objects.get(user=request.user)
-        score_type_tracker, created = ScoreTypeTracker.objects.get_or_create(
-            user=request.user,
-            assignment_type=previous_assignment_obj.assignment_type
-        )
-
-        if correct_answer is True:
-            player_skill_level_obj.register_attempted_solution(True)
-            user_streak_tracker.streak += 1
-            score_type_tracker.current_streak += 1
-            score_type_tracker.score += 1
-            request.user.student.aggregated_score += 1
-            request.user.student.assignments_solved.add(previous_assignment_obj)
-        if correct_answer is False:
-            player_skill_level_obj.register_attempted_solution(False)
-            user_streak_tracker.streak = 0
-            score_type_tracker.current_streak = 0
-
-        request.user.student.attempted_assignments += 1
-        request.user.student.save()
-        user_streak_tracker.save()
-        score_type_tracker.save()
-
-        new_achievements = utils.check_for_new_achievements_for_user(request.user)
-
-    assignment = random.choice(Assignment.active_assignments.filter(
-        difficulty_level=player_skill_level_obj.skill_level,
-        assignment_type=assignment_type
-    ))
-
-    context = {
-        'assignment': assignment,
-        'qnum': question_number+1,
-        'assignment_type_options': assignment_type_options,
-        'new_achievements': new_achievements
-    }
-    return render(request, "quiz.html", context)

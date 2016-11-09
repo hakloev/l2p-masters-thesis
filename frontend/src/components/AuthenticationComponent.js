@@ -42,7 +42,7 @@ export function requireAuth(InnerComponent) {
   };
 
   const mapStateToProps = state => ({
-    isAuthenticated: state.auth.isAuthenticated,
+    isAuthenticated: state.auth.login.isAuthenticated,
   });
 
 

@@ -1,16 +1,22 @@
+import { combineReducers } from 'redux';
 import jwtDecode from 'jwt-decode';
-import * as types from '../actions/auth';
-// import { TOKEN_IDENTIFIER } from '../common/constants';
+import * as types from './actions';
 
 const initalState = {
-  token: null,
-  userName: null,
-  isAuthenticated: false,
-  isAuthenticating: false,
-  statusText: null,
+  login: {
+    token: null,
+    userName: null,
+    isAuthenticated: false,
+    isAuthenticating: false,
+    statusText: null,
+  },
+  registration: {
+    isRegistering: false,
+    statusText: null,
+  },
 };
 
-const AuthReducer = (state = initalState, action) => {
+const LoginReducer = (state = initalState.login, action) => {
   switch (action.type) {
   case types.LOGIN_REQUEST:
     return {
@@ -48,4 +54,26 @@ const AuthReducer = (state = initalState, action) => {
   }
 };
 
-export default AuthReducer;
+const RegistrationReducer = (state = initalState.registration, action) => {
+  switch (action.type) {
+  case types.REGISTRATION_REQUEST:
+    return {
+      ...state,
+      isRegistering: true,
+    };
+  case types.REGISTRATION_SUCCESS:
+    return {
+      ...state,
+      isRegistering: false,
+    };
+  default:
+    return state;
+  }
+};
+
+const reducers = combineReducers({
+  login: LoginReducer,
+  registration: RegistrationReducer,
+});
+
+export default reducers;

@@ -2,7 +2,8 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Navbar from './Navbar';
 import AchievementsModal from './AchievementsModal';
-import * as actions from '../actions/auth';
+import { actions as authActions } from '../data/auth';
+import ReportModal from './ReportModal';
 
 const App = props => {
   return (
@@ -14,6 +15,7 @@ const App = props => {
         </div>
       </div>
       <AchievementsModal />
+      <ReportModal />
     </div>
   );
 };
@@ -21,20 +23,22 @@ const App = props => {
 App.propTypes = {
   onLogoutClick: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
-  userName: PropTypes.string,
   children: PropTypes.node,
 };
 
 const mapStateToProps = state => {
-  const { auth: { isAuthenticated, userName } } = state;
-  return { isAuthenticated, userName };
+  const { auth: { login: { isAuthenticated, userName } } } = state;
+  return {
+    isAuthenticated,
+    userName,
+  };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     onLogoutClick: e => {
       e.preventDefault();
-      dispatch(actions.logoutRequest());
+      dispatch(authActions.logoutRequest());
     },
   };
 };

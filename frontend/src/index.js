@@ -1,18 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { AppContainer } from 'react-hot-loader';
-import { Router, browserHistory } from 'react-router';
-
 import 'materialize-css';
 import 'materialize-css/bin/materialize.css';
 import 'font-awesome/css/font-awesome.min.css';
 
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { AppContainer } from 'react-hot-loader';
+import { browserHistory } from 'react-router';
+
 import initializeGoogleAnalytics from './common/analytics';
 
 import configureStore from './configureStore';
-import routes from './routes';
-import * as actions from './actions/quiz';
+
+import { actions as assignmentActions } from './data/assignment';
 
 require('../styles/base.scss');
 
@@ -22,29 +21,31 @@ const appMount = document.getElementById('app');
 const store = configureStore();
 
 // Load inital data
-store.dispatch(actions.getAssignmentTypesRequest());
+store.dispatch(assignmentActions.getAssignmentTypesRequest());
 
-ReactDOM.render(
-  <Provider store={store}>
+const renderApp = () => {
+  // eslint-disable-next-line global-require
+  const NextRoot = require('./rootProvider').default;
+
+  ReactDOM.render(
     <AppContainer>
-      <Router history={browserHistory} routes={routes} />
-    </AppContainer>
-  </Provider>,
-  appMount
-);
+      <NextRoot history={browserHistory} store={store} />
+    </AppContainer>,
+    appMount
+  );
+};
+
+renderApp();
 
 if (module.hot) {
-  module.hot.accept('./routes', () => {
-    // eslint-disable-next-line
-    const routes = require('./routes').default;
+  module.hot.accept('./rootReducer', () => {
+    // eslint-disable-next-line global-require
+    const nextRootReducer = require('./rootReducer').default;
 
-    ReactDOM.render(
-      <Provider store={store}>
-        <AppContainer>
-          <Router history={browserHistory} routes={routes} />
-        </AppContainer>
-      </Provider>,
-      appMount
-    );
+    store.replaceReducer(nextRootReducer);
+  });
+
+  module.hot.accept('./rootProvider', () => {
+    renderApp();
   });
 }

@@ -1,18 +1,66 @@
 import ReactGA from 'react-ga';
+import { actions as authActions } from '../data/auth';
+import { actions as assignmentActions } from '../data/assignment';
 
-const reporter = ({ type }) => {
+const timingReporter = (category = 'Custom Event', { variable, value, label }) => {
+  ReactGA.timing({
+    category,
+    variable,
+    value,
+    label,
+  });
+};
+
+const reporter = (category = 'Custom Event', { type, label, value }) => {
   ReactGA.event({
-    category: 'Custom Event',
+    category,
+    label,
+    value,
     action: type,
   });
 };
 
 const dispatchAnalyticsAction = (action, state) => {
   switch (action.type) {
-  case 'COMPILE_CODE_REQUEST':
-    return reporter(action);
-  case 'COMPILE_CODE_SUCCESS':
-    return reporter(action);
+  case assignmentActions.COMPILE_CODE_REQUEST:
+    return reporter('Compilation', {
+      type: action.type,
+      label: 'Requesting compilation',
+      value: state.assignment.task.meta.id,
+    });
+  case assignmentActions.COMPILE_CODE_SUCCESS:
+    if (action.result.error) {
+      return reporter('Compilation', {
+        type: action.type,
+        label: action.result.error,
+        value: state.assignment.task.meta.id,
+      });
+    }
+    return reporter('Compilation', {
+      type: action.type,
+      label: 'Compilation Success',
+      value: state.assignment.task.meta.id,
+    });
+  case assignmentActions.SUBMIT_ANSWER_REQUEST:
+    console.log(Date.now() - state.assignment.timing.start);
+    timingReporter('Assignment Solving', {
+      variable: 'solving',
+      value: Date.now() - state.assignment.timing.start,
+      label: `Assignment ID: ${state.assignment.task.meta.id}`,
+    });
+
+    if (action.payload.correct_answer) {
+      return reporter('Submiting', {
+        type: action.type,
+        label: 'Correct Answer',
+        value: state.assignment.task.meta.id,
+      });
+    }
+    return reporter('Submiting', {
+      type: action.type,
+      label: 'Incorrect Answer',
+      value: state.assignment.task.meta.id,
+    });
   default:
     return false;
   }

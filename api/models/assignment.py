@@ -21,9 +21,8 @@ class Assignment(models.Model):
     Model for assignments
     """
     is_public = models.BooleanField(default=False)
-    difficulty_level = models.IntegerField()
-    resource_url = models.URLField(blank=True, null=True)
     assignment_type = models.ForeignKey(AssignmentType)
+    resource_url = models.URLField(blank=True, null=True)
     title = models.CharField(max_length=100)
     assignment_text = models.TextField(default="", blank=True)
     hint_text = models.TextField(default="", blank=True)

@@ -47,7 +47,7 @@ AchievementsModal.propTypes = {
 };
 
 const mapStateToProps = state => {
-  const { meta: achievements } = state.achievements.newAchievements;
+  const { meta: achievements } = state.achievements.newUserAchievements;
   return {
     achievements,
   };

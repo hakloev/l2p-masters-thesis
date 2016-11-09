@@ -7,7 +7,7 @@ const renderCheckbox = field =>
     <label htmlFor={field.name}>{field.label}</label>
   </p>;
 
-const StartQuizForm = ({ assignmentTypes, onSubmit, handleSubmit }) => {
+const StartQuizForm = ({ basicAssignments, onSubmit, handleSubmit }) => {
 
   const onSubmitClick = fields => {
     const types = [];
@@ -26,16 +26,23 @@ const StartQuizForm = ({ assignmentTypes, onSubmit, handleSubmit }) => {
   return (
     <div className="row">
       <div className="col s12">
-        <h1>Start new quiz</h1>
         <form onSubmit={handleSubmit(onSubmitClick)}>
-          <p>Check the checkboxes below to chose the topics for the quiz:</p>
-          {assignmentTypes.map((type, i) => {
+          <h4>Practice tasks</h4>
+          <p>These tasks are meant for practicing certain core aspects of programming</p>
+          <p>Select the topics you want to practice:</p>
+          {basicAssignments.map((type, i) => {
             const name = `assignment_${type.id}`;
             return (
               <Field key={`cb-${name}_${i}`} name={name} label={type.type_name} component={renderCheckbox} />
             );
           })}
-          <button type="submit" className="btn waves-effect waves-light blue darken-4">Start!</button>
+          <button
+            type="submit"
+            className="btn waves-effect waves-light deep-orange"
+          >
+            <i className="material-icons right">send</i>
+            Start
+          </button>
         </form>
       </div>
     </div>
@@ -43,7 +50,7 @@ const StartQuizForm = ({ assignmentTypes, onSubmit, handleSubmit }) => {
 };
 
 StartQuizForm.propTypes = {
-  assignmentTypes: PropTypes.array.isRequired,
+  basicAssignments: PropTypes.array.isRequired,
   onSubmit: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
 };
