@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 import { actions } from '../data/issue';
+import Banner from './Banner';
 
 const textArea = field =>
   <textarea id={field.name} className="materialize-textarea" {...field.input} />;
@@ -35,11 +36,13 @@ let Report = props => {
   };
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col s12">
-          <h1>Report an issue</h1>
-          <ReportForm handleSubmit={props.handleSubmit} onSubmitClick={onSubmitClick} />
+    <div>
+      <Banner title="report an issue" />
+      <div className="container report-issue-container">
+        <div className="row">
+          <div className="col s12">
+            <ReportForm handleSubmit={props.handleSubmit} onSubmitClick={onSubmitClick} />
+          </div>
         </div>
       </div>
     </div>

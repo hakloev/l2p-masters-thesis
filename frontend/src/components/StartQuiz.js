@@ -37,7 +37,7 @@ class StartQuiz extends Component {
                 <StartExamQuizForm examAssignments={examAssignments} onSubmit={onStartQuiz} />
               }
             </div>
-            <div className="col s6" id="stats-column">
+            <div className="col s6 stats-column">
               <div className="row">
                 <div className="col s6">
                   <StatisticsBadge title="Current Streak" subtitle="on all assignments" count={userStreak.streak} />

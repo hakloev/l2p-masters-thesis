@@ -96,6 +96,14 @@ class Question extends Component {
           </div>
         </div>
         <div id="assignment-sidebar" className="">
+          <div className="row stats-column">
+            <div className="col s6">
+              <StatisticsBadge title="Current Streak" subtitle={`in ${assignmentTypeStreaks.assignment_type.toLowerCase()}`} count={assignmentTypeStreaks.current_streak} />
+            </div>
+            <div className="col s6">
+              <StatisticsBadge title="Maximum Streak" subtitle={`in ${assignmentTypeStreaks.assignment_type.toLowerCase()}`} count={assignmentTypeStreaks.maximum_streak} />
+            </div>
+          </div>
           <div className="card task-card">
             <div className="card-content">
               <span className="card-title">Assigment:</span>
@@ -113,14 +121,6 @@ class Question extends Component {
               </div>
             </div>
           }
-          <div className="row">
-            <div className="col s6">
-              <StatisticsBadge title="Current Streak" subtitle={`in ${assignmentTypeStreaks.assignment_type.toLowerCase()}`} count={assignmentTypeStreaks.current_streak} />
-            </div>
-            <div className="col s6">
-              <StatisticsBadge title="Maximum Streak" subtitle={`in ${assignmentTypeStreaks.assignment_type.toLowerCase()}`} count={assignmentTypeStreaks.maximum_streak} />
-            </div>
-          </div>
         </div>
       </div>
     );

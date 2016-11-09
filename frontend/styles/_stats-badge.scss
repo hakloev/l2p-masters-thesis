@@ -1,0 +1,45 @@
+/* STATS BADGE */
+.stats-column {
+  margin-top: 1.14rem;
+}
+
+.stats-badge {
+  display: block;
+  overflow: auto;
+  &-content {
+    display: inline-block;
+    float: left;
+    width: 64px;
+    height: 64px;
+    line-height: 64px;
+    border-radius: 50%;
+    background-color: lighten($deep-orange, 10%);
+    color: white;
+    vertical-align: middle;
+    text-align: center;
+  }
+  &-desc {
+    display: inline-block;
+    float: left;
+    height: 64px;
+    font-size: 16px;
+    margin-left: 8px;
+    margin-top: 11px;
+  }
+  &-count {
+    vertical-align: middle;
+    line-height: 64px;
+    font-size: 32px;
+  }
+  &-subtitle {
+    display: block;
+    margin-left: 5px;
+    font-size: 12px;
+    font-style: italic;
+    &:before {
+      content: "-";
+      margin-right: 5px;
+      display: inline-block;
+    }
+  }
+}

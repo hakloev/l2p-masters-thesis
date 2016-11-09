@@ -1,15 +1,18 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import LoginForm from './LoginForm';
+import Banner from '../Banner';
 import { actions } from '../../data/auth';
 
 const Login = props => {
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col s12">
-          <h1>Login</h1>
-          <LoginForm onSubmit={props.onLoginClick} />
+    <div>
+      <Banner title="login" />
+      <div className="container login-container">
+        <div className="row">
+          <div className="col s12">
+            <LoginForm onSubmit={props.onLoginClick} />
+          </div>
         </div>
       </div>
     </div>

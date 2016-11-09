@@ -1,5 +1,6 @@
 @import 'reset';
 @import 'variables';
+@import 'stats-badge';
 
 #main-container {
   margin-top: -64px; /* Negative of navbar height. Added as padding-top on inner-container */
@@ -9,12 +10,17 @@
   padding-top: 64px;
 }
 
+.start-quiz-container, .report-issue-container, .login-container, .register-container {
+  margin-top: 40px;
+}
+
+
 .code-block {
   border: 1px solid lightgray;
   border-radius: 5px;
   font-family: monospace;
   background-color: rgb(247, 247, 249);
-  color: rgb(202, 38, 87);
+  color: $code-color;
   padding: 2px;
 }
 
@@ -28,6 +34,10 @@
   line-height: 1.8;
 }
 
+.task-card, .hint-card {
+  background-color: lighten($grey, 15%);
+}
+
 #assignment-container {
   display: flex;
   flex-direction: row;
@@ -39,7 +49,7 @@
   display: flex;
   flex-direction: column;
   width: 65%;
-  background-color: $editor-color;
+  background-color: $ace-editor-color;
 }
 
 #assignment-sidebar {
@@ -57,7 +67,7 @@
 
 #assignment-editor {
   width: 56%;
-  border-right: 15px solid $ouput-border-color;
+  border-right: 15px solid $grey;
   padding: 20px 0;
 }
 
@@ -138,58 +148,6 @@
   text-align: center;
   padding: 30px 0;
   &--grey {
-    background-color: lighten(#bdbdbd, 15%);
-  }
-}
-
-.start-quiz-container {
-  margin-top: 40px;
-}
-
-
-
-/* STATS BADGE */
-#stats-column {
-  margin-top: 1.14rem;
-}
-
-.stats-badge {
-  display: block;
-  overflow: auto;
-  &-content {
-    display: inline-block;
-    float: left;
-    width: 64px;
-    height: 64px;
-    line-height: 64px;
-    border-radius: 50%;
-    background-color: lighten($deep-orange, 10%);
-    color: white;
-    vertical-align: middle;
-    text-align: center;
-  }
-  &-desc {
-    display: inline-block;
-    float: left;
-    height: 64px;
-    font-size: 16px;
-    margin-left: 8px;
-    margin-top: 11px;
-  }
-  &-count {
-    vertical-align: middle;
-    line-height: 64px;
-    font-size: 32px;
-  }
-  &-subtitle {
-    display: block;
-    margin-left: 5px;
-    font-size: 12px;
-    font-style: italic;
-    &:before {
-      content: "-";
-      margin-right: 5px;
-      display: inline-block;
-    }
+    background-color: lighten($grey, 15%);
   }
 }
