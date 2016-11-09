@@ -1,128 +1,16 @@
 [
 {
-  "model": "api.assignmenttype",
-  "pk": 1,
-  "fields": {
-    "type_name": "Functions"
-  }
-},
-{
-  "model": "api.assignmenttype",
-  "pk": 2,
-  "fields": {
-    "type_name": "Control structures"
-  }
-},
-{
-  "model": "api.assignmenttype",
-  "pk": 3,
-  "fields": {
-    "type_name": "Loops"
-  }
-},
-{
-    "model": "api.assignment",
-    "pk": 1,
-    "fields": {
-        "is_public": true,
-
-        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
-        "assignment_type": 2,
-        "title": "Say hello 2",
-        "assignment_text": "Complete the code below so that it prints \"Hello\" if the variable <span class=\"code-block\">say</span> is true, and \"Bye\" otherwise.",
-        "hint_text": "",
-        "code_body": "say = True\r\nif say:\r\n    print()\r\nelse:\r\n    print()",
-        "solution": "Hello"
-    }
-},
-{
-    "model": "api.assignment",
-    "pk": 2,
-    "fields": {
-        "is_public": true,
-
-        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
-        "assignment_type": 2,
-        "title": "Say hello",
-        "assignment_text": "Complete the code below so that it prints \"Hello\" if the variable <span class=\"code-block\">say</span> is True.",
-        "hint_text": "",
-        "code_body": "say = True\r\nif say:\r\n    print()",
-        "solution": "Hello"
-    }
-},
-{
     "model": "api.assignment",
     "pk": 3,
     "fields": {
         "is_public": true,
-
-        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "assignment_type": 2,
+        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "title": "Greater than",
-        "assignment_text": "Complete the code below by making it print out \"Big\" if <span class=\"code-block\">num</span> is greater than 42.",
+        "assignment_text": "Complete the code below by making it print out \"Big\" if <span class=\"code-block\">num</span> is greater than 42 and False otherwise.",
         "hint_text": "An if statement requires an operator to compare values, such as greater than >, less than <, equal ==, greater than or equal >= or less than or equal <=",
-        "code_body": "num = 53\r\nif num  42:\r\n    print(\"Big\")",
+        "code_body": "num = 53",
         "solution": "Big"
-    }
-},
-{
-    "model": "api.assignment",
-    "pk": 4,
-    "fields": {
-        "is_public": true,
-
-        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
-        "assignment_type": 2,
-        "title": "Greater than 3",
-        "assignment_text": "Set the variable <span class=code-block\">size_string</span> to \"Big\" if <span class=\"code-block\">num</span> is greater than 42, and \"Small\" otherwise.",
-        "hint_text": "Wikipedia has some information about python conditional one-liner: https://en.wikipedia.org/wiki/%3F:#Python",
-        "code_body": "num = 53\r\nsize_string = \"Big\" if > 42 else \"small\"\r\nprint(size_string)",
-        "solution": "Big"
-    }
-},
-{
-    "model": "api.assignment",
-    "pk": 5,
-    "fields": {
-        "is_public": true,
-
-        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
-        "assignment_type": 2,
-        "title": "Apples and oranges",
-        "assignment_text": "Complete the code below so that it prints \"Apples\" if apples are greater than oranges, and \"Oranges\" otherwise.",
-        "hint_text": "An if statement requires an operator to compare values, such as greater than >, less than <, equal ==, greater than or equal >= or less than or equal <=",
-        "code_body": "apples = 23\r\noranges = 12\r\nif apples oranges:\r\n    print(\"Apples\")\r\nelse:\r\n   print(\"Oranges\")",
-        "solution": "Apples"
-    }
-},
-{
-    "model": "api.assignment",
-    "pk": 6,
-    "fields": {
-        "is_public": true,
-
-        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
-        "assignment_type": 2,
-        "title": "More or less",
-        "assignment_text": "Complete the code below to print out \"More\" if the <span class=\"code-block\">money</span> variable is greater than 9000, otherwise print out \"Less\"",
-        "hint_text": "An if statement requires an operator to compare values, such as greater than >, less than <, equal ==, greater than or equal >= or less than or equal <=",
-        "code_body": "money = 8999\r\nif:\r\n    print(\"More\")\r\nelse:\r\n    print(\"Less\")",
-        "solution": "Less"
-    }
-},
-{
-    "model": "api.assignment",
-    "pk": 7,
-    "fields": {
-        "is_public": true,
-
-        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
-        "assignment_type": 2,
-        "title": "If else",
-        "assignment_text": "Complete the code below to print out \"Else\" if <span class=\"code-block\">should_print</span> is false",
-        "hint_text": "An if statement must always contain the <span class=\"code-block\">if ...</span> element, it can contain zero or more <span class=\"code-block\">elif ...</span> elements and an optional <span class=\"code-block\">else</span> element at the end to catch all other cases not covered by the if/elif.",
-        "code_body": "should_print = False\r\nmaybe = False\r\nif should_print:\r\n    print(\"If\")\r\nelif maybe:\r\n    print(\"Maybe\")",
-        "solution": "Else"
     }
 },
 {
@@ -130,9 +18,8 @@
     "pk": 8,
     "fields": {
         "is_public": true,
-
-        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "assignment_type": 2,
+        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "title": "If not?",
         "assignment_text": "Complete the code below by printing \"False\" if <span class=\"code-block\">condition</span> is not true",
         "hint_text": "You can negate a condition by putting <span class=\"code-block\">not</span> in between the <span class=\"code-block\">if</span>/<span class=\"code-block\">elif</span> statement and the condition.",
@@ -142,57 +29,11 @@
 },
 {
     "model": "api.assignment",
-    "pk": 9,
-    "fields": {
-        "is_public": true,
-
-        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
-        "assignment_type": 2,
-        "title": "Equals",
-        "assignment_text": "Print out \"The answer\" if num is equal to 42",
-        "hint_text": "<span class=\"code-block\">elif</span> are elements in an if-statement block that also take a conditional argument. To check if two values are equal, use the equal operator: ==",
-        "code_body": "num = 42\r\nif num > 42:\r\n    print(\"Greater\")\r\n# Your code here\r\nelse:\r\n    print(\"Less\")",
-        "solution": "The answer"
-    }
-},
-{
-    "model": "api.assignment",
-    "pk": 11,
-    "fields": {
-        "is_public": true,
-
-        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
-        "assignment_type": 2,
-        "title": "Quiet",
-        "assignment_text": "Print \"Empty\" if the <span class=\"code-block\">str</span> variable is empty",
-        "hint_text": "A string that is empty will return false if it is compared in an <span class=\"code-block\">if</span> element. It will return true if it has some value.",
-        "code_body": "str = \"\"\r\nif str:\r\n    print()\r\nelse:\r\n    print()",
-        "solution": "Empty"
-    }
-},
-{
-    "model": "api.assignment",
-    "pk": 12,
-    "fields": {
-        "is_public": true,
-
-        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
-        "assignment_type": 2,
-        "title": "If else",
-        "assignment_text": "Complete the code below so that it prints \"Hello\" if condition is True.",
-        "hint_text": "An <span class=\"code-block\">if</span> element can also take the boolean values True or False directly.",
-        "code_body": "condition = True\r\nif:\r\n    print(\"Hello\")",
-        "solution": "Hello"
-    }
-},
-{
-    "model": "api.assignment",
     "pk": 13,
     "fields": {
         "is_public": true,
-
-        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "assignment_type": 2,
+        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "title": "Apples and oranges 2",
         "assignment_text": "Complete the code below so that it prints \"Apples\" if apples is greater than oranges, and \"Oranges\" otherwise.",
         "hint_text": "An if statement requires an operator to compare values, such as greater than >, less than <, equal ==, greater than or equal >=, or less than or equal <=",
@@ -205,9 +46,8 @@
     "pk": 14,
     "fields": {
         "is_public": true,
-
-        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "assignment_type": 2,
+        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "title": "Quiet 2",
         "assignment_text": "Print \"Empty\" if the string <span class=\"code-block\">str</span> is empty.",
         "hint_text": "A string that is empty will return false if it is compared in an <span class=\"code-block\">if</span> element. It will return true if it has some value. i.e. <span class=\"code-block\">if str:</span>",
@@ -217,42 +57,11 @@
 },
 {
     "model": "api.assignment",
-    "pk": 15,
-    "fields": {
-        "is_public": true,
-
-        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
-        "assignment_type": 2,
-        "title": "If else 2",
-        "assignment_text": "Complete the code below so that it prints \"Else\" if <span class=\"code-block\">should_print</span> is false",
-        "hint_text": "An if statement must always contain the <span class=\"code-block\">if ...</span> element, it can contain zero or more <span class=\"code-block\">elif ...</span> elements and an optional <span class=\"code-block\">else</span> element at the end to catch all other cases not covered by the if/elif.",
-        "code_body": "should_print = False\r\nif should_print:\r\n    print(\"If\")",
-        "solution": "Else"
-    }
-},
-{
-    "model": "api.assignment",
-    "pk": 16,
-    "fields": {
-        "is_public": true,
-
-        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
-        "assignment_type": 2,
-        "title": "Set the variable",
-        "assignment_text": "Set the value of variable <span class=\"code-block\">var2</span> so that the code below prints out \"Correct\"",
-        "hint_text": "You can check if two strings are equal by comparing them using the equal operator: ==",
-        "code_body": "var2 = \"\"\r\nif \"correct\" == var2:\r\n    print(\"Correct\")\r\nelif var2:\r\n    print(\"Not empty\")\r\nelse:\r\n    print(\"It is empty\")",
-        "solution": "Correct"
-    }
-},
-{
-    "model": "api.assignment",
     "pk": 17,
     "fields": {
         "is_public": true,
-
-        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "assignment_type": 2,
+        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "title": "If not 2?",
         "assignment_text": "Complete the code below by printing \"False\" if <span class=\"code-block\">condition</span> is not true",
         "hint_text": "You can negate a condition by putting <span class=\"code-block\">not</span> in between the <span class=\"code-block\">if</span>/<span class=\"code-block\">elif</span> statement and the condition.",
@@ -265,9 +74,8 @@
     "pk": 18,
     "fields": {
         "is_public": true,
-
-        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "assignment_type": 2,
+        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "title": "More or less 2",
         "assignment_text": "Complete the code below, so that it prints \"More\" if the <span class=\"code-block\">money</span> variable is greater than 9000, and \"Less\" otherwise.",
         "hint_text": "An if statement requires an operator to compare values, such as greater than >, less than <, equal ==, greater than or equal >= or less than or equal <=",
@@ -277,57 +85,11 @@
 },
 {
     "model": "api.assignment",
-    "pk": 19,
-    "fields": {
-        "is_public": true,
-
-        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
-        "assignment_type": 2,
-        "title": "In the list?",
-        "assignment_text": "Print \"In the list\" if the string \"cow\"  is in the list <span class=\"code-block\">lst</span>",
-        "hint_text": "You can check if an element is in a list by using the in operator: <span class=\"code-block\">if elem in list:</span>",
-        "code_body": "str = \"cow\"\r\nlst = [\"cow\", \"dog\", \"pig\"]\r\nif:\r\n    print(\"In the list\")",
-        "solution": "In the list"
-    }
-},
-{
-    "model": "api.assignment",
-    "pk": 20,
-    "fields": {
-        "is_public": true,
-
-        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
-        "assignment_type": 2,
-        "title": "In the list 3?",
-        "assignment_text": "Print \"In the list\" if the string \"cow\"  is in the list <span class=\"code-block\">lst</span>",
-        "hint_text": "You can check if an element is in a list by using the in operator: <span class=\"code-block\">if elem in list:</span>",
-        "code_body": "str = \"cow\"\r\nlst = [\"cow\", \"dog\", \"pig\"]",
-        "solution": "In the list"
-    }
-},
-{
-    "model": "api.assignment",
-    "pk": 21,
-    "fields": {
-        "is_public": true,
-
-        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
-        "assignment_type": 2,
-        "title": "Food list",
-        "assignment_text": "Print \"In the list\" if the string \"pizza\"  is in the list <span class=\"code-block\">l</span>",
-        "hint_text": "You can check if an element is in a list by using the in operator: <span class=\"code-block\">if elem in list:</span>",
-        "code_body": "str = \"pizza\"\r\nl = [\"pizza\", \"hot dog\", \"hamburger\"]\r\nif:\r\n    print(\"In the list\")",
-        "solution": "In the list"
-    }
-},
-{
-    "model": "api.assignment",
     "pk": 22,
     "fields": {
         "is_public": true,
-
-        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "assignment_type": 2,
+        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "title": "Ternary operator",
         "assignment_text": "Assign \"Greater\" to the variable <span class=\"code-block\">str</span> if a is greater than b",
         "hint_text": "The ternary conditional operator: str = a if test else b\r\nFirst test is evaluated, then either a or b is returned based on the Boolean value of test;\r\nif test evaluates to True a is returned, else b is returned.",
@@ -340,9 +102,8 @@
     "pk": 23,
     "fields": {
         "is_public": true,
-
-        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "assignment_type": 2,
+        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "title": "Food list 2",
         "assignment_text": "Print \"In the list\" if the string \"pizza\"  is in the list <span class=\"code-block\">l</span>",
         "hint_text": "You can check if an element is in a list by using the in operator: <span class=\"code-block\">if elem in list:</span>",
@@ -352,62 +113,16 @@
 },
 {
     "model": "api.assignment",
-    "pk": 24,
-    "fields": {
-        "is_public": true,
-
-        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
-        "assignment_type": 1,
-        "title": "Functions",
-        "assignment_text": "Create the body of the function <span class=\"code-block\">f()</span> so that it returns the argument <span class=\"code-block\">num</span> + 1",
-        "hint_text": "",
-        "code_body": "def f(num)\r\n\r\nprint(f(4))",
-        "solution": "5"
-    }
-},
-{
-    "model": "api.assignment",
-    "pk": 25,
-    "fields": {
-        "is_public": true,
-
-        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
-        "assignment_type": 1,
-        "title": "Functions",
-        "assignment_text": "Create the body of the function <span class=\"code-block\">f()</span> so that it prints out the argument <span class=\"code-block\">num</span>.",
-        "hint_text": "",
-        "code_body": "def f(num):\r\n\r\nf(4)",
-        "solution": "4"
-    }
-},
-{
-    "model": "api.assignment",
     "pk": 26,
     "fields": {
         "is_public": true,
-
-        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "assignment_type": 1,
-        "title": "Functions",
-        "assignment_text": "Create the body of the function <span class=\"code-block\">f()</span> so that it returns the squared sum of the argument <span class=\"code-block\">num</span>.",
-        "hint_text": "In python you can square a number by using two asterisks **. i.e 2**2 = 4",
-        "code_body": "def f(num):\r\n\r\nprint(f(2))",
-        "solution": "4"
-    }
-},
-{
-    "model": "api.assignment",
-    "pk": 27,
-    "fields": {
-        "is_public": true,
-
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
-        "assignment_type": 1,
         "title": "Functions",
-        "assignment_text": "Create the body of the function <span class=\"code-block\">f()</span> so that it returns the sum of <span class=\"code-block\">num1</span> and <span class=\"code-block\">num2</span>",
-        "hint_text": "",
-        "code_body": "def f(num1, num2):\r\n\r\nprint(f(4,5))",
-        "solution": "9"
+        "assignment_text": "Create the body of the function <span class=\"code-block\">f(num)</span> so that it returns the squared sum of the argument <span class=\"code-block\">num</span>.",
+        "hint_text": "In python, you can square a number by using two asterisks **. i.e 2**2 = 4",
+        "code_body": "def f(num):\r\n    # Your code here\r\n\r\n\r\n# Test cases below, do not change\r\nprint(f(2))\r\nprint(f(16))",
+        "solution": "4\r\n16"
     }
 },
 {
@@ -415,29 +130,13 @@
     "pk": 28,
     "fields": {
         "is_public": true,
-
-        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "assignment_type": 1,
+        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "title": "Functions",
         "assignment_text": "Create the body of the function <span class=\"code-block\">f()</span> so that it returns the product of <span class=\"code-block\">num1</span> * <span class=\"code-block\">num2</span>",
         "hint_text": "",
-        "code_body": "def f(num1, num2):\r\n\r\nprint(f(4, 5))",
-        "solution": "20"
-    }
-},
-{
-    "model": "api.assignment",
-    "pk": 29,
-    "fields": {
-        "is_public": true,
-
-        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
-        "assignment_type": 1,
-        "title": "Functions",
-        "assignment_text": "Create the body of the function <span class=\"code-block\">f()</span> so that it checks if argument <span class=\"code-block\">num1</span> equals <span class=\"code-block\">num2</span>.",
-        "hint_text": "When using a comparison operator, i.e. >, <, ==, etc, it will return a boolean value (True/False). So you can actually do like this: <span class=\"code-block\">return a==b</span> will return False",
-        "code_body": "def f(num1, num2):\r\n\r\nprint(f(2,2))",
-        "solution": "True"
+        "code_body": "def f(num1, num2):\r\n    # Your code here\r\n\r\n\r\n#Test cases below, do not change\r\nprint(f(4, 5))\r\nprint(f(12, 12))",
+        "solution": "20\r\n144"
     }
 },
 {
@@ -445,9 +144,8 @@
     "pk": 30,
     "fields": {
         "is_public": true,
-
-        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "assignment_type": 1,
+        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "title": "Functions",
         "assignment_text": "Create the body of the function <span class=\"code-block\">f()</span> so that it returns the argument <span class=\"code-block\">num</span> multiplied by 10.",
         "hint_text": "",
@@ -460,14 +158,13 @@
     "pk": 31,
     "fields": {
         "is_public": true,
-
-        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "assignment_type": 1,
+        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "title": "Functions",
-        "assignment_text": "Create the body of function <span class=\"code-block\">f()</span> so that it checks if <span class=\"code-block\">str1</span> and <span class=\"code-block\">str2</span> are equal.",
-        "hint_text": "When using a comparison operator, i.e. >, <, ==, etc, it will return a boolean value (True/False). So you can actually do like this: <span class=\"code-block\">return a==b</span> will return False",
-        "code_body": "def f(str1, str2):\r\n\r\nprint(f(\"abc\", \"def\")",
-        "solution": "False"
+        "assignment_text": "Create the body of function <span class=\"code-block\">f(str1, str2)</span>. The function takes two string arguments, and should return the string that is longest. If they are of equal length, the string \"equal\" should be returned.",
+        "hint_text": "The len(str) function can be used to check length of strings.\r\nExample:\r\nprint(len(\"asd\"))\r\n#3",
+        "code_body": "def f(str1, str2):\r\n    # Your code here\r\n\r\n\r\n# Test cases below, do not change\r\nprint(f(\"aaa\", \"def\"))\r\nprint(f(\"Arne\", \"Bernt\"))\r\nprint(f(\"\", \"ppp\"))",
+        "solution": "equal\r\nBernt\r\nppp"
     }
 },
 {
@@ -475,29 +172,13 @@
     "pk": 32,
     "fields": {
         "is_public": true,
-
-        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "assignment_type": 1,
-        "title": "Functions",
-        "assignment_text": "Create the body of the function <span class=\"code-block\">f()</span> so that it checks if argument <span class=\"code-block\">num1</span> is greater than <span class=\"code-block\">num2</span>",
-        "hint_text": "When using a comparison operator, i.e. > (greater than), <(less than), ==(equals), etc, it will return a boolean value (True/False). So you can actually do like this: <span class=\"code-block\">return a==b</span> will return False",
-        "code_body": "def f(num1, num2):\r\n\r\nprint(f(4,5))",
-        "solution": "False"
-    }
-},
-{
-    "model": "api.assignment",
-    "pk": 33,
-    "fields": {
-        "is_public": true,
-
-        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
-        "assignment_type": 1,
-        "title": "Functions",
-        "assignment_text": "Call the function <span class=\"code-block\">f()</span>.",
-        "hint_text": "",
-        "code_body": "def f():\r\n    print(\"Function f\")\r\n##Your code here",
-        "solution": "Function f"
+        "resource_url": "http://www.python-course.eu/recursive_functions.php",
+        "title": "Functions - Recursion",
+        "assignment_text": "Create the body of the function <span class=\"code-block\">f()</span>. The function takes an argument num, and is called with num = 1 the first time it is called. The function should call itself with num + 1, printing the <span class=\"code-block\">num</span> at the start of each function call. The function should print \"Done\" when num is 10, and then return True.",
+        "hint_text": "The function can call itself with num + 1 by simply doing a regular function call <span class=\"code-block\"> f(num + 1) </span> inside the function itself.",
+        "code_body": "def f(num):\r\n\r\nf(1)",
+        "solution": "1\r\n2\r\n3\r\n4\r\n5\r\n6\r\n7\r\n8\r\n9\r\n10\r\nDone"
     }
 },
 {
@@ -505,9 +186,8 @@
     "pk": 34,
     "fields": {
         "is_public": true,
-
-        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "assignment_type": 1,
+        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "title": "Functions 2",
         "assignment_text": "Make the argument <span class=\"code-block\">num2</span> have a default value of 2.",
         "hint_text": "You can give default arguments to functions: <span class=\"code-block\">def f(arg1, arg2=None):</span> That way, you don't have to supply that argument when calling the function.",
@@ -520,14 +200,13 @@
     "pk": 35,
     "fields": {
         "is_public": true,
-
-        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "assignment_type": 1,
+        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "title": "Functions 2",
         "assignment_text": "Create a function <span class=\"code-block\">f()</span> that takes two arguments as input,  and returns the sum of them.",
         "hint_text": "",
-        "code_body": "##Your code here\r\nprint(f(2, 2))",
-        "solution": "4"
+        "code_body": "# Your code here\r\n\r\n\r\n#Test cases below, do not change\r\nprint(f(2, 2))\r\nprint(f(3, 8))",
+        "solution": "4\r\n11"
     }
 },
 {
@@ -535,14 +214,13 @@
     "pk": 36,
     "fields": {
         "is_public": true,
-
-        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "assignment_type": 1,
+        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "title": "Functions 2",
-        "assignment_text": "Create a function <span class=\"code-block\">f()</span> that takes two arguments. The function should return True if they are equal and False otherwise.",
-        "hint_text": "",
-        "code_body": "##Your code here\r\n\r\nprint(f(2,3))\r\nprint(f(\"abc\", \"abc\"))",
-        "solution": "False\r\nTrue"
+        "assignment_text": "Create a function <span class=\"code-block\"> f(int1, int2) </span>. The function should return the sum of the absolute value of int1 and the absolute value of int2.",
+        "hint_text": "The absolute value of a number is the non-negative version of the number. The absolute value of -10 is 10 and the absolute value of 10 is 10.",
+        "code_body": "# Your code here\r\n\r\n#Test cases below, do not change\r\nprint(f(-3, 3))\r\nprint(f(10, 10))\r\nprint(f(4, -10))",
+        "solution": "6\r\n20\r\n14"
     }
 },
 {
@@ -550,14 +228,13 @@
     "pk": 37,
     "fields": {
         "is_public": true,
-
-        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "assignment_type": 1,
+        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "title": "Functions 2",
         "assignment_text": "Create a function <span class=\"code-block\">f()</span> that takes one argument as input, and returns the argument multiplied by 10.",
         "hint_text": "",
-        "code_body": "##Your code here\r\nprint(f(5))",
-        "solution": "50"
+        "code_body": "# Your code here\r\n\r\nprint(f(5))\r\nprint(f(50))",
+        "solution": "50\r\n500"
     }
 },
 {
@@ -565,13 +242,12 @@
     "pk": 38,
     "fields": {
         "is_public": true,
-
-        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "assignment_type": 1,
+        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "title": "Functions 2",
         "assignment_text": "Complete the function f so that it returns True if arg1 and arg2 are equal, and returns False otherwise.",
         "hint_text": "",
-        "code_body": "def f(arg1, arg2):\r\n# Your code here\r\nprint(f(\"abc\", \"abc\"))\r\nprint(f(\"bcd\", \"asd\"))",
+        "code_body": "def f(arg1, arg2):\r\n    # Your code here\r\n\r\nprint(f(\"abc\", \"abc\"))\r\nprint(f(\"bcd\", \"asd\"))",
         "solution": "True\r\nFalse"
     }
 },
@@ -580,12 +256,11 @@
     "pk": 39,
     "fields": {
         "is_public": true,
-
-        "resource_url": "https://en.wikibooks.org/wiki/Non-Programmer%27s_Tutorial_for_Python_3/Recursion",
         "assignment_type": 1,
+        "resource_url": "https://en.wikibooks.org/wiki/Non-Programmer%27s_Tutorial_for_Python_3/Recursion",
         "title": "Functions 3",
         "assignment_text": "Create a function <span class=\"code-block\">f(num)</span> that sums the numbers from num to 0",
-        "hint_text": "The function can call it self, use an if statement to check if the number has reached 0 yet",
+        "hint_text": "",
         "code_body": "def f(num):\r\n\r\nprint(f(3))",
         "solution": "6"
     }
@@ -595,11 +270,10 @@
     "pk": 40,
     "fields": {
         "is_public": true,
-
-        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "assignment_type": 1,
+        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "title": "Functions 3",
-        "assignment_text": "Create a function <span class=\"code-block\">f()</span> that prints all even numbers less than the argument num.",
+        "assignment_text": "Create the body of function <span class=\"code-block\">f()</span> that prints all even numbers less than the argument num.",
         "hint_text": "The modulo operator returns the remaining value when dividing two numbers. i.e 3%2 = 1, 4%2 = 0, 5%2 = 1. You can use to modulo operator in an if statement <span class=\"code-block\">if x%2==1:</span>",
         "code_body": "def f(num):\r\n\r\nf(10)",
         "solution": "0\r\n2\r\n4\r\n6\r\n8"
@@ -607,62 +281,16 @@
 },
 {
     "model": "api.assignment",
-    "pk": 41,
-    "fields": {
-        "is_public": true,
-
-        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#for-statements",
-        "assignment_type": 3,
-        "title": "Loops",
-        "assignment_text": "Complete the for loop so that it prints all the elements in <span class=\"code-block\">lst</span>.",
-        "hint_text": "",
-        "code_body": "lst = [\"pizza\", \"hot dog\", \"hamburger\"]\r\nfor item\r\n    print(item)",
-        "solution": "pizza\r\nhot dog\r\nhamburger"
-    }
-},
-{
-    "model": "api.assignment",
-    "pk": 42,
-    "fields": {
-        "is_public": true,
-
-        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#for-statements",
-        "assignment_type": 3,
-        "title": "Loops",
-        "assignment_text": "Complete the for loop so that it prints all the elements in <span class=\"code-block\">lst</span>",
-        "hint_text": "",
-        "code_body": "lst = [1, 2, 3]\r\nfor item\r\n    print(item)",
-        "solution": "1\r\n2\r\n3"
-    }
-},
-{
-    "model": "api.assignment",
     "pk": 43,
     "fields": {
         "is_public": true,
-
-        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#for-statements",
         "assignment_type": 3,
-        "title": "Loops",
-        "assignment_text": "Complete the for loop so that it prints all the elements in <span class=\"code-block\">lst</span>.",
+        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#for-statements",
+        "title": "While loop - Stop condition",
+        "assignment_text": "Create a while-loop that prints elements from <span class=\"code-block\">lst</span> until it finds a element that is <span class=\"code-block\"> None <span>.",
         "hint_text": "",
-        "code_body": "lst = [True, False, True]\r\nfor item\r\n    print(item)",
-        "solution": "True\r\nFalse\r\nTrue"
-    }
-},
-{
-    "model": "api.assignment",
-    "pk": 44,
-    "fields": {
-        "is_public": true,
-
-        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#for-statements",
-        "assignment_type": 3,
-        "title": "Loops 3",
-        "assignment_text": "Create a loop that prints every <i> even </i> number less than 10.",
-        "hint_text": "The modulo operator returns the remaining value when dividing two numbers. i.e 3%2 = 1, 4%2 = 0, 5%2 = 1. You can use to modulo operator in an if statement <span class=\"code-block\">if x%2==1:</span>",
-        "code_body": "",
-        "solution": "0\r\n2\r\n4\r\n6\r\n8"
+        "code_body": "lst = [True, False, True, \"Bernt\", None, \"Bj\u00f8rn\"]",
+        "solution": "True\r\nFalse\r\nTrue\r\nBernt"
     }
 },
 {
@@ -670,10 +298,9 @@
     "pk": 45,
     "fields": {
         "is_public": true,
-
-        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#for-statements",
         "assignment_type": 3,
-        "title": "Loops 2",
+        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#for-statements",
+        "title": "Simple for-loop",
         "assignment_text": "Create a loop that prints all the elements in <span class=\"code-block\">lst</span>.",
         "hint_text": "",
         "code_body": "lst = [\"pizza\", \"hot dog\", \"hamburger\"]",
@@ -685,14 +312,13 @@
     "pk": 46,
     "fields": {
         "is_public": true,
-
-        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#for-statements",
         "assignment_type": 3,
-        "title": "Loops 2",
-        "assignment_text": "Create a loop that prints all the elements in <span class=\"code-block\">lst</span>.",
+        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#for-statements",
+        "title": "Loop multiplication",
+        "assignment_text": "Create a loop that prints all the elements in <span class=\"code-block\">lst</span> multiplied. Example: lst[1, 2, 3, 4] should print 24. (1*2*3*4)",
         "hint_text": "",
-        "code_body": "lst = [1, 2, 3]",
-        "solution": "1\r\n2\r\n3"
+        "code_body": "lst = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]",
+        "solution": "3628800"
     }
 },
 {
@@ -700,29 +326,13 @@
     "pk": 47,
     "fields": {
         "is_public": true,
-
-        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#for-statements",
         "assignment_type": 3,
-        "title": "Loops",
-        "assignment_text": "Complete the loop so that it prints the numbers from 0 to 5.",
-        "hint_text": "the <span class=\"code-block\">range(num1, num2)</span> function creates a list with the numbers num1 to num2-1",
-        "code_body": "for x in\r\n    print(x)",
-        "solution": "0\r\n1\r\n2\r\n3\r\n4\r\n5"
-    }
-},
-{
-    "model": "api.assignment",
-    "pk": 48,
-    "fields": {
-        "is_public": true,
-
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#for-statements",
-        "assignment_type": 3,
-        "title": "Loops",
-        "assignment_text": "Complete the for loop so that it prints all the elements in <span class=\"code-block\">lst</span>.",
+        "title": "ForLoops - Even number check",
+        "assignment_text": "Complete the loop so that it prints all even numbers from 1 through 20.",
         "hint_text": "",
-        "code_body": "lst = [6, 5, 4]\r\nfor item\r\n    print(item)",
-        "solution": "6\r\n5\r\n4"
+        "code_body": "for x in range():",
+        "solution": "2\r\n4\r\n6\r\n8\r\n10\r\n12\r\n14\r\n16\r\n18\r\n20"
     }
 },
 {
@@ -730,13 +340,12 @@
     "pk": 49,
     "fields": {
         "is_public": false,
-
-        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#for-statements",
         "assignment_type": 3,
-        "title": "Loops",
-        "assignment_text": "Complete the for loop so taht it prints all the elements in <span class=\"code-block\">lst</span>.",
-        "hint_text": "",
-        "code_body": "lst = [\"blue\", \"red\", \"yellow\"]\r\nfor item\r\n    print(item)",
+        "resource_url": "https://wiki.python.org/moin/WhileLoop",
+        "title": "While loop",
+        "assignment_text": "Create a while loop that runs until there are no elements left in the list <span class=\"code-block\">lst</span>. Each time the loop runs, the first element of the list should be removed and printed.",
+        "hint_text": "Lists in python have a <span class=\"code-block\">pop()</span> method.\r\nlst = [\"a\", \"b\"]\r\nprint(lst.pop())\r\n#b",
+        "code_body": "lst = [\"blue\", \"red\", \"yellow\"]",
         "solution": "blue\r\nred\r\nyellow"
     }
 },
@@ -745,9 +354,8 @@
     "pk": 50,
     "fields": {
         "is_public": true,
-
-        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#for-statements",
         "assignment_type": 3,
+        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#for-statements",
         "title": "Loops 2",
         "assignment_text": "Create a loop that prints all the elements in <span class=\"code-block\"> lst</span>.",
         "hint_text": "",
@@ -760,14 +368,279 @@
     "pk": 51,
     "fields": {
         "is_public": true,
-
-        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#for-statements",
         "assignment_type": 3,
+        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#for-statements",
         "title": "Loops 3",
         "assignment_text": "Complete the <span class=\"code-block\">for</span> loop, so that it prints all elements in <span class=\"code-block\">lst</span> that is not None.",
         "hint_text": "",
         "code_body": "lst = [\"blue\", None, \"red\", \"yellow\", None]",
         "solution": "blue\r\nred\r\nyellow"
+    }
+},
+{
+    "model": "api.assignment",
+    "pk": 52,
+    "fields": {
+        "is_public": true,
+        "assignment_type": 4,
+        "resource_url": "",
+        "title": "Character ratio",
+        "assignment_text": "Create the code body of the function <span class=\"code-block\">character_ratio(character_string)</span>. The input is a string, consisting of all kinds of characters.  The function should return the ratio of characters that are in the alphabet, as opposed to those that are not. The answer should be round to two decimals. Example: \"asd_\" should return 0.75, and \"a_|\" should return 0.33.",
+        "hint_text": "The method isalpha() returns whether or not a character is in the alphabet. This can be checked for each character in the string.",
+        "code_body": "def character_ratio(character_string):\r\n    #Your code here\r\n\r\n###Test cases below this line, don't change###\r\nprint(character_ratio(\"st_\"))\r\nprint(character_ratio(\"Heisann_hoppsann|||||\"))\r\nprint(character_ratio(\"thisBeTest...\"))\r\nprint(character_ratio(\".,.,.,.,.,mostly,.,.,.,.,.,.,symbols,.,.,.,.,.\"))",
+        "solution": "0.67\r\n0.71\r\n0.77\r\n0.28"
+    }
+},
+{
+    "model": "api.assignment",
+    "pk": 53,
+    "fields": {
+        "is_public": false,
+        "assignment_type": 4,
+        "resource_url": "",
+        "title": "Remove duplicates",
+        "assignment_text": "Complete the function <span class=\"code-block\">shorten_string(str)</span>. It should return a new string, where any occurance of two or more of the same character following one another is shortened to only one occurance of that character. Example: \"looooollooool\" should be shortened to \"lolol\" and \"aaaaaa\" should be shortened to \"a\".",
+        "hint_text": "By looping through the string, one can check whether or not the next character of the string equals the current. One should only append the character to the new string if it does not.",
+        "code_body": "def shorten_string(str):\r\n    #Your code here\r\n\r\n#Test cases, do not change\r\nshorten_string(bob)\r\nshorten_string(leeeelloooolaaaa)\r\nshorten_string(aisfhsapsfhsohfopaaaaaasfhiaosihfoiiwwwwwanfsoiafosnfkkkkkansfnaoisfuuuu)",
+        "solution": "bob\r\nlelola\r\naisfhsapsfhsohfopasfhiaosihfoiwanfsoiafosnfkansfnaoisfu"
+    }
+},
+{
+    "model": "api.assignment",
+    "pk": 54,
+    "fields": {
+        "is_public": false,
+        "assignment_type": 4,
+        "resource_url": "",
+        "title": "Length of square edges",
+        "assignment_text": "Complete the function <span class=\"code-block\">square_area()</span>. The function takes the area of a square as an argument. It should return the total length of the edges around that square as an integer. Example: A square area of 4 should return 8, and a square area of 16 should return 16.",
+        "hint_text": "The area of a square \"a\" is equal to \"a\"*\"a\".",
+        "code_body": "def square_area(area):\r\n    #Your code here\r\n\r\n#Test cases, do not change\r\nprint(square_area(16))\r\nprint(square_area(256))\r\nprint(square_area(4096))",
+        "solution": "16\r\n64\r\n256"
+    }
+},
+{
+    "model": "api.assignment",
+    "pk": 55,
+    "fields": {
+        "is_public": false,
+        "assignment_type": 4,
+        "resource_url": "https://docs.python.org/3/tutorial/datastructures.html#dictionaries",
+        "title": "Email dictionaries",
+        "assignment_text": "Complete the function <span class=\"code-block\">email_validation(dict) </span>. The function takes a dictionry as input. Each key contains an email address as value. You should perform a simple email validation of each value, only checking if it contains an \"@\". If the email address does not contain that, the corresponding key/value pair should be removed from the dictionary. The function should return the updated dictionary. Example: {'rolf': rolf@rolfstad.no', 'arne': 'arne.no'} should be shortened to {'rolf': rolf@rolfstad.no'}.",
+        "hint_text": "del dict['<key>'] removes a key/value pair from a dictionary.\r\nfor key, value in dict.iteritems(): creates a loop that loops over each key/value pair in the dictionary.",
+        "code_body": "def email_validation(dict):\r\n    #Your code here\r\n\r\n#Test cases below this line. Do not change\r\ndict = {'arne':'arne@arne.no, 'per':per@email.no', 'bernt': 'bernt@hulkMeisterB.no'}\r\nprint(email_validation(dict))\r\ndict = {'fjas': 'fjas', 'peder': 'peder@peder.no'}\r\nprint(email_validation(dict))\r\ndict = {}\r\nprint(email_validation(dict))",
+        "solution": "{'arne':'arne@arne.no, 'per':per@email.no', 'bernt': 'bernt@hulkMeisterB.no'}\r\n{'fjas': 'fjas', 'peder': 'peder@peder.no'}\r\n{}"
+    }
+},
+{
+    "model": "api.assignment",
+    "pk": 56,
+    "fields": {
+        "is_public": true,
+        "assignment_type": 4,
+        "resource_url": "https://en.wiktionary.org/wiki/Manhattan_distance",
+        "title": "Manhattan distance",
+        "assignment_text": "Complete the function <span class=\"code-block\">manhattan_distance()</span>. The function takes two arguments, both are lists with two numbers each. The function should return the manhattan distance between the two arguments. Example: manhattan_distance([1, 2], [3, 1]) should return 3.",
+        "hint_text": "The manhattan distance is the strict vertical or horizontal path between two points.",
+        "code_body": "def manhattan_distance(list1, list2):\r\n    #Your code here\r\n\r\n#Test cases below, do not change\r\nmanhattan_distance([1, 2], [3, 1])\r\nmanhattan_distance([59, 30], [30, 59])\r\nmanhattan_distance([29, 356], [90, 67])",
+        "solution": "3\r\n58\r\n350"
+    }
+},
+{
+    "model": "api.assignment",
+    "pk": 57,
+    "fields": {
+        "is_public": true,
+        "assignment_type": 4,
+        "resource_url": "",
+        "title": "Weather measurements",
+        "assignment_text": "Create a function <span class=\"code-block\">avg_temperature() </span>. The function takes one argument, a two-dimensional list where each inner list consists of 3 integers. Each list represent temperatures during the day, and the integers are temperatures in respectively the morning, afternoon and evening. The function should return a list consisting of three integers, where each number is the average temperature of that time of day, for all the days. Example: avg_temperature([[15, 20, 14], [17, 18, 18]] should return [16, 19, 16].",
+        "hint_text": "",
+        "code_body": "#Your code here\r\n\r\n#Test cases, do not change\r\nprint(avg_temperature([[20, 20, 18], [22, 18, 14], [21, 19, 16]]))\r\nprint(avg_temperature([[22, 13, 14], [20, 17, 14], [18, 21, 16], [16, 25, 16]]))",
+        "solution": "[21, 19, 16]\r\n[19, 19, 15]"
+    }
+},
+{
+    "model": "api.assignment",
+    "pk": 58,
+    "fields": {
+        "is_public": true,
+        "assignment_type": 4,
+        "resource_url": "",
+        "title": "Fizzbuzz",
+        "assignment_text": "Create a function fizzbuzz that takes no arguments. The function should loop from 1 through 10, and for each number print: \"fizz\" if the number is divisible by 3, \"buzz\" if the number is divisible by 5, and \"fizzbuzz\" if the number is divisible by both.",
+        "hint_text": "",
+        "code_body": "#Your code here\r\n\r\n#Test case\r\nprint(fizzbuzz())",
+        "solution": "fizz\r\nbuzz\r\nfizz\r\nfizz\r\nbuzz"
+    }
+},
+{
+    "model": "api.assignment",
+    "pk": 59,
+    "fields": {
+        "is_public": true,
+        "assignment_type": 4,
+        "resource_url": "https://en.wikipedia.org/wiki/Fibonacci_number",
+        "title": "The fibonacci sequence",
+        "assignment_text": "Create the code body of the function <span class=\"code-block\">fib_sum(n)</span>. The function should return the sum of the n-th first fibonacci numbers. Example: The first 5 fibonacci numbers are 1, 1, 2, 3 and 5. fib_sum(5) should thus return 12.",
+        "hint_text": "The task can be solved both iteratively and recursively. Fibonacci numbers are characterized by the fact that every number after the first two is the sum of the two preceding ones.",
+        "code_body": "def fib_num(n):\r\n    #Your code here\r\n\r\n#Test cases below, do not change\r\nfib_num(5)\r\nfib_num(10)",
+        "solution": "12\r\n143"
+    }
+},
+{
+    "model": "api.assignment",
+    "pk": 60,
+    "fields": {
+        "is_public": true,
+        "assignment_type": 4,
+        "resource_url": "",
+        "title": "Reverse list",
+        "assignment_text": "Create a function <span class=\"code-block\">reverse_list(to_reverse)</span>. The function takes a list as an argument, and should return a list where the elements of the original list are reversed. Example: reverse_list([1, 2, 3, 4]) should return [4, 3, 2, 1].",
+        "hint_text": "",
+        "code_body": "#Your code here\r\n\r\n\r\n#Test cases below, do not change\r\nprint(reverse_list([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))\r\nprint(reverse_list([\"eple\", \"appelsin\", \"p\u00e6re\"]))\r\nprint(reverse_list([4, 2, 3, 1, 5]))",
+        "solution": "[10, 9, 8, 7, 6, 5, 4, 3, 2, 1]\r\n[\"p\u00e6re\", \"appelsin\", \"eple\"]\r\n[5, 1, 3, 2, 4]"
+    }
+},
+{
+    "model": "api.assignment",
+    "pk": 61,
+    "fields": {
+        "is_public": true,
+        "assignment_type": 4,
+        "resource_url": "",
+        "title": "Character search",
+        "assignment_text": "Create the code body of the function <span class=\"code-block\">find_occurances(character_string, character)</span>. The function takes two arguments, a string, and a character to search for, represented as a string. The function should return the amount of occurances of the character in the string. Example: find_occurances(\"abccd\", \"c\") should return 2.",
+        "hint_text": "#Your code here\r\n\r\n#Test cases below, do not change\r\nprint(find_occurances(\"abccdehhkslccaqwecqjoijoijgoijoejiowc\", \"c\"))\r\nprint(find_occurances(\"ooiohofnsonafosnfoafsnfoasnqqnafosfnsaof\", \"q\"))",
+        "code_body": "6\r\n2",
+        "solution": ""
+    }
+},
+{
+    "model": "api.assignment",
+    "pk": 62,
+    "fields": {
+        "is_public": true,
+        "assignment_type": 4,
+        "resource_url": "",
+        "title": "Tax calculation",
+        "assignment_text": "Create the code body of the function <span class=\"code-block\">tax_calculation(income)</span>. The function should return the amount of tax that is to be payed. The rules are as follows: For any income up to 50 000, no tax is payed. From 50 000 to 100 000, 25% tax is to be payed. Over 100 000, 50% tax is to be payed. Example: With 150 000 income, The total amount of tax to be payed is 37 500. (50 000 * 0 + 50 000 * 0.25 + 50 000 * 0.5)",
+        "hint_text": "",
+        "code_body": "#Your code here\r\n\r\n\r\n#Test cases below, do not change\r\nprint(tax_calculation(500000))\r\nprint(tax_calculation(150000))\r\nprint(tax_calculation(20000))",
+        "solution": "212500\r\n37500\r\n0"
+    }
+},
+{
+    "model": "api.assignment",
+    "pk": 63,
+    "fields": {
+        "is_public": true,
+        "assignment_type": 4,
+        "resource_url": "https://en.wikipedia.org/wiki/Prime_number",
+        "title": "Prime numbers",
+        "assignment_text": "Create the code body of the function <span class=\"code-block\">prime_number(n)</span>. The function should return the n-th prime number.",
+        "hint_text": "The task can be solved either iteratively or recursively. A prime number is a number that has no divisors other than itself and 1.",
+        "code_body": "def prime_number(n):\r\n    #Your code here\r\n\r\n#Test cases below, do not change\r\nprint(prime_number(10))\r\nprint(prime_number(5))\r\nprint(prime_number(19))\r\nprint(prime_number(37))",
+        "solution": "29\r\n11\r\n67\r\n157"
+    }
+},
+{
+    "model": "api.assignment",
+    "pk": 64,
+    "fields": {
+        "is_public": true,
+        "assignment_type": 4,
+        "resource_url": "",
+        "title": "Time converting",
+        "assignment_text": "Create a function <span class=\"code-block\">time_converter(hours, minutes, seconds)</span>. The function should convert hours and minutes and return the time in seconds. Example: time_converter(1, 2, 40) should return 3760.",
+        "hint_text": "",
+        "code_body": "#Your code here\r\n\r\n\r\n#Test cases, do not change\r\nprint(time_converter(1, 2, 40))\r\nprint(time_converter(10, 3, 40))\r\nprint(time_converter(4, 2, 0))",
+        "solution": "3760\r\n36220\r\n14520"
+    }
+},
+{
+    "model": "api.assignment",
+    "pk": 65,
+    "fields": {
+        "is_public": true,
+        "assignment_type": 4,
+        "resource_url": "",
+        "title": "List merging",
+        "assignment_text": "Create a function <span class=\"code-block\">merge_lists(l1, l2)</span>. The function should braid the lists, and return one list, containing all the elements from both lists. Example: merge_lists([1,2,3], [4,5,6,7,8] should return [1, 4, 2, 5, 3, 6, 7, 8].",
+        "hint_text": "",
+        "code_body": "#Your code here\r\n\r\n\r\n#Test cases below, do not change\r\nprint(merge_lists([1, 2, 3], [4, 5, 6]))\r\nprint(merge_lists([\"a\", \"x\", \"c\", \"d\", \"o\"], [\"a\", \"j\", \"a\"]))",
+        "solution": "[1, 4, 2, 5, 3, 6]\r\n[\"a\", \"a\", \"x\", \"j\", \"c\", \"a\", \"d\", \"o\"]"
+    }
+},
+{
+    "model": "api.assignment",
+    "pk": 66,
+    "fields": {
+        "is_public": true,
+        "assignment_type": 4,
+        "resource_url": "",
+        "title": "List rotation",
+        "assignment_text": "Create a function <span class=\"code-block\">rotate_list(l1, k)</span>. The function takes two arguments. A list, and an integer k. The function should return a list, where the elements of the list are moved k places to the right. Example: rotate_list([1, 2, 3, 4, 5], 2) should return [3, 4, 5, 1, 2].",
+        "hint_text": "",
+        "code_body": "#Your code here\r\n\r\n#Test cases below, do not change\r\nprint(rotate_list([1, 2, 3, 4, 5], 2))\r\nprint(rotate_list([1, 2, 3, 4, 5], 5))\r\nprint(rotate_list([\"arne\", \"a\", \"ola\", \"per\", \"bernt\"], 3))",
+        "solution": "[3, 4, 5, 1, 2]\r\n[1, 2, 3, 4, 5]\r\n[\"per\", \"bernt\", \"arne\", \"a\", \"ola\"]"
+    }
+},
+{
+    "model": "api.assignment",
+    "pk": 67,
+    "fields": {
+        "is_public": true,
+        "assignment_type": 4,
+        "resource_url": "https://no.wikipedia.org/wiki/Euklids_algoritme",
+        "title": "Fraction reduction",
+        "assignment_text": "Create a function <span class=\"code-block\">reduce_fraction(numerator, denominator)</span>. The function should reduce the fraction given by the numerator and denominator. The function should return the calculated numerator and denominator. Example: reduce_fraction(5, 10) should return (1, 2).",
+        "hint_text": "A function can return two values by separating them with a comma.\r\n<span class=\"code-block\">return a, b</span>",
+        "code_body": "#Your code here\r\n\r\n\r\n#Test cases below, do not change\r\nprint(reduce_fraction(2, 4))\r\nprint(reduce_fraction(40, 354))\r\nprint(reduce_fraction(45, 354))",
+        "solution": "(1, 2)\r\n(20, 177)\r\n(15, 118)"
+    }
+},
+{
+    "model": "api.assignment",
+    "pk": 68,
+    "fields": {
+        "is_public": true,
+        "assignment_type": 4,
+        "resource_url": "",
+        "title": "Palindrome test",
+        "assignment_text": "Create a function <span class=\"code-block\">is_palindrome(phrase)</span>. The function takes an all lowercase string as an argument, and should return True if the given string is a palindrome, and False if it is not.",
+        "hint_text": "A palindrome is a word, phrase, number, or other sequence of characters which reads the same backward or forward, such as madam or redder.",
+        "code_body": "#Your code here\r\n\r\n#Test cases below, do not change\r\nprint(is_palindrome(\"bernt hulsker\"))\r\nprint(is_palindrome(\"sator arepo tenet opera rotas\"))\r\nprint(is_palindrome(\"kayak))\r\nprint(is_palindrome(\"redder\"))",
+        "solution": "False\r\nTrue\r\nTrue\r\nTrue"
+    }
+},
+{
+    "model": "api.assignmenttype",
+    "pk": 1,
+    "fields": {
+        "type_name": "Functions"
+    }
+},
+{
+    "model": "api.assignmenttype",
+    "pk": 2,
+    "fields": {
+        "type_name": "Control structures"
+    }
+},
+{
+    "model": "api.assignmenttype",
+    "pk": 3,
+    "fields": {
+        "type_name": "Loops"
+    }
+},
+{
+    "model": "api.assignmenttype",
+    "pk": 4,
+    "fields": {
+        "type_name": "Exam practice"
     }
 }
 ]
