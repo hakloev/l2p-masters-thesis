@@ -1,15 +1,5 @@
 import ReactGA from 'react-ga';
-import { actions as authActions } from '../data/auth';
 import { actions as assignmentActions } from '../data/assignment';
-
-const timingReporter = (category = 'Custom Event', { variable, value, label }) => {
-  ReactGA.timing({
-    category,
-    variable,
-    value,
-    label,
-  });
-};
 
 const reporter = (category = 'Custom Event', { type, label, value }) => {
   ReactGA.event({
@@ -43,10 +33,10 @@ const dispatchAnalyticsAction = (action, state) => {
     });
   case assignmentActions.SUBMIT_ANSWER_REQUEST:
     console.log(Date.now() - state.assignment.timing.start);
-    timingReporter('Assignment Solving', {
-      variable: 'solving',
+    reporter('Assignment Solving Time', {
+      type: action.type,
+      label: `Solving time for assignment ID ${state.assignment.task.meta.id}`,
       value: Date.now() - state.assignment.timing.start,
-      label: `Assignment ID: ${state.assignment.task.meta.id}`,
     });
 
     if (action.payload.correct_answer) {
