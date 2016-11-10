@@ -387,7 +387,7 @@
         "title": "Character ratio",
         "assignment_text": "Create the code body of the function <span class=\"code-block\">character_ratio(character_string)</span>. The input is a string, consisting of all kinds of characters.  The function should return the ratio of characters that are in the alphabet, as opposed to those that are not. The answer should be round to two decimals. Example: \"asd_\" should return 0.75, and \"a_|\" should return 0.33.",
         "hint_text": "The method isalpha() returns whether or not a character is in the alphabet. This can be checked for each character in the string.",
-        "code_body": "def character_ratio(character_string):\r\n    #Your code here\r\n\r\n###Test cases below this line, don't change###\r\nprint(character_ratio(\"st_\"))\r\nprint(character_ratio(\"Heisann_hoppsann|||||\"))\r\nprint(character_ratio(\"thisBeTest...\"))\r\nprint(character_ratio(\".,.,.,.,.,mostly,.,.,.,.,.,.,symbols,.,.,.,.,.\"))",
+        "code_body": "def character_ratio(character_string):\r\n    #Your code here\r\n\r\n\r\n###Test cases below this line, don't change###\r\nprint(character_ratio(\"st_\"))\r\nprint(character_ratio(\"Heisann_hoppsann|||||\"))\r\nprint(character_ratio(\"thisBeTest...\"))\r\nprint(character_ratio(\".,.,.,.,.,mostly,.,.,.,.,.,.,symbols,.,.,.,.,.\"))",
         "solution": "0.67\r\n0.71\r\n0.77\r\n0.28"
     }
 },
@@ -401,7 +401,7 @@
         "title": "Remove duplicates",
         "assignment_text": "Complete the function <span class=\"code-block\">shorten_string(str)</span>. It should return a new string, where any occurance of two or more of the same character following one another is shortened to only one occurance of that character. Example: \"looooollooool\" should be shortened to \"lolol\" and \"aaaaaa\" should be shortened to \"a\".",
         "hint_text": "By looping through the string, one can check whether or not the next character of the string equals the current. One should only append the character to the new string if it does not.",
-        "code_body": "def shorten_string(str):\r\n    #Your code here\r\n\r\n#Test cases, do not change\r\nshorten_string(bob)\r\nshorten_string(leeeelloooolaaaa)\r\nshorten_string(aisfhsapsfhsohfopaaaaaasfhiaosihfoiiwwwwwanfsoiafosnfkkkkkansfnaoisfuuuu)",
+        "code_body": "def shorten_string(char_str):\r\n    #Your code here\r\n\r\n\r\n#Test cases, do not change\r\nprint(shorten_string(\"bob\"))\r\nprint(shorten_string(\"leeeelloooolaaaa\"))\r\nprint(shorten_string(\"aisfhsapsfhsohfopaaaaaasfhiaosihfoiiwwwwwanfsoiafosnfkkkkkansfnaoisfuuuu\"))",
         "solution": "bob\r\nlelola\r\naisfhsapsfhsohfopasfhiaosihfoiwanfsoiafosnfkansfnaoisfu"
     }
 },
@@ -413,36 +413,22 @@
         "assignment_type": 4,
         "resource_url": "",
         "title": "Length of square edges",
-        "assignment_text": "Complete the function <span class=\"code-block\">square_area()</span>. The function takes the area of a square as an argument. It should return the total length of the edges around that square as an integer. Example: A square area of 4 should return 8, and a square area of 16 should return 16.",
+        "assignment_text": "Complete the function <span class=\"code-block\">square_area()</span>. The function takes the area of a square as an argument. It should return the total length of the edges around that square as an <b>integer</b>. Example: A square area of 4 should return 8, and a square area of 16 should return 16.",
         "hint_text": "The area of a square \"a\" is equal to \"a\"*\"a\".",
-        "code_body": "def square_area(area):\r\n    #Your code here\r\n\r\n#Test cases, do not change\r\nprint(square_area(16))\r\nprint(square_area(256))\r\nprint(square_area(4096))",
+        "code_body": "def square_area(area):\r\n    #Your code here\r\n\r\n\r\n#Test cases, do not change\r\nprint(square_area(16))\r\nprint(square_area(256))\r\nprint(square_area(4096))",
         "solution": "16\r\n64\r\n256"
-    }
-},
-{
-    "model": "api.assignment",
-    "pk": 55,
-    "fields": {
-        "is_public": false,
-        "assignment_type": 4,
-        "resource_url": "https://docs.python.org/3/tutorial/datastructures.html#dictionaries",
-        "title": "Email dictionaries",
-        "assignment_text": "Complete the function <span class=\"code-block\">email_validation(dict) </span>. The function takes a dictionry as input. Each key contains an email address as value. You should perform a simple email validation of each value, only checking if it contains an \"@\". If the email address does not contain that, the corresponding key/value pair should be removed from the dictionary. The function should return the updated dictionary. Example: {'rolf': rolf@rolfstad.no', 'arne': 'arne.no'} should be shortened to {'rolf': rolf@rolfstad.no'}.",
-        "hint_text": "del dict['<key>'] removes a key/value pair from a dictionary.\r\nfor key, value in dict.iteritems(): creates a loop that loops over each key/value pair in the dictionary.",
-        "code_body": "def email_validation(dict):\r\n    #Your code here\r\n\r\n#Test cases below this line. Do not change\r\ndict = {'arne':'arne@arne.no, 'per':per@email.no', 'bernt': 'bernt@hulkMeisterB.no'}\r\nprint(email_validation(dict))\r\ndict = {'fjas': 'fjas', 'peder': 'peder@peder.no'}\r\nprint(email_validation(dict))\r\ndict = {}\r\nprint(email_validation(dict))",
-        "solution": "{'arne':'arne@arne.no, 'per':per@email.no', 'bernt': 'bernt@hulkMeisterB.no'}\r\n{'fjas': 'fjas', 'peder': 'peder@peder.no'}\r\n{}"
     }
 },
 {
     "model": "api.assignment",
     "pk": 56,
     "fields": {
-        "is_public": true,
+        "is_public": false,
         "assignment_type": 4,
         "resource_url": "https://en.wiktionary.org/wiki/Manhattan_distance",
         "title": "Manhattan distance",
-        "assignment_text": "Complete the function <span class=\"code-block\">manhattan_distance()</span>. The function takes two arguments, both are lists with two numbers each. The function should return the manhattan distance between the two arguments. Example: manhattan_distance([1, 2], [3, 1]) should return 3.",
-        "hint_text": "The manhattan distance is the strict vertical or horizontal path between two points.",
+        "assignment_text": "Complete the function <span class=\"code-block\">manhattan_distance(list1, list2)</span>. The function takes two arguments, both are lists with two numbers each, a <it>x</it> and a <it>y</it> coordinate. The function should return the manhattan distance between the two arguments as an <b>integer</b>. Example: manhattan_distance([1, 2], [3, 1]) should return 3.",
+        "hint_text": "The manhattan distance is the strict vertical or horizontal path between two points.\r\n\r\nThe math library provides a <span class=\"code-block\"> fabs() </span> method that gives you the absolute value of a number. <br/>\r\nimport math <br/>\r\nprint(round(math.fabs(-4))) <br/>\r\n#4",
         "code_body": "def manhattan_distance(list1, list2):\r\n    #Your code here\r\n\r\n#Test cases below, do not change\r\nmanhattan_distance([1, 2], [3, 1])\r\nmanhattan_distance([59, 30], [30, 59])\r\nmanhattan_distance([29, 356], [90, 67])",
         "solution": "3\r\n58\r\n350"
     }
@@ -451,13 +437,13 @@
     "model": "api.assignment",
     "pk": 57,
     "fields": {
-        "is_public": true,
+        "is_public": false,
         "assignment_type": 4,
-        "resource_url": "",
+        "resource_url": "https://www.dotnetperls.com/2d-python",
         "title": "Weather measurements",
-        "assignment_text": "Create a function <span class=\"code-block\">avg_temperature() </span>. The function takes one argument, a two-dimensional list where each inner list consists of 3 integers. Each list represent temperatures during the day, and the integers are temperatures in respectively the morning, afternoon and evening. The function should return a list consisting of three integers, where each number is the average temperature of that time of day, for all the days. Example: avg_temperature([[15, 20, 14], [17, 18, 18]] should return [16, 19, 16].",
+        "assignment_text": "Create a function <span class=\"code-block\">avg_temperature(weather) </span>. The function takes one argument, a two-dimensional list where each inner list consists of 3 integers. Each list represent temperatures during the day, and the integers are temperatures in respectively the morning, afternoon and evening. The function should return a list consisting of three <b>integers</b>, where each number is the average temperature of that time of day, for all the days. Example: avg_temperature([[15, 20, 14], [17, 18, 18]] should return [16, 19, 16].",
         "hint_text": "",
-        "code_body": "#Your code here\r\n\r\n#Test cases, do not change\r\nprint(avg_temperature([[20, 20, 18], [22, 18, 14], [21, 19, 16]]))\r\nprint(avg_temperature([[22, 13, 14], [20, 17, 14], [18, 21, 16], [16, 25, 16]]))",
+        "code_body": "#Your code here\r\n\r\n\r\n#Test cases, do not change\r\nprint(avg_temperature([[20, 20, 18], [22, 18, 14], [21, 19, 16]]))\r\nprint(avg_temperature([[22, 13, 14], [20, 17, 14], [18, 21, 16], [16, 25, 16]]))",
         "solution": "[21, 19, 16]\r\n[19, 19, 15]"
     }
 },
@@ -465,13 +451,13 @@
     "model": "api.assignment",
     "pk": 58,
     "fields": {
-        "is_public": true,
+        "is_public": false,
         "assignment_type": 4,
         "resource_url": "",
         "title": "Fizzbuzz",
-        "assignment_text": "Create a function fizzbuzz that takes no arguments. The function should loop from 1 through 10, and for each number print: \"fizz\" if the number is divisible by 3, \"buzz\" if the number is divisible by 5, and \"fizzbuzz\" if the number is divisible by both.",
+        "assignment_text": "Create a function <span class=\"code-block\">fizzbuzz()</span> that takes no arguments. The function should loop from 1 through 10, and for each number print: \"fizz\" if the number is divisible by 3, \"buzz\" if the number is divisible by 5, and \"fizzbuzz\" if the number is divisible by both.",
         "hint_text": "",
-        "code_body": "#Your code here\r\n\r\n#Test case\r\nprint(fizzbuzz())",
+        "code_body": "#Your code here\r\n\r\n\r\n#Test case below, do not change\r\nfizzbuzz()",
         "solution": "fizz\r\nbuzz\r\nfizz\r\nfizz\r\nbuzz"
     }
 },
@@ -479,13 +465,13 @@
     "model": "api.assignment",
     "pk": 59,
     "fields": {
-        "is_public": true,
+        "is_public": false,
         "assignment_type": 4,
         "resource_url": "https://en.wikipedia.org/wiki/Fibonacci_number",
         "title": "The fibonacci sequence",
         "assignment_text": "Create the code body of the function <span class=\"code-block\">fib_sum(n)</span>. The function should return the sum of the n-th first fibonacci numbers. Example: The first 5 fibonacci numbers are 1, 1, 2, 3 and 5. fib_sum(5) should thus return 12.",
         "hint_text": "The task can be solved both iteratively and recursively. Fibonacci numbers are characterized by the fact that every number after the first two is the sum of the two preceding ones.",
-        "code_body": "def fib_num(n):\r\n    #Your code here\r\n\r\n#Test cases below, do not change\r\nfib_num(5)\r\nfib_num(10)",
+        "code_body": "def fib_num(n):\r\n    #Your code here\r\n\r\n\r\n#Test cases below, do not change\r\nprint(fib_num(5))\r\nprint(fib_num(10))",
         "solution": "12\r\n143"
     }
 },
@@ -493,39 +479,39 @@
     "model": "api.assignment",
     "pk": 60,
     "fields": {
-        "is_public": true,
+        "is_public": false,
         "assignment_type": 4,
         "resource_url": "",
         "title": "Reverse list",
         "assignment_text": "Create a function <span class=\"code-block\">reverse_list(to_reverse)</span>. The function takes a list as an argument, and should return a list where the elements of the original list are reversed. Example: reverse_list([1, 2, 3, 4]) should return [4, 3, 2, 1].",
-        "hint_text": "",
-        "code_body": "#Your code here\r\n\r\n\r\n#Test cases below, do not change\r\nprint(reverse_list([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))\r\nprint(reverse_list([\"eple\", \"appelsin\", \"p\u00e6re\"]))\r\nprint(reverse_list([4, 2, 3, 1, 5]))",
-        "solution": "[10, 9, 8, 7, 6, 5, 4, 3, 2, 1]\r\n[\"p\u00e6re\", \"appelsin\", \"eple\"]\r\n[5, 1, 3, 2, 4]"
+        "hint_text": "The last element of a list can be accessed with <span class=\"code-block\">to_reverse[-1]</span>.",
+        "code_body": "#Your code here\r\n\r\n\r\n#Test cases below, do not change\r\nprint(reverse_list([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))\r\nprint(reverse_list(['eple', 'appelsin', 'p\u00e6re']))\r\nprint(reverse_list([4, 2, 3, 1, 5]))",
+        "solution": "[10, 9, 8, 7, 6, 5, 4, 3, 2, 1]\r\n['p\u00e6re', 'appelsin', 'eple']\r\n[5, 1, 3, 2, 4]"
     }
 },
 {
     "model": "api.assignment",
     "pk": 61,
     "fields": {
-        "is_public": true,
+        "is_public": false,
         "assignment_type": 4,
         "resource_url": "",
         "title": "Character search",
         "assignment_text": "Create the code body of the function <span class=\"code-block\">find_occurances(character_string, character)</span>. The function takes two arguments, a string, and a character to search for, represented as a string. The function should return the amount of occurances of the character in the string. Example: find_occurances(\"abccd\", \"c\") should return 2.",
-        "hint_text": "#Your code here\r\n\r\n#Test cases below, do not change\r\nprint(find_occurances(\"abccdehhkslccaqwecqjoijoijgoijoejiowc\", \"c\"))\r\nprint(find_occurances(\"ooiohofnsonafosnfoafsnfoasnqqnafosfnsaof\", \"q\"))",
-        "code_body": "6\r\n2",
-        "solution": ""
+        "hint_text": "",
+        "code_body": "#Your code here\r\n\r\n\r\n#Test cases below, do not change\r\nprint(find_occurances(\"abccdehhkslccaqwecqjoijoijgoijoejiowc\", \"c\"))\r\nprint(find_occurances(\"ooiohofnsonafosnfoafsnfoasnqqnafosfnsaof\", \"q\"))",
+        "solution": "6\r\n2"
     }
 },
 {
     "model": "api.assignment",
     "pk": 62,
     "fields": {
-        "is_public": true,
+        "is_public": false,
         "assignment_type": 4,
         "resource_url": "",
         "title": "Tax calculation",
-        "assignment_text": "Create the code body of the function <span class=\"code-block\">tax_calculation(income)</span>. The function should return the amount of tax that is to be payed. The rules are as follows: For any income up to 50 000, no tax is payed. From 50 000 to 100 000, 25% tax is to be payed. Over 100 000, 50% tax is to be payed. Example: With 150 000 income, The total amount of tax to be payed is 37 500. (50 000 * 0 + 50 000 * 0.25 + 50 000 * 0.5)",
+        "assignment_text": "Create the function <span class=\"code-block\">tax_calculation(income)</span>. The function should return the amount of tax that is to be payed as an <b> integer </b>. The rules are as follows: For any income up to 50 000, no tax is payed. From 50 000 to 100 000, 25% tax is to be payed. Over 100 000, 50% tax is to be payed. Example: With 150 000 income, The total amount of tax to be payed is 37 500. (50 000 * 0 + 50 000 * 0.25 + 50 000 * 0.5).",
         "hint_text": "",
         "code_body": "#Your code here\r\n\r\n\r\n#Test cases below, do not change\r\nprint(tax_calculation(500000))\r\nprint(tax_calculation(150000))\r\nprint(tax_calculation(20000))",
         "solution": "212500\r\n37500\r\n0"
@@ -535,11 +521,11 @@
     "model": "api.assignment",
     "pk": 63,
     "fields": {
-        "is_public": true,
+        "is_public": false,
         "assignment_type": 4,
         "resource_url": "https://en.wikipedia.org/wiki/Prime_number",
         "title": "Prime numbers",
-        "assignment_text": "Create the code body of the function <span class=\"code-block\">prime_number(n)</span>. The function should return the n-th prime number.",
+        "assignment_text": "Create the code body of the function <span class=\"code-block\">prime_number(n)</span>. The function should return the n-th prime number. Example: <span class=\"code-block\">prime_number(5)</span> should return 11, as it is the 5th prime number.",
         "hint_text": "The task can be solved either iteratively or recursively. A prime number is a number that has no divisors other than itself and 1.",
         "code_body": "def prime_number(n):\r\n    #Your code here\r\n\r\n#Test cases below, do not change\r\nprint(prime_number(10))\r\nprint(prime_number(5))\r\nprint(prime_number(19))\r\nprint(prime_number(37))",
         "solution": "29\r\n11\r\n67\r\n157"
@@ -549,7 +535,7 @@
     "model": "api.assignment",
     "pk": 64,
     "fields": {
-        "is_public": true,
+        "is_public": false,
         "assignment_type": 4,
         "resource_url": "",
         "title": "Time converting",
@@ -563,55 +549,41 @@
     "model": "api.assignment",
     "pk": 65,
     "fields": {
-        "is_public": true,
+        "is_public": false,
         "assignment_type": 4,
         "resource_url": "",
         "title": "List merging",
-        "assignment_text": "Create a function <span class=\"code-block\">merge_lists(l1, l2)</span>. The function should braid the lists, and return one list, containing all the elements from both lists. Example: merge_lists([1,2,3], [4,5,6,7,8] should return [1, 4, 2, 5, 3, 6, 7, 8].",
+        "assignment_text": "Create a function <span class=\"code-block\">merge_lists(l1, l2)</span>. The function should braid the lists, and return one list, containing all the elements from both lists. Example: merge_lists([1,2,3], [4, 5, 6, 7, 8] should return [1, 4, 2, 5, 3, 6, 7, 8].",
         "hint_text": "",
         "code_body": "#Your code here\r\n\r\n\r\n#Test cases below, do not change\r\nprint(merge_lists([1, 2, 3], [4, 5, 6]))\r\nprint(merge_lists([\"a\", \"x\", \"c\", \"d\", \"o\"], [\"a\", \"j\", \"a\"]))",
-        "solution": "[1, 4, 2, 5, 3, 6]\r\n[\"a\", \"a\", \"x\", \"j\", \"c\", \"a\", \"d\", \"o\"]"
+        "solution": "[1, 4, 2, 5, 3, 6]\r\n['a', 'a', 'x', 'j', 'c', 'a', 'd', 'o']"
     }
 },
 {
     "model": "api.assignment",
     "pk": 66,
     "fields": {
-        "is_public": true,
+        "is_public": false,
         "assignment_type": 4,
         "resource_url": "",
         "title": "List rotation",
         "assignment_text": "Create a function <span class=\"code-block\">rotate_list(l1, k)</span>. The function takes two arguments. A list, and an integer k. The function should return a list, where the elements of the list are moved k places to the right. Example: rotate_list([1, 2, 3, 4, 5], 2) should return [3, 4, 5, 1, 2].",
         "hint_text": "",
-        "code_body": "#Your code here\r\n\r\n#Test cases below, do not change\r\nprint(rotate_list([1, 2, 3, 4, 5], 2))\r\nprint(rotate_list([1, 2, 3, 4, 5], 5))\r\nprint(rotate_list([\"arne\", \"a\", \"ola\", \"per\", \"bernt\"], 3))",
-        "solution": "[3, 4, 5, 1, 2]\r\n[1, 2, 3, 4, 5]\r\n[\"per\", \"bernt\", \"arne\", \"a\", \"ola\"]"
-    }
-},
-{
-    "model": "api.assignment",
-    "pk": 67,
-    "fields": {
-        "is_public": true,
-        "assignment_type": 4,
-        "resource_url": "https://no.wikipedia.org/wiki/Euklids_algoritme",
-        "title": "Fraction reduction",
-        "assignment_text": "Create a function <span class=\"code-block\">reduce_fraction(numerator, denominator)</span>. The function should reduce the fraction given by the numerator and denominator. The function should return the calculated numerator and denominator. Example: reduce_fraction(5, 10) should return (1, 2).",
-        "hint_text": "A function can return two values by separating them with a comma.\r\n<span class=\"code-block\">return a, b</span>",
-        "code_body": "#Your code here\r\n\r\n\r\n#Test cases below, do not change\r\nprint(reduce_fraction(2, 4))\r\nprint(reduce_fraction(40, 354))\r\nprint(reduce_fraction(45, 354))",
-        "solution": "(1, 2)\r\n(20, 177)\r\n(15, 118)"
+        "code_body": "#Your code here\r\n\r\n\r\n#Test cases below, do not change\r\nprint(rotate_list([1, 2, 3, 4, 5], 2))\r\nprint(rotate_list([1, 2, 3, 4, 5], 5))\r\nprint(rotate_list([\"arne\", \"a\", \"ola\", \"per\", \"bernt\"], 3))",
+        "solution": "[3, 4, 5, 1, 2]\r\n[1, 2, 3, 4, 5]\r\n['per', 'bernt', 'arne', 'a', 'ola']"
     }
 },
 {
     "model": "api.assignment",
     "pk": 68,
     "fields": {
-        "is_public": true,
+        "is_public": false,
         "assignment_type": 4,
         "resource_url": "",
         "title": "Palindrome test",
         "assignment_text": "Create a function <span class=\"code-block\">is_palindrome(phrase)</span>. The function takes an all lowercase string as an argument, and should return True if the given string is a palindrome, and False if it is not.",
         "hint_text": "A palindrome is a word, phrase, number, or other sequence of characters which reads the same backward or forward, such as madam or redder.",
-        "code_body": "#Your code here\r\n\r\n#Test cases below, do not change\r\nprint(is_palindrome(\"bernt hulsker\"))\r\nprint(is_palindrome(\"sator arepo tenet opera rotas\"))\r\nprint(is_palindrome(\"kayak))\r\nprint(is_palindrome(\"redder\"))",
+        "code_body": "#Your code here\r\n\r\n\r\n#Test cases below, do not change\r\nprint(is_palindrome(\"bernt hulsker\"))\r\nprint(is_palindrome(\"sator arepo tenet opera rotas\"))\r\nprint(is_palindrome(\"kayak\"))\r\nprint(is_palindrome(\"redder\"))",
         "solution": "False\r\nTrue\r\nTrue\r\nTrue"
     }
 },
