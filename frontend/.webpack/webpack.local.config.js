@@ -14,6 +14,11 @@ config.plugins = config.plugins.concat([
   new webpack.HotModuleReplacementPlugin(),
   new webpack.NoErrorsPlugin(),
   new BundleTracker({ filename: 'webpack-stats-dev.json' }),
+  new webpack.DefinePlugin({
+    'process.env': {
+      NODE_ENV: JSON.stringify('development'),
+    },
+  }),
 ]);
 
 module.exports = config;

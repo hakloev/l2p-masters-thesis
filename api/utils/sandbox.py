@@ -37,7 +37,6 @@ class DockerSandbox(object):
         pass
 
     def run(self, code, file_name='input.py'):
-
         path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'tmp')
         with tempfile.TemporaryDirectory(dir=path) as tmp_path:
             self.log.debug('Temporary code file %s written to %s' % (file_name, path))
@@ -47,8 +46,9 @@ class DockerSandbox(object):
             host_config = self.cli.create_host_config(
                 mem_limit=self.memory_limit,
                 network_mode=self.network_mode,
-                binds=['%s/:/mnt/data' % tmp_path]
+                binds=['%s/:/mnt/data:ro' % tmp_path] #ro for read-only
             )
+
             try:
                 container = self.cli.create_container(
                     image=self.image,

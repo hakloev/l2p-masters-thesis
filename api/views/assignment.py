@@ -1,5 +1,6 @@
 import logging
 import random
+import uuid
 
 from django.shortcuts import get_object_or_404
 
@@ -67,7 +68,7 @@ class CompileCode(views.APIView):
         user = request.user.id
         self.log.debug('Executing code for user: %s' % user)
         with DockerSandbox() as docker:
-            result = docker.run(code, 'code_%s.py' % user)
+            result = docker.run(code, 'user_code.py')
             self.log.debug('Get result %s' % result)
 
         return Response(result)

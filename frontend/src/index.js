@@ -7,11 +7,15 @@ import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import { browserHistory } from 'react-router';
 
+import initializeGoogleAnalytics from './common/analytics';
+
 import configureStore from './configureStore';
 
 import { actions as assignmentActions } from './data/assignment';
 
 require('../styles/base.scss');
+
+initializeGoogleAnalytics();
 
 const appMount = document.getElementById('app');
 const store = configureStore();

@@ -18,6 +18,8 @@ export const COMPILE_CODE_FAILURE = 'assignment/COMPILE_CODE_FAILURE';
 
 export const EDITOR_CODE_CHANGED = 'assignment/EDITOR_CODE_CHANGED';
 
+export const SET_START_ASSIGNMENT_TIME = 'assignment/START_TIME';
+
 /* ASSIGNMENT TYPES */
 export const getAssignmentTypesRequest = () => ({
   type: GET_ASSIGNMENT_TYPES_REQUEST,
@@ -93,3 +95,6 @@ export const editorCodeChanged = code => ({
   type: EDITOR_CODE_CHANGED,
   code,
 });
+
+/* TIMING */
+export const setStartAssignmentTime = () => ({ type: SET_START_ASSIGNMENT_TIME });

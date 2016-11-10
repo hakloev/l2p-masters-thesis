@@ -2,6 +2,9 @@ import { combineReducers } from 'redux';
 import * as actions from './actions';
 
 const initalState = {
+  timing: {
+    start: null,
+  },
   task: {
     isFetching: false,
     meta: {},
@@ -22,6 +25,18 @@ const initalState = {
   editor: {
     value: 'Enter your code here',
   },
+};
+
+const TimingReducer = (state = initalState.timing, action) => {
+  switch (action.type) {
+  case actions.SET_START_ASSIGNMENT_TIME:
+    return {
+      ...state,
+      start: Date.now(),
+    };
+  default:
+    return state;
+  }
 };
 
 const AssignmentReducer = (state = initalState.task, action) => {
@@ -140,6 +155,7 @@ const EditorReducer = (state = initalState.editor, action) => {
 
 
 const reducer = combineReducers({
+  timing: TimingReducer,
   task: AssignmentReducer,
   types: AssignmentTypeReducer,
   compilation: CompilationReducer,

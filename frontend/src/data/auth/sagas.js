@@ -1,6 +1,8 @@
 import { takeEvery, delay } from 'redux-saga';
 import { call, put, take, race } from 'redux-saga/effects';
 import { browserHistory } from 'react-router';
+import ReactGA from 'react-ga';
+import jwtDecode from 'jwt-decode';
 
 import * as actions from './actions';
 import api from '../../api/auth';
@@ -34,6 +36,7 @@ function* authorize(credentials) {
   // Authorize with token or credentials
   const response = yield call(api.authenticate, credentials);
   yield put(actions.loginSuccess(response.token));
+  ReactGA.set({ userId: jwtDecode(response.token).user_id });
   return response.token;
 }
 

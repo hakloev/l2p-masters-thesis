@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 // import { routerMiddleware } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
+import analyticsMiddleware from './common/analyticsMiddleware';
 import rootReducer from './rootReducer';
 import rootSaga from './rootSaga';
 
@@ -10,6 +11,7 @@ export default function configureStore(history) {
 
   const middleware = [
     sagaMiddleware,
+    analyticsMiddleware,
     // reactRouterReduxMiddleware,
   ];
 
