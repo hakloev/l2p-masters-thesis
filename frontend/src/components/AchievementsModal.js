@@ -39,7 +39,7 @@ const AchievementsModal = props => {
 };
 
 const open = () => {
-  $('#achievements-modal').openModal();
+  $('#achievements-modal').modal('open');
 };
 
 AchievementsModal.propTypes = {

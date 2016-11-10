@@ -22,6 +22,7 @@ module.exports = {
       jQuery: 'jquery',
       'window.$': 'jquery',
       'window.jQuery': 'jquery',
+      'root.jQuery': 'jquery',
     }),
   ],
 
