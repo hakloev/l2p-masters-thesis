@@ -41,19 +41,23 @@ const dispatchAnalyticsAction = (action, state) => {
       value: state.assignment.task.meta.id,
     });
   case assignmentActions.SUBMIT_ANSWER_REQUEST:
-    timingReporter('Solving Time', {
-      variable: 'Solving',
-      label: `Assignment ID ${state.assignment.task.meta.id}`,
-      value: Date.now() - state.assignment.timing.start,
-    });
-
     if (action.payload.correct_answer) {
+      timingReporter('Solving Time', {
+        variable: 'Solved',
+        label: `Assignment ID ${state.assignment.task.meta.id}`,
+        value: Date.now() - state.assignment.timing.start,
+      });
       return reporter('Submiting', {
         type: action.type,
         label: 'Correct Answer',
         value: state.assignment.task.meta.id,
       });
     }
+    timingReporter('Solving Time', {
+      variable: 'Skipped',
+      label: `Assignment ID ${state.assignment.task.meta.id}`,
+      value: Date.now() - state.assignment.timing.start,
+    });
     return reporter('Submiting', {
       type: action.type,
       label: 'Incorrect Answer',
