@@ -4,14 +4,6 @@ import { reduxForm } from 'redux-form';
 import { ReportForm } from './Report';
 import { actions } from '../data/issue';
 
-const open = () => {
-  $('#report-modal').openModal();
-};
-
-const close = () => {
-  $('#report-modal').closeModal();
-};
-
 let ReportModal = props => {
 
   const onSubmitClick = fields => {
@@ -39,10 +31,6 @@ ReportModal = reduxForm({
   form: 'reportModal',
 })(ReportModal);
 
-export {
-  open,
-  close,
-};
 
 const mapStateToProps = state => {
   return {
@@ -56,6 +44,14 @@ const mapDispatchToProps = dispatch => {
       dispatch(actions.reportIssue(formData, true));
     },
   };
+};
+
+export const open = () => {
+  $('#report-modal').modal('open');
+};
+
+export const close = () => {
+  $('#report-modal').modal('close');
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ReportModal);
