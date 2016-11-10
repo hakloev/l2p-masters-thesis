@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Navbar from './Navbar';
-import AchievementsModal from './AchievementsModal';
 import { actions as authActions } from '../data/auth';
+import AchievementsModal from './AchievementsModal';
 import ReportModal from './ReportModal';
 
 const App = props => {
