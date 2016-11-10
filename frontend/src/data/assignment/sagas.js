@@ -13,6 +13,7 @@ function* startQuiz(action) {
     console.info(`${actions.START_QUIZ_REQUEST}`);
     const data = yield call(apiService.post, '/api/assignment/new/', { body: action.payload });
     yield put(actions.startQuizSuccess(data));
+    yield put(actions.setStartAssignmentTime());
     browserHistory.push('/quiz');
   } catch (error) {
     console.error(`${actions.START_QUIZ_FAILURE}: ${error.message}`);
@@ -70,6 +71,7 @@ function* submitAnswer(action) {
     console.info(`${actions.SUBMIT_ANSWER_REQUEST}`);
     const data = yield call(apiService.post, '/api/submit/', { body: action.payload });
     yield put(actions.submitAnswerSuccess(data));
+    yield put(actions.setStartAssignmentTime());
     yield put(statsActions.getAssignmentTypeStreaksRequest());
     yield put(achievementActions.getNewAchievementsRequest());
   } catch (error) {

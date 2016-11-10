@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-
 import jwtDecode from 'jwt-decode';
 import * as types from './actions';
 
