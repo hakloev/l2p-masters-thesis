@@ -32,7 +32,7 @@ class IssueViewSet(views.APIView):
 
     def send_issue_email(self, request):
         recipients = list(email for name, email in settings.ADMINS)
-        message = 'The following issue was posted by the user:\n{content}'.format(
+        message = 'The following issue was posted by the user:\n\n{content}'.format(
             content=request.data['issue']
         )
 
