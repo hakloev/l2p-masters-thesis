@@ -31,7 +31,7 @@ class IssueViewSet(views.APIView):
         return Response({'issue': 'created'}, status=status.HTTP_200_OK)
 
     def send_issue_email(self, request):
-        recipients = list(email for name, email in settings.ADMINS),
+        recipients = list(email for name, email in settings.ADMINS)
         message = 'The following issue was posted by the user:\n{content}'.format(
             content=request.data['issue']
         )
