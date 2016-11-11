@@ -1,3 +1,4 @@
+./env/bin/python manage.py dumpdata api.assignment api.assignmenttype --indent=4
 [
 {
     "model": "api.assignment",
@@ -553,7 +554,7 @@
         "assignment_type": 4,
         "resource_url": "",
         "title": "List merging",
-        "assignment_text": "Create a function <span class=\"code-block\">merge_lists(l1, l2)</span>. The function should braid the lists, and return one list, containing all the elements from both lists. Example: merge_lists([1,2,3], [4, 5, 6, 7, 8] should return [1, 4, 2, 5, 3, 6, 7, 8].",
+        "assignment_text": "Create a function <span class=\"code-block\">merge_lists(l1, l2)</span>. The function should braid the lists, and return one list, containing all the elements from both lists. If one list is longer than the other, the remaining values should be appended to the end of the list. Example: merge_lists([1,2,3], [4, 5, 6, 7, 8] should return [1, 4, 2, 5, 3, 6, 7, 8].",
         "hint_text": "",
         "code_body": "#Your code here\r\n\r\n\r\n#Test cases below, do not change\r\nprint(merge_lists([1, 2, 3], [4, 5, 6]))\r\nprint(merge_lists([\"a\", \"x\", \"c\", \"d\", \"o\"], [\"a\", \"j\", \"a\"]))",
         "solution": "[1, 4, 2, 5, 3, 6]\r\n['a', 'a', 'x', 'j', 'c', 'a', 'd', 'o']"
