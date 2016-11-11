@@ -119,10 +119,10 @@
         "assignment_type": 1,
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "title": "Functions",
-        "assignment_text": "Create the body of the function <span class=\"code-block\">f(num)</span> so that it returns the squared sum of the argument <span class=\"code-block\">num</span>.",
+        "assignment_text": "Create the body of the function <span class=\"code-block\">f(num)</span> so that it returns the argument <span class=\"code-block\">num</span> squared.",
         "hint_text": "In python, you can square a number by using two asterisks **. i.e 2**2 = 4",
         "code_body": "def f(num):\r\n    # Your code here\r\n\r\n\r\n# Test cases below, do not change\r\nprint(f(2))\r\nprint(f(16))",
-        "solution": "4\r\n16"
+        "solution": "4\r\n256"
     }
 },
 {
@@ -133,7 +133,7 @@
         "assignment_type": 1,
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "title": "Functions",
-        "assignment_text": "Create the body of the function <span class=\"code-block\">f()</span> so that it returns the product of <span class=\"code-block\">num1</span> * <span class=\"code-block\">num2</span>",
+        "assignment_text": "Create the body of the function <span class=\"code-block\">f(num1, num2)</span> so that it returns the product of <span class=\"code-block\">num1</span> * <span class=\"code-block\">num2</span>",
         "hint_text": "",
         "code_body": "def f(num1, num2):\r\n    # Your code here\r\n\r\n\r\n#Test cases below, do not change\r\nprint(f(4, 5))\r\nprint(f(12, 12))",
         "solution": "20\r\n144"
@@ -147,9 +147,9 @@
         "assignment_type": 1,
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "title": "Functions",
-        "assignment_text": "Create the body of the function <span class=\"code-block\">f()</span> so that it returns the argument <span class=\"code-block\">num</span> multiplied by 10.",
+        "assignment_text": "Create the body of the function <span class=\"code-block\">f(num)</span> so that it returns the argument <span class=\"code-block\">num</span> multiplied by 10.",
         "hint_text": "",
-        "code_body": "def f(num):\r\n\r\nprint(f(5))",
+        "code_body": "def f(num):\r\n    #Your code here\r\n\r\n\r\n#Test cases, do not change\r\nprint(f(5))",
         "solution": "50"
     }
 },
@@ -162,7 +162,7 @@
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "title": "Functions",
         "assignment_text": "Create the body of function <span class=\"code-block\">f(str1, str2)</span>. The function takes two string arguments, and should return the string that is longest. If they are of equal length, the string \"equal\" should be returned.",
-        "hint_text": "The len(str) function can be used to check length of strings.\r\nExample:\r\nprint(len(\"asd\"))\r\n#3",
+        "hint_text": "The len(str) function can be used to check length of strings.\r\nExample: <br/>\r\nprint(len(\"asd\")) <br/>\r\n#3",
         "code_body": "def f(str1, str2):\r\n    # Your code here\r\n\r\n\r\n# Test cases below, do not change\r\nprint(f(\"aaa\", \"def\"))\r\nprint(f(\"Arne\", \"Bernt\"))\r\nprint(f(\"\", \"ppp\"))",
         "solution": "equal\r\nBernt\r\nppp"
     }
@@ -191,7 +191,7 @@
         "title": "Functions 2",
         "assignment_text": "Make the argument <span class=\"code-block\">num2</span> have a default value of 2.",
         "hint_text": "You can give default arguments to functions: <span class=\"code-block\">def f(arg1, arg2=None):</span> That way, you don't have to supply that argument when calling the function.",
-        "code_body": "def f(num1, num2):\r\n    return num1+num2\r\n\r\nprint(f(1,2))\r\nprint(f(1))",
+        "code_body": "def f(num1, num2):\r\n    return num1+num2\r\n\r\n\r\n#Test cases, do not change\r\nprint(f(1,2))\r\nprint(f(1))",
         "solution": "3\r\n3"
     }
 },
@@ -203,7 +203,7 @@
         "assignment_type": 1,
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "title": "Functions 2",
-        "assignment_text": "Create a function <span class=\"code-block\">f()</span> that takes two arguments as input,  and returns the sum of them.",
+        "assignment_text": "Create a function <span class=\"code-block\">f(num1, num2)</span> that takes two arguments as input,  and returns the sum of them.",
         "hint_text": "",
         "code_body": "# Your code here\r\n\r\n\r\n#Test cases below, do not change\r\nprint(f(2, 2))\r\nprint(f(3, 8))",
         "solution": "4\r\n11"
@@ -216,10 +216,10 @@
         "is_public": true,
         "assignment_type": 1,
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
-        "title": "Functions 2",
-        "assignment_text": "Create a function <span class=\"code-block\"> f(int1, int2) </span>. The function should return the sum of the absolute value of int1 and the absolute value of int2.",
-        "hint_text": "The absolute value of a number is the non-negative version of the number. The absolute value of -10 is 10 and the absolute value of 10 is 10.",
-        "code_body": "# Your code here\r\n\r\n#Test cases below, do not change\r\nprint(f(-3, 3))\r\nprint(f(10, 10))\r\nprint(f(4, -10))",
+        "title": "Functions 2 - absolute value",
+        "assignment_text": "Create a function <span class=\"code-block\"> f(int1, int2) </span>. The function should return the sum of the absolute value of int1 and the absolute value of int2 as an <b> integer </b>.",
+        "hint_text": "The absolute value of a number is the non-negative version of the number. The absolute value of -10 is 10 and the absolute value of 10 is 10. The math library contains the fabs method, which can be used to determine the absolute of a number. <br/>\r\nimport math </br>\r\nprint(math.fabs(-3)) </br>\r\n#3.0",
+        "code_body": "# Your code here\r\n\r\n\r\n#Test cases below, do not change\r\nprint(f(-3, 3))\r\nprint(f(10, 10))\r\nprint(f(4, -10))",
         "solution": "6\r\n20\r\n14"
     }
 },
@@ -231,9 +231,9 @@
         "assignment_type": 1,
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "title": "Functions 2",
-        "assignment_text": "Create a function <span class=\"code-block\">f()</span> that takes one argument as input, and returns the argument multiplied by 10.",
+        "assignment_text": "Create a function <span class=\"code-block\">f(num)</span> that takes one argument as input, and returns the argument multiplied by 10.",
         "hint_text": "",
-        "code_body": "# Your code here\r\n\r\nprint(f(5))\r\nprint(f(50))",
+        "code_body": "# Your code here\r\n\r\n\r\n#Test cases, do not change\r\nprint(f(5))\r\nprint(f(50))",
         "solution": "50\r\n500"
     }
 },
@@ -246,8 +246,8 @@
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "title": "Functions 2",
         "assignment_text": "Complete the function f so that it returns True if arg1 and arg2 are equal, and returns False otherwise.",
-        "hint_text": "",
-        "code_body": "def f(arg1, arg2):\r\n    # Your code here\r\n\r\nprint(f(\"abc\", \"abc\"))\r\nprint(f(\"bcd\", \"asd\"))",
+        "hint_text": "One can check two values for equality by using the <span class=\"code-block\"> == </span> operator.",
+        "code_body": "def f(arg1, arg2):\r\n    # Your code here\r\n\r\n\r\n#Test cases, do not change\r\nprint(f(\"abc\", \"abc\"))\r\nprint(f(\"bcd\", \"asd\"))",
         "solution": "True\r\nFalse"
     }
 },
@@ -259,10 +259,10 @@
         "assignment_type": 1,
         "resource_url": "https://en.wikibooks.org/wiki/Non-Programmer%27s_Tutorial_for_Python_3/Recursion",
         "title": "Functions 3",
-        "assignment_text": "Create a function <span class=\"code-block\">f(num)</span> that sums the numbers from num to 0",
+        "assignment_text": "Create a function <span class=\"code-block\">f(num)</span> that sums the numbers from 0 through num, and returns that sum.",
         "hint_text": "",
-        "code_body": "def f(num):\r\n\r\nprint(f(3))",
-        "solution": "6"
+        "code_body": "#Your code here\r\n\r\n\r\n#Test cases, do not change\r\nprint(f(3))\r\nprint(f(9))",
+        "solution": "6\r\n45"
     }
 },
 {
@@ -273,9 +273,9 @@
         "assignment_type": 1,
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "title": "Functions 3",
-        "assignment_text": "Create the body of function <span class=\"code-block\">f()</span> that prints all even numbers less than the argument num.",
+        "assignment_text": "Create the body of function <span class=\"code-block\">f(num)</span> that prints all even numbers less than the argument num.",
         "hint_text": "The modulo operator returns the remaining value when dividing two numbers. i.e 3%2 = 1, 4%2 = 0, 5%2 = 1. You can use to modulo operator in an if statement <span class=\"code-block\">if x%2==1:</span>",
-        "code_body": "def f(num):\r\n\r\nf(10)",
+        "code_body": "def f(num):\r\n    #Your code here\r\n\r\n\r\n#Test cases, do not change\r\nf(10)",
         "solution": "0\r\n2\r\n4\r\n6\r\n8"
     }
 },
@@ -287,7 +287,7 @@
         "assignment_type": 3,
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#for-statements",
         "title": "While loop - Stop condition",
-        "assignment_text": "Create a while-loop that prints elements from <span class=\"code-block\">lst</span> until it finds a element that is <span class=\"code-block\"> None <span>.",
+        "assignment_text": "Create a loop that prints elements from <span class=\"code-block\">lst</span> until it finds a element that is <span class=\"code-block\"> None <span>. When it encounters <span class=\"code-block\">None</span>, it should stop printing. Start printing from the start of the list.",
         "hint_text": "",
         "code_body": "lst = [True, False, True, \"Bernt\", None, \"Bj\u00f8rn\"]",
         "solution": "True\r\nFalse\r\nTrue\r\nBernt"
@@ -303,7 +303,7 @@
         "title": "Simple for-loop",
         "assignment_text": "Create a loop that prints all the elements in <span class=\"code-block\">lst</span>.",
         "hint_text": "",
-        "code_body": "lst = [\"pizza\", \"hot dog\", \"hamburger\"]",
+        "code_body": "lst = [\"pizza\", \"hot dog\", \"hamburger\"]\r\n#Your code here",
         "solution": "pizza\r\nhot dog\r\nhamburger"
     }
 },
@@ -317,7 +317,7 @@
         "title": "Loop multiplication",
         "assignment_text": "Create a loop that prints all the elements in <span class=\"code-block\">lst</span> multiplied. Example: lst[1, 2, 3, 4] should print 24. (1*2*3*4)",
         "hint_text": "",
-        "code_body": "lst = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]",
+        "code_body": "lst = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\r\n#Your code here",
         "solution": "3628800"
     }
 },
@@ -339,13 +339,13 @@
     "model": "api.assignment",
     "pk": 49,
     "fields": {
-        "is_public": false,
+        "is_public": true,
         "assignment_type": 3,
         "resource_url": "https://wiki.python.org/moin/WhileLoop",
         "title": "While loop",
         "assignment_text": "Create a while loop that runs until there are no elements left in the list <span class=\"code-block\">lst</span>. Each time the loop runs, the first element of the list should be removed and printed.",
-        "hint_text": "Lists in python have a <span class=\"code-block\">pop()</span> method.\r\nlst = [\"a\", \"b\"]\r\nprint(lst.pop())\r\n#b",
-        "code_body": "lst = [\"blue\", \"red\", \"yellow\"]",
+        "hint_text": "Lists in python have a <span class=\"code-block\">pop()</span> method. By default, this method removes and returns the last element of the list.\r\nlst = [\"a\", \"b\"]\r\nprint(lst.pop())\r\n#b",
+        "code_body": "lst = [\"blue\", \"red\", \"yellow\"]\r\n#Your code here",
         "solution": "blue\r\nred\r\nyellow"
     }
 },
@@ -373,7 +373,7 @@
         "title": "Loops 3",
         "assignment_text": "Complete the <span class=\"code-block\">for</span> loop, so that it prints all elements in <span class=\"code-block\">lst</span> that is not None.",
         "hint_text": "",
-        "code_body": "lst = [\"blue\", None, \"red\", \"yellow\", None]",
+        "code_body": "lst = [\"blue\", None, \"red\", \"yellow\", None]\r\n#Your code here",
         "solution": "blue\r\nred\r\nyellow"
     }
 },
@@ -553,7 +553,7 @@
         "assignment_type": 4,
         "resource_url": "",
         "title": "List merging",
-        "assignment_text": "Create a function <span class=\"code-block\">merge_lists(l1, l2)</span>. The function should braid the lists, and return one list, containing all the elements from both lists. Example: merge_lists([1,2,3], [4, 5, 6, 7, 8] should return [1, 4, 2, 5, 3, 6, 7, 8].",
+        "assignment_text": "Create a function <span class=\"code-block\">merge_lists(l1, l2)</span>. The function should braid the lists, and return one list, containing all the elements from both lists. If one list is longer than the other, the remaining values should be appended to the end of the list. Example: merge_lists([1,2,3], [4, 5, 6, 7, 8] should return [1, 4, 2, 5, 3, 6, 7, 8].",
         "hint_text": "",
         "code_body": "#Your code here\r\n\r\n\r\n#Test cases below, do not change\r\nprint(merge_lists([1, 2, 3], [4, 5, 6]))\r\nprint(merge_lists([\"a\", \"x\", \"c\", \"d\", \"o\"], [\"a\", \"j\", \"a\"]))",
         "solution": "[1, 4, 2, 5, 3, 6]\r\n['a', 'a', 'x', 'j', 'c', 'a', 'd', 'o']"
