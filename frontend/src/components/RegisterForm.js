@@ -18,10 +18,10 @@ const renderField = field =>
   </div>;
 
 const renderCheckbox = field =>
-  <p>
+  <div className="input-field col s12">
     <input className="filled-in" type="checkbox" id={field.name} {...field.input} />
     <label htmlFor={field.name}>{field.label}</label>
-  </p>;
+  </div>;
 
 const RegisterForm = props => {
   // eslint-disable-next-line
@@ -40,7 +40,12 @@ const RegisterForm = props => {
           errorMessage="Passwords must match"
           component={renderField}
         />
-        <Field name="attendSurvey" type="checkbox" label="Can we send you a survey" component={renderCheckbox} />
+        <Field
+          name="attendSurvey"
+          type="checkbox"
+          label="This software is being used for research purposes related to a masters thesis regarding learning how to program. I agree to being sent a short survey about the usage of the software after the final examination in TDT4110."
+          component={renderCheckbox}
+        />
       </div>
       <div className="row">
         <div className="col s12">

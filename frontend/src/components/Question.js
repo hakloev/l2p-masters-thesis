@@ -106,19 +106,23 @@ class Question extends Component {
           </div>
           <div className="card task-card">
             <div className="card-content">
-              <span className="card-title">Assigment:</span>
+              <span className="card-title">Assignment:</span>
               <p className="description-text" dangerouslySetInnerHTML={{ __html: assignment.assignment_text }} />
             </div>
           </div>
-          {assignment.hint_text &&
+          {(assignment.hint_text || assignment.resource_url) &&
             <div className="card hint-card">
               <div className="card-content">
-                <span className="card-title">Hint</span>
-                <p className="description-text" dangerouslySetInnerHTML={{ __html: assignment.hint_text }} />
+                <span className="card-title">Hint and resources:</span>
+                {assignment.hint_text &&
+                  <p className="description-text" dangerouslySetInnerHTML={{ __html: assignment.hint_text }} />
+                }
               </div>
-              <div className="card-action">
-                <a href={assignment.resource_url} target="_blank" rel="noopener noreferrer">Additional Resource</a>
-              </div>
+              {assignment.resource_url &&
+                <div className="card-action">
+                  <a href={assignment.resource_url} target="_blank" rel="noopener noreferrer">Additional Resource</a>
+                </div>
+              }
             </div>
           }
         </div>
