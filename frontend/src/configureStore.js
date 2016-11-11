@@ -20,7 +20,7 @@ export default function configureStore(history) {
       {},
       compose(
         applyMiddleware(...middleware),
-        window.devToolsExtension ? window.devToolsExtension() : f => f,
+        (process.env.NODE_ENV === 'development' && window.devToolsExtension) ? window.devToolsExtension() : f => f,
       )
   );
 
