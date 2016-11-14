@@ -1,5 +1,4 @@
 import React, { PropTypes, Component } from 'react';
-import ReactDOM from 'react-dom';
 import AceEditor from 'react-ace';
 // eslint-disable-next-line
 import brace from 'brace';
@@ -7,18 +6,25 @@ import brace from 'brace';
 import 'brace/mode/python';
 import 'brace/theme/kuroir';
 
+let editorInstance = null;
+
 class InputEditor extends Component {
 
   componentDidMount() {
-    const editor = ReactDOM.findDOMNode(this);
+    // this.editor.focus();
+    this.editor = this.reactAce.editor;
+    editorInstance = this.editor;
+    this.editor.focus();
+    this.editor.moveCursorTo(0, 0);
 
-    editor.addEventListener('keydown', e => {
-      // Listen for CMD + Enter or CTRL + Enter
-      if ((e.metaKey || e.ctrlKey) && e.keyCode === 13) {
-        this.props.compileCode();
-      }
+    this.editor.commands.addCommand({
+      name: 'compileCode',
+      bindKey: {
+        win: 'Ctrl-Enter',
+        mac: 'Command-Enter',
+      },
+      exec: () => this.props.compileCode(),
     });
-
   }
 
   onEditorChange() {
@@ -30,6 +36,8 @@ class InputEditor extends Component {
   render() {
     return (
       <AceEditor
+        // eslint-disable-next-line no-return-assign
+        ref={node => this.reactAce = node}
         mode="python"
         theme="kuroir"
         name="input-editor"
@@ -49,6 +57,12 @@ InputEditor.propTypes = {
   code: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   compileCode: PropTypes.func.isRequired,
+};
+
+export const setEditorFocus = () => {
+  if (editorInstance) {
+    editorInstance.focus();
+  }
 };
 
 export default InputEditor;

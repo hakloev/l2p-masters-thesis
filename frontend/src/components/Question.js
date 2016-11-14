@@ -1,11 +1,10 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
-import { InputEditor, OutputEditor } from './editor';
+import { InputEditor, OutputEditor, setEditorFocus } from './editor';
 import StatisticsBadge from './StatisticsBadge';
 import { open as openModal } from './ReportModal';
 import { selectors as assignmentSelectors, actions } from '../data/assignment';
 import { selectors as statsSelectors } from '../data/stats';
-
 
 class Question extends Component {
 
@@ -25,6 +24,7 @@ class Question extends Component {
 
   handleCompileCode() {
     this.props.onCompileClick({ code: this.props.editorValue });
+    setEditorFocus();
   }
 
   handleSubmitClick() {
@@ -35,6 +35,7 @@ class Question extends Component {
       assignment_types: assignmentTypes,
     };
     this.props.onSubmitClick(payload);
+    setEditorFocus();
   }
 
   render() {
