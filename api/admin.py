@@ -3,7 +3,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
 
 from api.models.achievement import Achievement
-from api.models.assignment import AssignmentType, Assignment
+from api.models.assignment import AssignmentType, Assignment, AssignmentSolvingAttempt
 from api.models.score import UserStreakTracker, AssignmentTypeScoreTracker
 from api.models.user import Student
 from api.models.issue import Issue
@@ -26,6 +26,12 @@ class AssignmentAdmin(admin.ModelAdmin):
         'solution',
     )
 
+
+class AssignmentSolvingAttemptAdmin(admin.ModelAdmin):
+    list_display = ('user', 'get_assignment', 'correct_solution', )
+
+    def get_assignment(self, obj):
+        return '{}: {}'.format(obj.assignment.id, obj.assignment.title)
 
 class AssignmentTypeScoreTrackerAdmin(admin.ModelAdmin):
     list_display = ('user', 'assignment_type', 'current_streak', 'maximum_streak')
@@ -59,6 +65,7 @@ class IssueAdmin(admin.ModelAdmin):
 
 admin.site.register(Achievement)
 admin.site.register(Assignment, AssignmentAdmin)
+admin.site.register(AssignmentSolvingAttempt, AssignmentSolvingAttemptAdmin)
 admin.site.register(AssignmentType)
 admin.site.register(AssignmentTypeScoreTracker, AssignmentTypeScoreTrackerAdmin)
 admin.site.register(UserStreakTracker, UserStreakTrackerAdmin)

@@ -28,6 +28,10 @@ class UserStreakTracker(models.Model):
             self.maximum_streak = self.streak
         super().save(*args, **kwargs)
 
+    class Meta:
+        verbose_name = 'User Streak Tracker'
+        verbose_name_plural = 'User Streak Trackers'
+
 
 @receiver(post_save, sender=User, dispatch_uid=uuid.uuid1())
 def update_streak_tracker_user(sender, instance, created, **kwargs):
@@ -58,3 +62,8 @@ class AssignmentTypeScoreTracker(models.Model):
         if self.current_streak > self.maximum_streak:
             self.maximum_streak = self.current_streak
         super().save(*args, **kwargs)
+
+    class Meta:
+        verbose_name = 'Assignment Type Score Tracker'
+        verbose_name_plural = 'Assignment Type Score Trackers'
+

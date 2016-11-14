@@ -1,4 +1,7 @@
 from django.db import models
+from django.utils.timezone import now
+
+from .user import User
 
 
 class AssignmentType(models.Model):
@@ -34,3 +37,21 @@ class Assignment(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class AssignmentSolvingAttempt(models.Model):
+    """
+    Model used to register an solving attempt by a user
+    """
+    user = models.ForeignKey(User)
+    assignment = models.ForeignKey(Assignment)
+    attempted_at = models.DateTimeField(default=now)
+    correct_solution = models.BooleanField()
+
+    def __str__(self):
+        return '{} by {}'.format(self.assignment.id, self.user)
+
+    class Meta:
+        verbose_name = 'Solving Attempt'
+        verbose_name_plural = 'Solving Attempts'
+        ordering = ['-attempted_at', 'user']
