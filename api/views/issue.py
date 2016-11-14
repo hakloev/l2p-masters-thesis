@@ -18,17 +18,22 @@ class IssueViewSet(views.APIView):
     log = logging.getLogger(__name__)
 
     def post(self, request):
-        self.log.debug('Issue request from %s' % request.user)
+        self.log.debug('Issue request from {}: {}'.format(request.user, request.data))
         serializer = IssueSerializer(data=request.data)
+
+        if not serializer.is_valid():
+            self.log.debug('Unable to create issue with the provided data')
+            self.log.debug(serializer.errors)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        serializer.save()
+
         if 'name' not in request.data:
             request.data['name'] = 'Anonymous'
-        if 'issue' not in request.data:
-            return Response({}, status=status.HTTP_400_BAD_REQUEST)
 
-        serializer.is_valid(self)
-        serializer.save()
         self.send_issue_email(request)
-        return Response({'issue': 'created'}, status=status.HTTP_200_OK)
+
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     def send_issue_email(self, request):
         recipients = list(email for name, email in settings.ADMINS)

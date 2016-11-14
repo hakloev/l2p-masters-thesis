@@ -20,7 +20,7 @@ from django.views.generic import TemplateView
 from rest_framework import routers
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
 
-from api.views.achievement import AchievementViewSet, UserAchievementListView
+from api.views.achievement import UserAchievementListView
 from api.views.user import StudentViewSet, RegistrationView
 from api.views.score import UserStreakView
 
@@ -32,11 +32,9 @@ from api.views.assignment import AssignmentTypeViewSet, AssignmentViewSet, Compi
 #  admin.autodiscover()
 
 router = routers.DefaultRouter()
-router.register('achievements', AchievementViewSet)
-router.register('assignment-types', AssignmentTypeViewSet)
+router.register(r'assignment-types', AssignmentTypeViewSet)
 router.register(r'student', StudentViewSet)
-router.register('report', IssueViewSet)
-router.register('streak', UserStreakView.as_view(), base_name='streaks')
+router.register(r'report', IssueViewSet)
 
 api_urls = [
     url(r'^', include(router.urls)),

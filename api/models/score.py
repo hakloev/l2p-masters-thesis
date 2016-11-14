@@ -1,3 +1,5 @@
+import uuid
+
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -27,7 +29,7 @@ class UserStreakTracker(models.Model):
         super().save(*args, **kwargs)
 
 
-@receiver(post_save, sender=User, dispatch_uid="update_streaktracker_user")
+@receiver(post_save, sender=User, dispatch_uid=uuid.uuid1())
 def update_streak_tracker_user(sender, instance, created, **kwargs):
     if created:
         streak_tracker = UserStreakTracker(user=instance)
@@ -46,9 +48,9 @@ class AssignmentTypeScoreTracker(models.Model):
     maximum_streak = models.IntegerField(default=0)
 
     def __str__(self):
-        return "Current streak in {assignment_type} for {user}: {score}".format(
+        return "Streak in {assignment_type} for {user}: {current_streak}".format(
             user=self.user,
-            score=self.score,
+            current_streak=self.current_streak,
             assignment_type=self.assignment_type
         )
 

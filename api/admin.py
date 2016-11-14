@@ -54,7 +54,7 @@ class UserAdmin(BaseUserAdmin):
 
 
 class IssueAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email', 'assignmentId')
+    list_display = ('name', 'email', 'assignmentId', 'created')
 
 
 admin.site.register(Achievement)
