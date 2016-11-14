@@ -15,45 +15,28 @@ class StartQuiz extends Component {
   }
 
   render() {
-    const { assignmentTypeStreak, userStreak, assignmentTypes, onStartQuiz } = this.props;
-    const basicAssignments = [];
-    const examAssignments = [];
-    for (let x = 0; x < assignmentTypes.length; x += 1) {
-      if (assignmentTypes[x].type_name === 'Exam practice') {
-        examAssignments.push(assignmentTypes[x]);
-      } else {
-        basicAssignments.push(assignmentTypes[x]);
-      }
-    }
+    const { userStreak, assignmentTypes, hasExamQuestions, onStartQuiz } = this.props;
+
     return (
       <div>
         <Banner title="start your quiz!" />
         <div className="container start-quiz-container">
           <div className="row">
             <div className="col s6">
-              <StartQuizForm basicAssignments={basicAssignments} onSubmit={onStartQuiz} />
-              <hr />
-              {examAssignments.length > 0 &&
-                <StartExamQuizForm examAssignments={examAssignments} onSubmit={onStartQuiz} />
-              }
+              <StartQuizForm assignmentTypes={assignmentTypes} onSubmit={onStartQuiz} />
             </div>
             <div className="col s6 stats-column">
-              <div className="row">
-                <div className="col s6">
-                  <StatisticsBadge title="Current Streak" subtitle="on all assignments" count={userStreak.streak} />
-                </div>
-                <div className="col s6">
-                  <StatisticsBadge title="Maximum Streak" subtitle="on all assignments" count={userStreak.maximum_streak} />
-                </div>
-              </div>
-              <div className="row">
-                {assignmentTypeStreak.map((streak, i) =>
-                  <div className="col s6" key={`streak-${i}`}>
-                    <StatisticsBadge title="Current Streak" subtitle={`in ${streak.assignment_type.toLowerCase()}`} count={streak.current_streak} />
-                  </div>
-                )}
-              </div>
+              {hasExamQuestions &&
+                <StartExamQuizForm onSubmit={onStartQuiz} />
+              }
             </div>
+          </div>
+          <div className="row">
+            <div className="col s6">
+              <StatisticsBadge title="Current Streak" subtitle="on all assignments" count={userStreak.streak} />
+              <StatisticsBadge title="Maximum Streak" subtitle="on all assignments" count={userStreak.maximum_streak} />
+            </div>
+            <div className="col s6" />
           </div>
         </div>
       </div>
@@ -62,10 +45,9 @@ class StartQuiz extends Component {
 }
 
 StartQuiz.propTypes = {
-  assignmentTypeStreak: PropTypes.array.isRequired,
-  userStreak: PropTypes.object.isRequired,
   assignmentTypes: PropTypes.array.isRequired,
-  achievements: PropTypes.array,
+  hasExamQuestions: PropTypes.bool.isRequired,
+  userStreak: PropTypes.object.isRequired,
   onStartQuiz: PropTypes.func.isRequired,
   getAllQuizStats: PropTypes.func.isRequired,
 };
@@ -91,6 +73,7 @@ const mapStateToProps = state => {
     userStreak: userStreak.data,
     assignmentTypeStreak: assignmentTypeStreak.data,
     assignmentTypes: types.data,
+    hasExamQuestions: types.hasExamQuestions,
   };
 };
 

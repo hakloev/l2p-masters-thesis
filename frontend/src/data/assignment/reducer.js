@@ -13,6 +13,7 @@ const initalState = {
     isFetching: false,
     data: [],
     chosenTypes: [],
+    hasExamQuestions: false,
   },
   compilation: {
     isFetching: false,
@@ -82,7 +83,8 @@ const AssignmentTypeReducer = (state = initalState.types, action) => {
     return {
       ...state,
       isFetching: false,
-      data: action.types,
+      data: action.types.filter(t => !t.type_name.toLowerCase().includes('exam')),
+      hasExamQuestions: action.types.some(t => t.type_name.toLowerCase().includes('exam')),
     };
     // TODO: FAILURE
   case actions.SET_CHOSEN_ASSIGNMENT_TYPES:

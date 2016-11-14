@@ -7,10 +7,10 @@
 import React, { PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
 
-const StartExamQuizForm = ({ onSubmit, examAssignments }) => {
+const StartExamQuizForm = ({ onSubmit }) => {
 
   const onSubmitClick = () => {
-    onSubmit({ assignment_types: examAssignments[0].id.toString() });
+    onSubmit({ assignment_types: ['exam'] });
   };
 
   return (
@@ -33,7 +33,6 @@ const StartExamQuizForm = ({ onSubmit, examAssignments }) => {
 
 StartExamQuizForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-  examAssignments: PropTypes.array,
 };
 
 export default reduxForm({

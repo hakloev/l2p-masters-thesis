@@ -49,7 +49,9 @@ function* compileCode(action) {
   try {
     console.info(`${actions.COMPILE_CODE_REQUEST}`);
     const result = yield call(apiService.post, '/api/compile/', { body: action.code });
-    if (result.error) {
+    if (result.timeout) {
+      Materialize.toast('Your code timed out, try again', 5000);
+    } else if (result.error) {
       Materialize.toast(`You got an compilation error on ${result.line_number}:<br><br>${result.error}`, 5000);
     }
     yield put(actions.compileCodeSuccess(result));

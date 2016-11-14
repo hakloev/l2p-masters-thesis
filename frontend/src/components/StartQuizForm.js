@@ -7,7 +7,7 @@ const renderCheckbox = field =>
     <label htmlFor={field.name}>{field.label}</label>
   </p>;
 
-const StartQuizForm = ({ basicAssignments, onSubmit, handleSubmit }) => {
+const StartQuizForm = ({ assignmentTypes, onSubmit, handleSubmit }) => {
 
   const onSubmitClick = fields => {
     const types = [];
@@ -30,7 +30,7 @@ const StartQuizForm = ({ basicAssignments, onSubmit, handleSubmit }) => {
           <h4>Practice tasks</h4>
           <p>These tasks are meant for practicing certain core aspects of programming</p>
           <p>Select the topics you want to practice:</p>
-          {basicAssignments.map((type, i) => {
+          {assignmentTypes.map((type, i) => {
             const name = `assignment_${type.id}`;
             return (
               <Field key={`cb-${name}_${i}`} name={name} label={type.type_name} component={renderCheckbox} />
@@ -50,7 +50,7 @@ const StartQuizForm = ({ basicAssignments, onSubmit, handleSubmit }) => {
 };
 
 StartQuizForm.propTypes = {
-  basicAssignments: PropTypes.array.isRequired,
+  assignmentTypes: PropTypes.array.isRequired,
   onSubmit: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
 };

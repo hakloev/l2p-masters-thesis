@@ -8,6 +8,7 @@ from rest_framework import generics
 from rest_framework import permissions
 from rest_framework import views
 from rest_framework import viewsets
+from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 from rest_framework.response import Response
@@ -34,14 +35,19 @@ class GetAssignment(views.APIView):
         """
         Return an custom assignment for the authenticated user
         """
-        assignment_types = request.data.get('assignment_types')
-        if assignment_types is not None and not len(assignment_types):
-            # Guarantee that there is a list of assignment types
-            assignment_types = [a_type.id for a_type in AssignmentType.objects.all()]
-        self.log.debug('User %s starting with the following assignment types: %s' % (request.user, assignment_types))
+        if 'exam' in request.data['assignment_types']:
+            self.log.debug('UserID {}: started with exam questions'.format(request.user))
+            assignment_type = AssignmentType.objects.filter(type_name__startswith='Exam').first()
+        else:
+            self.log.debug('UserID {}: started with practice tasks'.format(request.user))
+            assignment_types = request.data.get('assignment_types')
+            if assignment_types is not None and not len(assignment_types):
+                # Guarantee that there is a list of assignment types
+                assignment_types = [a_type.id for a_type in AssignmentType.objects.all()]
+                self.log.debug('No assignment types present in POST, using default')
 
-        assignment_type_pk = int(random.choice(assignment_types))  # Choose a random assignment type
-        assignment_type = AssignmentType.objects.get(pk=assignment_type_pk)
+            assignment_type_pk = int(random.choice(assignment_types))  # Choose a random assignment type
+            assignment_type = AssignmentType.objects.get(pk=assignment_type_pk)
 
         # Get an assignment
         assignment = random.choice(Assignment.active_assignments.filter(
@@ -51,7 +57,7 @@ class GetAssignment(views.APIView):
         # Serialize the assignment and return it
         return Response({
             'assignment': AssignmentSerializer(assignment).data,
-        })
+        }, status=status.HTTP_200_OK)
 
 
 class CompileCode(views.APIView):
@@ -63,13 +69,12 @@ class CompileCode(views.APIView):
     permission_classes = (permissions.IsAuthenticated, )
 
     def post(self, request, format=None):
+        self.log.debug('UserID {}: posted {}'.format(request.user, request.data))
         code = request.data['code']
         # TODO: Error handling for not supplying any code
-        user = request.user.id
-        self.log.debug('Executing code for user: %s' % user)
         with DockerSandbox() as docker:
-            result = docker.run(code, 'user_code.py')
-            self.log.debug('Get result %s' % result)
+            result = docker.run(code, 'code.py')
+            self.log.debug('DockerSandbox output {}'.format(result))
 
         return Response(result)
 
@@ -82,17 +87,20 @@ class SubmitCode(views.APIView):
     log = logging.getLogger(__name__)
 
     def post(self, request, format=None):
+        self.log.debug('UserID {}: posted {}'.format(request.user, request.data))
         previous_assignment_pk = int(request.data.get('assignment_pk'))
         correct_answer = request.data.get('correct_answer')
-        assignment_types = request.data.get('assignment_types')
-        if assignment_types is not None and not len(assignment_types):
-            # Guarantee that there is a list of assignment types
-            assignment_types = [a_type.id for a_type in AssignmentType.objects.all()]
-        new_assignment_type = int(random.choice(assignment_types))  # Choose a random assignment type
 
-        self.log.debug('User %s submitted code for assignment %i. The answer was %s' % (request.user,
-                                                                                   previous_assignment_pk,
-                                                                                   correct_answer))
+        if 'exam' in request.data['assignment_types']:
+            self.log.debug('UserID {}: requested next exam questions'.format(request.user))
+            new_assignment_type = AssignmentType.objects.filter(type_name__startswith='Exam').first()
+        else:
+            assignment_types = request.data.get('assignment_types')
+            if assignment_types is not None and not len(assignment_types):
+                # Guarantee that there is a list of assignment types
+                self.log.debug('No assignment types present in POST, using default')
+            assignment_types = [a_type.id for a_type in AssignmentType.objects.all()]
+            new_assignment_type = int(random.choice(assignment_types))  # Choose a random assignment type
 
         previous_assignment = get_object_or_404(Assignment, pk=previous_assignment_pk)
 
@@ -120,11 +128,12 @@ class SubmitCode(views.APIView):
         assignment = random.choice(Assignment.active_assignments.filter(
             assignment_type=new_assignment_type
         ))
+        self.log.debug('UserID {}: Sending back assignment {}'.format(request.user, assignment.id))
 
         assignment_serialized = AssignmentSerializer(assignment)
         return Response({
             'assignment': assignment_serialized.data,
-        })
+        }, status=status.HTTP_200_OK)
 
 
 @api_view(['GET', ])
@@ -135,7 +144,7 @@ def check_for_new_achievements(request):
 
     return Response({
         'achievements': new_achievements
-    })
+    }, status=status.HTTP_200_OK)
 
 
 class AssignmentTypeViewSet(viewsets.ReadOnlyModelViewSet):
