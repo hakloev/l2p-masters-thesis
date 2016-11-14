@@ -10,12 +10,12 @@ class UserStreakView(views.APIView):
     permission_classes = (IsAuthenticated, )
 
     def get(self, request, format=None, **kwargs):
-        user_streaks = UserStreakTracker.objects.filter(user=request.user)
+        user_streaks = UserStreakTracker.objects.get(user=request.user)
         assignment_type_streaks = AssignmentTypeScoreTracker.objects.filter(user=request.user)
 
         return Response({
-            'user_streaks': UserStreakTrackerSerializer(
-                user_streaks, many=True
+            'user_streak': UserStreakTrackerSerializer(
+                user_streaks
             ).data if user_streaks else {},
             'assignment_type_streaks': AssignmentTypeScoreTrackerSerializer(
                 assignment_type_streaks,

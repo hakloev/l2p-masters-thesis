@@ -4,10 +4,10 @@ const getAssignment = state => {
   return state.assignment.task.meta;
 };
 
-const getAssignmentTypes = state => state.stats.assignmentTypeStreak.data;
+const getAssignmentTypeStreakObjects = state => state.stats.data.assignmentTypeStreaks;
 
 export const getAssignmentTypeStreaks = createSelector(
-  [getAssignment, getAssignmentTypes],
+  [getAssignment, getAssignmentTypeStreakObjects],
   (assignment, streaks) => {
     const currentTypes = streaks.filter(streak => {
       return streak.assignment_type === assignment.assignment_type;

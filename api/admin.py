@@ -14,8 +14,8 @@ class AchievementAdmin(admin.ModelAdmin):
 
 
 class AssignmentAdmin(admin.ModelAdmin):
-    list_display = ['title', 'assignment_type', 'is_public']
-    fields = [
+    list_display = ('id', 'title', 'assignment_type', 'is_public')
+    fields = (
         'is_public',
         'resource_url',
         'assignment_type',
@@ -24,15 +24,15 @@ class AssignmentAdmin(admin.ModelAdmin):
         'hint_text',
         'code_body',
         'solution',
-    ]
+    )
 
 
 class AssignmentTypeScoreTrackerAdmin(admin.ModelAdmin):
-    list_display = ['user', 'assignment_type', 'current_streak', 'maximum_streak']
+    list_display = ('user', 'assignment_type', 'current_streak', 'maximum_streak')
 
 
 class UserStreakTrackerAdmin(admin.ModelAdmin):
-    list_display = ['user', 'streak', 'maximum_streak']
+    list_display = ('user', 'streak', 'maximum_streak')
 
 
 class StudentInline(admin.StackedInline):
@@ -54,7 +54,7 @@ class UserAdmin(BaseUserAdmin):
 
 
 class IssueAdmin(admin.ModelAdmin):
-    list_display = ['name', 'email', 'assignmentId']
+    list_display = ('name', 'email', 'assignmentId')
 
 
 admin.site.register(Achievement)
