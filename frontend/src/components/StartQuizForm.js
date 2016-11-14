@@ -27,7 +27,7 @@ const StartQuizForm = ({ assignmentTypes, onSubmit, handleSubmit }) => {
     <div className="row">
       <div className="col s12">
         <form onSubmit={handleSubmit(onSubmitClick)}>
-          <h4>Practice tasks</h4>
+          <h4>Practice Tasks</h4>
           <p>These tasks are meant for practicing certain core aspects of programming</p>
           <p>Select the topics you want to practice:</p>
           {assignmentTypes.map((type, i) => {

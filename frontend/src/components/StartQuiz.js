@@ -19,24 +19,22 @@ class StartQuiz extends Component {
 
     return (
       <div>
-        <Banner title="start your quiz!" />
+        <Banner title="Start a quiz!" />
         <div className="container start-quiz-container">
           <div className="row">
-            <div className="col s6">
+            <div className="col s4">
               <StartQuizForm assignmentTypes={assignmentTypes} onSubmit={onStartQuiz} />
             </div>
-            <div className="col s6 stats-column">
+            <div className="col s4">
               {hasExamQuestions &&
                 <StartExamQuizForm onSubmit={onStartQuiz} />
               }
             </div>
-          </div>
-          <div className="row">
-            <div className="col s6">
+            <div className="col s4">
+              <h4> Statistics </h4>
               <StatisticsBadge title="Current Streak" subtitle="on all assignments" count={userStreak.streak} />
               <StatisticsBadge title="Maximum Streak" subtitle="on all assignments" count={userStreak.maximum_streak} />
             </div>
-            <div className="col s6" />
           </div>
         </div>
       </div>
