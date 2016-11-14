@@ -18,7 +18,7 @@ from api.serializers.achievement import AchievementSerializer
 from api.utils.sandbox import DockerSandbox
 from api.models.assignment import AssignmentType, Assignment
 from api.serializers.assignment import AssignmentSerializer, AssignmentTypeSerializer
-from api.models.score import ScoreTypeTracker, SkillTypeLevel, StreakTracker
+from api.models.score import UserStreakTracker, AssignmentTypeScoreTracker
 
 
 class GetAssignment(views.APIView):
@@ -104,8 +104,8 @@ class SubmitCode(views.APIView):
 
         previous_assignment = get_object_or_404(Assignment, pk=previous_assignment_pk)
 
-        user_streak_tracker = StreakTracker.objects.get(user=request.user)
-        score_type_tracker, created = ScoreTypeTracker.objects.get_or_create(
+        user_streak_tracker = UserStreakTracker.objects.get(user=request.user)
+        score_type_tracker, created = AssignmentTypeScoreTracker.objects.get_or_create(
             user=request.user,
             assignment_type=previous_assignment.assignment_type
         )

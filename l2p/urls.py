@@ -22,7 +22,7 @@ from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
 
 from api.views.achievement import AchievementViewSet, UserAchievementListView
 from api.views.user import StudentViewSet, RegistrationView
-from api.views.score import UserStreakListView, UserScoreListView
+from api.views.score import UserStreakView
 
 from api.views.issue import IssueViewSet
 from api.views.assignment import AssignmentTypeViewSet, AssignmentViewSet, CompileCode, SubmitCode, GetAssignment, \
@@ -36,6 +36,7 @@ router.register('achievements', AchievementViewSet)
 router.register('assignment-types', AssignmentTypeViewSet)
 router.register(r'student', StudentViewSet)
 router.register('report', IssueViewSet)
+router.register('streak', UserStreakView.as_view(), base_name='streaks')
 
 api_urls = [
     url(r'^', include(router.urls)),
@@ -43,8 +44,7 @@ api_urls = [
     url(r'^compile/$', CompileCode.as_view(), name='compile-code'),
     url(r'^submit/$', SubmitCode.as_view(), name='submit-code'),
 
-    url(r'^user/streak/$', UserStreakListView.as_view(), name='user-streak'),
-    url(r'^user/scores/$', UserScoreListView.as_view(), name='user-scores'),
+    url(r'^user/streak/$', UserStreakView.as_view(), name='user-streak'),
     url(r'^user/achievements/$', UserAchievementListView.as_view(), name='user-achievements'),
     url(r'^user/achievements/new/$', check_for_new_achievements, name='user-new-achievements'),
 

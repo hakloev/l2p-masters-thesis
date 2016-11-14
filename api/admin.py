@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 from api.models.achievement import Achievement
 from api.models.assignment import AssignmentType, Assignment
-from api.models.score import StreakTracker, SkillTypeLevel, ScoreTypeTracker
+from api.models.score import UserStreakTracker, AssignmentTypeScoreTracker
 from api.models.user import Student
 from api.models.issue import Issue
 
@@ -27,15 +27,11 @@ class AssignmentAdmin(admin.ModelAdmin):
     ]
 
 
-class ScoreTypeTrackerAdmin(admin.ModelAdmin):
+class AssignmentTypeScoreTrackerAdmin(admin.ModelAdmin):
     list_display = ['user', 'assignment_type', 'current_streak', 'maximum_streak']
 
 
-class SkillTypeLevelAdmin(admin.ModelAdmin):
-    list_display = ['user', 'skill_level', 'assignment_type', 'this_level_correct', 'this_level_wrong']
-
-
-class StreakTrackerAdmin(admin.ModelAdmin):
+class UserStreakTrackerAdmin(admin.ModelAdmin):
     list_display = ['user', 'streak', 'maximum_streak']
 
 
@@ -64,9 +60,8 @@ class IssueAdmin(admin.ModelAdmin):
 admin.site.register(Achievement)
 admin.site.register(Assignment, AssignmentAdmin)
 admin.site.register(AssignmentType)
-admin.site.register(ScoreTypeTracker, ScoreTypeTrackerAdmin)
-admin.site.register(SkillTypeLevel, SkillTypeLevelAdmin)
-admin.site.register(StreakTracker, StreakTrackerAdmin)
+admin.site.register(AssignmentTypeScoreTracker, AssignmentTypeScoreTrackerAdmin)
+admin.site.register(UserStreakTracker, UserStreakTrackerAdmin)
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
 admin.site.register(Issue, IssueAdmin)
