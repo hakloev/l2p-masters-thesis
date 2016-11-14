@@ -24,7 +24,7 @@ class StartQuiz extends Component {
             <div className="col s6">
               <StartQuizForm assignmentTypes={assignmentTypes} onSubmit={onStartQuiz} />
             </div>
-            <div className="col s6 stats-column">
+            <div className="col s6">
               {hasExamQuestions &&
                 <StartExamQuizForm onSubmit={onStartQuiz} />
               }
