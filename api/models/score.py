@@ -36,6 +36,7 @@ class UserStreakTracker(models.Model):
 @receiver(post_save, sender=User, dispatch_uid=uuid.uuid1())
 def update_streak_tracker_user(sender, instance, created, **kwargs):
     if created:
+        print('test')
         streak_tracker = UserStreakTracker(user=instance)
         streak_tracker.save()
 
@@ -67,3 +68,16 @@ class AssignmentTypeScoreTracker(models.Model):
         verbose_name = 'Assignment Type Score Tracker'
         verbose_name_plural = 'Assignment Type Score Trackers'
 
+
+@receiver(post_save, sender=User, dispatch_uid=uuid.uuid1())
+def update_streak_tracker_user(sender, instance, created, **kwargs):
+    if created:
+        assignment_types = AssignmentType.objects.all()
+
+        for assignment_type in assignment_types:
+            score_type_tracker, created_tracker = AssignmentTypeScoreTracker.objects.get_or_create(
+                user=instance,
+                assignment_type=assignment_type
+            )
+            if created_tracker:
+                score_type_tracker.save()

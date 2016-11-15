@@ -1,7 +1,8 @@
+import 'isomorphic-fetch';
+import promise from 'es6-promise';
 import { TOKEN_IDENTIFIER } from '../common/constants';
 
-require('es6-promise').polyfill();
-require('isomorphic-fetch');
+promise.polyfill();
 
 export function checkStatus(response) {
   if (!response.ok) {

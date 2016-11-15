@@ -7,7 +7,6 @@ from rest_framework import generics
 from rest_framework import status
 
 from rest_framework_jwt.settings import api_settings
-from rest_framework_jwt.utils import jwt_encode_handler
 
 from api.serializers.user import StudentSerializer, RegistrationSerializer
 from api.models.user import Student
@@ -15,6 +14,8 @@ from api.models.user import Student
 
 def create_token_for_user(user):
     jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
+    jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
+
     payload = jwt_payload_handler(user)
     token = jwt_encode_handler(payload)
 
