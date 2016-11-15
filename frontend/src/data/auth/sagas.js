@@ -24,7 +24,7 @@ function* submitRegistration(action) {
   } catch (error) {
     console.error(`${actions.REGISTRATION_FAILURE}: ${error.message}`);
     yield put(actions.registrationFailure(error.message));
-    Materialize.toast('Something went wrong during the registration, try again later!');
+    Materialize.toast('Something went wrong during the registration, try again later!', 5000);
   }
 }
 
