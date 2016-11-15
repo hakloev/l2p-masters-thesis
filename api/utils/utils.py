@@ -1,6 +1,6 @@
 from api.models.achievement import Achievement
 from api.models.assignment import AssignmentType
-from api.models.score import ScoreTypeTracker, StreakTracker
+from api.models.score import UserStreakTracker, AssignmentTypeScoreTracker
 
 
 def achievement_no1(user):
@@ -18,7 +18,7 @@ def achievement_no1(user):
 
 def achievement_streak_any_5(user):
     achievement = None
-    if StreakTracker.objects.get(user=user).streak > 4:
+    if UserStreakTracker.objects.get(user=user).streak > 4:
         try:
             streak_5 = Achievement.objects.get(identifier_string="any_5")
         except Achievement.DoesNotExist:
@@ -32,7 +32,7 @@ def achievement_streak_any_5(user):
 def achievement_streak_category(user, assignment_type, achievement_identifier, limit):
     achievement = None
     assignment_type = AssignmentType.objects.get(type_name=assignment_type)
-    if ScoreTypeTracker.objects.get(user=user, assignment_type=assignment_type).current_streak > limit:
+    if AssignmentTypeScoreTracker.objects.get(user=user, assignment_type=assignment_type).current_streak > limit:
         try:
             streak_5 = Achievement.objects.get(identifier_string=achievement_identifier)
         except Achievement.DoesNotExist:

@@ -50,9 +50,9 @@ function* compileCode(action) {
     console.info(`${actions.COMPILE_CODE_REQUEST}`);
     const result = yield call(apiService.post, '/api/compile/', { body: action.code });
     if (result.timeout) {
-      Materialize.toast('Your code timed out, try again', 5000);
+      Materialize.toast('Your code timed out, please try again!', 5000);
     } else if (result.error) {
-      Materialize.toast(`You got an compilation error on ${result.line_number}:<br><br>${result.error}`, 5000);
+      Materialize.toast(`Your code got a compilation error on ${result.line_number}:<br><br>${result.error}`, 5000);
     }
     yield put(actions.compileCodeSuccess(result));
   } catch (error) {
@@ -74,7 +74,7 @@ function* submitAnswer(action) {
     const data = yield call(apiService.post, '/api/submit/', { body: action.payload });
     yield put(actions.submitAnswerSuccess(data));
     yield put(actions.setStartAssignmentTime());
-    yield put(statsActions.getAssignmentTypeStreaksRequest());
+    yield put(statsActions.getUserStreakRequest());
     yield put(achievementActions.getNewAchievementsRequest());
   } catch (error) {
     console.error(`${actions.SUBMIT_ANSWER_FAILURE}: ${error.message}`);

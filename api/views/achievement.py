@@ -1,16 +1,8 @@
 from rest_framework import generics
-from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 
 from api.models.user import Student
-from api.models.achievement import Achievement
 from api.serializers.achievement import AchievementSerializer
-
-
-class AchievementViewSet(viewsets.ReadOnlyModelViewSet):
-    permission_classes = (IsAuthenticated,)
-    queryset = Achievement.objects.all()
-    serializer_class = AchievementSerializer
 
 
 class UserAchievementListView(generics.ListAPIView):

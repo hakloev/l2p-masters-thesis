@@ -35,7 +35,7 @@
 }
 
 .task-card, .hint-card {
-  background-color: lighten($grey, 15%);
+  background-color: #fbfbfb;
 }
 
 #assignment-container {
@@ -48,12 +48,12 @@
 #assignment-editor-container {
   display: flex;
   flex-direction: column;
-  width: 65%;
+  flex: 1 1 65%;
   background-color: $ace-editor-color;
 }
 
 #assignment-sidebar {
-  flex: 1;
+  flex: 1 1 35%;
   padding: 0 20px;
   background-color: #fff;
   overflow-y: auto;
@@ -66,28 +66,47 @@
 }
 
 #assignment-editor {
-  width: 56%;
+  flex: 1 1 55%;
   border-right: 15px solid $grey;
-  padding: 20px 0;
+  margin: 10px 0;
+  display: flex;
+  position: relative;
 }
 
 #assignment-output {
-  flex: 1;
+  display: flex; // display: flex to ensure align-items: stretch on child, this makes output-wrapper to fill 100% of parent.
+  flex: 1 1 45%;
   background-color: #000;
   color: #fff;
 }
 
+#input-editor {
+  position: absolute; // absolute position relative to output-wrapper
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+}
+
+
 #output-console {
+  position: absolute; // absolute position relative to output-wrapper
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   height: 100%;
   padding: 15px 15px;
   font-family: monospace;
   font-size: 16px;
   border: 1px solid #000;
+  resize: none;
 }
 
 #output-wrapper {
-  height: 100%;
   position: relative;
+  flex: 1;
 }
 
 .output-overlay {
@@ -102,6 +121,7 @@
     right: 20px;
     bottom: 15px;
     transform: none;
+    z-index: 9999; // Ensure that the button is always over the output-console
   }
 
   > .big {
@@ -126,6 +146,7 @@
 }
 
 #assignment-action-bar {
+  // flex: 1;
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -142,6 +163,10 @@
     background-color: #cccccc;
     float: left;
   }
+}
+
+.assignment-action-bar-report {
+  flex: 1 1 40%;
 }
 
 .banner {

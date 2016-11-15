@@ -5,7 +5,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 from api.models.achievement import Achievement
-from api.models.assignment import Assignment
+# from api.models.assignment import Assignment
 
 
 class Student(models.Model):
@@ -17,7 +17,6 @@ class Student(models.Model):
     aggregated_score = models.IntegerField(default=0)
     attempted_assignments = models.IntegerField(default=0)
     achievements = models.ManyToManyField(Achievement, blank=True)
-    assignments_solved = models.ManyToManyField(Assignment, blank=True)
     attend_survey = models.BooleanField(default=False)
 
 

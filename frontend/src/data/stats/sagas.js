@@ -16,19 +16,8 @@ function* getUserStreaks() {
   }
 }
 
-function* getAssignmentTypeStreaks() {
-  try {
-    console.info(`${actions.GET_ASSIGNMENT_TYPE_STREAKS_REQUEST}`);
-    const streaks = yield call(apiService.get, '/api/user/scores/');
-    yield put(actions.getAssignmentTypeStreaksSuccess(streaks));
-  } catch (error) {
-    console.error(`${actions.GET_ASSIGNMENT_TYPE_STREAKS_FAILURE}: ${error.message}`);
-    yield put(actions.getAssignmentTypeStreaksFailure(error.message));
-  }
-}
-
-export function* watchAssignmentTypeStreaks() {
-  yield* takeEvery(actions.GET_ASSIGNMENT_TYPE_STREAKS_REQUEST, getAssignmentTypeStreaks);
+export function* watchUserStreaks() {
+  yield* takeEvery(actions.GET_USER_STREAK_REQUEST, getUserStreaks);
 }
 
 // eslint-disable-next-line
@@ -37,7 +26,6 @@ export function* watchAllQuizStats() {
     yield take(actions.GET_ALL_QUIZ_STATS);
     yield [
       call(getUserStreaks),
-      call(getAssignmentTypeStreaks),
       call(achievementSagas.getAchievements),
     ];
   }

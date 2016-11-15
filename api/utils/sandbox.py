@@ -95,5 +95,6 @@ class DockerSandbox(object):
                     'timeout': False
                 }
             finally:
-                self.cli.stop(container=container_id)
+                self.log.debug('Forcing container {} to terminate'.format(container_id))
+                self.cli.stop(container=container_id, timeout=0)
                 self.cli.remove_container(container=container_id, force=True)

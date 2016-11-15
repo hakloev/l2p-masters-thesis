@@ -99,10 +99,10 @@ class Question extends Component {
         <div id="assignment-sidebar" className="">
           <div className="row stats-column">
             <div className="col s6">
-              <StatisticsBadge title="Current Streak" subtitle={`in ${assignmentTypeStreaks.assignment_type.toLowerCase()}`} count={assignmentTypeStreaks.current_streak} />
+              <StatisticsBadge title="Current Streak" subtitle={`in this topic`} count={assignmentTypeStreaks.current_streak} />
             </div>
             <div className="col s6">
-              <StatisticsBadge title="Maximum Streak" subtitle={`in ${assignmentTypeStreaks.assignment_type.toLowerCase()}`} count={assignmentTypeStreaks.maximum_streak} />
+              <StatisticsBadge title="Maximum Streak" subtitle={`in this topic`} count={assignmentTypeStreaks.maximum_streak} />
             </div>
           </div>
           <div className="card task-card">

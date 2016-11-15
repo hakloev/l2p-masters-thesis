@@ -1,20 +1,15 @@
-import { combineReducers } from 'redux';
 import * as types from './actions';
 
 const initalState = {
-  assignmentTypeStreak: {
-    isFetching: false,
-    error: false,
-    data: [],
-  },
-  userStreak: {
-    isFetching: false,
-    error: false,
-    data: {},
+  isFetching: false,
+  error: false,
+  data: {
+    userStreak: {},
+    assignmentTypeStreaks: [],
   },
 };
 
-const UserStreakReducer = (state = initalState.userStreak, action) => {
+const UserStreakReducer = (state = initalState, action) => {
   switch (action.type) {
   case types.GET_USER_STREAK_REQUEST:
     return {
@@ -26,47 +21,19 @@ const UserStreakReducer = (state = initalState.userStreak, action) => {
       ...state,
       isFetching: false,
       data: {
-        ...action.streaks,
+        userStreak: action.streaks.user_streak,
+        assignmentTypeStreaks: action.streaks.assignment_type_streaks,
       },
     };
   case types.GET_USER_STREAK_FAILURE:
     return {
       ...state,
       isFetching: false,
-      data: {},
+      data: initalState.data,
     };
   default:
     return state;
   }
 };
 
-const AssignmentTypeStreakReducer = (state = initalState.assignmentTypeStreak, action) => {
-  switch (action.type) {
-  case types.GET_ASSIGNMENT_TYPE_STREAKS_REQUEST:
-    return {
-      ...state,
-      isFetching: true,
-    };
-  case types.GET_ASSIGNMENT_TYPE_STREAKS_SUCCESS:
-    return {
-      ...state,
-      isFetching: false,
-      data: action.streaks,
-    };
-  case types.GET_ASSIGNMENT_TYPE_STREAKS_FAILURE:
-    return {
-      ...state,
-      isFetching: false,
-      data: [],
-    };
-  default:
-    return state;
-  }
-};
-
-const reducer = combineReducers({
-  userStreak: UserStreakReducer,
-  assignmentTypeStreak: AssignmentTypeStreakReducer,
-});
-
-export default reducer;
+export default UserStreakReducer;

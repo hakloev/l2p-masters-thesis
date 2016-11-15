@@ -20,9 +20,9 @@ from django.views.generic import TemplateView
 from rest_framework import routers
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
 
-from api.views.achievement import AchievementViewSet, UserAchievementListView
+from api.views.achievement import UserAchievementListView
 from api.views.user import StudentViewSet, RegistrationView
-from api.views.score import UserStreakListView, UserScoreListView
+from api.views.score import UserStreakView
 
 from api.views.issue import IssueViewSet
 from api.views.assignment import AssignmentTypeViewSet, AssignmentViewSet, CompileCode, SubmitCode, GetAssignment, \
@@ -32,10 +32,9 @@ from api.views.assignment import AssignmentTypeViewSet, AssignmentViewSet, Compi
 #  admin.autodiscover()
 
 router = routers.DefaultRouter()
-router.register('achievements', AchievementViewSet)
-router.register('assignment-types', AssignmentTypeViewSet)
+router.register(r'assignment-types', AssignmentTypeViewSet)
 router.register(r'student', StudentViewSet)
-router.register('report', IssueViewSet)
+router.register(r'report', IssueViewSet)
 
 api_urls = [
     url(r'^', include(router.urls)),
@@ -43,8 +42,7 @@ api_urls = [
     url(r'^compile/$', CompileCode.as_view(), name='compile-code'),
     url(r'^submit/$', SubmitCode.as_view(), name='submit-code'),
 
-    url(r'^user/streak/$', UserStreakListView.as_view(), name='user-streak'),
-    url(r'^user/scores/$', UserScoreListView.as_view(), name='user-scores'),
+    url(r'^user/streak/$', UserStreakView.as_view(), name='user-streak'),
     url(r'^user/achievements/$', UserAchievementListView.as_view(), name='user-achievements'),
     url(r'^user/achievements/new/$', check_for_new_achievements, name='user-new-achievements'),
 

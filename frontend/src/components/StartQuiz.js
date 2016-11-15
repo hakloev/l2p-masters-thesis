@@ -16,7 +16,6 @@ class StartQuiz extends Component {
 
   render() {
     const { userStreak, assignmentTypes, hasExamQuestions, onStartQuiz } = this.props;
-
     return (
       <div>
         <Banner title="Start a quiz!" />
@@ -45,7 +44,7 @@ class StartQuiz extends Component {
 StartQuiz.propTypes = {
   assignmentTypes: PropTypes.array.isRequired,
   hasExamQuestions: PropTypes.bool.isRequired,
-  userStreak: PropTypes.object.isRequired,
+  userStreak: PropTypes.array.isRequired,
   onStartQuiz: PropTypes.func.isRequired,
   getAllQuizStats: PropTypes.func.isRequired,
 };
@@ -63,13 +62,13 @@ const mapDispatchToProps = dispatch => {
 };
 
 const mapStateToProps = state => {
-  const { assignmentTypeStreak, userStreak } = state.stats;
+  const { data: streaks } = state.stats;
+  const { userStreak } = streaks;
   const { types } = state.assignment;
   const { meta: achievements } = state.achievements.achievements;
   return {
     achievements,
-    userStreak: userStreak.data,
-    assignmentTypeStreak: assignmentTypeStreak.data,
+    userStreak,
     assignmentTypes: types.data,
     hasExamQuestions: types.hasExamQuestions,
   };

@@ -9,7 +9,7 @@ import { sagas as assignmentSagas } from './data/assignment';
 export default function* root() {
   yield [
     fork(statsSagas.watchAllQuizStats),
-    statsSagas.watchAssignmentTypeStreaks(),
+    statsSagas.watchUserStreaks(),
 
     assignmentSagas.watchStartQuiz(),
     assignmentSagas.watchAssignmentTypes(),

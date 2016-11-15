@@ -1,6 +1,5 @@
 import logging
 import random
-import uuid
 
 from django.shortcuts import get_object_or_404
 
@@ -16,9 +15,33 @@ from rest_framework.response import Response
 from api.utils import utils
 from api.serializers.achievement import AchievementSerializer
 from api.utils.sandbox import DockerSandbox
-from api.models.assignment import AssignmentType, Assignment
+from api.models.assignment import AssignmentType, Assignment, AssignmentSolvingAttempt
 from api.serializers.assignment import AssignmentSerializer, AssignmentTypeSerializer
-from api.models.score import ScoreTypeTracker, SkillTypeLevel, StreakTracker
+from api.models.score import UserStreakTracker, AssignmentTypeScoreTracker
+
+
+def get_new_assignment(user, type):
+    log = logging.getLogger(__name__)
+
+    # Get assignments solved by the user
+    user_solved = AssignmentSolvingAttempt.objects.filter(
+        user=user,
+        correct_solution=True,
+    ).values('assignment__id')
+
+    # Get active assignments from the current assignment_type that is still unsolved
+    result = Assignment.active_assignments.filter(
+        assignment_type=type
+    ).exclude(id__in=user_solved)
+
+    if not result:
+        log.debug('All assignments of type {} solved, returning random assignment'.format(type))
+        return random.choice(Assignment.active_assignments.filter(
+            assignment_type=type,
+        ))
+
+    log.debug('Found unsolved assignment of type {}'.format(type))
+    return random.choice(result)
 
 
 class GetAssignment(views.APIView):
@@ -49,10 +72,8 @@ class GetAssignment(views.APIView):
             assignment_type_pk = int(random.choice(assignment_types))  # Choose a random assignment type
             assignment_type = AssignmentType.objects.get(pk=assignment_type_pk)
 
-        # Get an assignment
-        assignment = random.choice(Assignment.active_assignments.filter(
-            assignment_type=assignment_type
-        ))
+        assignment = get_new_assignment(request.user, assignment_type)
+        self.log.debug('UserID {}: Sending back assignment {}'.format(request.user, assignment.id))
 
         # Serialize the assignment and return it
         return Response({
@@ -99,13 +120,19 @@ class SubmitCode(views.APIView):
             if assignment_types is not None and not len(assignment_types):
                 # Guarantee that there is a list of assignment types
                 self.log.debug('No assignment types present in POST, using default')
-            assignment_types = [a_type.id for a_type in AssignmentType.objects.all()]
+                assignment_types = [a_type.id for a_type in AssignmentType.objects.all()]
             new_assignment_type = int(random.choice(assignment_types))  # Choose a random assignment type
 
         previous_assignment = get_object_or_404(Assignment, pk=previous_assignment_pk)
 
-        user_streak_tracker = StreakTracker.objects.get(user=request.user)
-        score_type_tracker, created = ScoreTypeTracker.objects.get_or_create(
+        AssignmentSolvingAttempt.objects.create(
+            user=request.user,
+            assignment=previous_assignment,
+            correct_solution=correct_answer,
+        )
+
+        user_streak_tracker, created = UserStreakTracker.objects.get_or_create(user=request.user)
+        score_type_tracker, created = AssignmentTypeScoreTracker.objects.get_or_create(
             user=request.user,
             assignment_type=previous_assignment.assignment_type
         )
@@ -115,7 +142,6 @@ class SubmitCode(views.APIView):
             score_type_tracker.current_streak += 1
             score_type_tracker.score += 1
             request.user.student.aggregated_score += 1
-            request.user.student.assignments_solved.add(previous_assignment)
         else:
             user_streak_tracker.streak = 0
             score_type_tracker.current_streak = 0
@@ -125,9 +151,7 @@ class SubmitCode(views.APIView):
         user_streak_tracker.save()
         score_type_tracker.save()
 
-        assignment = random.choice(Assignment.active_assignments.filter(
-            assignment_type=new_assignment_type
-        ))
+        assignment = get_new_assignment(request.user, new_assignment_type)
         self.log.debug('UserID {}: Sending back assignment {}'.format(request.user, assignment.id))
 
         assignment_serialized = AssignmentSerializer(assignment)
