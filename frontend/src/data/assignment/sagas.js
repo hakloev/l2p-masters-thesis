@@ -1,9 +1,10 @@
 import { takeEvery } from 'redux-saga';
-import { call, put } from 'redux-saga/effects';
+import { call, put, select } from 'redux-saga/effects';
 import { browserHistory } from 'react-router';
 import apiService from '../../api/client';
 
 import * as actions from './actions';
+import * as selectors from './selectors';
 import { actions as achievementActions } from '../achievements';
 import { actions as statsActions } from '../stats';
 
@@ -55,6 +56,10 @@ function* compileCode(action) {
       Materialize.toast(`Your code got a compilation error on ${result.line_number}:<br><br>${result.error}`, 5000);
     }
     yield put(actions.compileCodeSuccess(result));
+    const answer = yield select(selectors.isCorrectSolution);
+    if (!answer && !result.timeout && !result.error) {
+      Materialize.toast('The solution is incorrect.', 5000);
+    }
   } catch (error) {
     console.error(`${actions.COMPILE_CODE_FAILURE}: ${error.message}`);
     Materialize.toast(`Unable to compile code, try again later!<br><br>${error.message}`, 5000);
