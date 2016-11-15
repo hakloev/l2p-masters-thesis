@@ -1,3 +1,5 @@
+import 'babel-polyfill';
+
 import 'materialize-css';
 import 'materialize-css/bin/materialize.css';
 import 'font-awesome/css/font-awesome.min.css';
