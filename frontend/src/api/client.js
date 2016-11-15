@@ -51,7 +51,6 @@ class ApiService {
 
         requestInit.headers = headers;
         const request = new Request(path);
-        console.info(requestInit);
 
         return fetch(request, requestInit)
           .then(checkStatus)
