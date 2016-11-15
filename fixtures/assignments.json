@@ -395,7 +395,7 @@
     "model": "api.assignment",
     "pk": 53,
     "fields": {
-        "is_public": false,
+        "is_public": true,
         "assignment_type": 4,
         "resource_url": "",
         "title": "Remove duplicates",
@@ -409,7 +409,7 @@
     "model": "api.assignment",
     "pk": 54,
     "fields": {
-        "is_public": false,
+        "is_public": true,
         "assignment_type": 4,
         "resource_url": "",
         "title": "Length of square edges",
@@ -423,7 +423,7 @@
     "model": "api.assignment",
     "pk": 56,
     "fields": {
-        "is_public": false,
+        "is_public": true,
         "assignment_type": 4,
         "resource_url": "https://en.wiktionary.org/wiki/Manhattan_distance",
         "title": "Manhattan distance",
@@ -437,7 +437,7 @@
     "model": "api.assignment",
     "pk": 57,
     "fields": {
-        "is_public": false,
+        "is_public": true,
         "assignment_type": 4,
         "resource_url": "https://www.dotnetperls.com/2d-python",
         "title": "Weather measurements",
@@ -451,7 +451,7 @@
     "model": "api.assignment",
     "pk": 58,
     "fields": {
-        "is_public": false,
+        "is_public": true,
         "assignment_type": 4,
         "resource_url": "",
         "title": "Fizzbuzz",
@@ -465,7 +465,7 @@
     "model": "api.assignment",
     "pk": 59,
     "fields": {
-        "is_public": false,
+        "is_public": true,
         "assignment_type": 4,
         "resource_url": "https://en.wikipedia.org/wiki/Fibonacci_number",
         "title": "The fibonacci sequence",
@@ -479,7 +479,7 @@
     "model": "api.assignment",
     "pk": 60,
     "fields": {
-        "is_public": false,
+        "is_public": true,
         "assignment_type": 4,
         "resource_url": "",
         "title": "Reverse list",
@@ -493,7 +493,7 @@
     "model": "api.assignment",
     "pk": 61,
     "fields": {
-        "is_public": false,
+        "is_public": true,
         "assignment_type": 4,
         "resource_url": "",
         "title": "Character search",
@@ -507,7 +507,7 @@
     "model": "api.assignment",
     "pk": 62,
     "fields": {
-        "is_public": false,
+        "is_public": true,
         "assignment_type": 4,
         "resource_url": "",
         "title": "Tax calculation",
@@ -521,7 +521,7 @@
     "model": "api.assignment",
     "pk": 63,
     "fields": {
-        "is_public": false,
+        "is_public": true,
         "assignment_type": 4,
         "resource_url": "https://en.wikipedia.org/wiki/Prime_number",
         "title": "Prime numbers",
@@ -535,7 +535,7 @@
     "model": "api.assignment",
     "pk": 64,
     "fields": {
-        "is_public": false,
+        "is_public": true,
         "assignment_type": 4,
         "resource_url": "",
         "title": "Time converting",
@@ -549,7 +549,7 @@
     "model": "api.assignment",
     "pk": 65,
     "fields": {
-        "is_public": false,
+        "is_public": true,
         "assignment_type": 4,
         "resource_url": "",
         "title": "List merging",
@@ -563,7 +563,7 @@
     "model": "api.assignment",
     "pk": 66,
     "fields": {
-        "is_public": false,
+        "is_public": true,
         "assignment_type": 4,
         "resource_url": "",
         "title": "List rotation",
@@ -577,7 +577,7 @@
     "model": "api.assignment",
     "pk": 68,
     "fields": {
-        "is_public": false,
+        "is_public": true,
         "assignment_type": 4,
         "resource_url": "",
         "title": "Palindrome test",
