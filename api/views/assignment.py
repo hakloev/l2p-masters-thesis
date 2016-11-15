@@ -75,7 +75,6 @@ class GetAssignment(views.APIView):
         assignment = get_new_assignment(request.user, assignment_type)
         self.log.debug('UserID {}: Sending back assignment {}'.format(request.user, assignment.id))
 
-
         # Serialize the assignment and return it
         return Response({
             'assignment': AssignmentSerializer(assignment).data,

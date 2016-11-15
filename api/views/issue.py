@@ -54,6 +54,7 @@ class IssueViewSet(views.APIView):
             )
 
         try:
+            self.log.debug('Sending mail to {}'.format(recipients))
             send_mail(
                 subject,
                 message,
