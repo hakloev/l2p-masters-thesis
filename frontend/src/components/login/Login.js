@@ -7,7 +7,7 @@ import { actions } from '../../data/auth';
 const Login = props => {
   return (
     <div>
-      <Banner title="login" />
+      <Banner title="Sign in" />
       <div className="container login-container">
         <div className="row">
           <div className="col s12">
