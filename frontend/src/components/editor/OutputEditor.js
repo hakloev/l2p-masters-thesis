@@ -38,7 +38,7 @@ const OutputEditor = ({ code, isFetching, hasCorrectSolution, onNextQuestionClic
         <CompilationIndicator />
       }
       <NextTaskIndicator shouldDisplay={hasCorrectSolution} onNextClick={onNextQuestionClick} />
-      <textarea id="output-console" disabled value={!isFetching ? code : ''} />
+      <textarea id="output-console" className="no-resize" disabled value={!isFetching ? code : ''} />
     </div>
   );
 };

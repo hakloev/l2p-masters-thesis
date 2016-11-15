@@ -176,3 +176,6 @@
     background-color: lighten($grey, 15%);
   }
 }
+.no-resize {
+  resize: none;
+}
