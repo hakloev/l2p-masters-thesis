@@ -39,25 +39,25 @@ const textArea = field =>
 let ProgressSurveyForm = ({ handleSubmit, onSubmitForm }) =>
   <form onSubmit={handleSubmit(onSubmitForm)}>
     <div>
-      <label htmlFor="knowledge_from">Hvordan har du tilegnet deg kunnskap igjennom ITGK?</label>
+      <label htmlFor="knowledge_from">How did you gather knowledge during ITGK?</label>
       <Field name="knowledge_from" component={Select}>
-        <option value="PEN">Pensumlitteratur</option>
-        <option value="ØVI">Øvinger</option>
-        <option value="EGN">Programmering utenom øvinger</option>
-        <option value="E-L">Tjenester som Codecademy og Project Euler</option>
-        <option value="ANN">Annet</option>
+        <option value="PEN">Curriculum</option>
+        <option value="ØVI">Mandatory exersices</option>
+        <option value="EGN">Programming aside the mandatory exercises</option>
+        <option value="E-L">Services like Codecademy and Project Euler</option>
+        <option value="ANN">Other</option>
       </Field>
     </div>
     <div>
-      <label htmlFor="relevance">I hvilken grad synes du denne programvaren er relevant for egenlæring i ITGK, hvor 1 er dårligst og 5 er best?</label>
+      <label htmlFor="relevance">To which level do you feel this software is relevant to learning in ITGK, from 1 to 5?</label>
       <Field name="relevance" component={Range} type="range" min="1" max="5" />
     </div>
     <div>
-      <label htmlFor="knowledge_level">Hvordan føler du selv ferdighetsnivået ditt er i ITGK, hvor 1 er dårligst og 5 er best?</label>
+      <label htmlFor="knowledge_level">How would you rate your own skill level in programming, from 1 to 5?</label>
       <Field name="knowledge_level" component={Range} type="range" min="1" max="5" />
     </div>
     <div>
-      <label htmlFor="comments">Har du andre kommentarer vedrørende bruken av denne programvaren?</label>
+      <label htmlFor="comments">Do you have any other comments related to this software?</label>
       <Field name="comments" component={textArea} type="textarea" />
     </div>
     <button type="submit" className="btn waves-effect waves-light deep-orange">Submit</button>
@@ -79,6 +79,10 @@ const ProgressSurveyModal = props => {
   return (
     <div id="progress-survey-modal" className="modal">
       <div className="modal-content">
+        <div>
+          <h3>Usage survey</h3>
+          <p>We would appreciate if you could answer a few questions about the software</p>
+        </div>
         <ProgressSurveyForm onSubmitForm={props.onSubmitForm} />
       </div>
     </div>
