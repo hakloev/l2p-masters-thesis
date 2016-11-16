@@ -44,7 +44,7 @@ class StartQuiz extends Component {
 StartQuiz.propTypes = {
   assignmentTypes: PropTypes.array.isRequired,
   hasExamQuestions: PropTypes.bool.isRequired,
-  userStreak: PropTypes.array.isRequired,
+  userStreak: PropTypes.object.isRequired,
   onStartQuiz: PropTypes.func.isRequired,
   getAllQuizStats: PropTypes.func.isRequired,
 };
