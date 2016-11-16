@@ -134,7 +134,7 @@ class Question extends Component {
 
 Question.propTypes = {
   assignment: PropTypes.object.isRequired,
-  assignmentTypes: PropTypes.array,
+  assignmentTypes: PropTypes.object,
   assignmentTypeStreaks: PropTypes.object,
   compilation: PropTypes.object.isRequired,
   hasCorrectSolution: PropTypes.bool,

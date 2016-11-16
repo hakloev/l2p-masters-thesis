@@ -66,8 +66,8 @@ class GetAssignment(views.APIView):
             assignment_types = request.data.get('assignment_types')
             if assignment_types is not None and not len(assignment_types):
                 # Guarantee that there is a list of assignment types
-                assignment_types = [a_type.id for a_type in AssignmentType.objects.all()]
                 self.log.debug('No assignment types present in POST, using default')
+                assignment_types = [a_type.id for a_type in AssignmentType.objects.all().exclude(type_name__startswith='Exam')]
 
             assignment_type_pk = int(random.choice(assignment_types))  # Choose a random assignment type
             assignment_type = AssignmentType.objects.get(pk=assignment_type_pk)
@@ -120,7 +120,7 @@ class SubmitCode(views.APIView):
             if assignment_types is not None and not len(assignment_types):
                 # Guarantee that there is a list of assignment types
                 self.log.debug('No assignment types present in POST, using default')
-                assignment_types = [a_type.id for a_type in AssignmentType.objects.all()]
+                assignment_types = [a_type.id for a_type in AssignmentType.objects.all().exclude(type_name__startswith='Exam')]
             new_assignment_type = int(random.choice(assignment_types))  # Choose a random assignment type
 
         previous_assignment = get_object_or_404(Assignment, pk=previous_assignment_pk)
