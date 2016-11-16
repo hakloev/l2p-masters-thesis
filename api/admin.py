@@ -7,6 +7,7 @@ from api.models.assignment import AssignmentType, Assignment, AssignmentSolvingA
 from api.models.score import UserStreakTracker, AssignmentTypeScoreTracker
 from api.models.user import Student
 from api.models.issue import Issue
+from api.models.survey import ProgressSurvey
 
 
 class AchievementAdmin(admin.ModelAdmin):
@@ -72,3 +73,4 @@ admin.site.register(UserStreakTracker, UserStreakTrackerAdmin)
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
 admin.site.register(Issue, IssueAdmin)
+admin.site.register(ProgressSurvey)
