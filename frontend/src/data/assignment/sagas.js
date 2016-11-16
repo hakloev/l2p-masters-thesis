@@ -8,6 +8,8 @@ import * as selectors from './selectors';
 import { actions as achievementActions } from '../achievements';
 import { actions as statsActions } from '../stats';
 
+import { open as openSurveyModal } from '../../components/ProgressSurveyModal';
+
 // START QUIZ START
 function* startQuiz(action) {
   try {
@@ -81,6 +83,9 @@ function* submitAnswer(action) {
     yield put(actions.setStartAssignmentTime());
     yield put(statsActions.getUserStreakRequest());
     yield put(achievementActions.getNewAchievementsRequest());
+    if (data.show_progress_survey) {
+      openSurveyModal();
+    }
   } catch (error) {
     console.error(`${actions.SUBMIT_ANSWER_FAILURE}: ${error.message}`);
     Materialize.toast('Unable to submit answer, try again later!', 5000);

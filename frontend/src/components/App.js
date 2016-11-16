@@ -4,6 +4,7 @@ import Navbar from './Navbar';
 import { actions as authActions } from '../data/auth';
 import AchievementsModal from './AchievementsModal';
 import ReportModal from './ReportModal';
+import ProgressSurveyModal from './ProgressSurveyModal';
 
 class App extends Component {
 
@@ -22,6 +23,7 @@ class App extends Component {
         </div>
         <AchievementsModal />
         <ReportModal />
+        <ProgressSurveyModal />
       </div>
     );
   }
