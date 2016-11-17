@@ -38,7 +38,6 @@ const textArea = field =>
 
 let ProgressSurveyForm = ({ handleSubmit, onSubmitForm }) =>
   <form onSubmit={handleSubmit(onSubmitForm)}>
-    <h4>We would appreciate if you took two minutes to answer the following questions</h4>
     <div>
       <label htmlFor="knowledge_from">Over the course of this semester, what was you primary way of learning python?</label>
       <Field name="knowledge_from" component={Select}>
@@ -82,7 +81,7 @@ const ProgressSurveyModal = props => {
       <div className="modal-content">
         <div>
           <h3>Usage survey</h3>
-          <p>We would appreciate if you could answer a few questions about the software</p>
+          <p>We would appreciate if you took two minutes to answer the following questions</p>
         </div>
         <ProgressSurveyForm onSubmitForm={props.onSubmitForm} />
       </div>
