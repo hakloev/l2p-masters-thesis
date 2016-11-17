@@ -38,22 +38,23 @@ const textArea = field =>
 
 let ProgressSurveyForm = ({ handleSubmit, onSubmitForm }) =>
   <form onSubmit={handleSubmit(onSubmitForm)}>
+    <h4>We would appreciate if you took two minutes to answer the following questions</h4>
     <div>
-      <label htmlFor="knowledge_from">How did you gather knowledge during ITGK?</label>
+      <label htmlFor="knowledge_from">Over the course of this semester, what was you primary way of learning python?</label>
       <Field name="knowledge_from" component={Select}>
-        <option value="PEN">Curriculum</option>
-        <option value="ØVI">Mandatory exersices</option>
-        <option value="EGN">Programming aside the mandatory exercises</option>
+        <option value="PEN">Reading course literature</option>
+        <option value="ØVI">Mandatory exercises</option>
+        <option value="EGN">Programming aside from the mandatory exercises</option>
         <option value="E-L">Services like Codecademy and Project Euler</option>
         <option value="ANN">Other</option>
       </Field>
     </div>
     <div>
-      <label htmlFor="relevance">To which level do you feel this software is relevant to learning in ITGK, from 1 to 5?</label>
+      <label htmlFor="relevance">On a scale from 1 to 5, to which degree do you feel this software is relevant to learning python?</label>
       <Field name="relevance" component={Range} type="range" min="1" max="5" />
     </div>
     <div>
-      <label htmlFor="knowledge_level">How would you rate your own skill level in programming, from 1 to 5?</label>
+      <label htmlFor="knowledge_level">On a scale from 1 to 5, how would you rate your own skill level in programming?</label>
       <Field name="knowledge_level" component={Range} type="range" min="1" max="5" />
     </div>
     <div>
