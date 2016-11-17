@@ -86,6 +86,7 @@ export function* loginFlow() {
       if (logout) {
         credentials.token = null;
         yield call(removeAuthToken);
+        browserHistory.push('/login');
         Materialize.toast('You have been successfully logged out', 5000);
       }
 
