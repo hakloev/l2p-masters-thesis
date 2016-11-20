@@ -3,6 +3,7 @@ import { call, put, take } from 'redux-saga/effects';
 
 import apiService from '../../api/client';
 import { sagas as achievementSagas } from '../achievements';
+import { sagas as assignmentSagas } from '../assignment';
 import * as actions from './actions';
 
 function* getUserStreaks() {
@@ -27,6 +28,7 @@ export function* watchAllQuizStats() {
     yield [
       call(getUserStreaks),
       call(achievementSagas.getAchievements),
+      call(assignmentSagas.getAssignmentTypes),
     ];
   }
 }
