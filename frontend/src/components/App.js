@@ -4,13 +4,12 @@ import Navbar from './Navbar';
 import { actions as authActions } from '../data/auth';
 import AchievementsModal from './AchievementsModal';
 import ReportModal from './ReportModal';
-import ProgressSurveyModal, { open as op } from './ProgressSurveyModal';
+import ProgressSurveyModal from './ProgressSurveyModal';
 
 class App extends Component {
 
   componentDidMount() {
     $('.modal').modal();
-    op();
   }
 
   render() {
