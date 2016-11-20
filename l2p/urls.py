@@ -23,8 +23,8 @@ from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
 from api.views.achievement import UserAchievementListView
 from api.views.user import StudentViewSet, RegistrationView
 from api.views.score import UserStreakView
-
 from api.views.issue import IssueViewSet
+from api.views.survey import ProgressSurveyViewSet
 from api.views.assignment import AssignmentTypeViewSet, AssignmentViewSet, CompileCode, SubmitCode, GetAssignment, \
     check_for_new_achievements
 
@@ -35,6 +35,7 @@ router = routers.DefaultRouter()
 router.register(r'assignment-types', AssignmentTypeViewSet)
 router.register(r'student', StudentViewSet)
 router.register(r'report', IssueViewSet)
+router.register(r'survey', ProgressSurveyViewSet, base_name='survey')
 
 api_urls = [
     url(r'^', include(router.urls)),

@@ -7,7 +7,17 @@ const initalState = {
   },
   task: {
     isFetching: false,
-    meta: {},
+    meta: {
+      id: null,
+      is_public: false,
+      resource_url: '',
+      title: '',
+      assignment_text: '',
+      hint_text: '',
+      code_body: '',
+      solution: '',
+      assignment_type: '',
+    },
   },
   types: {
     isFetching: false,

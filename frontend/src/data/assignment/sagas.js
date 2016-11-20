@@ -8,6 +8,8 @@ import * as selectors from './selectors';
 import { actions as achievementActions } from '../achievements';
 import { actions as statsActions } from '../stats';
 
+import { open as openSurveyModal } from '../../components/ProgressSurveyModal';
+
 // START QUIZ START
 function* startQuiz(action) {
   try {
@@ -29,7 +31,7 @@ export function* watchStartQuiz() {
 // START QUIZ END
 
 // GET ASSIGNMENT TYPES START
-function* getAssignmentTypes() {
+export function* getAssignmentTypes() {
   try {
     console.info(`${actions.GET_ASSIGNMENT_TYPES_REQUEST}`);
     const types = yield call(apiService.get, '/api/assignment-types/');
@@ -62,7 +64,7 @@ function* compileCode(action) {
     }
   } catch (error) {
     console.error(`${actions.COMPILE_CODE_FAILURE}: ${error.message}`);
-    Materialize.toast(`Unable to compile code, try again later!<br><br>${error.message}`, 5000);
+    Materialize.toast('Unable to compile code, try again later!', 5000);
     yield put(actions.compileCodeFailure(error.message));
   }
 }
@@ -81,6 +83,9 @@ function* submitAnswer(action) {
     yield put(actions.setStartAssignmentTime());
     yield put(statsActions.getUserStreakRequest());
     yield put(achievementActions.getNewAchievementsRequest());
+    if (data.show_progress_survey) {
+      openSurveyModal();
+    }
   } catch (error) {
     console.error(`${actions.SUBMIT_ANSWER_FAILURE}: ${error.message}`);
     Materialize.toast('Unable to submit answer, try again later!', 5000);

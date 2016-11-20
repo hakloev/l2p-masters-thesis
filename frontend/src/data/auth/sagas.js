@@ -86,19 +86,24 @@ export function* loginFlow() {
       if (logout) {
         credentials.token = null;
         yield call(removeAuthToken);
+        browserHistory.push('/login');
         Materialize.toast('You have been successfully logged out', 5000);
       }
 
-    } catch (error) {
-      console.error('[loginFlow]: ', error.message);
-      yield put(actions.loginFailure(error.message));
-      // Reset current credentials token to ensure a wait for LOGIN_REQUEST
+    } catch ({ json, message }) {
+      console.error('[loginFlow]: ', message);
+      yield put(actions.loginFailure(message));
+      yield call(removeAuthToken);
       credentials.token = null;
-      error.response.json()
-        .then(response => {
-          Materialize.toast(response.non_field_errors, 5000);
-        })
-        .catch(e => Materialize.toast(`Unknown error: ${e.message}`, 5000));
+      // Reset current credentials token to ensure a wait for LOGIN_REQUEST
+
+      browserHistory.push('/login');
+
+      if (json.non_field_errors) {
+        console.error('Maybe invalid token? ', json.non_field_errors);
+      } else {
+        console.error(`Unknown error occured: ${message}`);
+      }
     }
   }
 }

@@ -6,6 +6,7 @@ import { reducer as assignment } from './data/assignment';
 import { reducer as achievements } from './data/achievements';
 import { reducer as stats } from './data/stats';
 import { reducer as report } from './data/issue';
+import { reducer as survey } from './data/survey';
 
 const rootReducer = combineReducers({
   form: formReducer,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   achievements,
   stats,
   report,
+  survey,
 });
 
 export default rootReducer;

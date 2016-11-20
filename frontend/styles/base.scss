@@ -67,7 +67,6 @@
 
 #assignment-editor {
   flex: 1 1 55%;
-  border-right: 15px solid $grey;
   margin: 10px 0;
   display: flex;
   position: relative;
@@ -76,6 +75,7 @@
 #assignment-output {
   display: flex; // display: flex to ensure align-items: stretch on child, this makes output-wrapper to fill 100% of parent.
   flex: 1 1 45%;
+  border-left: 15px solid $grey;
   background-color: #000;
   color: #fff;
 }
