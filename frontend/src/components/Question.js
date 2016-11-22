@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { InputEditor, OutputEditor, setEditorFocus } from './editor';
-import StatisticsBadge from './StatisticsBadge';
+// import StatisticsBadge from './StatisticsBadge';
 import { open as openModal } from './ReportModal';
 import { selectors as assignmentSelectors, actions } from '../data/assignment';
 import { selectors as statsSelectors } from '../data/stats';
@@ -28,7 +28,7 @@ class Question extends Component {
   }
 
   activateSidebar() {
-    console.log('change', this.state.sidebarVisible);
+    setEditorFocus();
     this.setState({
       sidebarVisible: !this.state.sidebarVisible,
     });
@@ -113,14 +113,14 @@ class Question extends Component {
           <i className="material-icons">keyboard_arrow_right</i>
         </button>
         <div id="assignment-sidebar" className={!this.state.sidebarVisible && 'is-hidden'}>
-          <div className="row stats-column">
+          {/* <div className="row stats-column">
             <div className="col s6">
               <StatisticsBadge title="Current Streak" subtitle={`in this topic`} count={assignmentTypeStreaks.current_streak} />
             </div>
             <div className="col s6">
               <StatisticsBadge title="Highest Streak" subtitle={`in this topic`} count={assignmentTypeStreaks.maximum_streak} />
             </div>
-          </div>
+          </div> */}
           <div className="card task-card">
             <div className="card-content">
               <span className="card-title">Assignment:</span>
