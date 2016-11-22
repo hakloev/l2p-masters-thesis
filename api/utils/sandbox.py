@@ -12,7 +12,7 @@ LINE_NUMBER_REGEXP = r'line \d*'
 
 class DockerSandbox(object):
 
-    def __init__(self, url='unix://var/run/docker.sock', image='python:3.5-slim', name_prefix='l2p_', timeout=10, memory_limit='128m', network_mode='none'):
+    def __init__(self, url='unix://var/run/docker.sock', image='python:3.5-slim', name_prefix='l2p', timeout=10, memory_limit='128m', network_mode='none'):
         self.log = logging.getLogger(__name__)
         self.cli = Client(base_url=url)
         self.image = image
@@ -53,6 +53,7 @@ class DockerSandbox(object):
                 container = self.cli.create_container(
                     image=self.image,
                     host_config=host_config,
+                    name=self.container_name,
                     volumes=['/mnt/data'],
                     command='python3 /mnt/data/%s' % file_name
                 )
@@ -66,19 +67,19 @@ class DockerSandbox(object):
             container_id = container.get('Id')
 
             self.cli.start(container=container_id)
-            self.log.debug('Container {} starting and executing command'.format(container_id))
+            self.log.debug('Container {} starting and executing command'.format(self.container_name))
 
             try:
                 self.cli.wait(container=container_id, timeout=self.timeout)
             except ReadTimeout:
-                self.log.warn('Container {} timed out'.format(container_id))
+                self.log.warn('Container {} timed out'.format(self.container_name))
                 return {
                     'output': '',
                     'error': 'Timed out!',
                     'timeout': True
                 }
             else:
-                self.log.debug('Container {} successfully executed the code'.format(container_id))
+                self.log.debug('Container {} successfully executed the code'.format(self.container_name))
                 output = self.cli.logs(container=container_id, stdout=True).decode('UTF-8')
                 if self.cli.inspect_container(container=container_id)['State']['ExitCode'] != 0:
                     line_number = re.findall(LINE_NUMBER_REGEXP, output, re.MULTILINE)[0]
@@ -95,6 +96,6 @@ class DockerSandbox(object):
                     'timeout': False
                 }
             finally:
-                self.log.debug('Forcing container {} to terminate'.format(container_id))
+                self.log.debug('Forcing container {} to terminate'.format(self.container_name))
                 self.cli.stop(container=container_id, timeout=0)
                 self.cli.remove_container(container=container_id, force=True)
