@@ -69,9 +69,15 @@ const AssignmentReducer = (state = initalState.task, action) => {
         ...action.data.assignment,
       },
     };
+  case actions.SUBMIT_ANSWER_REQUEST:
+    return {
+      ...state,
+      isFetching: true,
+    };
   case actions.SUBMIT_ANSWER_SUCCESS:
     return {
       ...state,
+      isFetching: false,
       meta: {
         ...state.meta,
         ...action.data.assignment,

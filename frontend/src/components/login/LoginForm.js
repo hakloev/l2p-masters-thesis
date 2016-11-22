@@ -24,7 +24,7 @@ const LoginForm = props => {
       </div>
       <div className="row">
         <div className="col s12">
-          <button type="submit" className="btn waves-effect waves-light deep-orange">Log in</button>
+          <button type="submit" className="btn waves-effect waves-light deep-orange">Sign in</button>
         </div>
       </div>
     </form>

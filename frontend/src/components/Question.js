@@ -12,6 +12,11 @@ class Question extends Component {
     super(props);
     this.handleCompileCode = this.handleCompileCode.bind(this);
     this.handleSubmitClick = this.handleSubmitClick.bind(this);
+    this.activateSidebar = this.activateSidebar.bind(this);
+
+    this.state = {
+      sidebarVisible: true,
+    };
   }
 
   componentDidMount() {
@@ -20,6 +25,13 @@ class Question extends Component {
 
   componentWillUnmount() {
     $('.tooltipped').tooltip('remove');
+  }
+
+  activateSidebar() {
+    console.log('change', this.state.sidebarVisible);
+    this.setState({
+      sidebarVisible: !this.state.sidebarVisible,
+    });
   }
 
   handleCompileCode() {
@@ -39,14 +51,15 @@ class Question extends Component {
   }
 
   render() {
-    const { editorValue, compilation, assignment, assignmentTypeStreaks, hasCorrectSolution } = this.props;
+    const { editorValue, isLoadingAssignment, compilation, assignment, assignmentTypeStreaks, hasCorrectSolution } = this.props;
+
     return (
       <div id="assignment-container">
-        <div id="assignment-editor-container" className="">
+        <div id="assignment-editor-container" className={!this.state.sidebarVisible && 'full-screen'}>
           <div className="" id="editor-row">
             <div id="assignment-editor">
               <InputEditor
-                code={editorValue}
+                code={isLoadingAssignment ? 'Loading assignment...' : editorValue}
                 onChange={this.props.onEditorChange}
                 compileCode={this.handleCompileCode}
               />
@@ -96,13 +109,16 @@ class Question extends Component {
             </div>
           </div>
         </div>
-        <div id="assignment-sidebar" className="">
+        <button className={`btn-floating waves-effect waves-effect grey hide-button ${!this.state.sidebarVisible ? 'hide-active' : ''}`} onClick={this.activateSidebar}>
+          <i className="material-icons">keyboard_arrow_right</i>
+        </button>
+        <div id="assignment-sidebar" className={!this.state.sidebarVisible && 'is-hidden'}>
           <div className="row stats-column">
             <div className="col s6">
               <StatisticsBadge title="Current Streak" subtitle={`in this topic`} count={assignmentTypeStreaks.current_streak} />
             </div>
             <div className="col s6">
-              <StatisticsBadge title="Maximum Streak" subtitle={`in this topic`} count={assignmentTypeStreaks.maximum_streak} />
+              <StatisticsBadge title="Highest Streak" subtitle={`in this topic`} count={assignmentTypeStreaks.maximum_streak} />
             </div>
           </div>
           <div className="card task-card">
@@ -135,6 +151,7 @@ class Question extends Component {
 Question.propTypes = {
   assignment: PropTypes.object.isRequired,
   assignmentTypes: PropTypes.object,
+  isLoadingAssignment: PropTypes.bool.isRequired,
   assignmentTypeStreaks: PropTypes.object,
   compilation: PropTypes.object.isRequired,
   hasCorrectSolution: PropTypes.bool,
@@ -161,7 +178,7 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
   const {
     types: { chosenTypes: assignmentTypes },
-    task: { meta },
+    task: { meta, isFetching: isLoadingAssignment },
     editor: { value: editorValue },
     compilation,
   } = state.assignment;
@@ -170,6 +187,7 @@ const mapStateToProps = state => {
     assignment: meta,
     hasCorrectSolution: assignmentSelectors.isCorrectSolution(state),
     assignmentTypeStreaks: statsSelectors.getAssignmentTypeStreaks(state),
+    isLoadingAssignment,
     assignmentTypes,
     compilation,
     editorValue,

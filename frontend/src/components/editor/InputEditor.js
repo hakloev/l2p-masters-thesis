@@ -43,8 +43,8 @@ class InputEditor extends Component {
         name="input-editor"
         fontSize={14}
         value={this.props.code}
-        width="auto"
-        height="100%"
+        width={'100%'}
+        height={'100%"'}
         onChange={this.onEditorChange()}
         showPrintMargin={false}
         editorProps={{ $blockScrolling: Infinity }}

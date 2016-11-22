@@ -12,8 +12,8 @@ const menuItems = (menuClass, menuId, { isAuthenticated, onLogoutClick }) => {
         <li><Link to="/report" className="mdl-navigation__link">Report an Issue</Link></li>
       }
       {isAuthenticated
-        ? <li><Link className="mdl-navigation__link" onClick={e => onLogoutClick(e)}>Logout</Link></li>
-        : <li><Link to="/login" className="mdl-navigation__link">Login</Link></li>
+        ? <li><Link className="mdl-navigation__link" onClick={e => onLogoutClick(e)}>Sign out</Link></li>
+        : <li><Link to="/login" className="mdl-navigation__link">Sign in</Link></li>
       }
     </ul>
   );
@@ -30,7 +30,7 @@ class Navbar extends Component {
       <div className="navbar-fixed">
         <nav className="teal">
           <div className="nav-wrapper">
-            <Link to="/" className="brand-logo">LearnPython2</Link>
+            <Link to="/" className="brand-logo">LearnPython</Link>
             <a href="#" data-activates="mobile-nav" className="button-collapse"><i className="material-icons">menu</i></a>
             {menuItems('right hide-on-med-and-down', '', this.props)}
             {menuItems('side-nav', 'mobile-nav', this.props)}

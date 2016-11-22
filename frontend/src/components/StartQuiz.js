@@ -32,7 +32,7 @@ class StartQuiz extends Component {
             <div className="col s4">
               <h4> Statistics </h4>
               <StatisticsBadge title="Current Streak" subtitle="on all assignments" count={userStreak.streak} />
-              <StatisticsBadge title="Maximum Streak" subtitle="on all assignments" count={userStreak.maximum_streak} />
+              <StatisticsBadge title="Highest Streak" subtitle="on all assignments" count={userStreak.maximum_streak} />
             </div>
           </div>
         </div>

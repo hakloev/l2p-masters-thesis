@@ -48,15 +48,25 @@
 #assignment-editor-container {
   display: flex;
   flex-direction: column;
-  flex: 1 1 65%;
+  flex: 1 1 75%;
   background-color: $ace-editor-color;
+  transition: flex-basis .5s ease;
+  &.full-screen {
+    flex: 1 1 100%;
+  }
 }
 
 #assignment-sidebar {
-  flex: 1 1 35%;
+  flex: 1 1 25%;
   padding: 0 20px;
   background-color: #fff;
   overflow-y: auto;
+  transition: all .5s ease;
+  &.is-hidden {
+    transform: translateX(100%);
+    flex: 1 1 0;
+    padding: 0;
+  }
 }
 
 #editor-row {
@@ -66,7 +76,7 @@
 }
 
 #assignment-editor {
-  flex: 1 1 55%;
+  flex: 1 1 60%;
   margin: 10px 0;
   display: flex;
   position: relative;
@@ -74,7 +84,7 @@
 
 #assignment-output {
   display: flex; // display: flex to ensure align-items: stretch on child, this makes output-wrapper to fill 100% of parent.
-  flex: 1 1 45%;
+  flex: 1 1 40%;
   border-left: 15px solid $grey;
   background-color: #000;
   color: #fff;
@@ -175,4 +185,18 @@
   &--grey {
     background-color: lighten($grey, 15%);
   }
+}
+
+.hide-button {
+  position: fixed;
+  top: 80px;
+  right: 26%;
+  transition: all ease .5s;
+}
+
+.hide-active {
+    right: 10px;
+    > i {
+      transform: rotate(180deg);
+    }
 }
