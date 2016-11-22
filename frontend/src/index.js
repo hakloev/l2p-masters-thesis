@@ -4,9 +4,6 @@ import 'materialize-css';
 import 'materialize-css/bin/materialize.css';
 import 'font-awesome/css/font-awesome.min.css';
 
-import styles from 'react-resizable/css/styles.css';
-
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';

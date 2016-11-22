@@ -61,7 +61,15 @@ class UserAdmin(BaseUserAdmin):
 
 
 class IssueAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email', 'assignmentId', 'created')
+    list_display = ('get_name', 'email', 'get_assignment_id', 'created')
+
+    def get_name(self, obj):
+        return obj.name if obj.name != "" else 'Anonymous'
+    get_name.short_description = 'Name'
+
+    def get_assignment_id(self, obj):
+        return obj.assignmentId.id if obj.assignmentId else ''
+    get_assignment_id.short_description = 'Assignment'
 
 
 admin.site.register(Achievement)

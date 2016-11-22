@@ -21,7 +21,7 @@ function* startQuiz(action) {
   } catch (error) {
     console.error(`${actions.START_QUIZ_FAILURE}: ${error.message}`);
     yield put(actions.startQuizFailure(error.message));
-    Materialize.toast('Unable to start quiz, try again later!', 5000);
+    Materialize.toast('Sorry, unable to start the quiz, please try again later!', 5000);
   }
 }
 
@@ -55,16 +55,16 @@ function* compileCode(action) {
     if (result.timeout) {
       Materialize.toast('Your code timed out, please try again!', 5000);
     } else if (result.error) {
-      Materialize.toast(`Your code got a compilation error on ${result.line_number}:<br><br>${result.error}`, 5000);
+      Materialize.toast(`Your code had a compilation error on ${result.line_number}:<br><br>${result.error}`, 5000);
     }
     yield put(actions.compileCodeSuccess(result));
     const answer = yield select(selectors.isCorrectSolution);
     if (!answer && !result.timeout && !result.error) {
-      Materialize.toast('The solution is incorrect.', 5000);
+      Materialize.toast('The solution is incorrect', 5000);
     }
   } catch (error) {
     console.error(`${actions.COMPILE_CODE_FAILURE}: ${error.message}`);
-    Materialize.toast('Unable to compile code, try again later!', 5000);
+    Materialize.toast('Unable to compile your code, please try again later!', 5000);
     yield put(actions.compileCodeFailure(error.message));
   }
 }

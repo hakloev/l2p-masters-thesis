@@ -10,7 +10,7 @@ function* reportIssue(action) {
     console.info(`${actions.REPORT_ISSUE}`);
     const data = yield call(apiService.post, '/api/report/', { body: action.payload });
     yield put(actions.reportIssueSuccess(data));
-    Materialize.toast('Success! Thank you for your feedback!', 5000);
+    Materialize.toast('Success, thank you for your feedback!', 5000);
     if (!action.isAssignmentForm) {
       browserHistory.push('/start');
     } else {
@@ -22,7 +22,7 @@ function* reportIssue(action) {
     if (action.isAssignmentForm) {
       closeModal();
     }
-    Materialize.toast('Unable to submit your form at this point, try again later', 5000);
+    Materialize.toast('Sorry, unable to submit your form at this point, try again later!', 5000);
   }
 }
 

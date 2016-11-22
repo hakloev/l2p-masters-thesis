@@ -24,7 +24,7 @@ function* submitRegistration(action) {
   } catch (error) {
     console.error(`${actions.REGISTRATION_FAILURE}: ${error.message}`);
     yield put(actions.registrationFailure(error.message));
-    Materialize.toast('Something went wrong during the registration, try again later!', 5000);
+    Materialize.toast('Something went wrong during the registration, please try again later!', 5000);
   }
 }
 
@@ -87,7 +87,7 @@ export function* loginFlow() {
         credentials.token = null;
         yield call(removeAuthToken);
         browserHistory.push('/login');
-        Materialize.toast('You have been successfully logged out', 5000);
+        Materialize.toast('You have been successfully signed out', 5000);
       }
 
     } catch ({ json, message }) {

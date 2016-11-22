@@ -49,12 +49,16 @@ let ProgressSurveyForm = ({ handleSubmit, onSubmitForm }) =>
       </Field>
     </div>
     <div>
+      <label htmlFor="knowledge_level">On a scale from 1 to 5, how would you rate your own skill level in programming?</label>
+      <Field name="knowledge_level" component={Range} type="range" min="1" max="5" />
+    </div>
+    <div>
       <label htmlFor="relevance">On a scale from 1 to 5, to which degree do you feel this software is relevant to learning python?</label>
       <Field name="relevance" component={Range} type="range" min="1" max="5" />
     </div>
     <div>
-      <label htmlFor="knowledge_level">On a scale from 1 to 5, how would you rate your own skill level in programming?</label>
-      <Field name="knowledge_level" component={Range} type="range" min="1" max="5" />
+      <label htmlFor="motivation">When you successfully complete a task, to what degree does that motivate you to keep working?</label>
+      <Field name="motivation" component={Range} type="range" min="1" max="5" />
     </div>
     <div>
       <label htmlFor="comments">Do you have any other comments related to this software?</label>
@@ -69,6 +73,7 @@ ProgressSurveyForm = reduxForm({
     knowledge_from: 'PEN',
     relevance: 1,
     knowledge_level: 1,
+    motivation: 1,
     comments: '',
   },
 })(ProgressSurveyForm);

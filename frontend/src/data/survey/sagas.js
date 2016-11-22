@@ -16,7 +16,7 @@ function* progressSurvey(action) {
     // TODO: Failure
     console.error(`${actions.POST_PROGRESS_SURVEY_FAILURE} : ${error.message}`);
     yield put(actions.postProgressSurveyFailure(error));
-    Materialize.toast('Unable to submit your form at this point, try again later', 5000);
+    Materialize.toast('Sorry, unable to submit your form at this point!', 5000);
   }
 }
 

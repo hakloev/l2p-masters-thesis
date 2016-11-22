@@ -157,7 +157,7 @@ class SubmitCode(views.APIView):
         # Check if the user should get survey about the software
         show_progress_survey = len(AssignmentSolvingAttempt.objects.filter(
             user=request.user,
-            correct_solution=correct_answer,
+            correct_solution=True,
         )) == 5 and not ProgressSurvey.objects.filter(user=request.user).exists()
 
         assignment_serialized = AssignmentSerializer(assignment)

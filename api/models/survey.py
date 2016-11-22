@@ -26,6 +26,7 @@ class ProgressSurvey(models.Model):
     knowledge_from = models.CharField(max_length=3, choices=KNOWLEDGE_CHOICES)
     knowledge_level = models.PositiveSmallIntegerField(choices=RATING, default=0)
     relevance = models.PositiveSmallIntegerField(choices=RATING, default=0)
+    motivation = models.PositiveSmallIntegerField(choices=RATING, default=0)
     comments = models.TextField(blank=True, default="")
 
     def __str__(self):

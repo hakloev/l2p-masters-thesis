@@ -5,7 +5,9 @@ from api.models.assignment import Assignment
 
 
 class IssueSerializer(serializers.ModelSerializer):
-    name = serializers.CharField()
+    name = serializers.CharField(
+        required=False
+    )
     email = serializers.EmailField()
     issue = serializers.CharField()
     assignmentId = serializers.PrimaryKeyRelatedField(
