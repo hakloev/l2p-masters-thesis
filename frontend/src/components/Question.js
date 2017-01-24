@@ -1,18 +1,13 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { InputEditor, OutputEditor, setEditorFocus } from './editor';
-// import StatisticsBadge from './StatisticsBadge';
 import { open as openModal } from './ReportModal';
 import { selectors as assignmentSelectors, actions } from '../data/assignment';
 import { selectors as statsSelectors } from '../data/stats';
 
 class Question extends Component {
-
   constructor(props) {
     super(props);
-    this.handleCompileCode = this.handleCompileCode.bind(this);
-    this.handleSubmitClick = this.handleSubmitClick.bind(this);
-    this.activateSidebar = this.activateSidebar.bind(this);
 
     this.state = {
       sidebarVisible: true,
@@ -27,19 +22,19 @@ class Question extends Component {
     $('.tooltipped').tooltip('remove');
   }
 
-  activateSidebar() {
+  activateSidebar = () => {
     setEditorFocus();
     this.setState({
       sidebarVisible: !this.state.sidebarVisible,
     });
   }
 
-  handleCompileCode() {
+  handleCompileCode = () => {
     this.props.onCompileClick({ code: this.props.editorValue });
     setEditorFocus();
   }
 
-  handleSubmitClick() {
+  handleSubmitClick = () => {
     const { assignment, hasCorrectSolution, assignmentTypes } = this.props;
     const payload = {
       assignment_pk: assignment.id,
@@ -51,7 +46,7 @@ class Question extends Component {
   }
 
   render() {
-    const { editorValue, isLoadingAssignment, compilation, assignment, assignmentTypeStreaks, hasCorrectSolution } = this.props;
+    const { editorValue, isLoadingAssignment, compilation, assignment, hasCorrectSolution } = this.props;
 
     return (
       <div id="assignment-container">
@@ -113,14 +108,6 @@ class Question extends Component {
           <i className="material-icons">keyboard_arrow_right</i>
         </button>
         <div id="assignment-sidebar" className={!this.state.sidebarVisible && 'is-hidden'}>
-          {/* <div className="row stats-column">
-            <div className="col s6">
-              <StatisticsBadge title="Current Streak" subtitle={`in this topic`} count={assignmentTypeStreaks.current_streak} />
-            </div>
-            <div className="col s6">
-              <StatisticsBadge title="Highest Streak" subtitle={`in this topic`} count={assignmentTypeStreaks.maximum_streak} />
-            </div>
-          </div> */}
           <div className="card task-card">
             <div className="card-content">
               <span className="card-title">Assignment:</span>
@@ -152,7 +139,6 @@ Question.propTypes = {
   assignment: PropTypes.object.isRequired,
   assignmentTypes: PropTypes.object,
   isLoadingAssignment: PropTypes.bool.isRequired,
-  assignmentTypeStreaks: PropTypes.object,
   compilation: PropTypes.object.isRequired,
   hasCorrectSolution: PropTypes.bool,
   editorValue: PropTypes.string.isRequired,
