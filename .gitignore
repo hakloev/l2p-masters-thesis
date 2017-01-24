@@ -9,6 +9,7 @@ __pycache__/
 l2p/settings/staging.py
 l2p/settings/production.py
 static/
+dev.db
 
 frontend/dist/*
 frontend/typings/*
