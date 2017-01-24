@@ -31,9 +31,9 @@ class Navbar extends Component {
         <nav className="teal">
           <div className="nav-wrapper">
             <Link to="/" className="brand-logo">LearnPython</Link>
-            <a href="#" data-activates="mobile-nav" className="button-collapse"><i className="material-icons">menu</i></a>
+            {/* <a href="#" data-activates="mobile-nav" className="button-collapse"><i className="material-icons">menu</i></a> */}
+            {/* menuItems('side-nav', 'mobile-nav', this.props) */}
             {menuItems('right hide-on-med-and-down', '', this.props)}
-            {menuItems('side-nav', 'mobile-nav', this.props)}
           </div>
         </nav>
       </div>
