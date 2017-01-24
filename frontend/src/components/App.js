@@ -15,14 +15,17 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Navbar isAuthenticated={this.props.isAuthenticated} onLogoutClick={this.props.onLogoutClick} />
+        <Navbar
+          isAuthenticated={this.props.isAuthenticated}
+          onLogoutClick={this.props.onLogoutClick}
+        />
         <div id="main-container">
           <div id="inner-container">
             {this.props.children}
           </div>
         </div>
-        <AchievementsModal />
         <ReportModal />
+        <AchievementsModal />
         <ProgressSurveyModal />
       </div>
     );

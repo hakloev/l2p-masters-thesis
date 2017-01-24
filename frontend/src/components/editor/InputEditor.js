@@ -31,7 +31,7 @@ class InputEditor extends Component {
     editorInstance.resize();
   }
 
-  onEditorChange() {
+  onEditorChange = () => {
     return newValue => {
       this.props.onChange(newValue);
     };

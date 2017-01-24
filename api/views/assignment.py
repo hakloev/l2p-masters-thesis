@@ -20,6 +20,10 @@ from api.models.assignment import AssignmentType, Assignment, AssignmentSolvingA
 from api.models.score import UserStreakTracker, AssignmentTypeScoreTracker
 from api.models.survey import ProgressSurvey
 
+
+DISPLAY_PROGRESS_SURVEY = False
+
+
 def get_new_assignment(user, type):
     log = logging.getLogger(__name__)
 
@@ -154,16 +158,17 @@ class SubmitCode(views.APIView):
         assignment = get_new_assignment(request.user, new_assignment_type)
         self.log.debug('UserID {}: Sending back assignment {}'.format(request.user, assignment.id))
 
-        # Check if the user should get survey about the software
-        show_progress_survey = len(AssignmentSolvingAttempt.objects.filter(
-            user=request.user,
-            correct_solution=True,
-        )) == 5 and not ProgressSurvey.objects.filter(user=request.user).exists()
+        if DISPLAY_PROGRESS_SURVEY:
+            # Check if the user should get survey about the software
+            show_progress_survey = len(AssignmentSolvingAttempt.objects.filter(
+                user=request.user,
+                correct_solution=True,
+            )) == 5 and not ProgressSurvey.objects.filter(user=request.user).exists()
 
         assignment_serialized = AssignmentSerializer(assignment)
         return Response({
             'assignment': assignment_serialized.data,
-            'show_progress_survey': show_progress_survey
+            'show_progress_survey': show_progress_survey if DISPLAY_PROGRESS_SURVEY else False
         }, status=status.HTTP_200_OK)
 
 

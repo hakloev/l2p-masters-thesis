@@ -7,22 +7,22 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'l2p',
-        'USER': 'learnpython',
-        'PASSWORD': 'learnpython',
-        'HOST': '',
-        'PORT': '5432',
-    },
     # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': 'dev.db',
-    #     'USER': '',
-    #     'PASSWORD': '',
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     'NAME': 'l2p',
+    #     'USER': 'learnpython',
+    #     'PASSWORD': 'learnpython',
     #     'HOST': '',
-    #     'PORT': '',
+    #     'PORT': '5432',
     # },
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'dev.db',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': '',
+    },
 }
 
 WEBPACK_LOADER = {
