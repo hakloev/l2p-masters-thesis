@@ -35,7 +35,7 @@
         "assignment_type": 2,
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "title": "Apples and oranges 2",
-        "assignment_text": "Complete the code below so that it prints \"Apples\" if apples is greater than oranges, and \"Oranges\" otherwise.",
+        "assignment_text": "Complete the code, so that it prints \"Apples\" if apples is greater than oranges, and prints \"Oranges\" otherwise.",
         "hint_text": "An if statement requires an operator to compare values, such as greater than >, less than <, equal ==, greater than or equal >=, or less than or equal <=",
         "code_body": "apples = 23\r\noranges = 12",
         "solution": "Apples"
@@ -92,7 +92,7 @@
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "title": "Ternary operator",
         "assignment_text": "Assign \"Greater\" to the variable <span class=\"code-block\">str</span> if a is greater than b",
-        "hint_text": "The ternary conditional operator: str = a if test else b\r\nFirst test is evaluated, then either a or b is returned based on the Boolean value of test;\r\nif test evaluates to True a is returned, else b is returned.",
+        "hint_text": "The ternary conditional operator: <span class=\"code-block\">str = a if test else b</span>\r\nFirst test is evaluated, then either a or b is returned based on the Boolean value of test;\r\nif test evaluates to True a is returned, else b is returned.",
         "code_body": "a = 52\r\nb = 45\r\nstr = # Your code goes here\r\nprint(str)",
         "solution": "Greater"
     }
@@ -161,7 +161,7 @@
         "assignment_type": 1,
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "title": "Functions",
-        "assignment_text": "Create the body of function <span class=\"code-block\">f(str1, str2)</span>. The function takes two string arguments, and should return the string that is longest. If they are of equal length, the string \"equal\" should be returned.",
+        "assignment_text": "Create the body of function <span class=\"code-block\">f(str1, str2)</span>. The function takes two string arguments, and should return the string that is longest. If they are of equal length, the string <b>equal</b> should be returned.",
         "hint_text": "The len(str) function can be used to check length of strings.\r\nExample: <br/>\r\nprint(len(\"asd\")) <br/>\r\n#3",
         "code_body": "def f(str1, str2):\r\n    # Your code here\r\n\r\n\r\n# Test cases below, do not change\r\nprint(f(\"aaa\", \"def\"))\r\nprint(f(\"Arne\", \"Bernt\"))\r\nprint(f(\"\", \"ppp\"))",
         "solution": "equal\r\nBernt\r\nppp"
@@ -217,8 +217,8 @@
         "assignment_type": 1,
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "title": "Functions 2 - absolute value",
-        "assignment_text": "Create a function <span class=\"code-block\"> f(int1, int2) </span>. The function should return the sum of the absolute value of int1 and the absolute value of int2 as an <b> integer </b>.",
-        "hint_text": "The absolute value of a number is the non-negative version of the number. The absolute value of -10 is 10 and the absolute value of 10 is 10. The math library contains the fabs method, which can be used to determine the absolute of a number. <br/>\r\nimport math </br>\r\nprint(math.fabs(-3)) </br>\r\n#3.0",
+        "assignment_text": "Create a function <span class=\"code-block\"> f(int1, int2)</span>. The function should return the sum of the absolute value of int1 and the absolute value of int2 as an <b>integer</b>.",
+        "hint_text": "The absolute value of a number is the non-negative version of the number. The absolute value of -10 is 10 and the absolute value of 10 is 10. The math library contains the fabs method, which can be used to determine the absolute of a number. <br/>\r\n<span class=\"code-block\">import math </span></br>\r\n<span class=\"code-block\">print(math.fabs(-3))</span> </br>\r\n<span class=\"code-block\">#3.0</span>",
         "code_body": "# Your code here\r\n\r\n\r\n#Test cases below, do not change\r\nprint(f(-3, 3))\r\nprint(f(10, 10))\r\nprint(f(4, -10))",
         "solution": "6\r\n20\r\n14"
     }
@@ -260,7 +260,7 @@
         "resource_url": "https://en.wikibooks.org/wiki/Non-Programmer%27s_Tutorial_for_Python_3/Recursion",
         "title": "Functions 3",
         "assignment_text": "Create a function <span class=\"code-block\">f(num)</span> that sums the numbers from 0 through num, and returns that sum.",
-        "hint_text": "",
+        "hint_text": "Remember to include <span class=\"code-block\">num</span> when calculating the sum.",
         "code_body": "#Your code here\r\n\r\n\r\n#Test cases, do not change\r\nprint(f(3))\r\nprint(f(9))",
         "solution": "6\r\n45"
     }
@@ -287,7 +287,7 @@
         "assignment_type": 3,
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#for-statements",
         "title": "While loop - Stop condition",
-        "assignment_text": "Create a loop that prints elements from <span class=\"code-block\">lst</span> until it finds a element that is <span class=\"code-block\"> None <span>. When it encounters <span class=\"code-block\">None</span>, it should stop printing. Start printing from the start of the list.",
+        "assignment_text": "Create a loop that prints elements from <span class=\"code-block\">lst</span> until it finds a element that is <span class=\"code-block\">None</span>. When it encounters <span class=\"code-block\">None</span>, it should stop printing. Start printing from the start of the list.",
         "hint_text": "",
         "code_body": "lst = [True, False, True, \"Bernt\", None, \"Bj\u00f8rn\"]",
         "solution": "True\r\nFalse\r\nTrue\r\nBernt"
@@ -343,8 +343,8 @@
         "assignment_type": 3,
         "resource_url": "https://wiki.python.org/moin/WhileLoop",
         "title": "While loop",
-        "assignment_text": "Create a while loop that runs until there are no elements left in the list <span class=\"code-block\">lst</span>. Each time the loop runs, the first element of the list should be removed and printed.",
-        "hint_text": "Lists in python have a <span class=\"code-block\">pop()</span> method. By default, this method removes and returns the last element of the list.\r\nlst = [\"a\", \"b\"]\r\nprint(lst.pop())\r\n#b",
+        "assignment_text": "Create a while loop that iterates until there are no elements left in the list <span class=\"code-block\">lst</span>. Each time the loop iterates, the first element of the list should be removed and printed.",
+        "hint_text": "Lists in python have a <span class=\"code-block\">pop()</span> method. By default, this method removes and returns the last element of the list. </br>\r\n<span class=\"code-block\">lst = [\"a\", \"b\"]</span> </br>\r\n<span class=\"code-block\">print(lst.pop())</span></br>\r\n<span class=\"code-block\">#b</span>",
         "code_body": "lst = [\"blue\", \"red\", \"yellow\"]\r\n#Your code here",
         "solution": "blue\r\nred\r\nyellow"
     }
@@ -427,9 +427,9 @@
         "assignment_type": 4,
         "resource_url": "https://en.wiktionary.org/wiki/Manhattan_distance",
         "title": "Manhattan distance",
-        "assignment_text": "Complete the function <span class=\"code-block\">manhattan_distance(list1, list2)</span>. The function takes two arguments, both are lists with two numbers each, a <it>x</it> and a <it>y</it> coordinate. The function should return the manhattan distance between the two arguments as an <b>integer</b>. Example: manhattan_distance([1, 2], [3, 1]) should return 3.",
-        "hint_text": "The manhattan distance is the strict vertical or horizontal path between two points.\r\n\r\nThe math library provides a <span class=\"code-block\"> fabs() </span> method that gives you the absolute value of a number. <br/>\r\nimport math <br/>\r\nprint(round(math.fabs(-4))) <br/>\r\n#4",
-        "code_body": "def manhattan_distance(list1, list2):\r\n    #Your code here\r\n\r\n#Test cases below, do not change\r\nmanhattan_distance([1, 2], [3, 1])\r\nmanhattan_distance([59, 30], [30, 59])\r\nmanhattan_distance([29, 356], [90, 67])",
+        "assignment_text": "Complete the function <span class=\"code-block\">manhattan_distance(list1, list2)</span>. The function takes two arguments, both are lists with two numbers each, a <it>x</it> and a <it>y</it> coordinate. The function should return the manhattan distance between the two arguments as an <b>integer</b>. Example: <span class=\"code-block\">manhattan_distance([1, 2], [3, 1])</span> should return 3.",
+        "hint_text": "The manhattan distance is the strict vertical or horizontal path between two points.\r\n\r\nThe math library provides a <span class=\"code-block\"> fabs() </span> method that gives you the absolute value of a number. <br/>\r\n<span class=\"code-block\">import math</span> <br/>\r\n<span class=\"code-block\">print(round(math.fabs(-4)))</span> <br/>\r\n<span class=\"code-block\">#4</span>",
+        "code_body": "def manhattan_distance(list1, list2):\r\n    #Your code here\r\n\r\n\r\n#Test cases below, do not change\r\nprint(manhattan_distance([1, 2], [3, 1]))\r\nprint(manhattan_distance([59, 30], [30, 59]))\r\nprint(manhattan_distance([29, 356], [90, 67]))",
         "solution": "3\r\n58\r\n350"
     }
 },
@@ -441,7 +441,7 @@
         "assignment_type": 4,
         "resource_url": "https://www.dotnetperls.com/2d-python",
         "title": "Weather measurements",
-        "assignment_text": "Create a function <span class=\"code-block\">avg_temperature(weather) </span>. The function takes one argument, a two-dimensional list where each inner list consists of 3 integers. Each list represent temperatures during the day, and the integers are temperatures in respectively the morning, afternoon and evening. The function should return a list consisting of three <b>integers</b>, where each number is the average temperature of that time of day, for all the days. Example: avg_temperature([[15, 20, 14], [17, 18, 18]] should return [16, 19, 16].",
+        "assignment_text": "Create a function <span class=\"code-block\">avg_temperature(weather)</span>. The function takes one argument, a two-dimensional list where each inner list consists of 3 integers. Each list represent temperatures during the day, and the integers are temperatures in respectively the morning, afternoon and evening. The function should return a list consisting of three <b>integers</b>, where each number is the average temperature of that time of day, for all the days. Example: <span class=\"code-block\">avg_temperature([[15, 20, 14], [17, 18, 18]])</span> should return <span class=\"code-block\">[16, 19, 16]</span>.",
         "hint_text": "",
         "code_body": "#Your code here\r\n\r\n\r\n#Test cases, do not change\r\nprint(avg_temperature([[20, 20, 18], [22, 18, 14], [21, 19, 16]]))\r\nprint(avg_temperature([[22, 13, 14], [20, 17, 14], [18, 21, 16], [16, 25, 16]]))",
         "solution": "[21, 19, 16]\r\n[19, 19, 15]"
@@ -471,7 +471,7 @@
         "title": "The fibonacci sequence",
         "assignment_text": "Create the code body of the function <span class=\"code-block\">fib_sum(n)</span>. The function should return the sum of the n-th first fibonacci numbers. Example: The first 5 fibonacci numbers are 1, 1, 2, 3 and 5. fib_sum(5) should thus return 12.",
         "hint_text": "The task can be solved both iteratively and recursively. Fibonacci numbers are characterized by the fact that every number after the first two is the sum of the two preceding ones.",
-        "code_body": "def fib_num(n):\r\n    #Your code here\r\n\r\n\r\n#Test cases below, do not change\r\nprint(fib_num(5))\r\nprint(fib_num(10))",
+        "code_body": "def fib_sum(n):\r\n    #Your code here\r\n\r\n\r\n#Test cases below, do not change\r\nprint(fib_sum(5))\r\nprint(fib_sum(10))",
         "solution": "12\r\n143"
     }
 },
@@ -497,7 +497,7 @@
         "assignment_type": 4,
         "resource_url": "",
         "title": "Character search",
-        "assignment_text": "Create the code body of the function <span class=\"code-block\">find_occurances(character_string, character)</span>. The function takes two arguments, a string, and a character to search for, represented as a string. The function should return the amount of occurances of the character in the string. Example: find_occurances(\"abccd\", \"c\") should return 2.",
+        "assignment_text": "Create the code body of the function <span class=\"code-block\">find_occurances(character_string, character)</span>. The function takes two arguments, a string, and a character to search for, represented as a string. The function should return the amount of occurances of the character in the string. Example: <span class=\"code-block\">find_occurances(\"abccd\", \"c\")</span> should return 2.",
         "hint_text": "",
         "code_body": "#Your code here\r\n\r\n\r\n#Test cases below, do not change\r\nprint(find_occurances(\"abccdehhkslccaqwecqjoijoijgoijoejiowc\", \"c\"))\r\nprint(find_occurances(\"ooiohofnsonafosnfoafsnfoasnqqnafosfnsaof\", \"q\"))",
         "solution": "6\r\n2"
@@ -539,7 +539,7 @@
         "assignment_type": 4,
         "resource_url": "",
         "title": "Time converting",
-        "assignment_text": "Create a function <span class=\"code-block\">time_converter(hours, minutes, seconds)</span>. The function should convert hours and minutes and return the time in seconds. Example: time_converter(1, 2, 40) should return 3760.",
+        "assignment_text": "Create a function <span class=\"code-block\">time_converter(hours, minutes, seconds)</span>. The function should convert hours and minutes and return the time in seconds. Example: <span class=\"code-block\">time_converter(1, 2, 40)</span> should return 3760.",
         "hint_text": "",
         "code_body": "#Your code here\r\n\r\n\r\n#Test cases, do not change\r\nprint(time_converter(1, 2, 40))\r\nprint(time_converter(10, 3, 40))\r\nprint(time_converter(4, 2, 0))",
         "solution": "3760\r\n36220\r\n14520"
@@ -553,7 +553,7 @@
         "assignment_type": 4,
         "resource_url": "",
         "title": "List merging",
-        "assignment_text": "Create a function <span class=\"code-block\">merge_lists(l1, l2)</span>. The function should braid the lists, and return one list, containing all the elements from both lists. If one list is longer than the other, the remaining values should be appended to the end of the list. Example: merge_lists([1,2,3], [4, 5, 6, 7, 8] should return [1, 4, 2, 5, 3, 6, 7, 8].",
+        "assignment_text": "Create a function <span class=\"code-block\">merge_lists(l1, l2)</span>. The function should braid the lists, and return one list, containing all the elements from both lists. If one list is longer than the other, the remaining values should be appended to the end of the list. Example: <span class=\"code-block\">merge_lists([1,2,3], [4, 5, 6, 7, 8])</span> should return <span class=\"code-block\">[1, 4, 2, 5, 3, 6, 7, 8]</span>.",
         "hint_text": "",
         "code_body": "#Your code here\r\n\r\n\r\n#Test cases below, do not change\r\nprint(merge_lists([1, 2, 3], [4, 5, 6]))\r\nprint(merge_lists([\"a\", \"x\", \"c\", \"d\", \"o\"], [\"a\", \"j\", \"a\"]))",
         "solution": "[1, 4, 2, 5, 3, 6]\r\n['a', 'a', 'x', 'j', 'c', 'a', 'd', 'o']"
@@ -585,6 +585,48 @@
         "hint_text": "A palindrome is a word, phrase, number, or other sequence of characters which reads the same backward or forward, such as madam or redder.",
         "code_body": "#Your code here\r\n\r\n\r\n#Test cases below, do not change\r\nprint(is_palindrome(\"bernt hulsker\"))\r\nprint(is_palindrome(\"sator arepo tenet opera rotas\"))\r\nprint(is_palindrome(\"kayak\"))\r\nprint(is_palindrome(\"redder\"))",
         "solution": "False\r\nTrue\r\nTrue\r\nTrue"
+    }
+},
+{
+    "model": "api.assignment",
+    "pk": 69,
+    "fields": {
+        "is_public": true,
+        "assignment_type": 3,
+        "resource_url": "",
+        "title": "Loops - Decrement",
+        "assignment_text": "Create a for-loop that prints all numbers from 10 through 1.",
+        "hint_text": "The final parameter in the <span class=\"code-block\">range()</span> function is step. This can be used to continuosly decrement in a for-loop.",
+        "code_body": "#Your code here",
+        "solution": "10\r\n9\r\n8\r\n7\r\n6\r\n5\r\n4\r\n3\r\n2\r\n1"
+    }
+},
+{
+    "model": "api.assignment",
+    "pk": 70,
+    "fields": {
+        "is_public": true,
+        "assignment_type": 4,
+        "resource_url": "",
+        "title": "List equality",
+        "assignment_text": "Complete the function <span class=\"code-block\">list_equality(l1, l2)</span>. The function takes two equal length lists as arguments. The function should return the amount of list slots that contain the same item. For it to count as equal, the items must be at the same spot in both lists. Example: <span class=\"code-block\">list_equality([1, 2, 3], [1, 2, 4])</span> should return 2 and <span class=\"code-block\">list_equality([3, 1, 1], [1, 3, 3])</span> should return 0.",
+        "hint_text": "",
+        "code_body": "def list_equality(l1, l2):\r\n    #Your code here\r\n\r\n\r\n#Test cases below, do not change\r\nprint(list_equality([1, 2, 3, 4, 5, 6], [6, 5, 3, 4, 2, 1]))\r\nprint(list_equality([1, 1, \"a\", \"b\"], [\"b\", \"b\", \"b\", \"b\"]))",
+        "solution": "2\r\n1"
+    }
+},
+{
+    "model": "api.assignment",
+    "pk": 71,
+    "fields": {
+        "is_public": true,
+        "assignment_type": 4,
+        "resource_url": "",
+        "title": "Binary to decimal",
+        "assignment_text": "Complete the function <span class=\"code-block\">bin_to_dec(bin_string)</span>. The function takes a binary number, represented as a string as input. The function should convert the given binary number to the corresponding number in the decimal system, and return it as an <b>integer</b>. Example: <span class=\"code-block\">bin_to_dec(\"101\")</span> should return 5 and <span class=\"code-block\"> bin_to_dec(\"111100\")</span> should return 60.",
+        "hint_text": "",
+        "code_body": "def bin_to_dec(bin_string):\r\n    #Your code here\r\n\r\n\r\n#Test cases below, do not change\r\nprint(bin_to_dec(\"111100\"))\r\nprint(bin_to_dec(\"101010101010\"))\r\nprint(bin_to_dec(\"010111\"))",
+        "solution": "60\r\n2730\r\n23"
     }
 },
 {
