@@ -6,12 +6,13 @@ import 'font-awesome/css/font-awesome.min.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { AppContainer } from 'react-hot-loader';
-import { browserHistory } from 'react-router';
+import Root from './Root';
+
 
 import initializeGoogleAnalytics from './common/analytics';
 
 import configureStore from './configureStore';
+import HMRContainer from './containers/HMRContainer';
 
 import { actions as assignmentActions } from './data/assignment';
 
@@ -25,29 +26,28 @@ const store = configureStore();
 // Load inital data
 store.dispatch(assignmentActions.getAssignmentTypesRequest());
 
-const renderApp = () => {
-  // eslint-disable-next-line global-require
-  const NextRoot = require('./rootProvider').default;
+const App = (
+  <HMRContainer>
+    <Root store={store} />
+  </HMRContainer>
+);
 
-  ReactDOM.render(
-    <AppContainer>
-      <NextRoot history={browserHistory} store={store} />
-    </AppContainer>,
-    appMount
-  );
-};
+try {
+  ReactDOM.render(App, appMount);
+  if (module.hot) {
+    module.hot.accept('./Root', () => {
+      const NextApp = require('./Root').default;
 
-renderApp();
-
-if (module.hot) {
-  module.hot.accept('./rootReducer', () => {
-    // eslint-disable-next-line global-require
-    const nextRootReducer = require('./rootReducer').default;
-
-    store.replaceReducer(nextRootReducer);
-  });
-
-  module.hot.accept('./rootProvider', () => {
-    renderApp();
-  });
+      ReactDOM.render(
+        <HMRContainer>
+          <NextApp store={store} />
+        </HMRContainer>,
+        appMount
+      );
+    });
+  }
+} catch (err) {
+    console.error('Render Error:', err);
 }
+
+export default App;

@@ -1,10 +1,10 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
-import Navbar from './Navbar';
+import Navbar from '../components/Navbar';
 import { actions as authActions } from '../data/auth';
-import AchievementsModal from './AchievementsModal';
-import ReportModal from './ReportModal';
-import ProgressSurveyModal from './ProgressSurveyModal';
+import AchievementsModal from '../components/AchievementsModal';
+import ReportModal from '../components/ReportModal';
+import ProgressSurveyModal from '../components/ProgressSurveyModal';
 
 class App extends Component {
 
