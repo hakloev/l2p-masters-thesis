@@ -35,13 +35,13 @@ def get_new_assignment(user, type):
 
     # Get active assignments from the current assignment_type that is still unsolved
     result = Assignment.active_assignments.filter(
-        assignment_type=type
+        assignment_types=type
     ).exclude(id__in=user_solved)
 
     if not result:
         log.debug('All assignments of type {} solved, returning random assignment'.format(type))
         return random.choice(Assignment.active_assignments.filter(
-            assignment_type=type,
+            assignment_types=type,
         ))
 
     log.debug('Found unsolved assignment of type {}'.format(type))
@@ -136,24 +136,29 @@ class SubmitCode(views.APIView):
         )
 
         user_streak_tracker, created = UserStreakTracker.objects.get_or_create(user=request.user)
-        score_type_tracker, created = AssignmentTypeScoreTracker.objects.get_or_create(
+
+        # Get the score tracker for all assignment types registered on the previous assignment
+        score_type_trackers = [AssignmentTypeScoreTracker.objects.get_or_create(
             user=request.user,
-            assignment_type=previous_assignment.assignment_type
-        )
+            assignment_type=assignment_type
+        ) for assignment_type in previous_assignment.assignment_types.all()]
 
         if correct_answer:
             user_streak_tracker.streak += 1
-            score_type_tracker.current_streak += 1
-            score_type_tracker.score += 1
+            for score_type_tracker, created in score_type_trackers:
+                score_type_tracker.current_streak += 1
+                score_type_tracker.score += 1
+                score_type_tracker.save()
             request.user.student.aggregated_score += 1
         else:
             user_streak_tracker.streak = 0
-            score_type_tracker.current_streak = 0
+            for score_type_tracker, created in score_type_trackers:
+                score_type_tracker.current_streak = 0
+                score_type_tracker.save()
 
         request.user.student.attempted_assignments += 1
         request.user.student.save()
         user_streak_tracker.save()
-        score_type_tracker.save()
 
         assignment = get_new_assignment(request.user, new_assignment_type)
         self.log.debug('UserID {}: Sending back assignment {}'.format(request.user, assignment.id))

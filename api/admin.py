@@ -14,18 +14,29 @@ class AchievementAdmin(admin.ModelAdmin):
     pass
 
 
+class AssignmentTypeInline(admin.TabularInline):
+    model = Assignment.assignment_types.through
+    extra = 1
+    verbose_name = 'Assignment Type'
+    verbose_name_plural = 'Assignment Types'
+
+
 class AssignmentAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'assignment_type', 'is_public')
+    list_display = ('id', 'title', 'is_public', 'get_assignment_types')
+    inlines = (AssignmentTypeInline,)
+    exclude = ('assignment_types',)
     fields = (
         'is_public',
         'resource_url',
-        'assignment_type',
         'title',
         'assignment_text',
         'hint_text',
         'code_body',
         'solution',
     )
+
+    def get_assignment_types(self, obj):
+        return ', '.join([str(assignment_type) for assignment_type in obj.assignment_types.all()])
 
 
 class AssignmentSolvingAttemptAdmin(admin.ModelAdmin):
