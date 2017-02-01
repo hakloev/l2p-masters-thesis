@@ -7,7 +7,7 @@ class TestSelector extends Component {
 
     return (
       <div className="row">
-        <div className="col s12">
+        <div className="col s12 center">
           <p>Click the button below in order to start:</p>
           <button
             type="submit"
