@@ -20,7 +20,7 @@ class StartContainer extends React.Component {
 
   render() {
     return <div>
-      <Banner title={SHOULD_DISPLAY_TEST ? 'start test' : 'select a quiz'} />
+      <Banner title={SHOULD_DISPLAY_TEST ? 'start' : 'select a quiz'} />
       <div className="container start-quiz-container">
         { SHOULD_DISPLAY_TEST ?
           <TestSelector
