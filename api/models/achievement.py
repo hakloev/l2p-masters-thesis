@@ -8,7 +8,6 @@ class Achievement(models.Model):
     achievement database object with the achievement in utils.
     - Sorry for not making a better way to handle achievements.
     """
-    #TODO: FIGURE OUT A NICE WAY TO HANDLE ACHIEVEMENTS
     title = models.CharField(default="", max_length=100)
     identifier_string = models.CharField(default="", max_length=10, blank=True)
     description = models.TextField(default="", blank=True)

@@ -5,7 +5,6 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 from api.models.achievement import Achievement
-# from api.models.assignment import Assignment
 
 
 class Student(models.Model):

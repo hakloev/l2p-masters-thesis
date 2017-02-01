@@ -23,8 +23,9 @@ class AssignmentTypeInline(admin.TabularInline):
 
 class AssignmentAdmin(admin.ModelAdmin):
     list_display = ('id', 'title', 'is_public', 'get_assignment_types')
-    inlines = (AssignmentTypeInline,)
-    exclude = ('assignment_types',)
+    inlines = (
+        AssignmentTypeInline,
+    )
     fields = (
         'is_public',
         'resource_url',
@@ -36,14 +37,19 @@ class AssignmentAdmin(admin.ModelAdmin):
     )
 
     def get_assignment_types(self, obj):
+        #  Create a string of all assignment types linked to the to current assignment
         return ', '.join([str(assignment_type) for assignment_type in obj.assignment_types.all()])
+    get_assignment_types.short_description = 'Assignment Types'
 
 
 class AssignmentSolvingAttemptAdmin(admin.ModelAdmin):
     list_display = ('user', 'get_assignment', 'correct_solution', )
 
     def get_assignment(self, obj):
+        #  Get the assignment id and title for the list display
         return '{}: {}'.format(obj.assignment.id, obj.assignment.title)
+    get_assignment.short_description = 'Assignment'
+
 
 class AssignmentTypeScoreTrackerAdmin(admin.ModelAdmin):
     list_display = ('user', 'assignment_type', 'current_streak', 'maximum_streak')
@@ -59,15 +65,18 @@ class StudentInline(admin.StackedInline):
 
 
 class UserAdmin(BaseUserAdmin):
-    inlines = (StudentInline,)
+    inlines = (
+        StudentInline,
+    )
 
     def __init__(self, *args, **kwargs):
         super(BaseUserAdmin, self).__init__(*args, **kwargs)
         BaseUserAdmin.list_display = ('username', 'email', 'attend_survey', 'is_staff')
 
     def attend_survey(self, obj):
+        #  Get the survey boolean for the list display
         return obj.student.attend_survey
-
+    attend_survey.short_description = 'Wil attend survey?'
     attend_survey.boolean = True
 
 

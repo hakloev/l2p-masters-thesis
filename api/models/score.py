@@ -36,7 +36,6 @@ class UserStreakTracker(models.Model):
 @receiver(post_save, sender=User, dispatch_uid=uuid.uuid1())
 def update_streak_tracker_user(sender, instance, created, **kwargs):
     if created:
-        print('test')
         streak_tracker = UserStreakTracker(user=instance)
         streak_tracker.save()
 

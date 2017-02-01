@@ -33,4 +33,6 @@ class ProgressSurvey(models.Model):
         return self.user.username
 
     class Meta:
+        verbose_name = 'Progress Survey'
+        verbose_name_plural = 'Progress Surveys'
         ordering = ['-answered_at']

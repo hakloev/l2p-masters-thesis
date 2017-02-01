@@ -13,6 +13,10 @@ class AssignmentType(models.Model):
     def __str__(self):
         return self.type_name
 
+    class Meta:
+        verbose_name = 'Assignment Type'
+        verbose_name_plural = 'Assignment Types'
+
 
 class ActiveAssignments(models.Manager):
     def get_queryset(self):
@@ -24,7 +28,10 @@ class Assignment(models.Model):
     Model for assignments
     """
     is_public = models.BooleanField(default=False)
-    assignment_types = models.ManyToManyField(AssignmentType, related_name='assignment_types')
+    assignment_types = models.ManyToManyField(
+        AssignmentType,
+        related_name='assignment_types'
+    )
     resource_url = models.URLField(blank=True, null=True)
     title = models.CharField(max_length=100)
     assignment_text = models.TextField(default="", blank=True)
