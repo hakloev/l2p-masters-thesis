@@ -4,7 +4,7 @@
     "pk": 3,
     "fields": {
         "is_public": true,
-        "assignment_type": 2,
+        "assignment_types": [2],
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "title": "Greater than",
         "assignment_text": "Complete the code below by making it print out \"Big\" if <span class=\"code-block\">num</span> is greater than 42 and False otherwise.",
@@ -18,7 +18,7 @@
     "pk": 8,
     "fields": {
         "is_public": true,
-        "assignment_type": 2,
+        "assignment_types": [2],
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "title": "If not?",
         "assignment_text": "Complete the code below by printing \"False\" if <span class=\"code-block\">condition</span> is not true",
@@ -32,7 +32,7 @@
     "pk": 13,
     "fields": {
         "is_public": true,
-        "assignment_type": 2,
+        "assignment_types": [2],
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "title": "Apples and oranges 2",
         "assignment_text": "Complete the code, so that it prints \"Apples\" if apples is greater than oranges, and prints \"Oranges\" otherwise.",
@@ -46,7 +46,7 @@
     "pk": 14,
     "fields": {
         "is_public": true,
-        "assignment_type": 2,
+        "assignment_types": [2],
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "title": "Quiet 2",
         "assignment_text": "Print \"Empty\" if the string <span class=\"code-block\">str</span> is empty.",
@@ -60,7 +60,7 @@
     "pk": 17,
     "fields": {
         "is_public": true,
-        "assignment_type": 2,
+        "assignment_types": [2],
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "title": "If not 2?",
         "assignment_text": "Complete the code below by printing \"False\" if <span class=\"code-block\">condition</span> is not true",
@@ -74,7 +74,7 @@
     "pk": 18,
     "fields": {
         "is_public": true,
-        "assignment_type": 2,
+        "assignment_types": [2],
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "title": "More or less 2",
         "assignment_text": "Complete the code below, so that it prints \"More\" if the <span class=\"code-block\">money</span> variable is greater than 9000, and \"Less\" otherwise.",
@@ -88,7 +88,7 @@
     "pk": 22,
     "fields": {
         "is_public": true,
-        "assignment_type": 2,
+        "assignment_types": [2],
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "title": "Ternary operator",
         "assignment_text": "Assign \"Greater\" to the variable <span class=\"code-block\">str</span> if a is greater than b",
@@ -102,7 +102,7 @@
     "pk": 23,
     "fields": {
         "is_public": true,
-        "assignment_type": 2,
+        "assignment_types": [2],
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
         "title": "Food list 2",
         "assignment_text": "Print \"In the list\" if the string \"pizza\"  is in the list <span class=\"code-block\">l</span>",
@@ -116,7 +116,7 @@
     "pk": 26,
     "fields": {
         "is_public": true,
-        "assignment_type": 1,
+        "assignment_types": [1],
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "title": "Functions",
         "assignment_text": "Create the body of the function <span class=\"code-block\">f(num)</span> so that it returns the argument <span class=\"code-block\">num</span> squared.",
@@ -130,7 +130,7 @@
     "pk": 28,
     "fields": {
         "is_public": true,
-        "assignment_type": 1,
+        "assignment_types": [1],
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "title": "Functions",
         "assignment_text": "Create the body of the function <span class=\"code-block\">f(num1, num2)</span> so that it returns the product of <span class=\"code-block\">num1</span> * <span class=\"code-block\">num2</span>",
@@ -144,7 +144,7 @@
     "pk": 30,
     "fields": {
         "is_public": true,
-        "assignment_type": 1,
+        "assignment_types": [1],
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "title": "Functions",
         "assignment_text": "Create the body of the function <span class=\"code-block\">f(num)</span> so that it returns the argument <span class=\"code-block\">num</span> multiplied by 10.",
@@ -158,7 +158,7 @@
     "pk": 31,
     "fields": {
         "is_public": true,
-        "assignment_type": 1,
+        "assignment_types": [1],
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "title": "Functions",
         "assignment_text": "Create the body of function <span class=\"code-block\">f(str1, str2)</span>. The function takes two string arguments, and should return the string that is longest. If they are of equal length, the string <b>equal</b> should be returned.",
@@ -172,7 +172,7 @@
     "pk": 32,
     "fields": {
         "is_public": true,
-        "assignment_type": 1,
+        "assignment_types": [1],
         "resource_url": "http://www.python-course.eu/recursive_functions.php",
         "title": "Functions - Recursion",
         "assignment_text": "Create the body of the function <span class=\"code-block\">f()</span>. The function takes an argument num, and is called with num = 1 the first time it is called. The function should call itself with num + 1, printing the <span class=\"code-block\">num</span> at the start of each function call. The function should print \"Done\" when num is 10, and then return True.",
@@ -186,7 +186,7 @@
     "pk": 34,
     "fields": {
         "is_public": true,
-        "assignment_type": 1,
+        "assignment_types": [1],
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "title": "Functions 2",
         "assignment_text": "Make the argument <span class=\"code-block\">num2</span> have a default value of 2.",
@@ -200,7 +200,7 @@
     "pk": 35,
     "fields": {
         "is_public": true,
-        "assignment_type": 1,
+        "assignment_types": [1],
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "title": "Functions 2",
         "assignment_text": "Create a function <span class=\"code-block\">f(num1, num2)</span> that takes two arguments as input,  and returns the sum of them.",
@@ -214,7 +214,7 @@
     "pk": 36,
     "fields": {
         "is_public": true,
-        "assignment_type": 1,
+        "assignment_types": [1],
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "title": "Functions 2 - absolute value",
         "assignment_text": "Create a function <span class=\"code-block\"> f(int1, int2)</span>. The function should return the sum of the absolute value of int1 and the absolute value of int2 as an <b>integer</b>.",
@@ -228,7 +228,7 @@
     "pk": 37,
     "fields": {
         "is_public": true,
-        "assignment_type": 1,
+        "assignment_types": [1],
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "title": "Functions 2",
         "assignment_text": "Create a function <span class=\"code-block\">f(num)</span> that takes one argument as input, and returns the argument multiplied by 10.",
@@ -242,7 +242,7 @@
     "pk": 38,
     "fields": {
         "is_public": true,
-        "assignment_type": 1,
+        "assignment_types": [1],
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "title": "Functions 2",
         "assignment_text": "Complete the function f so that it returns True if arg1 and arg2 are equal, and returns False otherwise.",
@@ -256,7 +256,7 @@
     "pk": 39,
     "fields": {
         "is_public": true,
-        "assignment_type": 1,
+        "assignment_types": [1],
         "resource_url": "https://en.wikibooks.org/wiki/Non-Programmer%27s_Tutorial_for_Python_3/Recursion",
         "title": "Functions 3",
         "assignment_text": "Create a function <span class=\"code-block\">f(num)</span> that sums the numbers from 0 through num, and returns that sum.",
@@ -270,7 +270,7 @@
     "pk": 40,
     "fields": {
         "is_public": true,
-        "assignment_type": 1,
+        "assignment_types": [1],
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
         "title": "Functions 3",
         "assignment_text": "Create the body of function <span class=\"code-block\">f(num)</span> that prints all even numbers less than the argument num.",
@@ -284,7 +284,7 @@
     "pk": 43,
     "fields": {
         "is_public": true,
-        "assignment_type": 3,
+        "assignment_types": [3],
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#for-statements",
         "title": "While loop - Stop condition",
         "assignment_text": "Create a loop that prints elements from <span class=\"code-block\">lst</span> until it finds a element that is <span class=\"code-block\">None</span>. When it encounters <span class=\"code-block\">None</span>, it should stop printing. Start printing from the start of the list.",
@@ -298,7 +298,7 @@
     "pk": 45,
     "fields": {
         "is_public": true,
-        "assignment_type": 3,
+        "assignment_types": [3],
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#for-statements",
         "title": "Simple for-loop",
         "assignment_text": "Create a loop that prints all the elements in <span class=\"code-block\">lst</span>.",
@@ -312,7 +312,7 @@
     "pk": 46,
     "fields": {
         "is_public": true,
-        "assignment_type": 3,
+        "assignment_types": [3],
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#for-statements",
         "title": "Loop multiplication",
         "assignment_text": "Create a loop that prints all the elements in <span class=\"code-block\">lst</span> multiplied. Example: lst[1, 2, 3, 4] should print 24. (1*2*3*4)",
@@ -326,7 +326,7 @@
     "pk": 47,
     "fields": {
         "is_public": true,
-        "assignment_type": 3,
+        "assignment_types": [3],
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#for-statements",
         "title": "ForLoops - Even number check",
         "assignment_text": "Complete the loop so that it prints all even numbers from 1 through 20.",
@@ -340,7 +340,7 @@
     "pk": 49,
     "fields": {
         "is_public": true,
-        "assignment_type": 3,
+        "assignment_types": [3],
         "resource_url": "https://wiki.python.org/moin/WhileLoop",
         "title": "While loop",
         "assignment_text": "Create a while loop that iterates until there are no elements left in the list <span class=\"code-block\">lst</span>. Each time the loop iterates, the first element of the list should be removed and printed.",
@@ -354,7 +354,7 @@
     "pk": 50,
     "fields": {
         "is_public": true,
-        "assignment_type": 3,
+        "assignment_types": [3],
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#for-statements",
         "title": "Loops 2",
         "assignment_text": "Create a loop that prints all the elements in <span class=\"code-block\"> lst</span>.",
@@ -368,7 +368,7 @@
     "pk": 51,
     "fields": {
         "is_public": true,
-        "assignment_type": 3,
+        "assignment_types": [3],
         "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#for-statements",
         "title": "Loops 3",
         "assignment_text": "Complete the <span class=\"code-block\">for</span> loop, so that it prints all elements in <span class=\"code-block\">lst</span> that is not None.",
@@ -382,7 +382,7 @@
     "pk": 52,
     "fields": {
         "is_public": true,
-        "assignment_type": 4,
+        "assignment_types": [4],
         "resource_url": "",
         "title": "Character ratio",
         "assignment_text": "Create the code body of the function <span class=\"code-block\">character_ratio(character_string)</span>. The input is a string, consisting of all kinds of characters.  The function should return the ratio of characters that are in the alphabet, as opposed to those that are not. The answer should be round to two decimals. Example: \"asd_\" should return 0.75, and \"a_|\" should return 0.33.",
@@ -396,7 +396,7 @@
     "pk": 53,
     "fields": {
         "is_public": true,
-        "assignment_type": 4,
+        "assignment_types": [4],
         "resource_url": "",
         "title": "Remove duplicates",
         "assignment_text": "Complete the function <span class=\"code-block\">shorten_string(str)</span>. It should return a new string, where any occurance of two or more of the same character following one another is shortened to only one occurance of that character. Example: \"looooollooool\" should be shortened to \"lolol\" and \"aaaaaa\" should be shortened to \"a\".",
@@ -410,7 +410,7 @@
     "pk": 54,
     "fields": {
         "is_public": true,
-        "assignment_type": 4,
+        "assignment_types": [4],
         "resource_url": "",
         "title": "Length of square edges",
         "assignment_text": "Complete the function <span class=\"code-block\">square_area()</span>. The function takes the area of a square as an argument. It should return the total length of the edges around that square as an <b>integer</b>. Example: A square area of 4 should return 8, and a square area of 16 should return 16.",
@@ -424,7 +424,7 @@
     "pk": 56,
     "fields": {
         "is_public": true,
-        "assignment_type": 4,
+        "assignment_types": [4],
         "resource_url": "https://en.wiktionary.org/wiki/Manhattan_distance",
         "title": "Manhattan distance",
         "assignment_text": "Complete the function <span class=\"code-block\">manhattan_distance(list1, list2)</span>. The function takes two arguments, both are lists with two numbers each, a <it>x</it> and a <it>y</it> coordinate. The function should return the manhattan distance between the two arguments as an <b>integer</b>. Example: <span class=\"code-block\">manhattan_distance([1, 2], [3, 1])</span> should return 3.",
@@ -438,7 +438,7 @@
     "pk": 57,
     "fields": {
         "is_public": true,
-        "assignment_type": 4,
+        "assignment_types": [4],
         "resource_url": "https://www.dotnetperls.com/2d-python",
         "title": "Weather measurements",
         "assignment_text": "Create a function <span class=\"code-block\">avg_temperature(weather)</span>. The function takes one argument, a two-dimensional list where each inner list consists of 3 integers. Each list represent temperatures during the day, and the integers are temperatures in respectively the morning, afternoon and evening. The function should return a list consisting of three <b>integers</b>, where each number is the average temperature of that time of day, for all the days. Example: <span class=\"code-block\">avg_temperature([[15, 20, 14], [17, 18, 18]])</span> should return <span class=\"code-block\">[16, 19, 16]</span>.",
@@ -452,7 +452,7 @@
     "pk": 58,
     "fields": {
         "is_public": true,
-        "assignment_type": 4,
+        "assignment_types": [4],
         "resource_url": "",
         "title": "Fizzbuzz",
         "assignment_text": "Create a function <span class=\"code-block\">fizzbuzz()</span> that takes no arguments. The function should loop from 1 through 10, and for each number print: \"fizz\" if the number is divisible by 3, \"buzz\" if the number is divisible by 5, and \"fizzbuzz\" if the number is divisible by both.",
@@ -466,7 +466,7 @@
     "pk": 59,
     "fields": {
         "is_public": true,
-        "assignment_type": 4,
+        "assignment_types": [4],
         "resource_url": "https://en.wikipedia.org/wiki/Fibonacci_number",
         "title": "The fibonacci sequence",
         "assignment_text": "Create the code body of the function <span class=\"code-block\">fib_sum(n)</span>. The function should return the sum of the n-th first fibonacci numbers. Example: The first 5 fibonacci numbers are 1, 1, 2, 3 and 5. fib_sum(5) should thus return 12.",
@@ -480,7 +480,7 @@
     "pk": 60,
     "fields": {
         "is_public": true,
-        "assignment_type": 4,
+        "assignment_types": [4],
         "resource_url": "",
         "title": "Reverse list",
         "assignment_text": "Create a function <span class=\"code-block\">reverse_list(to_reverse)</span>. The function takes a list as an argument, and should return a list where the elements of the original list are reversed. Example: reverse_list([1, 2, 3, 4]) should return [4, 3, 2, 1].",
@@ -494,7 +494,7 @@
     "pk": 61,
     "fields": {
         "is_public": true,
-        "assignment_type": 4,
+        "assignment_types": [4],
         "resource_url": "",
         "title": "Character search",
         "assignment_text": "Create the code body of the function <span class=\"code-block\">find_occurances(character_string, character)</span>. The function takes two arguments, a string, and a character to search for, represented as a string. The function should return the amount of occurances of the character in the string. Example: <span class=\"code-block\">find_occurances(\"abccd\", \"c\")</span> should return 2.",
@@ -508,7 +508,7 @@
     "pk": 62,
     "fields": {
         "is_public": true,
-        "assignment_type": 4,
+        "assignment_types": [4],
         "resource_url": "",
         "title": "Tax calculation",
         "assignment_text": "Create the function <span class=\"code-block\">tax_calculation(income)</span>. The function should return the amount of tax that is to be payed as an <b> integer </b>. The rules are as follows: For any income up to 50 000, no tax is payed. From 50 000 to 100 000, 25% tax is to be payed. Over 100 000, 50% tax is to be payed. Example: With 150 000 income, The total amount of tax to be payed is 37 500. (50 000 * 0 + 50 000 * 0.25 + 50 000 * 0.5).",
@@ -522,7 +522,7 @@
     "pk": 63,
     "fields": {
         "is_public": true,
-        "assignment_type": 4,
+        "assignment_types": [4],
         "resource_url": "https://en.wikipedia.org/wiki/Prime_number",
         "title": "Prime numbers",
         "assignment_text": "Create the code body of the function <span class=\"code-block\">prime_number(n)</span>. The function should return the n-th prime number. Example: <span class=\"code-block\">prime_number(5)</span> should return 11, as it is the 5th prime number.",
@@ -536,7 +536,7 @@
     "pk": 64,
     "fields": {
         "is_public": true,
-        "assignment_type": 4,
+        "assignment_types": [4],
         "resource_url": "",
         "title": "Time converting",
         "assignment_text": "Create a function <span class=\"code-block\">time_converter(hours, minutes, seconds)</span>. The function should convert hours and minutes and return the time in seconds. Example: <span class=\"code-block\">time_converter(1, 2, 40)</span> should return 3760.",
@@ -550,7 +550,7 @@
     "pk": 65,
     "fields": {
         "is_public": true,
-        "assignment_type": 4,
+        "assignment_types": [4],
         "resource_url": "",
         "title": "List merging",
         "assignment_text": "Create a function <span class=\"code-block\">merge_lists(l1, l2)</span>. The function should braid the lists, and return one list, containing all the elements from both lists. If one list is longer than the other, the remaining values should be appended to the end of the list. Example: <span class=\"code-block\">merge_lists([1,2,3], [4, 5, 6, 7, 8])</span> should return <span class=\"code-block\">[1, 4, 2, 5, 3, 6, 7, 8]</span>.",
@@ -564,7 +564,7 @@
     "pk": 66,
     "fields": {
         "is_public": true,
-        "assignment_type": 4,
+        "assignment_types": [4],
         "resource_url": "",
         "title": "List rotation",
         "assignment_text": "Create a function <span class=\"code-block\">rotate_list(l1, k)</span>. The function takes two arguments. A list, and an integer k. The function should return a list, where the elements of the list are moved k places to the right. Example: rotate_list([1, 2, 3, 4, 5], 2) should return [3, 4, 5, 1, 2].",
@@ -578,7 +578,7 @@
     "pk": 68,
     "fields": {
         "is_public": true,
-        "assignment_type": 4,
+        "assignment_types": [4],
         "resource_url": "",
         "title": "Palindrome test",
         "assignment_text": "Create a function <span class=\"code-block\">is_palindrome(phrase)</span>. The function takes an all lowercase string as an argument, and should return True if the given string is a palindrome, and False if it is not.",
@@ -592,7 +592,7 @@
     "pk": 69,
     "fields": {
         "is_public": true,
-        "assignment_type": 3,
+        "assignment_types": [3],
         "resource_url": "",
         "title": "Loops - Decrement",
         "assignment_text": "Create a for-loop that prints all numbers from 10 through 1.",
@@ -606,7 +606,7 @@
     "pk": 70,
     "fields": {
         "is_public": true,
-        "assignment_type": 4,
+        "assignment_types": [4],
         "resource_url": "",
         "title": "List equality",
         "assignment_text": "Complete the function <span class=\"code-block\">list_equality(l1, l2)</span>. The function takes two equal length lists as arguments. The function should return the amount of list slots that contain the same item. For it to count as equal, the items must be at the same spot in both lists. Example: <span class=\"code-block\">list_equality([1, 2, 3], [1, 2, 4])</span> should return 2 and <span class=\"code-block\">list_equality([3, 1, 1], [1, 3, 3])</span> should return 0.",
@@ -620,7 +620,7 @@
     "pk": 71,
     "fields": {
         "is_public": true,
-        "assignment_type": 4,
+        "assignment_types": [4],
         "resource_url": "",
         "title": "Binary to decimal",
         "assignment_text": "Complete the function <span class=\"code-block\">bin_to_dec(bin_string)</span>. The function takes a binary number, represented as a string as input. The function should convert the given binary number to the corresponding number in the decimal system, and return it as an <b>integer</b>. Example: <span class=\"code-block\">bin_to_dec(\"101\")</span> should return 5 and <span class=\"code-block\"> bin_to_dec(\"111100\")</span> should return 60.",
