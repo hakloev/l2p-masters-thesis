@@ -24,7 +24,7 @@ from api.models.survey import ProgressSurvey
 DISPLAY_PROGRESS_SURVEY = False
 
 
-def get_new_assignment(user, type):
+def get_new_assignment(user, assignment_type):
     log = logging.getLogger(__name__)
 
     # Get assignments solved by the user
@@ -35,16 +35,16 @@ def get_new_assignment(user, type):
 
     # Get active assignments from the current assignment_type that is still unsolved
     result = Assignment.active_assignments.filter(
-        assignment_types=type
+        assignment_types=assignment_type
     ).exclude(id__in=user_solved)
 
     if not result:
-        log.debug('All assignments of type {} solved, returning random assignment'.format(type))
+        log.debug('All assignments of type {} solved, returning random assignment'.format(assignment_type))
         return random.choice(Assignment.active_assignments.filter(
-            assignment_types=type,
+            assignment_types=assignment_type,
         ))
 
-    log.debug('Found unsolved assignment of type {}'.format(type))
+    log.debug('Found unsolved assignment of type {}'.format(assignment_type))
     return random.choice(result)
 
 
