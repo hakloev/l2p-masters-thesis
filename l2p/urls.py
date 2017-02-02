@@ -54,11 +54,11 @@ api_urls = [
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
-    #  API specific routes
     url(r'^auth/register/$', RegistrationView.as_view()),
     url(r'^auth/token/$', obtain_jwt_token),
     url(r'^auth/token/refresh/$', refresh_jwt_token),
 
+    #  API specific routes
     url(r'^api/', include(api_urls, namespace='api')),
 
     # Ensure that this view is last and accept all routes in order to work

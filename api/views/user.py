@@ -11,6 +11,8 @@ from rest_framework_jwt.settings import api_settings
 from api.serializers.user import StudentSerializer, RegistrationSerializer
 from api.models.user import Student
 
+log = logging.getLogger(__name__)
+
 
 def create_token_for_user(user):
     jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
@@ -23,33 +25,28 @@ def create_token_for_user(user):
 
 
 class StudentViewSet(viewsets.ReadOnlyModelViewSet):
-
-    permission_classes = (IsAuthenticated, )
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
 
 
 class RegistrationView(generics.CreateAPIView):
     """
-    API endpoint that creates a user
+    Endpoint that creates a user
     """
-    log = logging.getLogger(__name__)
-
-    permission_classes = ()
     serializer_class = RegistrationSerializer
 
     def post(self, request):
-        self.log.debug('User creation requested')
+        log.debug('User creation requested')
         serializer = RegistrationSerializer(data=request.data)
 
         if not serializer.is_valid():
-            self.log.debug('Unable to create user with the provided data')
-            self.log.debug(serializer.errors)
+            log.debug('Unable to create user with the provided data')
+            log.debug(serializer.errors)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
         user = serializer.save()
 
-        self.log.info('User %s created succesfully' % user.username)
+        log.info('User %s created succesfully' % user.username)
         token = create_token_for_user(user)
 
         if token:

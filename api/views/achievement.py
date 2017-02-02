@@ -6,7 +6,6 @@ from api.serializers.achievement import AchievementSerializer
 
 
 class UserAchievementListView(generics.ListAPIView):
-    permission_classes = (IsAuthenticated, )
     serializer_class = AchievementSerializer
 
     def get_queryset(self):

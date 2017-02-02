@@ -7,9 +7,8 @@ from api.serializers.score import UserStreakTrackerSerializer, AssignmentTypeSco
 
 
 class UserStreakView(views.APIView):
-    permission_classes = (IsAuthenticated, )
 
-    def get(self, request, format=None, **kwargs):
+    def get(self, request, format=None):
         user_streaks, created_user_streak = UserStreakTracker.objects.get_or_create(user=request.user)
         assignment_type_streaks = AssignmentTypeScoreTracker.objects.filter(user=request.user)
 
