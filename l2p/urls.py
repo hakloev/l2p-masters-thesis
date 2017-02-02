@@ -23,7 +23,7 @@ from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
 from api.views.achievement import UserAchievementListView
 from api.views.user import StudentViewSet, RegistrationView
 from api.views.score import UserStreakView
-from api.views.issue import IssueViewSet
+from api.views.issue import add_new_issue
 from api.views.survey import ProgressSurveyViewSet
 from api.views.assignment import AssignmentTypeViewSet, AssignmentViewSet, check_for_new_achievements, compile_code, submit_code_for_assignment, start_quiz
 
@@ -33,11 +33,12 @@ admin.autodiscover()
 router = routers.DefaultRouter()
 router.register(r'assignment-types', AssignmentTypeViewSet)
 router.register(r'student', StudentViewSet)
-router.register(r'report', IssueViewSet)
 router.register(r'survey', ProgressSurveyViewSet, base_name='survey')
 
 api_urls = [
     url(r'^', include(router.urls)),
+
+    url(r'^report/$', add_new_issue, name='report-issue'),
 
     url(r'^compile/$', compile_code, name='compile-code'),
     url(r'^submit/$', submit_code_for_assignment, name='submit-code'),
@@ -48,7 +49,6 @@ api_urls = [
 
     url(r'^assignments/$', AssignmentViewSet.as_view(), name='assignments'),
     url(r'^assignment/new/$', start_quiz, name='start-quiz'),
-    url(r'^report/$', IssueViewSet.as_view(), name='report-issue'),
 ]
 
 urlpatterns = [
