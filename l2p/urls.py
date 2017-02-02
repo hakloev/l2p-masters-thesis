@@ -25,11 +25,10 @@ from api.views.user import StudentViewSet, RegistrationView
 from api.views.score import UserStreakView
 from api.views.issue import IssueViewSet
 from api.views.survey import ProgressSurveyViewSet
-from api.views.assignment import AssignmentTypeViewSet, AssignmentViewSet, CompileCode, SubmitCode, GetAssignment, \
-    check_for_new_achievements
+from api.views.assignment import AssignmentTypeViewSet, AssignmentViewSet, check_for_new_achievements, compile_code, submit_code_for_assignment, start_quiz
 
 
-#  admin.autodiscover()
+admin.autodiscover()
 
 router = routers.DefaultRouter()
 router.register(r'assignment-types', AssignmentTypeViewSet)
@@ -40,15 +39,15 @@ router.register(r'survey', ProgressSurveyViewSet, base_name='survey')
 api_urls = [
     url(r'^', include(router.urls)),
 
-    url(r'^compile/$', CompileCode.as_view(), name='compile-code'),
-    url(r'^submit/$', SubmitCode.as_view(), name='submit-code'),
+    url(r'^compile/$', compile_code, name='compile-code'),
+    url(r'^submit/$', submit_code_for_assignment, name='submit-code'),
 
     url(r'^user/streak/$', UserStreakView.as_view(), name='user-streak'),
     url(r'^user/achievements/$', UserAchievementListView.as_view(), name='user-achievements'),
     url(r'^user/achievements/new/$', check_for_new_achievements, name='user-new-achievements'),
 
     url(r'^assignments/$', AssignmentViewSet.as_view(), name='assignments'),
-    url(r'^assignment/new/$', GetAssignment.as_view(), name='get-assignment'),
+    url(r'^assignment/new/$', start_quiz, name='start-quiz'),
     url(r'^report/$', IssueViewSet.as_view(), name='report-issue'),
 ]
 
