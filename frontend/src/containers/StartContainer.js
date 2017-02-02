@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { SHOULD_DISPLAY_TEST } from '../common/constants';
-import TestSelector from '../components/TestSelector';
+import { SHOULD_DISPLAY_EXPERIMENT } from '../common/constants';
+import ExperimentSelector from '../components/ExperimentSelector';
 import QuizSelector from '../components/QuizSelector';
 import Banner from '../components/Banner';
 
@@ -11,7 +11,7 @@ import { actions as assignmentActions } from '../data/assignment';
 class StartContainer extends React.Component {
 
   componentDidMount() {
-    if (SHOULD_DISPLAY_TEST) {
+    if (SHOULD_DISPLAY_EXPERIMENT) {
       this.props.getAllQuizStats();
     } else {
       this.props.getAssignmentTypes();
@@ -20,10 +20,10 @@ class StartContainer extends React.Component {
 
   render() {
     return <div>
-      <Banner title={SHOULD_DISPLAY_TEST ? 'start' : 'select a quiz'} />
+      <Banner title={SHOULD_DISPLAY_EXPERIMENT ? 'start' : 'select a quiz'} />
       <div className="container start-quiz-container">
-        { SHOULD_DISPLAY_TEST ?
-          <TestSelector
+        { SHOULD_DISPLAY_EXPERIMENT ?
+          <ExperimentSelector
             onTestStart={this.props.onStartQuiz}
           />
           :

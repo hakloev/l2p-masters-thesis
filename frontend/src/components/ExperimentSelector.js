@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-class TestSelector extends Component {
+class ExperimentSelector extends Component {
 
   render() {
     const { onTestStart } = this.props;
@@ -23,8 +23,8 @@ class TestSelector extends Component {
   }
 }
 
-TestSelector.propTypes = {
+ExperimentSelector.propTypes = {
   onTestStart: PropTypes.func.isRequired,
 };
 
-export default TestSelector;
+export default ExperimentSelector;
