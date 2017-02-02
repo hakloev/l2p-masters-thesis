@@ -32,12 +32,13 @@ class Assignment(models.Model):
         AssignmentType,
         related_name='assignment_types'
     )
+    difficulty_level = models.PositiveSmallIntegerField(default=1)  # Used for sorting assignments during experiment
     resource_url = models.URLField(blank=True, null=True)
     title = models.CharField(max_length=100)
-    assignment_text = models.TextField(default="", blank=True)
+    assignment_text = models.TextField(default="")
     hint_text = models.TextField(default="", blank=True)
-    code_body = models.TextField(default="", blank=True)
-    solution = models.TextField(default="", blank=True)
+    code_body = models.TextField(default="")
+    solution = models.TextField(default="")
 
     objects = models.Manager()
     active_assignments = ActiveAssignments()

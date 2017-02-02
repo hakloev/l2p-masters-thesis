@@ -22,18 +22,19 @@ class AssignmentTypeInline(admin.TabularInline):
 
 
 class AssignmentAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'is_public', 'get_assignment_types')
-    inlines = (
+    list_display = ('id', 'title', 'is_public', 'get_assignment_types', 'difficulty_level')
+    inlines = ( 
         AssignmentTypeInline,
     )
     fields = (
         'is_public',
-        'resource_url',
         'title',
+        'difficulty_level',
         'assignment_text',
-        'hint_text',
         'code_body',
         'solution',
+        'hint_text',
+        'resource_url',
     )
 
     def get_assignment_types(self, obj):

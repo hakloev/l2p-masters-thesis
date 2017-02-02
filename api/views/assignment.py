@@ -45,7 +45,7 @@ def get_new_assignment(user, assignment_type):
     # If assignment type is experiment
     if assignment_type == 'Experiment':
         log.debug('Sort result query set to return first possible experiment assignment')
-        return result.order_by('id').first()
+        return result.order_by('difficulty_level').first()
 
     log.debug('Found unsolved assignment of type {}'.format(assignment_type))
     return random.choice(result)
