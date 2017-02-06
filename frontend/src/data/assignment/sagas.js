@@ -3,6 +3,7 @@ import { call, put, select } from 'redux-saga/effects';
 import { browserHistory } from 'react-router';
 import apiService from '../../api/client';
 
+import { SHOULD_DISPLAY_EXPERIMENT } from '../../common/constants';
 import * as actions from './actions';
 import * as selectors from './selectors';
 import { actions as achievementActions } from '../achievements';
@@ -82,7 +83,11 @@ function* submitAnswer(action) {
     yield put(actions.submitAnswerSuccess(data));
     yield put(actions.setStartAssignmentTime());
     yield put(statsActions.getUserStreakRequest());
-    yield put(achievementActions.getNewAchievementsRequest());
+
+    if (!SHOULD_DISPLAY_EXPERIMENT) {
+      yield put(achievementActions.getNewAchievementsRequest());
+    }
+
     if (data.show_progress_survey) {
       openSurveyModal();
     }
