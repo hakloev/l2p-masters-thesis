@@ -35,6 +35,9 @@ class RegistrationView(generics.CreateAPIView):
     """
     serializer_class = RegistrationSerializer
 
+    permission_classes = ()
+    authentication_classes = ()
+
     def post(self, request):
         log.debug('User creation requested')
         serializer = RegistrationSerializer(data=request.data)

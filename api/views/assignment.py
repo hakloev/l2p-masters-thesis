@@ -29,25 +29,27 @@ def get_new_assignment(user, assignment_type):
         user=user,
         correct_solution=True,
     ).values('assignment__id')
+    log.debug('{} has solved assignments: {}'.format(user, user_solved))
 
     # Get active assignments from the current assignment_type that is still unsolved
     result = Assignment.active_assignments.filter(
         assignment_types=assignment_type
     ).exclude(id__in=user_solved)
+    log.debug('Available unsolved for {}: {}'.format(user, result))
 
     # If no unsolved assignments found for assignment type
     if not result:
-        log.debug('All assignments of type {} solved, returning random assignment'.format(assignment_type))
+        log.debug('{} has all assignments of type {} solved, returning random assignment'.format(user, assignment_type))
         return random.choice(Assignment.active_assignments.filter(
             assignment_types=assignment_type,
         ))
 
     # If assignment type is experiment
-    if assignment_type == 'Experiment':
+    if assignment_type.type_name == 'Experiment':
         log.debug('Sort result query set to return first possible experiment assignment')
         return result.order_by('difficulty_level').first()
 
-    log.debug('Found unsolved assignment of type {}'.format(assignment_type))
+    log.debug('Found unsolved assignment of type {} for {}'.format(assignment_type, user))
     return random.choice(result)
 
 
