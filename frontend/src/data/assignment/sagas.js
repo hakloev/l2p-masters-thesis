@@ -54,16 +54,21 @@ function* compileCode(action) {
   try {
     console.info(`${actions.COMPILE_CODE_REQUEST}`);
     const result = yield call(apiService.post, '/api/compile/', { body: action.code });
+    yield put(actions.compileCodeSuccess(result));
+    const answer = yield select(selectors.isCorrectSolution);
+
     if (result.timeout) {
       toastr.warning('Time Out', 'Your code timed out, please try again');
     } else if (result.error) {
-      toastr.error('Error', `Your code had a compilation error on ${result.line_number}: ${result.error}`);
+      toastr.error('Error', `Your code had a compilation error on ${result.line_number}: ${result.error}`, { timeOut: 10000 });
+    } else {
+      if (!answer) {
+        toastr.error('Incorrect', 'Your solution was incorrect', { timeOut: 4000 });
+      } else {
+        toastr.success('Success', 'Your solution was correct', { timeOut: 4000 });
+      }
     }
-    yield put(actions.compileCodeSuccess(result));
-    const answer = yield select(selectors.isCorrectSolution);
-    if (!answer && !result.timeout && !result.error) {
-      toastr.error('Incorrect', 'Your solution was incorrect');
-    }
+
   } catch (error) {
     console.error(`${actions.COMPILE_CODE_FAILURE}: ${error.message}`);
     toastr.error('Error', 'Unable to compile your code, please try again later!');

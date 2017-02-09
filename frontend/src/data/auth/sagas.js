@@ -26,9 +26,9 @@ function* submitRegistration(action) {
     console.error(`${actions.REGISTRATION_FAILURE}: ${error.message}`);
     yield put(actions.registrationFailure(error.message));
     if (error.json.username) {
-      toastr.info('Invalid', 'A user with that username already exists');
+      toastr.info('Invalid', 'A user with that username already exists', { timeOut: 5000 });
     } else {
-      toastr.error('Error', 'Something went wrong during the registration, please try again later!');
+      toastr.error('Error', 'Something went wrong during the registration, please try again later!', { timeOut: 5000 });
     }
   }
 }
@@ -92,7 +92,7 @@ export function* loginFlow() {
         credentials.token = null;
         yield call(removeAuthToken);
         browserHistory.push('/login');
-        toastr.success('Success', 'You have been successfully signed out');
+        toastr.success('Success', 'You have been successfully signed out', { timeOut: 4000 });
       }
 
     } catch ({ json, message }) {
