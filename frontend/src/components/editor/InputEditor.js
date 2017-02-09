@@ -11,7 +11,6 @@ let editorInstance = null;
 class InputEditor extends Component {
 
   componentDidMount() {
-    // this.editor.focus();
     this.editor = this.reactAce.editor;
     editorInstance = this.editor;
     this.editor.focus();

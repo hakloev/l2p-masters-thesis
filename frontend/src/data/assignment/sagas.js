@@ -1,6 +1,7 @@
 import { takeEvery } from 'redux-saga';
 import { call, put, select } from 'redux-saga/effects';
 import { browserHistory } from 'react-router';
+import { toastr } from 'react-redux-toastr';
 import apiService from '../../api/client';
 
 import { SHOULD_DISPLAY_EXPERIMENT } from '../../common/constants';
@@ -9,7 +10,7 @@ import * as selectors from './selectors';
 import { actions as achievementActions } from '../achievements';
 import { actions as statsActions } from '../stats';
 
-import { open as openSurveyModal } from '../../components/ProgressSurveyModal';
+// import { open as openSurveyModal } from '../../components/ProgressSurveyModal';
 
 // START QUIZ START
 function* startQuiz(action) {
@@ -22,7 +23,7 @@ function* startQuiz(action) {
   } catch (error) {
     console.error(`${actions.START_QUIZ_FAILURE}: ${error.message}`);
     yield put(actions.startQuizFailure(error.message));
-    Materialize.toast('Sorry, unable to start the quiz, please try again later!', 5000);
+    toastr.error('Error', 'Sorry, unable to start the quiz, please try again later!');
   }
 }
 
@@ -54,18 +55,18 @@ function* compileCode(action) {
     console.info(`${actions.COMPILE_CODE_REQUEST}`);
     const result = yield call(apiService.post, '/api/compile/', { body: action.code });
     if (result.timeout) {
-      Materialize.toast('Your code timed out, please try again!', 5000);
+      toastr.warning('Time Out', 'Your code timed out, please try again');
     } else if (result.error) {
-      Materialize.toast(`Your code had a compilation error on ${result.line_number}:<br><br>${result.error}`, 5000);
+      toastr.error('Error', `Your code had a compilation error on ${result.line_number}: ${result.error}`);
     }
     yield put(actions.compileCodeSuccess(result));
     const answer = yield select(selectors.isCorrectSolution);
     if (!answer && !result.timeout && !result.error) {
-      Materialize.toast('The solution is incorrect', 5000);
+      toastr.error('Incorrect', 'Your solution was incorrect');
     }
   } catch (error) {
     console.error(`${actions.COMPILE_CODE_FAILURE}: ${error.message}`);
-    Materialize.toast('Unable to compile your code, please try again later!', 5000);
+    toastr.error('Error', 'Unable to compile your code, please try again later!');
     yield put(actions.compileCodeFailure(error.message));
   }
 }
@@ -83,17 +84,15 @@ function* submitAnswer(action) {
     yield put(actions.submitAnswerSuccess(data));
     yield put(actions.setStartAssignmentTime());
     yield put(statsActions.getUserStreakRequest());
-
     if (!SHOULD_DISPLAY_EXPERIMENT) {
       yield put(achievementActions.getNewAchievementsRequest());
     }
-
-    if (data.show_progress_survey) {
-      openSurveyModal();
-    }
+    // if (data.show_progress_survey) {
+    //   openSurveyModal();
+    // }
   } catch (error) {
     console.error(`${actions.SUBMIT_ANSWER_FAILURE}: ${error.message}`);
-    Materialize.toast('Unable to submit answer, try again later!', 5000);
+    toastr.error('Error', 'Unable to submit answer, try again later!');
     yield put(actions.submitAnswerFailure(error.message));
   }
 }

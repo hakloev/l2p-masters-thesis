@@ -3,6 +3,12 @@ import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 import { actions } from '../data/survey';
 
+/*
+  This code is now deprecated, but kept in case of a similar case in the future.
+  The purpouse of this code were that the users had to anwser a questionare after answering
+  five assignments in the system.
+*/
+
 class Select extends Component {
 
   render() {

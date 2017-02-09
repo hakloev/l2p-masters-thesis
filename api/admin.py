@@ -23,7 +23,7 @@ class AssignmentTypeInline(admin.TabularInline):
 
 class AssignmentAdmin(admin.ModelAdmin):
     list_display = ('id', 'title', 'is_public', 'get_assignment_types', 'difficulty_level')
-    inlines = ( 
+    inlines = (
         AssignmentTypeInline,
     )
     fields = (

@@ -1,23 +1,21 @@
 import 'babel-polyfill';
-
-import 'materialize-css';
-import 'materialize-css/bin/materialize.css';
-import 'font-awesome/css/font-awesome.min.css';
+import 'react-redux-toastr/lib/css/react-redux-toastr.min.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+
 import Root from './Root';
-
-
-import initializeGoogleAnalytics from './common/analytics';
-
 import configureStore from './configureStore';
 import HMRContainer from './containers/HMRContainer';
+
+import initializeGoogleAnalytics from './common/analytics';
 
 import { actions as assignmentActions } from './data/assignment';
 
 require('../styles/base.scss');
 
+injectTapEventPlugin();
 initializeGoogleAnalytics();
 
 const appMount = document.getElementById('app');
@@ -47,7 +45,7 @@ try {
     });
   }
 } catch (err) {
-    console.error('Render Error:', err);
+  console.error('Render Error:', err);
 }
 
 export default App;

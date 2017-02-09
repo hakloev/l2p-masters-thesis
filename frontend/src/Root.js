@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
-import routes from './routes';
+import Toaster from 'react-redux-toastr';
+
+import { routes } from './routes';
 
 export default class Root extends Component {
 
@@ -10,9 +12,16 @@ export default class Root extends Component {
 
     return (
       <Provider store={store}>
-        <Router history={browserHistory}>
-          {routes}
-        </Router>
+        <div>
+          <Router history={browserHistory}>
+            {routes()}
+          </Router>
+          <Toaster
+            timeOut={8000}
+            transitionIn="fadeIn"
+            transitionOut="fadeOut"
+          />
+        </div>
       </Provider>
     );
   }

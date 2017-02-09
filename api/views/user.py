@@ -34,7 +34,7 @@ class RegistrationView(generics.CreateAPIView):
     Endpoint that creates a user
     """
     serializer_class = RegistrationSerializer
-
+    #  Remove permissions, so everybody can register
     permission_classes = ()
     authentication_classes = ()
 

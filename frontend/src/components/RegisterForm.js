@@ -1,6 +1,27 @@
 import React, { PropTypes } from 'react';
 import { Field, reduxForm } from 'redux-form';
 
+import RaisedButton from 'material-ui/RaisedButton';
+import { TextField, Checkbox } from 'redux-form-material-ui';
+
+const styles = {
+  columnContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  rowContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    marginBottom: 30,
+  },
+  passwordField: {
+    marginRight: 40,
+  },
+  submitButton: {
+    marginTop: 10,
+  },
+};
+
 const validate = values => {
   const errors = {};
   if (values.password !== values['password-verify']) {
@@ -9,52 +30,63 @@ const validate = values => {
   return errors;
 };
 
-// eslint-disable-next-line
-const renderField = field =>
-  <div className="input-field col s12">
-    <input type={field.type} {...field.input} className="validate" />
-    <label htmlFor={field.label} data-error={field.errorMessage && field.errorMessage}>{field.label}</label>
-    {/* {field.meta.touched && field.meta.error && <span>{field.meta.error}</span>} */}
-  </div>;
+class RegisterForm extends React.Component {
 
-const renderCheckbox = field =>
-  <div className="input-field col s12">
-    <input className="filled-in" type="checkbox" id={field.name} {...field.input} />
-    <label htmlFor={field.name}>{field.label}</label>
-  </div>;
+  render() {
+    const { handleSubmit, onSubmit } = this.props;
 
-const RegisterForm = props => {
-  // eslint-disable-next-line
-  const { handleSubmit } = props;
-
-  return (
-    <form onSubmit={handleSubmit(props.onSubmit)}>
-      <div className="row">
-        <Field name="username" type="text" label="Username" component={renderField} />
-        <Field name="email" type="email" label="Email" component={renderField} />
-        <Field name="password" type="password" label="Password" component={renderField} />
-        <Field
-          name="password-verify"
-          type="password"
-          label="Verify Password"
-          errorMessage="Passwords must match"
-          component={renderField}
-        />
-        <Field
-          name="attendSurvey"
-          type="checkbox"
-          label="This software is being used for research purposes related to a masters thesis regarding learning how to program. I agree to being sent a short survey about the usage of the software after the final examination in TDT4110."
-          component={renderCheckbox}
-        />
-      </div>
-      <div className="row">
-        <div className="col s12">
-          <button type="submit" className="btn waves-effect waves-light deep-orange">Register</button>
+    return (
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div style={styles.columnContainer}>
+          <Field
+            name="username"
+            component={TextField}
+            type="text"
+            floatingLabelText="Username"
+            fullWidth
+          />
+          <Field
+            name="email"
+            component={TextField}
+            type="email"
+            floatingLabelText="Email"
+            fullWidth
+          />
         </div>
-      </div>
-    </form>
-  );
-};
+        <div style={styles.rowContainer}>
+          <Field
+            name="password"
+            component={TextField}
+            type="password"
+            floatingLabelText="Password"
+            fullWidth
+            style={styles.passwordField}
+          />
+          <Field
+            name="password-verify"
+            component={TextField}
+            type="password"
+            floatingLabelText="Verify Password"
+            fullWidth
+          />
+        </div>
+        <div>
+          <Field
+            name="attendSurvey"
+            component={Checkbox}
+            label="This software is being used for research purposes related to a masters thesis regarding learning how to program. I agree to being sent a short survey about the usage of the software after the final examination in TDT4110."
+          />
+        </div>
+        <RaisedButton
+          label="Register"
+          primary
+          onTouchTap={handleSubmit(onSubmit)}
+          style={styles.submitButton}
+        />
+      </form>
+    );
+  }
+}
 
 RegisterForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,

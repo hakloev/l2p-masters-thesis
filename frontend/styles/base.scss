@@ -3,17 +3,8 @@
 @import 'stats-badge';
 
 #main-container {
-  margin-top: -64px; /* Negative of navbar height. Added as padding-top on inner-container */
+  height: calc(100vh - 64px); // Subtract the height of the navbar in order to only fill viewport
 }
-
-#inner-container {
-  padding-top: 64px;
-}
-
-.start-quiz-container, .report-issue-container, .login-container, .register-container {
-  margin-top: 40px;
-}
-
 
 .code-block {
   border: 1px solid lightgray;
@@ -22,20 +13,6 @@
   background-color: rgb(247, 247, 249);
   color: $code-color;
   padding: 2px;
-}
-
-.description-text {
-  // padding: 10px 15px;
-  // font-family: monospace;
-  font-size: 14px;
-}
-
-.task-card {
-  line-height: 1.8;
-}
-
-.task-card, .hint-card {
-  background-color: #fbfbfb;
 }
 
 #assignment-container {
@@ -99,24 +76,21 @@
   height: 100%;
 }
 
-
 #output-console {
-  position: absolute; // absolute position relative to output-wrapper
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
+  width: 100%;
   padding: 15px 15px;
   font-family: monospace;
   font-size: 16px;
+  color: #fff;
   border: 1px solid #000;
+  background-color: #000;
   resize: none;
 }
 
 #output-wrapper {
   position: relative;
   flex: 1;
+  display: flex;
 }
 
 .output-overlay {
@@ -132,11 +106,6 @@
     bottom: 15px;
     transform: none;
     z-index: 9999; // Ensure that the button is always over the output-console
-  }
-
-  > .big {
-    width: 128px;
-    height: 128px;
   }
 }
 
@@ -156,35 +125,14 @@
 }
 
 #assignment-action-bar {
-  // flex: 1;
   display: flex;
   justify-content: space-between;
-  width: 100%;
   padding: 20px 20px;
   background-color: #757575;
-
-  > .assignment-action-bar-controls {
-      button {
-        margin-left: 10px;
-      }
-  }
-
-  > .btn-report {
-    background-color: #cccccc;
-    float: left;
-  }
 }
 
 .assignment-action-bar-report {
   flex: 1 1 40%;
-}
-
-.banner {
-  text-align: center;
-  padding: 5px 0;
-  &--grey {
-    background-color: lighten($grey, 15%);
-  }
 }
 
 .hide-button {

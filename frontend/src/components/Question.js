@@ -1,25 +1,53 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
+
+import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ChevronLeft from 'material-ui/svg-icons/navigation/chevron-left';
+import ChevronRight from 'material-ui/svg-icons/navigation/chevron-right';
+import ContentSend from 'material-ui/svg-icons/content/send';
+import PlayArrow from 'material-ui/svg-icons/av/play-arrow';
+import { Card, CardActions, CardHeader, CardTitle, CardText } from 'material-ui/Card';
+
+import ReportModal from '../components/ReportModal';
+import AchievementsModal from '../components/AchievementsModal';
+
 import { InputEditor, OutputEditor, setEditorFocus } from './editor';
-import { open as openModal } from './ReportModal';
+
 import { selectors as assignmentSelectors, actions } from '../data/assignment';
+import { actions as modalActions } from '../data/modals';
 import { selectors as statsSelectors } from '../data/stats';
 
+const styles = {
+  sidebarButtonWrapper: {
+    width: 0,
+  },
+  sidebarButton: {
+    marginLeft: -60,
+    marginTop: 20,
+  },
+  runButton: {
+    marginRight: 10,
+  },
+  assignmentText: {
+    fontSize: 14,
+  },
+  assignmentCard: {
+    marginTop: 20,
+    marginBottom: 20,
+  },
+  hintCard: {
+    marginBottom: 20,
+  },
+  infoCard: {
+    marginBottom: 20,
+  },
+};
+
 class Question extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      sidebarVisible: true,
-    };
-  }
-
-  componentDidMount() {
-    $('.tooltipped').tooltip();
-  }
-
-  componentWillUnmount() {
-    $('.tooltipped').tooltip('remove');
+  state = {
+    sidebarVisible: true,
   }
 
   activateSidebar = () => {
@@ -46,12 +74,12 @@ class Question extends Component {
   }
 
   render() {
-    const { editorValue, isLoadingAssignment, compilation, assignment, hasCorrectSolution } = this.props;
+    const { editorValue, isLoadingAssignment, compilation, assignment, hasCorrectSolution, openReportModal } = this.props;
 
     return (
       <div id="assignment-container">
-        <div id="assignment-editor-container" className={!this.state.sidebarVisible && 'full-screen'}>
-          <div className="" id="editor-row">
+        <div id="assignment-editor-container" className={!this.state.sidebarVisible ? 'full-screen' : ''}>
+          <div id="editor-row">
             <div id="assignment-editor">
               <InputEditor
                 code={isLoadingAssignment ? 'Loading assignment...' : editorValue}
@@ -70,66 +98,86 @@ class Question extends Component {
           </div>
           <div id="assignment-action-bar">
             <div className="assignment-action-bar-report">
-              <button
-                onClick={openModal}
-                id=""
-                className="waves-effect waves-light btn btn-large btn-report orange lighten-1"
-              >
-                Report an issue with this task
-              </button>
+              <RaisedButton
+                label="Report an issue with this task"
+                labelColor="#ffffff"
+                backgroundColor="#ffa726"
+                onTouchTap={openReportModal}
+              />
             </div>
             <div className="assignment-action-bar-controls">
-              <button
-                onClick={this.handleCompileCode}
-                className="btn tooltipped btn-large waves-effect waves-light green"
-                data-position="top"
-                data-delay="50"
-                data-tooltip={navigator.platform === 'MacIntel' ? 'cmd + enter' : 'ctrl + enter'}
-              >
-                <i className="material-icons right">play_arrow</i>
-                {!compilation.isFetching ? 'Run Code' : 'Executing'}
-              </button>
-              <button
-                onClick={this.handleSubmitClick}
-                id="skip-button"
-                className={'btn tooltipped btn-large waves-effect waves-light red lighten-1'}
-                data-position="top"
-                data-delay="50"
-                data-tooltip="This will be registered as a failed attempt"
+              <RaisedButton
+                label={!compilation.isFetching ? 'Run Code' : 'Executing'}
+                labelColor="#ffffff"
+                labelPosition="before"
+                backgroundColor="#4caf50"
+                icon={<PlayArrow />}
+                style={styles.runButton}
+                onTouchTap={this.handleCompileCode}
+              />
+              <RaisedButton
+                label="Skip"
+                labelColor="#ffffff"
+                labelPosition="before"
+                backgroundColor="#ef5350"
+                icon={<ContentSend />}
                 disabled={hasCorrectSolution}
-              >
-                <i className="material-icons right">send</i>
-                Skip
-              </button>
+                onTouchTap={this.handleSubmitClick}
+              />
             </div>
           </div>
         </div>
-        <button className={`btn-floating waves-effect waves-effect grey hide-button ${!this.state.sidebarVisible ? 'hide-active' : ''}`} onClick={this.activateSidebar}>
-          <i className="material-icons">keyboard_arrow_right</i>
-        </button>
-        <div id="assignment-sidebar" className={!this.state.sidebarVisible && 'is-hidden'}>
-          <div className="card task-card">
-            <div className="card-content">
-              <span className="card-title">Assignment:</span>
-              <p className="description-text" dangerouslySetInnerHTML={{ __html: assignment.assignment_text }} />
-            </div>
-          </div>
+        <div style={styles.sidebarButtonWrapper}>
+          <FloatingActionButton
+            mini
+            style={styles.sidebarButton}
+            backgroundColor="#757575"
+            onTouchTap={this.activateSidebar}
+          >
+            {this.state.sidebarVisible ?
+              <ChevronRight />
+              :
+              <ChevronLeft />
+            }
+          </FloatingActionButton>
+        </div>
+        <div id="assignment-sidebar" className={!this.state.sidebarVisible ? 'is-hidden' : ''}>
+          <Card style={styles.assignmentCard} id="assignment-card">
+            <CardTitle title="Assignment" subtitle={`ID: ${assignment.id}`} />
+            <CardText>
+              <p style={styles.assignmentText} dangerouslySetInnerHTML={{ __html: assignment.assignment_text }} />
+            </CardText>
+          </Card>
           {(assignment.hint_text || assignment.resource_url) &&
-            <div className="card hint-card">
-              <div className="card-content">
-                <span className="card-title">Hint and resources:</span>
-                {assignment.hint_text &&
+            <Card style={styles.hintCard} id="hint-card">
+              <CardTitle title="Hint and resources" subtitle="Useful tips!" />
+              {assignment.hint_text &&
+                <CardText>
                   <p className="description-text" dangerouslySetInnerHTML={{ __html: assignment.hint_text }} />
-                }
-              </div>
-              {assignment.resource_url &&
-                <div className="card-action">
-                  <a href={assignment.resource_url} target="_blank" rel="noopener noreferrer">Additional Resource</a>
-                </div>
+                </CardText>
               }
-            </div>
+              {assignment.resource_url &&
+                <CardActions>
+                  <FlatButton label="Additional Resource (opens in a new tab)" href={assignment.resource_url} target="_blank" primary />
+                </CardActions>
+              }
+            </Card>
           }
+          <Card style={styles.infoCard}>
+            <CardHeader
+              title="Info"
+              subtitle="Tips and tricks"
+              actAsExpander
+              showExpandableButton
+            />
+            <CardText expandable>
+              <p>If you press "Skip", this will register as a failed attempt in the system.</p>
+              <p>You may use the shortcut <span className="code-block">{navigator.platform === 'MacIntel' ? 'cmd + enter' : 'ctrl + enter'}</span> in order to quickly compile your code.</p>
+            </CardText>
+          </Card>
         </div>
+        <ReportModal assignmentId={this.props.assignment.id} />
+        <AchievementsModal />
       </div>
     );
   }
@@ -157,6 +205,9 @@ const mapDispatchToProps = dispatch => {
     },
     onEditorChange: newValue => {
       dispatch(actions.editorCodeChanged(newValue));
+    },
+    openReportModal: () => {
+      dispatch(modalActions.toggleReportModal());
     },
   };
 };
