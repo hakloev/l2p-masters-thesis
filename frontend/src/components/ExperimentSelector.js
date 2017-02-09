@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import RaisedButton from 'material-ui/RaisedButton';
 
 class ExperimentSelector extends Component {
 
@@ -6,18 +7,15 @@ class ExperimentSelector extends Component {
     const { onTestStart } = this.props;
 
     return (
-      <div className="row">
-        <div className="col s12 center">
-          <p>Click the button below in order to start:</p>
-          <button
-            type="submit"
-            onClick={() => onTestStart({ assignment_types: ['experiment'] })}
-            className="btn waves-effect waves-light btn-large deep-orange"
-          >
-            <i className="material-icons right">send</i>
-            Start
-          </button>
-        </div>
+      <div>
+        <p>Click the button below in order to start:</p>
+        <RaisedButton
+          type="submit"
+          label="Start"
+          labelColor="#ffffff"
+          backgroundColor="#ffa726"
+          onTouchTap={() => onTestStart({ assignment_types: ['experiment'] })}
+        />
       </div>
     );
   }

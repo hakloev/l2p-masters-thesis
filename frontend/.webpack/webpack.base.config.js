@@ -73,7 +73,9 @@ module.exports = {
   },
 
   sassLoader: {
-    includePath: [path.join(__dirname, '..', 'styles')],
+    includePath: [
+      path.join(__dirname, '..', 'styles')
+    ],
   },
 
   eslint: {

@@ -1,57 +1,83 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { reduxForm } from 'redux-form';
-import { ReportForm } from './Report';
-import { actions } from '../data/issue';
+import { submit } from 'redux-form';
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
 
-let ReportModal = props => {
+import ReportForm from './ReportForm';
+import { actions as issueActions } from '../data/issue';
+import { actions } from '../data/modals';
 
-  const onSubmitClick = fields => {
+class ReportModal extends React.Component {
+
+  onSubmit = () => {
+    this.props.handleFormSubmit('report-modal');
+  }
+
+  handleSubmit = fields => {
     /* eslint-disable no-param-reassign */
-    fields.assignmentId = props.assignmentId;
-    props.onSubmitReport(fields);
+    fields.assignmentId = this.props.assignmentId;
+    this.props.submitReport(fields);
   };
 
-  return (
-    <div id="report-modal" className="modal">
-      <div className="modal-content">
-        <ReportForm handleSubmit={props.handleSubmit} onSubmitClick={onSubmitClick} />
-      </div>
-    </div>
-  );
-};
+  render() {
+    const modalActions = [
+      <FlatButton
+        label="Cancel"
+        primary
+        onTouchTap={this.props.toggleModal}
+      />,
+      <FlatButton
+        label="Submit"
+        primary
+        keyboardFocused
+        onTouchTap={this.onSubmit}
+      />,
+    ];
+
+    return (
+      <Dialog
+        title={this.props.assignmentId ?
+          `Report an issue with assignment ${this.props.assignmentId}`
+          :
+          'Report an Issue'
+          }
+        actions={modalActions}
+        open={this.props.open}
+        onRequestClose={this.props.toggleModal}
+      >
+        <ReportForm
+          form="report-modal"
+          onSubmit={this.handleSubmit}
+        />
+      </Dialog>
+    );
+  }
+}
 
 ReportModal.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
   assignmentId: PropTypes.number,
-  onSubmitReport: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
+  toggleModal: PropTypes.func.isRequired,
 };
-
-ReportModal = reduxForm({
-  form: 'reportModal',
-})(ReportModal);
 
 
 const mapStateToProps = state => {
   return {
-    assignmentId: state.assignment.task.meta.id,
+    open: state.modals.reportModalOpen,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onSubmitReport: formData => {
-      dispatch(actions.reportIssue(formData, true));
+    submitReport: formData => {
+      dispatch(issueActions.reportIssue(formData, true)); // (payload, isAssignmentForm)
     },
+    toggleModal: () => {
+      dispatch(actions.toggleReportModal());
+    },
+    handleFormSubmit: identifier => dispatch(submit(identifier)),
   };
-};
-
-export const open = () => {
-  $('#report-modal').modal('open');
-};
-
-export const close = () => {
-  $('#report-modal').modal('close');
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ReportModal);

@@ -1,23 +1,14 @@
 /* RESETS */
-html, body, #app, div[data-reactroot], #main-container, #inner-container {
-  width: 100%;
-  height: 100%;
+html, body, #app, div[data-reactroot], #main-container {
   margin: 0;
-  // overflow: hidden;
+  font-family: 'Roboto', sans-serif;
 }
 
-#inner-container {
-  > div#auth-wrapper {
-    height: 100%;
-  }
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
 p {
-  // margin: 0;
   line-height: 1.5;
-}
-
-/* Materialize CSS resets */
-.brand-logo, .button-collapse {
-  margin-left: 15px;
 }

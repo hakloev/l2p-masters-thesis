@@ -2,8 +2,8 @@ import { takeEvery } from 'redux-saga';
 import { call, put } from 'redux-saga/effects';
 
 import apiService from '../../api/client';
+import { actions as modalActions } from '../modals';
 import * as actions from './actions';
-import { open as openModal } from '../../components/AchievementsModal';
 
 function* getNewAchievements() {
   try {
@@ -11,7 +11,7 @@ function* getNewAchievements() {
     const data = yield call(apiService.get, '/api/user/achievements/new/');
     yield put(actions.getNewAchievementsSuccess(data.achievements));
     if (data.achievements.length > 0) {
-      openModal();
+      yield put(modalActions.toggleAchievementsModal());
     }
   } catch (error) {
     console.error(`${actions.GET_NEW_ACHIEVEMENTS_FAILURE}: ${error.message}`);

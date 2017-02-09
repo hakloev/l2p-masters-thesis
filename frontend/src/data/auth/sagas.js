@@ -1,6 +1,7 @@
 import { takeEvery, delay } from 'redux-saga';
 import { call, put, take, race } from 'redux-saga/effects';
 import { browserHistory } from 'react-router';
+import { toastr } from 'react-redux-toastr';
 import ReactGA from 'react-ga';
 import jwtDecode from 'jwt-decode';
 
@@ -24,7 +25,11 @@ function* submitRegistration(action) {
   } catch (error) {
     console.error(`${actions.REGISTRATION_FAILURE}: ${error.message}`);
     yield put(actions.registrationFailure(error.message));
-    Materialize.toast('Something went wrong during the registration, please try again later!', 5000);
+    if (error.json.username) {
+      toastr.info('Invalid', 'A user with that username already exists');
+    } else {
+      toastr.error('Error', 'Something went wrong during the registration, please try again later!');
+    }
   }
 }
 
@@ -87,7 +92,7 @@ export function* loginFlow() {
         credentials.token = null;
         yield call(removeAuthToken);
         browserHistory.push('/login');
-        Materialize.toast('You have been successfully signed out', 5000);
+        toastr.success('Success', 'You have been successfully signed out');
       }
 
     } catch ({ json, message }) {
@@ -101,6 +106,7 @@ export function* loginFlow() {
 
       if (json.non_field_errors) {
         console.error('Maybe invalid token? ', json.non_field_errors);
+        toastr.error('Error', json.non_field_errors[0]);
       } else {
         console.error(`Unknown error occured: ${message}`);
       }
