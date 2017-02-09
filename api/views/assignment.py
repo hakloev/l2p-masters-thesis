@@ -25,29 +25,38 @@ DISPLAY_PROGRESS_SURVEY = False
 
 def get_new_assignment(user, assignment_type):
     # Get assignments solved by the user
-    user_solved = AssignmentSolvingAttempt.objects.filter(
-        user=user,
-        correct_solution=True,
-    ).values('assignment__id')
+    if assignment_type.type_name == 'Experiment':
+        # Ignore if the solution was True during experiments
+        user_solved = AssignmentSolvingAttempt.objects.filter(
+            user=user,
+        ).values('assignment__id')
+    else:
+        user_solved = AssignmentSolvingAttempt.objects.filter(
+            user=user,
+            correct_solution=True,
+        ).values('assignment__id')
+
+    log.debug('{} has solved assignments: {}'.format(user, user_solved))
 
     # Get active assignments from the current assignment_type that is still unsolved
     result = Assignment.active_assignments.filter(
         assignment_types=assignment_type
     ).exclude(id__in=user_solved)
+    log.debug('Available unsolved for {}: {}'.format(user, result))
 
     # If no unsolved assignments found for assignment type
     if not result:
-        log.debug('All assignments of type {} solved, returning random assignment'.format(assignment_type))
+        log.debug('{} has all assignments of type {} solved, returning random assignment'.format(user, assignment_type))
         return random.choice(Assignment.active_assignments.filter(
             assignment_types=assignment_type,
         ))
 
     # If assignment type is experiment
-    if assignment_type == 'Experiment':
+    if assignment_type.type_name == 'Experiment':
         log.debug('Sort result query set to return first possible experiment assignment')
         return result.order_by('difficulty_level').first()
 
-    log.debug('Found unsolved assignment of type {}'.format(assignment_type))
+    log.debug('Found unsolved assignment of type {} for {}'.format(assignment_type, user))
     return random.choice(result)
 
 
@@ -109,9 +118,10 @@ def submit_code_for_assignment(request, format=None):
             # Guarantee that there is a list of assignment types
             log.debug('No assignment types present in POST, using default')
             assignment_types = [
-                a_type.id for a_type in AssignmentType.objects.all().exclude(type_name__startswith='Exam')
+                a_type for a_type in AssignmentType.objects.all().exclude(type_name__startswith='Exam')
             ]
-        new_assignment_type = int(random.choice(assignment_types))  # Choose a random assignment type
+        new_assignment_type_pk = random.choice(assignment_types)  # Choose a random assignment type
+        new_assignment_type = AssignmentType.objects.get(pk=new_assignment_type_pk)
 
     previous_assignment = get_object_or_404(Assignment, pk=previous_assignment_pk)
 
