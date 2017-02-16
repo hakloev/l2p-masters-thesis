@@ -9,8 +9,8 @@ virtualenv used for the project. Also the settings module below must be set to t
 """
 
 if __name__ == "__main__":
-    sys.path.append('../l2p')
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "l2p.settings.dev")
+    sys.path.append('<FULL_PATH_HERE>')
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "<SETTINGS_MODULE_HERE")
     import django
     django.setup()
 
