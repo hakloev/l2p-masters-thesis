@@ -171,7 +171,7 @@ class Question extends Component {
               showExpandableButton
             />
             <CardText expandable>
-              <p>Pressing "Skip" will forward you to the next task and a failed attempt is registered in the system.</p>
+              <p>Pressing <span className="bold">Skip</span> will forward you to the next task and a failed attempt is registered in the system.</p>
               <p>You may use the shortcut <span className="code-block">{navigator.platform === 'MacIntel' ? 'cmd + enter' : 'ctrl + enter'}</span> in order to quickly compile your code.</p>
             </CardText>
           </Card>

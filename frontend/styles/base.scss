@@ -2,19 +2,13 @@
 @import 'variables';
 @import 'stats-badge';
 
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700,900');
+
 #main-container {
   height: calc(100vh - 64px); // Subtract the height of the navbar in order to only fill viewport
 }
 
-.code-block {
-  border: 1px solid lightgray;
-  border-radius: 5px;
-  font-family: monospace;
-  background-color: rgb(247, 247, 249);
-  color: $code-color;
-  padding: 2px;
-}
-
+/* Editor related */
 #assignment-container {
   display: flex;
   flex-direction: row;
@@ -147,4 +141,23 @@
     > i {
       transform: rotate(180deg);
     }
+}
+
+/* Text block related */
+
+.info-text {
+  margin-bottom: 15px;
+}
+
+.bold {
+  font-weight: 800;
+}
+
+.code-block {
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  font-family: monospace;
+  background-color: rgb(247, 247, 249);
+  color: $code-color;
+  padding: 2px;
 }

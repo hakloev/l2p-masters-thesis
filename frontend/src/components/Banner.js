@@ -4,7 +4,9 @@ const styles = {
   wrapper: {
     textAlign: 'center',
     fontFamily: 'Roboto, sans-serif',
-    padding: '15px 0',
+    fontSize: 30,
+    fontWeight: 500,
+    padding: '30px 0',
     backgroundColor: '#e3e3e3',
   },
 };

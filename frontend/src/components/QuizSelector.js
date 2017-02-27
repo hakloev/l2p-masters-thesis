@@ -61,7 +61,7 @@ class QuizSelector extends Component {
         <Card style={styles.generalCard}>
           <CardTitle title="General Quiz" subtitle="Learn basic programming!" />
           <CardText>
-            <p>These tasks are meant for practicing certain core aspects of programming. Select the topics you want to practice:</p>
+            <p className="info-text">These tasks are meant for practicing certain core aspects of programming. Select the topics you want to practice:</p>
             <StartQuizForm
               form="start-quiz"
               assignmentTypes={assignmentTypes}
@@ -80,7 +80,7 @@ class QuizSelector extends Component {
           <CardTitle title="Exam Questions" subtitle="Practice for your exam!" />
           <CardText>
             {hasExamQuestions &&
-              <p>These tasks are of varying difficulty and are meant as practice prior to the exam.</p>
+              <p className="info-text">These tasks are of varying difficulty and are meant as practice prior to the exam.</p>
             }
           </CardText>
           <CardActions>
