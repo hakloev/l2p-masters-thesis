@@ -787,7 +787,7 @@
     "fields": {
         "is_public": true,
         "difficulty_level": 2,
-        "resource_url": "https://www.tutorialspoint.com/python/python_variable_types.htm",
+        "resource_url": "https://www.learnpython.org/en/Variables_and_Types",
         "title": "Experiment: 2",
         "assignment_text": "Create a variable that holds the value \u201cHello World\u201d, then use the <span class=\"code-block\">print()</span> function to print that variable to the screen.",
         "hint_text": "Variables are used to store data that needs to be used. In python, values can be stored to variables in this way: <span class=\"code-block\">variable_name = value</span>. Example: The word Hello can be stored by writing a line <span class=\"code-block\">word = \"Hello\"</span>. The value can then be printed by letting the <span class=\"code-block\">print()</span> function display the value of the variable: <span class=\"code-block\">print(word)</span>.",
@@ -804,7 +804,7 @@
     "fields": {
         "is_public": true,
         "difficulty_level": 3,
-        "resource_url": "https://www.tutorialspoint.com/python/python_variable_types.htm",
+        "resource_url": "https://www.learnpython.org/en/Variables_and_Types",
         "title": "Experiment: 3",
         "assignment_text": "Variables can be reassigned to hold new values. Create a variable that contains the number 1 as such <span class=\"code-block\">number = 1</span>. Print the variable, then reassign it so that it holds the number 2. Finally, print the variable again.",
         "hint_text": "Variables can be reassigned in the same way as you initially assign them. Simply refer the variable to its new value. Example: <br />\r\n\r\n<pre class=\"code-block\">\r\nnumber = 20\r\nnumber = 10\r\n</pre>",
@@ -821,7 +821,7 @@
     "fields": {
         "is_public": true,
         "difficulty_level": 4,
-        "resource_url": "https://www.tutorialspoint.com/python/python_variable_types.htm",
+        "resource_url": "https://www.learnpython.org/en/Variables_and_Types",
         "title": "Experiment: 4",
         "assignment_text": "There are several different types of variables in Python. Create four variables, a string, an integer, a floating point number and a boolean variable (a variable that holds either true or false), holding the values <span class=\"code-block\">\"text\", 10, 10.5 and True</span> respectively. Print these variables in that order with four separate print statements.",
         "hint_text": "String variables holds text, integers holds a number, floating point numbers are decimal numbers  and boolean variables are either true or false. Remember that string (text) variables need to be encapsulated with quotes, as such</ br>\r\n<span class=\"code-block\">text_variable = 'text'</span>, while numbers are not: <span class=\"code-block\">number_variable = 100</span> Boolean values are stored as such: <span class=\"code-block\">boolean = True</span> or <span class=\"code-block\">boolean = False</span>.",
@@ -838,7 +838,7 @@
     "fields": {
         "is_public": true,
         "difficulty_level": 5,
-        "resource_url": "https://learnpythonthehardway.org/book/ex3.html",
+        "resource_url": "https://www.programiz.com/python-programming/operators#arithmetic_operators",
         "title": "Experiment: 5",
         "assignment_text": "Python can be used to perform mathematical operations. Print the solution to the problem <span class=\"code-block\">(20 - 10) /  2</span>",
         "hint_text": "The symbols <span class=\"code-block\">+, -, / and *</span> are used to perform the operations addition, subtraction, dividing and multiplication. Just like other numbers, the answer to mathematical expressions can be stored in variables as such: <span class=\"code-block\">solution = (5 + 5) * 10</span>. The solution variable will then contain 100.0.",
@@ -855,7 +855,7 @@
     "fields": {
         "is_public": true,
         "difficulty_level": 15,
-        "resource_url": "https://www.tutorialspoint.com/python/python_for_loop.htm",
+        "resource_url": "https://www.tutorialspoint.com/python3/python_for_loop.htm",
         "title": "Experiment: 15",
         "assignment_text": "It is often desirable to have certain conditions to look for inside loops. Create a for-loop that loops over the items listed in the variable below, and print the item only if the item is \u201cBjarne\u201d.",
         "hint_text": "To check if an item exists inside a <span class=\"code-block\">for</span> loop, we use an <span class=\"code-block\">if</span> condition. <br />\r\n\r\n<pre class=\"code-block\">\r\nfor item in some_list:\r\n     if item == some_condition:\r\n          # Do something\r\n<pre>",
@@ -872,7 +872,7 @@
     "fields": {
         "is_public": true,
         "difficulty_level": 14,
-        "resource_url": "https://www.tutorialspoint.com/python/python_for_loop.htm",
+        "resource_url": "https://www.tutorialspoint.com/python3/python_for_loop.htm",
         "title": "Experiment: 14",
         "assignment_text": "It is possible to iterate over lists of items. Create a for-loop that loops over the items listed in the variable below, and print each item.",
         "hint_text": "To loop over a list of items, you can use this syntax: <span class=\"code-block\">for item in some_list:</span>. \u201citem\u201d is the variable representing the current element in the iteration.",
@@ -889,7 +889,7 @@
     "fields": {
         "is_public": true,
         "difficulty_level": 13,
-        "resource_url": "http://pythoncentral.io/pythons-range-function-explained/",
+        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#the-range-function",
         "title": "Experiment: 13",
         "assignment_text": "The <span class=\"code-block\">range</span> function can be supplied with an additional number, called step. Create a <span class=\"code-block\">for</span> loop that iterates from 1 through 10 (including 10) with a step counter of 2 and prints each number along the way.",
         "hint_text": "To loop with a step counter, we add an additional number to <span class=\u201ccode-block\u201d>range</span>, like this: <br />\r\n\r\n<pre class=\"code-block\">\r\nfor x in range(1, 10, 3):\r\n    print(x)\r\n</pre>\r\n\r\nThis will print 1, then 4, then 7.",
@@ -906,7 +906,7 @@
     "fields": {
         "is_public": true,
         "difficulty_level": 6,
-        "resource_url": "http://anh.cs.luc.edu/python/hands-on/3.1/handsonHtml/ifstatements.html",
+        "resource_url": "https://www.tutorialspoint.com/python3/python_if_else.htm",
         "title": "Experiment: 6",
         "assignment_text": "It is possible to perform different actions based on the value of variables through conditions. Consider the variable <span class=\"code-block\">boolean</span>, and create a condition that prints \u201cYep!\u201d if the <span class=\"code-block\">boolean</span> variable is <span class=\"code-block\">True</span> and \"Nop!\" otherwise.",
         "hint_text": "You can check a condition by using <span class=\"code-block\">if, elif, else</span>.<br /> An <span class=\"code-block\">==</span> sign is used to check if two values are the same. Remember the colon at the end of <span class=\"code-block\">if</span> test and that the following code needs to be indented.<br />\r\nExample: <br />\r\n\r\n<pre class=\"code-block\">\r\nnumber = 5\r\nif number == 10:\r\n    print(\u201cNumber is 10\u201d)\r\nelse:\r\n    print(\"Number is not 10\")\r\n</pre> <br />\r\n\r\nThis code block will print \u201cNumber is not 10\u201d, since the <span class=\"code-block\">if</span> check did not match.",
@@ -923,7 +923,7 @@
     "fields": {
         "is_public": true,
         "difficulty_level": 12,
-        "resource_url": "https://docs.python.org/2/tutorial/controlflow.html#the-range-function",
+        "resource_url": "https://docs.python.org/3/tutorial/controlflow.html#the-range-function",
         "title": "Experiment: 12",
         "assignment_text": "Loops is a concept that can be used to iterate over several items. Create a <span class=\"code-block\">for</span> loop that iterates from 1 through 10 (including 10) and prints each number along the way.",
         "hint_text": "To loop over numbers, we can use the built in range function along with a for loop, like this: <br />\r\n\r\n<pre class=\"code-block\">\r\nfor number in range(1, 5):\r\n    print(number)\r\n</pre> <br />\r\n\r\nThe <span class=\"code-block\">print</span> statement will in this case run 4 times. The two numbers inside the <span class=\"code-block\">range</span> function define the \u201cfrom\u201d and \u201cto\u201d values of the loop. Thus, this loop will run 4 times, where the variable number is incremented by one each time. First time its 1, then 2, 3 and finally 4. 5 is not included because the range function is non-inclusive (Does not include the last number).",
@@ -940,7 +940,7 @@
     "fields": {
         "is_public": true,
         "difficulty_level": 7,
-        "resource_url": "http://anh.cs.luc.edu/python/hands-on/3.1/handsonHtml/ifstatements.html",
+        "resource_url": "https://www.tutorialspoint.com/python3/python_if_else.htm",
         "title": "Experiment: 7",
         "assignment_text": "There are several ways to compare variables. Create an <span class=\u201ccode-block\u201d>if</span> statement that checks if the variable <span class=\"code-block\">number</span> is bigger than 10 and print \u201cBig\u201d if it is. Then create another <span class=\u201ccode-block\u201d>if</span> statement that checks if <span class=\u201ccode-block\u201d>number</span> is smaller than 100 and print \u201cSmall\u201d if it is.",
         "hint_text": "The \u201cGreater than\u201d and \u201cSmaller than\u201d symbols are respectively <span class=\"code-block\">></span> and <span class=\"code-block\"><</span>.<br /> Example: <br />\r\n\r\n<pre class=\"code-block\">\r\nnumber = 10\r\nif number > 5:\r\n    print(number)\r\n</pre> <br />\r\n\r\nThis code block will print 10, as 10 is in fact greater than 5.",
@@ -957,7 +957,7 @@
     "fields": {
         "is_public": true,
         "difficulty_level": 11,
-        "resource_url": "http://pythoncentral.io/python-null-equivalent-none/",
+        "resource_url": "http://stackoverflow.com/a/23086405",
         "title": "Experiment: 11",
         "assignment_text": "Variables can be set to <span class=\"code-block\">None</span>, meaning they have no value attached to them. Consider the variable in the editor and create an <span class=\"code-block\">if</span> statement that checks if the variable is None. \u201cVariable is none\u201d should be printed inside the <span class=\"code-block\">if</span> statement.",
         "hint_text": "Checking for None is done the same way one would check for any other type of equality, with the use of the <span class=\"code-block\">==</span> operator.",
@@ -974,7 +974,7 @@
     "fields": {
         "is_public": true,
         "difficulty_level": 10,
-        "resource_url": "https://docs.python.org/2.4/ref/comparisons.html",
+        "resource_url": "https://docs.python.org/3/library/stdtypes.html#comparisons",
         "title": "Experiment: 10",
         "assignment_text": "Similarly to checking for equality, one can also use <span class=\"code-block\">if</span> statements to check for inequality. Create an <span class=\"code-block\">if</span> statement that compares <span class=\"code-block\">foo</span> and <span class=\"code-block\">bar</span>, and checks if they are unequal. If they are equal, \u201cEqual\u201d should be printed. If they are unequal however, \u201cUnequal\u201d should be printed.",
         "hint_text": "Checking for equality is done using the <span class=\"code-block\">==</span> operator. Similarly, inequality is checked using the <span class=\"code-block\">!=</span> operator.",
@@ -991,7 +991,7 @@
     "fields": {
         "is_public": true,
         "difficulty_level": 9,
-        "resource_url": "http://cscircles.cemc.uwaterloo.ca/9-else-and-or-not/",
+        "resource_url": "https://www.tutorialspoint.com/python3/python_if_else.htm",
         "title": "Experiment: 9",
         "assignment_text": "Just like comparing a variable to a value, variables can be compared with each other. Create a statement that checks if <span class=\"code-block\">foo</span> and <span class=\"code-block\">bar</span> are equal, and print \u201cTrue\u201d if they are. Print \"False\" otherwise.",
         "hint_text": "Just like comparing a variable to a value, variables can be compared to each other like this: <span class=\"code-block\">if some_variable == another_variable:</span>",
@@ -1008,7 +1008,7 @@
     "fields": {
         "is_public": true,
         "difficulty_level": 8,
-        "resource_url": "http://anh.cs.luc.edu/python/hands-on/3.1/handsonHtml/ifstatements.html",
+        "resource_url": "https://www.tutorialspoint.com/python3/python_if_else.htm",
         "title": "Experiment: 8",
         "assignment_text": "It is possible to compare multiple conditions in one <span class=\"code-block\">if</span> statement. Create a statement that checks if both <span class=\"code-block\">foo</span> and <span class=\"code-block\">bar</span> are True, and print \"True\" if they are. Print \"False\" if they are not.",
         "hint_text": "The <span class=\"code-block\">and</span> and <span class=\"code-block\">or</span> keywords can be used to compare multiple conditions. <span class=\"code-block\">and</span> is used if both conditions need to qualify, while the <span class=\"code-block\">or</span> keyword is used when only one of them need to qualify. Example: <br />\r\n<pre class=\"code-block\">\r\nnum = 2\r\nif num > 1 and num < 3:\r\n    print(\u201cTrue\u201d)\r\n</pre>\r\nThis example will print \u201cTrue\u201d, as num is in fact larger than 1 and smaller than 3.",
@@ -1025,7 +1025,7 @@
     "fields": {
         "is_public": true,
         "difficulty_level": 16,
-        "resource_url": "https://www.tutorialspoint.com/python/python_for_loop.htm",
+        "resource_url": "https://www.tutorialspoint.com/python3/python_for_loop.htm",
         "title": "Experiment: 16",
         "assignment_text": "Loops can be used to loop over letters in a word. Consider the variable, and create a <span class=\"code-block\">for</span> loop that iterates over each character in the word, and prints each of them.",
         "hint_text": "You can use the <span class=\"code-block\">in</span> operator to loop over characters. Example:\r\n<span class=\"code-block\">for char in word:</span>. In this loop, the <span class=\"code-block\">char</span> variable will represent an individual character (letter) in <span class=\"code-block\">word</span> for each iteration.",
@@ -1042,7 +1042,7 @@
     "fields": {
         "is_public": true,
         "difficulty_level": 17,
-        "resource_url": "https://www.tutorialspoint.com/python/python_while_loop.htm",
+        "resource_url": "https://www.tutorialspoint.com/python3/python_while_loop.htm",
         "title": "Experiment: 17",
         "assignment_text": "Loops may also be conditionally controlled. In Python it is possible to create such loops using the <span class=\"code-block\">while</span> statement. Create a loop using <span class=\"code-block\">while</span> that stops when variable <span class=\"code-block\">n</span> equals zero - 0 - (not including zero). For each iteration you should print the value of <span class=\"code-block\">n</span> and then decrement the value with one - 1.",
         "hint_text": "Variables can be incremented and decremented with <span class=\"code-block\">+=</span> and <span class=\"code-block\">-=</span> These notations are equal to writing <span class=\"code-block\">i = i + 1</span> meaning that the variable <span class=\"code-block\">i</span> is set to be equal to its previous value, plus one. The syntax of the while loop is <br />\r\n<pre class=\"code-block\">\r\nwhile condition:\r\n    statement(s)\r\n\r\nwhile i < 5:\r\n    i += 1\r\n</pre>",
@@ -1076,7 +1076,7 @@
     "fields": {
         "is_public": true,
         "difficulty_level": 18,
-        "resource_url": "https://www.tutorialspoint.com/python/python_nested_loops.htm",
+        "resource_url": "https://www.tutorialspoint.com/python3/python_nested_loops.htm",
         "title": "Experiment: 18",
         "assignment_text": "Create a loop that iterates from 1 to 5, not including 5 (<span class=\"code-block\">for number in range(1, 5):</span>). In each iteration, the <span class=\"code-block\">number</span> should be multiplied with each number from 1 to 5 again and printed, not including 5. (print 1 multiplied with 1, print 1 multiplied with 2 and so forth).",
         "hint_text": "It is possible to create a loop inside another loop. For each iteration of the outer loop, the inner loop will iterate fully. It is important that the variables defined as part of the loop do not have the same name, as shown below.\r\n\r\n<pre class=\"code-block\">\r\nfor outer_number in range(1, 5):\r\n    for inner_number in range(1, 5):\r\n        # Do something\r\n</pre>",
@@ -1110,7 +1110,7 @@
     "fields": {
         "is_public": true,
         "difficulty_level": 5,
-        "resource_url": "https://docs.python.org/3.5/library/functions.html#type",
+        "resource_url": "http://www.python-course.eu/python3_classes_and_type.php",
         "title": "Experiment: 21",
         "assignment_text": "In Python it is possible to check which type a variable is interpreted as, using the built-in function <span class=\"code-block\">type()</span>. Print the type of the four listed variables, in the order they are presented.",
         "hint_text": "The type of a variable may be checked like this: <br />\r\n\r\n<pre class=\"code-block\">\r\nfoo = 'learnpython is awesome'\r\ntype(foo)\r\n</pre> <br />\r\n\r\nUse the <span class=\"code-block\">print</span> statement to display the type of <span class=\"code-block\">foo</span>. This will produce <span class=\"code-block\">class 'str'</span> meaning that <span class=\"code-block\">foo</span> is a string.",
