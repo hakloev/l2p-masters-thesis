@@ -1,14 +1,23 @@
 # l2p-masters-thesis
 
+This code is the artifact created during our masters thesis. The artifact was used to perform an experiment during the latter phase of the thesis. Below it is simply described how to start a development version of the system. 
+
 ## Development
 
+Frontend (done within the `frontend`-folder):
 ```bash
-export DJANGO_SETTINGS_MODULE=l2p.settings.dev
-make env # creates the virtual environment for python
-make pull-docker-images # optional if images already pulled
-make development # installs all development dependencies
-make migrate # if new migrations are available
-make load-fixtures # if not previously loaded into the datebase
-make superuser # creates a superuser
-make run # starts server on port 8000
+yarn install # Downloads the required npm-packages
+npm run dev-server # Starts the webpack-dev-server on port 3000
+```
+
+Backend:
+```bash
+export DJANGO_SETTINGS_MODULE=l2p.settings.dev # Export the Django-settings file to the PATH
+make env # Creates the virtual environment for Python, only required once
+make pull-docker-images # Optional if the images are already pulled
+make development # Installs all development dependencies to the virtual environment
+make migrate # Apply initialy, and if new migrations are available
+make load-fixtures # If not previously loaded, this will populate the SQLite datebase
+make superuser # Creates a superuser for the Django-application
+make run # Starts the server on port 8000
 ```
