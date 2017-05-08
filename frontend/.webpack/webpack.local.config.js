@@ -17,7 +17,7 @@ config.plugins = config.plugins.concat([
   new webpack.DefinePlugin({
     'process.env': {
       NODE_ENV: JSON.stringify('development'),
-      IS_EXPERIMENT: JSON.stringify('true'),
+      IS_EXPERIMENT: JSON.stringify('false'),
     },
   }),
 ]);

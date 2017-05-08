@@ -1,7 +1,7 @@
 const TOKEN_IDENTIFIER = 'id_token';
 const CODE_STRIP_REGEX = new RegExp(/^\s+|\n+|\r+|\s+$/, 'g');
 const ANALYTICS_KEY = process.env.NODE_ENV === 'production' ? 'UA-86402640-2' : 'UA-86402640-1';
-const SHOULD_DISPLAY_EXPERIMENT = process.env.IS_EXPERIMENT ? process.env.IS_EXPERIMENT : false; // Flag selecting the type of quiz to be presented (general test or multiple quizzes)
+const SHOULD_DISPLAY_EXPERIMENT = process.env.IS_EXPERIMENT === 'true' ? process.env.IS_EXPERIMENT : false; // Flag selecting the type of quiz to be presented (general test or multiple quizzes)
 
 export {
   TOKEN_IDENTIFIER,
