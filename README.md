@@ -11,7 +11,7 @@ yarn install # Downloads the required npm-packages
 npm run dev-server # Starts the webpack-dev-server on port 3000
 ```
 
-Backend:
+**Backend**:
 ```bash
 # Done in a separate terminal window/session
 export DJANGO_SETTINGS_MODULE=l2p.settings.dev # Export the Django-settings file to the PATH-variable
