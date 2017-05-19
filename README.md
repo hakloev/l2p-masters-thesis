@@ -16,9 +16,9 @@ npm run dev-server # Starts the webpack-dev-server on port 3000
 # Done in a separate terminal window/session
 export DJANGO_SETTINGS_MODULE=l2p.settings.dev # Export the Django-settings file to the PATH-variable
 make env # Creates the virtual environment for Python, only required to do once
-make pull-docker-images # Optional if the images are already pulled
-make development # Installs all development dependencies to the virtual environment
-make migrate # Apply initialy, and if new migrations are available
+make pull-docker-images # Optional if the images are pulled already
+make development # Install all development dependencies to the virtual environment
+make migrate # Apply initialy and/or if new migrations are available
 make load-fixtures # If not previously loaded, this will populate the SQLite datebase
 make superuser # Creates a superuser for the Django-application
 make run # Starts the server on port 8000
