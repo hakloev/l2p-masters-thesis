@@ -8,9 +8,15 @@ env/
 __pycache__/
 l2p/settings/staging.py
 l2p/settings/production.py
+scripts/users.txt
 static/
+dev.db
 
 frontend/dist/*
+frontend/typings/*
+frontend/.vscode/*
 node_modules/
 assets/*
 webpack-stats*.json
+
+mail.py

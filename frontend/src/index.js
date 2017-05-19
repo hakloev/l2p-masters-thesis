@@ -1,46 +1,51 @@
+import 'babel-polyfill';
+import 'react-redux-toastr/lib/css/react-redux-toastr.min.css';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { AppContainer } from 'react-hot-loader';
-import { Router, browserHistory } from 'react-router';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 
-import 'materialize-css';
-import 'materialize-css/bin/materialize.css';
-import 'font-awesome/css/font-awesome.min.css';
-
+import Root from './Root';
 import configureStore from './configureStore';
-import routes from './routes';
-import * as actions from './actions/quiz';
+import HMRContainer from './containers/HMRContainer';
+
+import initializeGoogleAnalytics from './common/analytics';
+
+import { actions as assignmentActions } from './data/assignment';
 
 require('../styles/base.scss');
+
+injectTapEventPlugin();
+initializeGoogleAnalytics();
 
 const appMount = document.getElementById('app');
 const store = configureStore();
 
 // Load inital data
-store.dispatch(actions.getAssignmentTypesRequest());
+store.dispatch(assignmentActions.getAssignmentTypesRequest());
 
-ReactDOM.render(
-  <Provider store={store}>
-    <AppContainer>
-      <Router history={browserHistory} routes={routes} />
-    </AppContainer>
-  </Provider>,
-  appMount
+const App = (
+  <HMRContainer>
+    <Root store={store} />
+  </HMRContainer>
 );
 
-if (module.hot) {
-  module.hot.accept('./routes', () => {
-    // eslint-disable-next-line
-    const routes = require('./routes').default;
+try {
+  ReactDOM.render(App, appMount);
+  if (module.hot) {
+    module.hot.accept('./Root', () => {
+      const NextApp = require('./Root').default;
 
-    ReactDOM.render(
-      <Provider store={store}>
-        <AppContainer>
-          <Router history={browserHistory} routes={routes} />
-        </AppContainer>
-      </Provider>,
-      appMount
-    );
-  });
+      ReactDOM.render(
+        <HMRContainer>
+          <NextApp store={store} />
+        </HMRContainer>,
+        appMount
+      );
+    });
+  }
+} catch (err) {
+  console.error('Render Error:', err);
 }
+
+export default App;

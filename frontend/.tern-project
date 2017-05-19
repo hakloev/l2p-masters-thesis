@@ -7,6 +7,11 @@
 	"loadEagerly": [
 		"src/**/*.js"
 	],
+  "dontLoad": [
+    "dist/**",
+    "assets/**",
+    "node_modules"
+  ],
   "plugins": {
     "node": {
       "dontLoad": "",

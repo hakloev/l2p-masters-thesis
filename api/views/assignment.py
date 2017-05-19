@@ -1,161 +1,203 @@
 import logging
 import random
 
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404
 
 from rest_framework import generics
-from rest_framework import permissions
-from rest_framework import views
 from rest_framework import viewsets
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
+from rest_framework import status
+from rest_framework.decorators import api_view
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 
 from api.utils import utils
-from api.serializers.achievement import AchievementSerializer
 from api.utils.sandbox import DockerSandbox
-from api.models.assignment import AssignmentType, Assignment
+from api.serializers.achievement import AchievementSerializer
 from api.serializers.assignment import AssignmentSerializer, AssignmentTypeSerializer
-from api.models.score import ScoreTypeTracker, SkillTypeLevel, StreakTracker
+from api.models.assignment import AssignmentType, Assignment, AssignmentSolvingAttempt
+from api.models.score import UserStreakTracker, AssignmentTypeScoreTracker
+from api.models.survey import ProgressSurvey
+
+log = logging.getLogger(__name__)
+
+DISPLAY_PROGRESS_SURVEY = False  # Alternatively fetch this from ENV?
 
 
-class GetAssignment(views.APIView):
+def get_new_assignment(user, assignment_type):
+    # Get assignments solved by the user
+    if assignment_type.type_name == 'Experiment':
+        # Ignore if the solution was True during experiments
+        user_solved = AssignmentSolvingAttempt.objects.filter(
+            user=user,
+        ).values('assignment__id')
+    else:
+        user_solved = AssignmentSolvingAttempt.objects.filter(
+            user=user,
+            correct_solution=True,
+        ).values('assignment__id')
+
+    log.debug('{} has solved assignments: {}'.format(user, user_solved))
+
+    # Get active assignments from the current assignment_type that is still unsolved
+    result = Assignment.active_assignments.filter(
+        assignment_types=assignment_type
+    ).exclude(id__in=user_solved)
+    log.debug('Available unsolved for {}: {}'.format(user, result))
+
+    # If no unsolved assignments found for assignment type
+    if not result:
+        log.debug('{} has all assignments of type {} solved, returning random assignment'.format(user, assignment_type))
+        return random.choice(Assignment.active_assignments.filter(
+            assignment_types=assignment_type,
+        ))
+
+    # If assignment type is experiment
+    if assignment_type.type_name == 'Experiment':
+        log.debug('Sort result query set to return first possible experiment assignment')
+        return result.order_by('difficulty_level').first()
+
+    log.debug('Found unsolved assignment of type {} for {}'.format(assignment_type, user))
+    return random.choice(result)
+
+
+@api_view(('POST',))
+def start_quiz(request, format=None):
     """
-    POST-view to get a assignment for a user
-    POST for Javascript fetch to accept body
+    Endpoint to return the initial question when starting a new quiz
+    Return an assignment for the authenticated user given an assignment type
 
-    * Requires authentication
+    Example payload: { assignment_types: ['experiment', 1, 2] }
     """
-    log = logging.getLogger(__name__)
-    permission_classes = (permissions.IsAuthenticated, )
-
-    def post(self, request, format=None):
-        """
-        Return an custom assignment for the authenticated user
-        """
+    if 'exam' in request.data['assignment_types']:
+        log.debug('UserID {}: started with exam questions'.format(request.user))
+        assignment_type = AssignmentType.objects.filter(type_name__startswith='Exam').first()
+    elif 'experiment' in request.data['assignment_types']:
+        log.debug('UserID {}: started experiment'.format(request.user))
+        assignment_type = AssignmentType.objects.get(type_name='Experiment')
+    else:
+        log.debug('UserID {}: started with practice tasks'.format(request.user))
         assignment_types = request.data.get('assignment_types')
         if assignment_types is not None and not len(assignment_types):
             # Guarantee that there is a list of assignment types
-            assignment_types = [a_type.id for a_type in AssignmentType.objects.all()]
-        self.log.debug('User %s starting with the following assignment types: %s' % (request.user, assignment_types))
+            log.debug('No assignment types present in POST, using default')
+            assignment_types = [a_type.id for a_type in AssignmentType.objects.all().exclude(type_name__startswith='Exam')]
 
         assignment_type_pk = int(random.choice(assignment_types))  # Choose a random assignment type
         assignment_type = AssignmentType.objects.get(pk=assignment_type_pk)
 
-        # Get the users skill level
-        user_skill_level, created = SkillTypeLevel.objects.get_or_create(
-            user=request.user,
-            assignment_type=assignment_type
-        )
+    assignment = get_new_assignment(request.user, assignment_type)
+    log.debug('UserID {}: Sending back assignment {}'.format(request.user, assignment.id))
 
-        # Get an assignment
-        assignment = random.choice(Assignment.active_assignments.filter(
-            difficulty_level=user_skill_level.skill_level,
-            assignment_type=assignment_type
-        ))
-
-        # Serialize the assignment and return it
-        return Response({
-            'assignment': AssignmentSerializer(assignment).data,
-        })
+    # Serialize the assignment and return it
+    assignment_serialized = AssignmentSerializer(assignment)
+    return Response({
+        'assignment': assignment_serialized.data,
+    }, status=status.HTTP_200_OK)
 
 
-class CompileCode(views.APIView):
+@api_view(('POST',))
+def submit_code_for_assignment(request, format=None):
     """
-    POST-view to execute the posted Python code in a Docker container.
-    Will return the output from the container.
+    Endpoint to POST an assignment solution, and then register the attempt.
+    Will return a new question from the assignment type options
     """
-    log = logging.getLogger(__name__)
-    permission_classes = (permissions.IsAuthenticated, )
 
-    def post(self, request, format=None):
-        code = request.data['code']
-        # TODO: Error handling for not supplying any code
-        user = request.user.id
-        self.log.debug('Executing code for user: %s' % user)
-        with DockerSandbox() as docker:
-            result = docker.run(code, 'code_%s.py' % user)
-            self.log.debug('Get result %s' % result)
+    log.debug('UserID {}: posted {}'.format(request.user, request.data))
+    previous_assignment_pk = int(request.data.get('assignment_pk'))
+    correct_answer = request.data.get('correct_answer')
 
-        return Response(result)
-
-
-class SubmitCode(views.APIView):
-    """
-    Accept a POST-request that checks if the assignment is answered correctly.
-    Return a new question within the users skill level and assignment-type-options
-    """
-    log = logging.getLogger(__name__)
-
-    def post(self, request, format=None):
-        previous_assignment_pk = int(request.data.get('assignment_pk'))
-        correct_answer = request.data.get('correct_answer')
+    if 'exam' in request.data['assignment_types']:
+        log.debug('UserID {}: requested next exam questions'.format(request.user))
+        new_assignment_type = AssignmentType.objects.filter(type_name__startswith='Exam').first()
+    elif 'experiment' in request.data['assignment_types']:
+        log.debug('UserID {}: requested next experiment question'.format(request.user))
+        new_assignment_type = AssignmentType.objects.get(type_name='Experiment')
+    else:
         assignment_types = request.data.get('assignment_types')
         if assignment_types is not None and not len(assignment_types):
             # Guarantee that there is a list of assignment types
-            assignment_types = [a_type.id for a_type in AssignmentType.objects.all()]
-        new_assignment_type = int(random.choice(assignment_types))  # Choose a random assignment type
+            log.debug('No assignment types present in POST, using default')
+            assignment_types = [
+                a_type for a_type in AssignmentType.objects.all().exclude(type_name__startswith='Exam')
+            ]
+        new_assignment_type_pk = random.choice(assignment_types)  # Choose a random assignment type
+        new_assignment_type = AssignmentType.objects.get(pk=new_assignment_type_pk)
 
-        self.log.debug('User %s submitted code for assignment %i. The answer was %s' % (request.user,
-                                                                                   previous_assignment_pk,
-                                                                                   correct_answer))
+    previous_assignment = get_object_or_404(Assignment, pk=previous_assignment_pk)
 
-        previous_assignment = get_object_or_404(Assignment, pk=previous_assignment_pk)
+    AssignmentSolvingAttempt.objects.create(
+        user=request.user,
+        assignment=previous_assignment,
+        correct_solution=correct_answer,
+    )
 
-        user_streak_tracker = StreakTracker.objects.get(user=request.user)
-        score_type_tracker, created = ScoreTypeTracker.objects.get_or_create(
-            user=request.user,
-            assignment_type=previous_assignment.assignment_type
-        )
-        user_skill_level, created = SkillTypeLevel.objects.get_or_create(
-            user=request.user,
-            assignment_type=previous_assignment.assignment_type
-        )
+    user_streak_tracker, created = UserStreakTracker.objects.get_or_create(user=request.user)
 
-        if correct_answer:
-            user_skill_level.register_attempted_solution(correct_answer)
-            user_streak_tracker.streak += 1
+    # Get the score tracker for all assignment types registered on the previous assignment
+    score_type_trackers = [AssignmentTypeScoreTracker.objects.get_or_create(
+        user=request.user,
+        assignment_type=assignment_type
+    ) for assignment_type in previous_assignment.assignment_types.all()]
+
+    if correct_answer:
+        user_streak_tracker.streak += 1
+        for score_type_tracker, created in score_type_trackers:
             score_type_tracker.current_streak += 1
             score_type_tracker.score += 1
-            request.user.student.aggregated_score += 1
-            request.user.student.assignments_solved.add(previous_assignment)
-        else:
-            user_skill_level.register_attempted_solution(correct_answer)
-            user_streak_tracker.streak = 0
+            score_type_tracker.save()
+        request.user.student.aggregated_score += 1
+    else:
+        user_streak_tracker.streak = 0
+        for score_type_tracker, created in score_type_trackers:
             score_type_tracker.current_streak = 0
+            score_type_tracker.save()
 
-        request.user.student.attempted_assignments += 1
-        request.user.student.save()
-        user_streak_tracker.save()
-        score_type_tracker.save()
-        # user_skill_level saves itself through register_attempted_solution
+    request.user.student.attempted_assignments += 1
+    request.user.student.save()
+    user_streak_tracker.save()
 
-        # Get skill level for the new assignment
-        user_skill_level, created = SkillTypeLevel.objects.get_or_create(
+    assignment = get_new_assignment(request.user, new_assignment_type)
+    log.debug('UserID {}: Sending back assignment {}'.format(request.user, assignment.id))
+
+    if DISPLAY_PROGRESS_SURVEY:
+        # Check if the user should get survey about the software
+        show_progress_survey = len(AssignmentSolvingAttempt.objects.filter(
             user=request.user,
-            assignment_type=new_assignment_type,
-        )
-        assignment = random.choice(Assignment.active_assignments.filter(
-            difficulty_level=user_skill_level.skill_level,
-            assignment_type=new_assignment_type
-        ))
+            correct_solution=True,
+        )) == 5 and not ProgressSurvey.objects.filter(user=request.user).exists()
 
-        assignment_serialized = AssignmentSerializer(assignment)
-        return Response({
-            'assignment': assignment_serialized.data,
-        })
+    assignment_serialized = AssignmentSerializer(assignment)
+    return Response({
+        'assignment': assignment_serialized.data,
+        'show_progress_survey': show_progress_survey if DISPLAY_PROGRESS_SURVEY else False
+    }, status=status.HTTP_200_OK)
 
 
-@api_view(['GET', ])
-@permission_classes([IsAuthenticated, ])
+@api_view(('POST',))
+def compile_code(request, format=None):
+    """
+    View to execute the code within a Docker-container.
+    Will always return the output from the container.
+    """
+    log.debug('UserID {}: posted {}'.format(request.user, request.data))
+    user_code = request.data['code']
+    # TODO: Error handling for not supplying any code
+
+    with DockerSandbox() as docker:
+        result = docker.run(user_code, 'code.py')
+        log.debug('DockerSandbox output {}'.format(result))
+
+    return Response(result, status=status.HTTP_200_OK)
+
+
+@api_view(('GET',))
 def check_for_new_achievements(request):
     new_achievements = utils.check_for_new_achievements_for_user(request.user)
     new_achievements = [AchievementSerializer(achievement).data for achievement in new_achievements]
 
     return Response({
         'achievements': new_achievements
-    })
+    }, status=status.HTTP_200_OK)
 
 
 class AssignmentTypeViewSet(viewsets.ReadOnlyModelViewSet):
@@ -168,69 +210,3 @@ class AssignmentViewSet(generics.ListAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
     serializer_class = AssignmentSerializer
     queryset = Assignment.objects.all()
-
-
-@login_required
-def quiz(request):
-    # Get the post params
-    assignment_type_options = request.POST.getlist('assignment_type')
-    question_number = int(request.POST.get('qnum', 0))
-
-    previous_assignment_pk = request.POST.get('assignment', None)
-    correct_answer_str = request.POST.get('correct_answer', None)
-    correct_answer = correct_answer_str == 'true'
-
-    # Get the next question type
-    if len(assignment_type_options) > 0:
-        assignment_type_pk = int(random.choice(assignment_type_options))
-        assignment_type = AssignmentType.objects.get(pk=assignment_type_pk)
-    else:
-        assignment_type = random.choice(AssignmentType.objects.all())
-
-    player_skill_level_obj, created = SkillTypeLevel.objects.get_or_create(
-        user=request.user,
-        assignment_type=assignment_type
-    )
-
-    new_achievements = []
-
-    # Registrer answer and check for new achievements
-    if previous_assignment_pk:
-        previous_assignment_obj = get_object_or_404(Assignment, pk=previous_assignment_pk)
-        user_streak_tracker = StreakTracker.objects.get(user=request.user)
-        score_type_tracker, created = ScoreTypeTracker.objects.get_or_create(
-            user=request.user,
-            assignment_type=previous_assignment_obj.assignment_type
-        )
-
-        if correct_answer is True:
-            player_skill_level_obj.register_attempted_solution(True)
-            user_streak_tracker.streak += 1
-            score_type_tracker.current_streak += 1
-            score_type_tracker.score += 1
-            request.user.student.aggregated_score += 1
-            request.user.student.assignments_solved.add(previous_assignment_obj)
-        if correct_answer is False:
-            player_skill_level_obj.register_attempted_solution(False)
-            user_streak_tracker.streak = 0
-            score_type_tracker.current_streak = 0
-
-        request.user.student.attempted_assignments += 1
-        request.user.student.save()
-        user_streak_tracker.save()
-        score_type_tracker.save()
-
-        new_achievements = utils.check_for_new_achievements_for_user(request.user)
-
-    assignment = random.choice(Assignment.active_assignments.filter(
-        difficulty_level=player_skill_level_obj.skill_level,
-        assignment_type=assignment_type
-    ))
-
-    context = {
-        'assignment': assignment,
-        'qnum': question_number+1,
-        'assignment_type_options': assignment_type_options,
-        'new_achievements': new_achievements
-    }
-    return render(request, "quiz.html", context)

@@ -1,7 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-const BundleTracker = require('webpack-bundle-tracker');
-// var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   context: __dirname,
@@ -9,7 +7,6 @@ module.exports = {
   devtool: 'source-map',
 
   entry: [
-    'babel-polyfill',
     '../src/index.js',
   ],
 
@@ -19,10 +16,10 @@ module.exports = {
   },
 
   plugins: [
-    // new ExtractTextPlugin('styles.css'),
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
+      'window.$': 'jquery',
       'window.jQuery': 'jquery',
       'root.jQuery': 'jquery',
     }),
@@ -76,7 +73,9 @@ module.exports = {
   },
 
   sassLoader: {
-    includePath: [path.join(__dirname, '..', 'styles')],
+    includePath: [
+      path.join(__dirname, '..', 'styles')
+    ],
   },
 
   eslint: {

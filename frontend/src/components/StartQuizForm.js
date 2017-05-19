@@ -1,50 +1,41 @@
 import React, { PropTypes } from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { Checkbox } from 'redux-form-material-ui';
 
-const renderCheckbox = field =>
-  <p>
-    <input className="filled-in" type="checkbox" id={field.name} {...field.input} />
-    <label htmlFor={field.name}>{field.label}</label>
-  </p>;
 
-const StartQuizForm = ({ assignmentTypes, onSubmit, handleSubmit }) => {
+class StartQuizForm extends React.Component {
 
-  const onSubmitClick = fields => {
-    const types = [];
-    const prefix = 'assignment_';
-    Object.keys(fields).forEach(key => {
-      if (fields[key] && key.indexOf(prefix) === 0) {
-        types.push(key.substring(prefix.length));
-      }
-    });
+  handleKeyDown = (e, callback) => {
+    if (e.key === 'Enter' && e.shiftKey === false) {
+      e.preventDefault();
+      callback();
+    }
+  }
 
-    const formFields = { assignment_types: types };
-
-    onSubmit(formFields);
-  };
-
-  return (
-    <div className="row">
-      <div className="col s12">
-        <h1>Start new quiz</h1>
-        <form onSubmit={handleSubmit(onSubmitClick)}>
-          <p>Check the checkboxes below to chose the topics for the quiz:</p>
-          {assignmentTypes.map((type, i) => {
-            const name = `assignment_${type.id}`;
-            return (
-              <Field key={`cb-${name}_${i}`} name={name} label={type.type_name} component={renderCheckbox} />
-            );
-          })}
-          <button type="submit" className="btn waves-effect waves-light blue darken-4">Start!</button>
-        </form>
-      </div>
-    </div>
-  );
-};
+  render() {
+    return (
+      <form
+        onSubmit={this.props.handleSubmit}
+        onKeyDown={e => { this.handleKeyDown(e, this.props.handleSubmit); }}
+      >
+        {this.props.assignmentTypes.map((type, i) => {
+          const name = `assignment_${type.id}`;
+          return (
+            <Field
+              key={`cb-${name}_${i}`}
+              name={name}
+              label={type.type_name}
+              component={Checkbox}
+            />
+          );
+        })}
+      </form>
+    );
+  }
+}
 
 StartQuizForm.propTypes = {
   assignmentTypes: PropTypes.array.isRequired,
-  onSubmit: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
 };
 

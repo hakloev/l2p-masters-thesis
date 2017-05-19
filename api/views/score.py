@@ -1,51 +1,36 @@
-from rest_framework import generics
-from rest_framework import viewsets
+from rest_framework import generics, views, status
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
 
-from api.models.assignment import AssignmentType
-from api.models.score import ScoreTypeTracker, SkillTypeLevel
-from api.serializers.score import ScoreTypeSerializer, SkillTypeSerializer
-
-
-class UserSkillsListView(generics.ListAPIView):
-    """
-    Return the user skill levels for all assignment types
-    """
-    permission_classes = (IsAuthenticated,)
-    serializer_class = SkillTypeSerializer
-
-    def get_queryset(self):
-        assignment_types = AssignmentType.objects.all()
-
-        user_skill_levels = []
-
-        for assignment_type in assignment_types:
-            skill_type_tracker, created = SkillTypeLevel.objects.get_or_create(
-                user=self.request.user,
-                assignment_type=assignment_type
-            )
-            user_skill_levels.append(skill_type_tracker)
-
-        return user_skill_levels
+from api.models.score import UserStreakTracker, AssignmentTypeScoreTracker, AssignmentType
+from api.serializers.score import UserStreakTrackerSerializer, AssignmentTypeScoreTrackerSerializer
 
 
-class UserScoreListView(generics.ListAPIView):
-    """
-    Return the user score for all assignment types
-    """
-    permission_classes = (IsAuthenticated,)
-    serializer_class = ScoreTypeSerializer
+class UserStreakView(views.APIView):
 
-    def get_queryset(self):
-        assignment_types = AssignmentType.objects.all()
+    def get(self, request, format=None):
+        user_streaks, created_user_streak = UserStreakTracker.objects.get_or_create(user=request.user)
+        assignment_type_streaks = AssignmentTypeScoreTracker.objects.filter(user=request.user)
 
-        user_assignment_scores = []
+        # Create if not existing; applies to old users
+        if not assignment_type_streaks:
+            assignment_types = AssignmentType.objects.all()
 
-        for assignment_type in assignment_types:
-            score_type_tracker, created = ScoreTypeTracker.objects.get_or_create(
-                user=self.request.user,
-                assignment_type=assignment_type
-            )
-            user_assignment_scores.append(score_type_tracker)
+            assignment_type_streaks = []
 
-        return user_assignment_scores
+            for assignment_type in assignment_types:
+                score_type_tracker, created = AssignmentTypeScoreTracker.objects.get_or_create(
+                    user=request.user,
+                    assignment_type=assignment_type
+                )
+                assignment_type_streaks.append(score_type_tracker)
+
+        return Response({
+            'user_streak': UserStreakTrackerSerializer(
+                user_streaks
+            ).data if user_streaks else {},
+            'assignment_type_streaks': AssignmentTypeScoreTrackerSerializer(
+                assignment_type_streaks,
+                many=True
+            ).data if assignment_type_streaks else {},
+        }, status=status.HTTP_200_OK)

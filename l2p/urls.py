@@ -18,43 +18,50 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 
 from rest_framework import routers
-from rest_framework_jwt.views import obtain_jwt_token
+from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
 
-from api.views.achievement import AchievementViewSet, UserAchievementListView
-from api.views.user import UserViewSet
-from api.views.score import UserSkillsListView, UserScoreListView
-from api.views.assignment import AssignmentTypeViewSet, AssignmentViewSet, CompileCode, SubmitCode, GetAssignment, check_for_new_achievements
+from api.views.achievement import UserAchievementListView
+from api.views.user import StudentViewSet, RegistrationView
+from api.views.score import UserStreakView
+from api.views.issue import add_new_issue
+from api.views.survey import ProgressSurveyViewSet
+from api.views.assignment import AssignmentTypeViewSet, AssignmentViewSet, check_for_new_achievements, compile_code, submit_code_for_assignment, start_quiz
 
-#  admin.autodiscover()
+
+admin.autodiscover()
 
 router = routers.DefaultRouter()
-router.register('achievements', AchievementViewSet)
-router.register('assignment-types', AssignmentTypeViewSet)
-router.register(r'userr', UserViewSet)
+router.register(r'assignment-types', AssignmentTypeViewSet)
+router.register(r'student', StudentViewSet)
+router.register(r'survey', ProgressSurveyViewSet, base_name='survey')
 
 api_urls = [
-	url(r'^', include(router.urls)),
+    url(r'^', include(router.urls)),
 
-    url(r'^compile/$', CompileCode.as_view(), name='compile-code'),
-    url(r'^submit/$', SubmitCode.as_view(), name='submit-code'),
+    url(r'^report/$', add_new_issue, name='report-issue'),
 
-    url(r'^user/skills/$', UserSkillsListView.as_view(), name='user-skills'),
-    url(r'^user/scores/$', UserScoreListView.as_view(), name='user-scores'),
+    url(r'^compile/$', compile_code, name='compile-code'),
+    url(r'^submit/$', submit_code_for_assignment, name='submit-code'),
+
+    url(r'^user/streak/$', UserStreakView.as_view(), name='user-streak'),
     url(r'^user/achievements/$', UserAchievementListView.as_view(), name='user-achievements'),
     url(r'^user/achievements/new/$', check_for_new_achievements, name='user-new-achievements'),
 
     url(r'^assignments/$', AssignmentViewSet.as_view(), name='assignments'),
-    url(r'^assignment/new/$', GetAssignment.as_view(), name='get-assignment'),
+    url(r'^assignment/new/$', start_quiz, name='start-quiz'),
 ]
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
-	#  API specific routes
+    url(r'^auth/register/$', RegistrationView.as_view()),
     url(r'^auth/token/$', obtain_jwt_token),
-	url(r'^api/', include(api_urls, namespace='api')),
+    url(r'^auth/token/refresh/$', refresh_jwt_token),
 
-	# Ensure that this view is last and accept all routes in order to work
+    #  API specific routes
+    url(r'^api/', include(api_urls, namespace='api')),
+
+    # Ensure that this view is last and accept all routes in order to work
     # with react-router
     url(r'', TemplateView.as_view(template_name='index.html'), name='index'),
 ]

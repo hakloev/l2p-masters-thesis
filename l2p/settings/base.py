@@ -10,13 +10,15 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import datetime
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'secret, change in dev.py or prod.py'
+SECRET_KEY = 'secret, change in development.py or production.py'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -25,7 +27,7 @@ LOGIN_URL = '/login/'
 
 APP_DIRS = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = []  # Override in production.py
 
 # Application definition
 INSTALLED_APPS = (
@@ -48,21 +50,19 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
     )
 }
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
-    # 'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
+    # Add custom middleware for accepting application/json content-type
     'l2p.middleware.JSONMiddleware',
 )
 
@@ -70,14 +70,12 @@ ROOT_URLCONF = 'l2p.urls'
 
 WSGI_APPLICATION = 'l2p.wsgi.application'
 
-CORS_ORIGIN_ALLOW_ALL = False # Enable in development
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'CET'
 
 USE_I18N = True
 
@@ -90,8 +88,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
+
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'frontend', 'dist'),
+    os.path.join(BASE_DIR, 'frontend', 'dist'),  # Add output of webpack to static files
 ]
 
 STATICFILES_FINDERS = (
@@ -122,9 +121,20 @@ TEMPLATES = [
     }
 ]
 
+JWT_AUTH = {
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=7),  # 30 minutes
+    'JWT_ALLOW_REFRESH': True,  # Enables refresh of JWT tokens
+    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=14),
+}
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
     'formatters': {
         'verbose': {
             'format': '[%(asctime)s] %(levelname)s %(name)s.%(funcName)s:%(lineno)d %(message)s'
@@ -134,6 +144,10 @@ LOGGING = {
         },
     },
     'handlers': {
+        'null': {
+            'level': 'DEBUG',
+            'class': 'logging.NullHandler',
+        },
         'file': {
             'level': 'DEBUG',
             'class': 'logging.handlers.RotatingFileHandler',
@@ -142,29 +156,39 @@ LOGGING = {
             'maxBytes': 1024 * 1024 * 10,
             'backupCount': 5,
         },
+        'console':{
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+        },
+        'mail_admins': {
+            'level': 'CRITICAL',
+            'class': 'django.utils.log.AdminEmailHandler',
+            'filters': ['require_debug_false'],
+            'include_html': True,
+        },
     },
     'loggers': {
-        'django': {
-            'handlers': ['file'],
-            'propagate': True,
-            'level': 'DEBUG',
-        },
-        'django.db': {
-            'handlers': ['file'],
-            'propagate': True,
-            'level': 'WARNING',
-        },
-        'django.server': {
-            'handlers': ['file'],
+        'django.request': {
+            'handlers': ['console', 'mail_admins'],
             'level': 'ERROR',
             'propagate': True,
+        },
+        'django.db.backends': {
+            'handlers': ['null'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+        'django.security.DisallowedHost': {
+            'handlers': ['null'],
+            'propagate': False,
         },
         'requests': {
             'handlers': ['file'],
             'level': 'ERROR',
             'propagate': True,
         },
-        '': {
+        'api': {
             'handlers': ['file'],
             'level': 'DEBUG',
             'propagate': True,

@@ -1,44 +1,163 @@
-/* RESETS */
-p {
-  margin: 0;
-  line-height: 1.5;
+@import 'reset';
+@import 'variables';
+@import 'stats-badge';
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700,900');
+
+#main-container {
+  height: calc(100vh - 64px); // Subtract the height of the navbar in order to only fill viewport
 }
 
-.container {
-  margin-top: 20px;
+/* Editor related */
+#assignment-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  height: 100%;
+}
+
+#assignment-editor-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 75%;
+  background-color: $ace-editor-color;
+  transition: flex-basis .5s ease;
+  &.full-screen {
+    flex: 1 1 100%;
+  }
+}
+
+#assignment-sidebar {
+  flex: 1 1 25%;
+  padding: 0 20px;
+  background-color: #fff;
+  overflow-y: auto;
+  transition: all .5s ease;
+  &.is-hidden {
+    transform: translateX(100%);
+    flex: 1 1 0;
+    padding: 0;
+  }
+}
+
+#editor-row {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+}
+
+#assignment-editor {
+  flex: 1 1 60%;
+  margin: 10px 10px 0 10px;
+  display: flex;
+  position: relative;
+}
+
+#assignment-output {
+  display: flex; // display: flex to ensure align-items: stretch on child, this makes output-wrapper to fill 100% of parent.
+  flex: 1 1 40%;
+  border-left: 15px solid $grey;
+  background-color: #000;
+  color: #fff;
+}
+
+#input-editor {
+  position: absolute; // absolute position relative to output-wrapper
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+}
+
+#output-console {
+  width: 100%;
+  padding: 15px 15px;
+  font-family: monospace;
+  font-size: 16px;
+  color: #fff;
+  border: 1px solid #000;
+  background-color: #000;
+  resize: none;
+}
+
+#output-wrapper {
+  position: relative;
+  flex: 1;
+  display: flex;
+}
+
+.output-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+
+  &.task {
+    top: auto;
+    left: auto;;
+    right: 20px;
+    bottom: 15px;
+    transform: none;
+    z-index: 9999; // Ensure that the button is always over the output-console
+  }
+}
+
+#skip-button {
+  transition: background-color ease 1s;
+}
+
+#submit-button {
+  transition: all ease 0.5s;
+  opacity: 1;
+  &.is-visible {
+    transform: scale(1);
+  }
+  &.is-hidden {
+    transform: scale(0);
+  }
+}
+
+#assignment-action-bar {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 20px;
+  background-color: #757575;
+}
+
+.assignment-action-bar-report {
+  flex: 1 1 40%;
+}
+
+.hide-button {
+  position: fixed;
+  top: 80px;
+  right: 26%;
+  transition: all ease .5s;
+}
+
+.hide-active {
+    right: 10px;
+    > i {
+      transform: rotate(180deg);
+    }
+}
+
+/* Text block related */
+
+.info-text {
+  margin-bottom: 15px;
+}
+
+.bold {
+  font-weight: 800;
 }
 
 .code-block {
   border: 1px solid lightgray;
   border-radius: 5px;
   font-family: monospace;
-  background-color: #EEEEFF;
+  background-color: rgb(247, 247, 249);
+  color: $code-color;
   padding: 2px;
-}
-
-#assignment-header-container {
-  margin-bottom: 20px;
-
-  > h1 {
-    margin-top: 0;
-    margin-bottom: 5px;
-  }
-}
-
-#assignment-help-container {
-  > h5 {
-    margin-top: 0;
-  }
-}
-
-#assignment-help-container {
-  .btn {
-    margin-right: 10px;
-  }
-}
-
-#assignment-controls-container {
-  > .progress {
-    margin-top: 20px;
-  }
 }

@@ -1,8 +1,13 @@
 {
-    "presets": ["es2015", "react"],
-    "plugins": [
-        "react-hot-loader/babel",
-        "transform-object-rest-spread",
-        "transform-react-require"
-    ]
+  "sourceMaps": true,
+  "presets": [
+    "es2015",
+    "stage-0",
+    "react"
+  ],
+  "plugins": [
+    "react-hot-loader/babel",
+    "transform-object-rest-spread",
+    "transform-react-require"
+  ]
 }
