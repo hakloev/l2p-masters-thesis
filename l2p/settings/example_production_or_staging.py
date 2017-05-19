@@ -2,27 +2,24 @@ import datetime
 
 from l2p.settings.base import *
 
-SECRET_KEY = 'super secret key'
-
+SECRET_KEY = '<change this to your secret key>'
 DEBUG = False
 
 ADMINS = (
-    ('Håkon Ødegård Løvdal', 'post@email.com'),
-    ('Fredrik Christoffer Berg', 'post@email.com'),
+    ('User Usersen', 'post@email.com'),
+    ('Admin Administrator', 'post@email.com'),
 )
 
 SERVER_EMAIL = 'learnpython@localhost'
-
-ALLOWED_HOSTS = ['hakloev.no']
+ALLOWED_HOSTS = ['your-domain.domain']
 
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_HTTPONLY = True
 X_FRAME_OPTIONS = 'DENY'
 
-
 JWT_AUTH = {
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1),  # 30 minutes
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1),
 }
 
 DATABASES = {

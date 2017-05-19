@@ -18,7 +18,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'secret, change in dev.py or prod.py'
+SECRET_KEY = 'secret, change in development.py or production.py'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -27,7 +27,7 @@ LOGIN_URL = '/login/'
 
 APP_DIRS = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = []  # Override in production.py
 
 # Application definition
 INSTALLED_APPS = (
@@ -56,21 +56,19 @@ REST_FRAMEWORK = {
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
-    # 'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
+    # Add custom middleware for accepting application/json content-type
     'l2p.middleware.JSONMiddleware',
 )
 
 ROOT_URLCONF = 'l2p.urls'
 
 WSGI_APPLICATION = 'l2p.wsgi.application'
-
-CORS_ORIGIN_ALLOW_ALL = False # Enable in development
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
@@ -90,8 +88,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
+
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'frontend', 'dist'),
+    os.path.join(BASE_DIR, 'frontend', 'dist'),  # Add output of webpack to static files
 ]
 
 STATICFILES_FINDERS = (
@@ -124,7 +123,7 @@ TEMPLATES = [
 
 JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': datetime.timedelta(days=7),  # 30 minutes
-    'JWT_ALLOW_REFRESH': True,
+    'JWT_ALLOW_REFRESH': True,  # Enables refresh of JWT tokens
     'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=14),
 }
 

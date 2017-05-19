@@ -20,7 +20,7 @@ from api.models.survey import ProgressSurvey
 
 log = logging.getLogger(__name__)
 
-DISPLAY_PROGRESS_SURVEY = False
+DISPLAY_PROGRESS_SURVEY = False  # Alternatively fetch this from ENV?
 
 
 def get_new_assignment(user, assignment_type):

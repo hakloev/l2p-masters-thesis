@@ -1,2 +1,1 @@
 -r base.txt
-django-cors-headers==1.1.0

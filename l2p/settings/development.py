@@ -1,9 +1,7 @@
 from l2p.settings.base import *
 
-SECRET_KEY = 'sdfs%$234DSf2342'
-
+SECRET_KEY = 'sdfs%$234DSf2342'  # Example SECRET_KEY
 DEBUG = True
-
 ALLOWED_HOSTS = []
 
 DATABASES = {
@@ -31,10 +29,6 @@ WEBPACK_LOADER = {
         'STATS_FILE': os.path.join(BASE_DIR, 'frontend', 'webpack-stats-dev.json'),
     }
 }
-
-#INSTALLED_APPS += (
-#    'corsheaders',  # Enable CORS for dev
-#)
 
 JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': datetime.timedelta(days=7),
