@@ -35,3 +35,7 @@ make init # Executes pull-docker-images env development migrate load-fixtures (i
 make superuser
 make run
 ```
+
+## Authors
+
+[bergalerga](https://github.com/Bergalerga) and [hakloev](https://github.com/hakloev/)
