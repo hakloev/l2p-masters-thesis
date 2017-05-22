@@ -12,12 +12,12 @@ npm run dev-server # Starts the webpack-dev-server on port 3000
 ```
 ---
 
-**NB:** The application requires [Docker](https://www.docker.com/community-edition) to be installed for one of the following commands (`make pull-docker-images`) to work. Additionaly, the code execution in the web-application also requires Docker. 
+**NB:** The application requires [Docker](https://www.docker.com/community-edition) to be installed for one of the following commands (`make pull-docker-images`) to work. Additionaly, the code execution in the web-application also requires Docker.
 
 **Backend**:
 ```bash
 # Done in a separate terminal window/session
-export DJANGO_SETTINGS_MODULE=l2p.settings.dev # Export the Django-settings file to the PATH-variable
+export DJANGO_SETTINGS_MODULE=l2p.settings.development # Export the Django-settings file to the PATH-variable
 make env # Creates the virtual environment for Python, only required to do once
 make pull-docker-images # Optional if the images are pulled already
 make development # Install all development dependencies to the virtual environment
@@ -25,4 +25,13 @@ make migrate # Apply initialy and/or if new migrations are available
 make load-fixtures # If not previously loaded, this will populate the SQLite datebase
 make superuser # Creates a superuser for the Django-application
 make run # Starts the server on port 8000
+```
+
+Alternatively, if it is the first time you start the development version of the application:
+
+```bash
+export DJANGO_SETTINGS_MODULE=l2p.settings.development
+make init # Executes pull-docker-images env development migrate load-fixtures (in that order)
+make superuser
+make run
 ```

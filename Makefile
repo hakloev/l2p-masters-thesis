@@ -11,7 +11,7 @@ migrate:
 	$(MANAGE) migrate
 
 make-migrations:
-	$(MANAGE) makemigrations	
+	$(MANAGE) makemigrations
 
 load-fixtures:
 	$(MANAGE) loaddata ./fixtures/achievements.json
@@ -44,3 +44,6 @@ delete-env:
 
 run:
 	$(MANAGE) runserver 0.0.0.0:8000
+
+init: pull-docker-images env development migrate load-fixtures
+
