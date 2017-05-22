@@ -10,6 +10,9 @@ This code is the artifact created during our master's thesis. The artifact was u
 yarn install # Downloads the required npm-packages
 npm run dev-server # Starts the webpack-dev-server on port 3000
 ```
+---
+
+**NB:** The application requires [Docker](https://www.docker.com/community-edition) to be installed for one of the following commands (`make pull-docker-images`) to work. Additionaly, the code execution in the web-application also requires Docker. 
 
 **Backend**:
 ```bash
