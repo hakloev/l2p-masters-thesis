@@ -4,15 +4,23 @@ This code is the artifact created during our master's thesis. The artifact was u
 
 ## Development
 
+### Requirements:
+
+* [NodeJS](https://nodejs.org) v. 7.1.0 or newer
+* [Docker Community Edition](https://www.docker.com/community-edition)
+* [Python 3.5](https://www.python.org/downloads/) 
+
+**NB:** The application requires [Docker](https://www.docker.com/community-edition) to be installed for one of the following commands (`make pull-docker-images`) to work. Additionaly, the code execution in the web-application also requires Docker.
+
 **Frontend** *(done within the `frontend`-folder)*:
 ```bash
 # Done in a separate terminal window/session
-yarn install # Downloads the required npm-packages
+# yarn or npm is needed to install the npm-packages
+# npm install -g yarn
+yarn install or npm install # Downloads the required npm-packages
 npm run dev-server # Starts the webpack-dev-server on port 3000
 ```
 ---
-
-**NB:** The application requires [Docker](https://www.docker.com/community-edition) to be installed for one of the following commands (`make pull-docker-images`) to work. Additionaly, the code execution in the web-application also requires Docker.
 
 **Backend**:
 ```bash
@@ -38,4 +46,4 @@ make run
 
 ## Authors
 
-[bergalerga](https://github.com/Bergalerga) and [hakloev](https://github.com/hakloev/)
+[Fredrik Berg](https://github.com/Bergalerga) and [Håkon Løvdal](https://github.com/hakloev/)
